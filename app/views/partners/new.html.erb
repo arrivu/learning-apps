@@ -8,12 +8,12 @@
   <%= render 'shared/error_messages', object: f.object %>
 <tr>
 	<td><%=f.label 'Company Name'%></td>
-	<td><%=f.text_field :companyname%></td>
+	<td><%=f.text_field :company_name%></td>
 </tr>
 
 <tr>
 	<td><%=f.label 'Logo' %></td>
-	<!-- <td><%= image_tag(size: "100x100", alt: "")%> </td> -->
+	
 	<td><%= f.file_field :uploaded_file %></td>
 </tr>
 <tr >

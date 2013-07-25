@@ -3,11 +3,14 @@ class PartnersController < ApplicationController
     before_filter :check_admin_user,:only => [:new,:create,:edit,:show,:update,:destroy,:index]
 
   def new
+    topics
   	@partner=Partner.new
 
   end
   def  create
+    topics
 		@partner = Partner.new(params[:partner])
+
 	   
 			if @partner.save
 			  flash[:success] = "Details added "
@@ -25,8 +28,7 @@ class PartnersController < ApplicationController
 
   def index
   	 @partner=Partner.paginate(page: params[:page], :per_page => 10)
-
-     
+      topics
 
   end
   # def showimage
