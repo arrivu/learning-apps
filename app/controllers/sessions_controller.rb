@@ -5,19 +5,29 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
     @account=Account.find_by_name(current_subdomain)
-     if  @domain_root_account.account_users.find_by_user_id(resource.id).account_id
+     if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
       #set_flash_message(:notice, :signed_in) if is_navigational_format?
       #
       #sign_in(resource_name, resource)
       # redirect_to "ibm.lvh.me:3000"
      
      super
+
+        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id.to_s,:membership_type => "student")
+      
+
      # redirect_to :users_path
 
     #call cas sign to create the cas ticket
     if current_user 
       user_cas_sign_in( current_user)
-    end 
+    end
+    else
+       super
+        if current_user 
+      user_cas_sign_in( current_user)
+    end
+
   end
 
 

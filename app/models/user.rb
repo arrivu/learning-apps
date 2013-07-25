@@ -93,5 +93,6 @@ class User < ActiveRecord::Base
     find_by_sql("insert into users_roles(user_id,role_id) values(#{user_id},#{role_id})")  
   end
   
+  
 end
 

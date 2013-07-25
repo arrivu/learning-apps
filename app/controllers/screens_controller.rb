@@ -1,8 +1,8 @@
 class ScreensController < ApplicationController
   include ScreensHelper
   def home
-    @courses = Course.all(:conditions => {:ispopular => 1},:limit => 6)
-    @topics=Topic.all(:limit => 6)
+    @courses = Course.all(:conditions => {:ispopular => 1,:account_id=>@account_id},:limit => 6)
+    @topics=Topic.where(:account_id=>@account_id)
     @topics = @topics.sort_by {|x| x.name.length}
   end
 

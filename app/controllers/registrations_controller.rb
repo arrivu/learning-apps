@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
     @user=User.new(params[:user])
 
     # build_resource
-    @account=Account.find_by_name(request.subdomain)
+    
       
 
     
