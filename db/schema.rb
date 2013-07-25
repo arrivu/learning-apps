@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "invoice_details"
     t.integer  "user_id"
     t.integer  "course_id"
+    t.string   "account_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -288,13 +289,22 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "user_id"
   end
 
+  create_table "omniauth_links", :force => true do |t|
+    t.string   "face_book"
+    t.string   "linked_in"
+    t.string   "gmail"
+    t.string   "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "partners", :force => true do |t|
-    t.string   "companyname"
+    t.string   "company_name"
     t.binary   "image"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "image_type"
-    t.string   "filename"
+    t.string   "file_name"
   end
 
   create_table "rates", :force => true do |t|
@@ -361,6 +371,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "image_type"
     t.binary   "data"
     t.string   "background_image_type"
+  end
+
+  create_table "social_stream_comments", :force => true do |t|
+    t.string   "twitter_comment_script"
+    t.string   "facebook_comment_script"
+    t.string   "account_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "student_courses", :force => true do |t|

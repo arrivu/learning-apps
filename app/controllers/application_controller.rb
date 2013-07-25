@@ -1,5 +1,6 @@
   class ApplicationController < ActionController::Base
     before_filter :load_account
+    before_filter :topics
     protect_from_forgery
     include ApplicationHelper
     include CoursesHelper
@@ -11,6 +12,7 @@
       redirect_to root_path, :alert => exception.message
   end
   include TaxRatesHelper
+
 
   def after_sign_in_path_for(resource_or_scope)
     if redirect_back_req?
@@ -70,6 +72,11 @@
       end
 
 
+    end
+
+    def topics
+      @topics=Topic.where(:account_id => @account_id)
+        @topics = @topics.sort_by {|x| x.name.length} 
     end
 
 

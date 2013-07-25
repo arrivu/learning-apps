@@ -58,10 +58,12 @@
       <div class="two columns">
         <ul class="link-list library-nav right">
           <li class="heading">Browse full library →</li>            
-                <% @topics.each do |topic| %>
-                <%= link_to topic.name, topic_path(topic) %>
-                <% end %>
-               </li>                 
+
+              <% @topics.each do |topic| %>
+              <%= link_to topic.name, topic_path(topic) %>
+              <% end %>
+                                
+
        </ul>
       </div>
       

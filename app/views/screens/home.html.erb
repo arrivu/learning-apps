@@ -201,8 +201,16 @@
     <div class="container" align="center">
       <div class="row testimonial">
                <h2>Knowledge Partners</h2>
+               <table><tr><% @partner.each do |partners| %>
+  
+ 
+       <td> <%= partners.company_name %>
+  
+    
+     <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners), :size => "50x50" %> </td>
+  <% end %></tr></table>
 
-      <div class="listofkp" >
+      <!-- <div class="listofkp" >
           <div class="firstkp">
            <a href="<%= knowledge_partners_path %>"> <img src="assets/jigsaw.png" /></a>
           </div>
@@ -217,7 +225,7 @@
          
               <%= link_to "", knowledge_partners_path, :class => "browselist" %>
                 <h6 style="color:steelblue;margin:0px;"> Know more about out Partners</h6>               
-              </div>
+              </div> -->
       </div>
     </div> 
   </div>
@@ -234,46 +242,22 @@
             <!--<div class="customerimage">-->
               <!--<img src="assets/learner.jpg" />-->
             <!--</div>-->
-            <div class="testimonialtext">
-              "Taking the Great Lakes Analytics Certification has been one the best career decisions. The content had the perfect blend of theory and hands-on exposure. I would recommend it to all who wish to build a career in analytics." 
-            </div>
-            <div class="testimonialauthor">
-              - Mayank,<br/>Analytics Professional
-            </div>
-          </div>
-        </div>
-        <div class="span4" style="margin-left:25px;width: 30%;">
-          <div class="verticalcustomerbox testimonial-two">
-            <!--<div class="customerimage">-->
-              <!--<img src="assets/learner.jpg" />-->
-            <!--</div>-->
-            <div class="testimonialtext">
-              "I love Beacon for the quality of content and the teaching methodology. The video lectures are very interesting and one can learn at their own pace. Learning becomes so much more enjoyable when you can see the results for yourself."
-            </div>
-            <div class="testimonialauthor">
-              -Kate,<br/>Business Manager
-            </div>
-          </div>
-        </div>
-        <div class="span4" style="margin-left:25px;width: 30%;">
-          <div class="verticalcustomerbox testimonial-three">
-            <!--<div class="customerimage">-->
-              <!--<img src="assets/learner.jpg" />-->
-            <!--</div>-->
-            <div class="testimonialtext">
-              "Being in sales for five years, I have been negotiating deals for a living. But I must confess, the Negotiations course really blew me off. There was so much to learn - concepts I'd never thought of explained in wonderfully simple and practical ways. I loved the course for it gave me a skill that is so tangible that I use it every day. Thumbs up Beacon ! "
-            </div>
-            <div class="testimonialauthor">
-              - Arun,<br/>Sales Executive
-            </div>
-          </div>
-        </div>
-      </div>
-      <div align="center">
-         
-              <%= link_to "", user_reviews_path, :class => "browselist" %>
-                <h6 style="style="color:steelblue;margin:0px;""> Read More Reviews</h6>               
-              </div>
+           <!--  -->
+          <table><tr>
+           <% @testimonial.each do |testimonials| %>
+
+             <td><%= testimonials.name %>
+             <%=testimonials.organization%>
+            <%=testimonials.job%>
+            <%=testimonials.comment%></td>
+            <% end %>
+ <td width="400px" height="50px"><a class="twitter-timeline" href="https://twitter.com/justmaivetrivel" data-widget-id="347299910313447425">Tweets by @justmaivetrivel</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+</td>
+</tr></table>
+  </div>
+  </div>
     </div>
   </div>
 <%= render 'shared/media_reviews' %>

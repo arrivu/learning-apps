@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   before_filter :check_admin_user, :only => [:show, :destroy,:index,:interested_users]
   require 'csv'
   
-  def index    
+  def index   
+      @topics=Topic.where(:account_id => @account_id)
+      @topics = @topics.sort_by {|x| x.name.length} 
     authorize! :index, @user, :message => 'Not authorized as an administrator.'
-
+    
     query = "%#{params[:query]}%"
       if params[:provider]==nil
         @users = User.all.paginate(page: params[:page], :per_page => 10)

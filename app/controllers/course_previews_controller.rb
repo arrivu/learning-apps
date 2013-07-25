@@ -6,6 +6,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 	end
 
 	def create
+		topics
 		@course=Course.find(params[:id])
 		@preview =@course.course_previews.build(params[:course_preview])
 		@preview.account_id=current_subdomain.id.to_s
@@ -21,7 +22,8 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 
 	def index
 		@previews = CoursePreview.paginate(page: params[:page], :per_page => 10)
-		@course = Course.all
+		@course = Course.where(:account_id=>@account_id)
+		topics
 		
 	end
 
