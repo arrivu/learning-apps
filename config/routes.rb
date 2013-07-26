@@ -4,6 +4,14 @@ Myapp::Application.routes.draw do
 
   
 
+  get "aboutdetails/new"
+
+  get "aboutdetails/edt"
+
+  get "aboutdetails/index"
+
+  get "aboutdetails/show"
+
   get "terms/new"
 
   get "terms/edit"
@@ -56,6 +64,8 @@ resources :footerlinks
   resources :testimonials
   resources :partners
   resources :privacypolicies
+  resources :terms
+  resources :aboutdetails
   match 'payments/course_payment_gateway',:to=>'payments#course_payment_gateway'
   match 'payments/course_payment',:to=>'payments#course_payment'
   match 'payments/follow_course',:to=>'payments#follow_course'

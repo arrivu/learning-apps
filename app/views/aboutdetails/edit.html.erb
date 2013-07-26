@@ -7,10 +7,10 @@ tinyMCE.init({
 });
 </script>
 </head>
-<h3 align = "center">Terms and Conditions</h3>
+<h3 align = "center">About Details</h3>
 <table align="center">
 <%= tinymce_assets %>
-<%= form_for @term do |f| %>
+<%= form_for @aboutdetail do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 <tr>
 	<td><%=f.label 'Title'%></td>
@@ -27,4 +27,3 @@ tinyMCE.init({
 <%= tinymce %>
 <% end %>
 </table>
-

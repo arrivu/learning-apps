@@ -1,2 +1,24 @@
-<h1>Terms#index</h1>
-<p>Find me in app/views/terms/index.html.erb</p>
+<h3 align = "center">Terms and Conditions</h3>
+<table align="center">
+	<% @term.each do |termsandconditions| %>
+    <tr>
+		 <td>
+			 <%= termsandconditions.title%>
+		 </td>
+	  </tr>
+	  <tr>
+		 <td>
+			<%= termsandconditions.desc.html_safe %>
+		 </td>
+		</tr>
+		<tr>
+			<td><%= link_to "show",term_path(termsandconditions) %></td>
+		</tr>
+		<tr>
+			<td><%= link_to "edit",edit_term_path(termsandconditions) %></td> 
+		</tr>
+		<tr>
+			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <%end%>
+</table>

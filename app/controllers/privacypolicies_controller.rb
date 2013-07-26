@@ -16,8 +16,7 @@ class PrivacypoliciesController < ApplicationController
   	@privacypolicy = Privacypolicy.find(params[:id])
   end
   def index
-
- 			 @privacypolicy=Privacypolicy.paginate(page: params[:page], :per_page => 10)
+		 @privacypolicy=Privacypolicy.paginate(page: params[:page], :per_page => 10)
 	end
   def edit
   	@privacypolicy=Privacypolicy.find(params[:id])

@@ -1,2 +1,29 @@
-<h1>Terms#new</h1>
-<p>Find me in app/views/terms/new.html.erb</p>
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+tinyMCE.init({
+        theme : "advanced",
+        mode : "textareas"
+});
+</script>
+<h3 align = "center">Terms and Conditions</h3>
+<table align="center">
+<%= tinymce_assets %>
+<%= form_for @term do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <tr>
+    <td><%= f.label 'Title' %></td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+	<td><%=f.label 'Description'%></td>
+	<td><%=f.text_area :desc,:class => "tinymce"%></td>
+</tr>
+<tr>
+   <td><%= f.submit "Save" %> </td>
+</tr>
+<%= tinymce %>
+<% end %>
+</table>
+</html>
+

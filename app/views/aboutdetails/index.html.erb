@@ -1,0 +1,24 @@
+<h3 align = "center">About Details</h3>
+<table align="center">
+	<% @aboutdetail.each do |aboutdetails| %>
+    <tr>
+		 <td>
+			 <%= aboutdetails.title%>
+		 </td>
+	  </tr>
+	  <tr>
+		 <td>
+			<%= aboutdetails.desc.html_safe %>
+		 </td>
+		</tr>
+		<tr>
+			<td><%= link_to "show",aboutdetail_path(aboutdetails) %></td>
+		</tr>
+		<tr>
+			<td><%= link_to "edit",edit_aboutdetail_path(aboutdetails) %></td> 
+		</tr>
+		<tr>
+			<td><%= link_to "destroy",aboutdetails, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <%end%>
+</table>

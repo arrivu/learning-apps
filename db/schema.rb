@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130314093035551) do
 
+  create_table "aboutdetails", :force => true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.string   "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "account_settings", :force => true do |t|
     t.boolean  "knowledge_partners"
     t.boolean  "media_partners"
@@ -432,6 +440,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",                          :null => false
     t.string   "linkedin_profile_url"
     t.string   "account_id"
+  end
+
+  create_table "terms", :force => true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.string   "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "testimonials", :force => true do |t|
