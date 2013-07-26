@@ -32,7 +32,9 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
    else
      @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 6)
    end
-   @topics = Topic.all
+
+   @topics = Topic.where(account_id: @account_id.to_s)
+
 
  end
 

@@ -32,7 +32,7 @@ class TeachingStaffsController < ApplicationController
 
       if @teachingstaff.save
 			@teachingstaff.user.add_role(:teacher)
-			AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id.to_s)
+			AccountUser.create(:user_id=>@teachingstaff.user_id,:account_id=>@account_id.to_s)
 			flash[:notice] = "Teaching Staff add successfully"
       lms_create_user(@teachingstaff.user)
       redirect_to teaching_staffs_path
@@ -104,7 +104,7 @@ class TeachingStaffsController < ApplicationController
 	end
 	end
 	def index
-		@teachingstaff=TeachingStaff.paginate(page: params[:page], :per_page => 10)
+		@teachingstaff=TeachingStaff.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
 	end
 
 	def destroy

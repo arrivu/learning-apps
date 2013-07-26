@@ -1,42 +1,16 @@
 Myapp::Application.routes.draw do
 
 
+resources :omniauth_links
+resources :social_stream_comments
 
-  
-
-  get "aboutdetails/new"
-
-  get "aboutdetails/edt"
-
-  get "aboutdetails/index"
-
-  get "aboutdetails/show"
-
-  get "terms/new"
-
-  get "terms/edit"
-
-  get "terms/show"
-
-  get "terms/index"
-
-  get "privacypolicies/new"
-
-  get "privacypolicies/show"
-
-  get "privacypolicies/edit"
-
-  get "partners/new"
-
-
- 
 
 match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks
   resources :accounts
 
 
-  get "partners/show"
+
 
 
 

@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+before_filter :subdomain_authenticate, :only => [:show]
  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
  def index
   @topics = Topic.where(account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 10)
@@ -9,7 +10,7 @@ def show
   @total_course_count = @topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id.to_s).size
   @courses = @topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 6)
 
-  @topics = Topic.order(:name)
+  @topics = Topic.where(:account_id=>@account_id).order(:name)
 end
 
 def new

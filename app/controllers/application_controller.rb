@@ -1,5 +1,6 @@
   class ApplicationController < ActionController::Base
     before_filter :load_account
+    before_filter :topics
     protect_from_forgery
     include ApplicationHelper
     include CoursesHelper
@@ -11,6 +12,7 @@
       redirect_to root_path, :alert => exception.message
   end
   include TaxRatesHelper
+
 
   def after_sign_in_path_for(resource_or_scope)
     if redirect_back_req?
@@ -50,15 +52,21 @@
 
 
    def load_account
-    @account_id=Account.find_by_name(current_subdomain).id
+
+   
+
       unless current_subdomain.nil?
          @domain_root_account= Account.find_by_name current_subdomain
            if (@domain_root_account == nil)
                 redirect_to request.url.sub(current_subdomain, Account.default.name)
             end
+            @account_id=Account.find_by_name(current_subdomain).id
           else
             @domain_root_account=Account.default
+
+            
       end
+
     end
     def subdomain_authenticate
       @coursedet=Course.find(params[:id])
@@ -70,6 +78,11 @@
       end
 
 
+    end
+
+    def topics
+      @topics=Topic.where(:account_id => @account_id)
+        @topics = @topics.sort_by {|x| x.name.length} 
     end
 
 

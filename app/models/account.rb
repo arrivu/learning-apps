@@ -15,7 +15,7 @@ class Account < ActiveRecord::Base
 
   def add_user(user, membership_type = nil)
     return nil unless user && user.is_a?(User)
-    membership_type ||= 'AccountAdmin'
+    membership_type ||= 'student'
     au = self.account_users.find_by_user_id_and_membership_type(user.id, membership_type)
     au ||= self.account_users.create(:user_id => user.id, :membership_type => membership_type)
   end
