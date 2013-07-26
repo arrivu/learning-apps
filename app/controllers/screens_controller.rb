@@ -6,6 +6,7 @@ class ScreensController < ApplicationController
     @topics = @topics.sort_by {|x| x.name.length}
     @partner=Partner.all(:limit => 3)
     @testimonial=Testimonial.where(:account_id=>@account_id)
+    @footerlinks=Footerlink.where(:account_id=>@account_id)
   end
 
   def about

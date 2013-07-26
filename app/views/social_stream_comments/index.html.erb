@@ -1,4 +1,4 @@
 <% @social_stream_comments.each do|social_stream_comment| %>
-<%= social_stream_comment.facebook_comment_script%>
-<%= social_stream_comment.twitter_comment_script%>
+<table><tr><%= social_stream_comment.facebook_comment_script%><br/><br/>
+<%= social_stream_comment.twitter_comment_script%></tr></table><br/><br/>
 <% end %>

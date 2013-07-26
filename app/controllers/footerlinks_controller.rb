@@ -4,8 +4,8 @@ class FooterlinksController < ApplicationController
   end
   def create
   	@footerlink=Footerlink.new(params[:footerlink])
-  	@accountid=Account.find_by_name(request.subdomain)
-  	@footerlink.accountid=@accountid.id
+  	
+  	@footerlink.account_id=@accountid_id
   	if @footerlink.save
   		flash[:success]="FooterLinks created successfully"
   		redirect_to footerlinks_path
