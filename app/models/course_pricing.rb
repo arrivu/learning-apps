@@ -1,5 +1,5 @@
 class CoursePricing < ActiveRecord::Base
-  attr_accessible :course_id, :end_date, :price, :start_date,:accountid
+  attr_accessible :course_id, :end_date, :price, :start_date,:account_id
    belongs_to :course
    belongs_to :account
    validates :course_id, presence:true
