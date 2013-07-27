@@ -93,6 +93,9 @@ resources :footerlinks
   resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
   match '/my_courses', :to => 'courses#my_courses'  
   match '/show_image/:id', :to => 'courses#show_image' 
+  match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
+    match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
+
   match '/background_image/:id', :to => 'courses#background_image' 
   
 #  match '*a', :to => 'home#routing_error'

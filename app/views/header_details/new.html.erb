@@ -2,13 +2,13 @@
 <table>
 	<tr>
 		<td><%= f.label :logo %></td>
-		<td><%= f.file_filed :logo %></td></tr>
+		<td><%= f.file_field :uploaded_file %></td></tr>
 
 	<tr><td><%= f.label :theme %></td>
-		<td><%= f.file_filed :theme %></td></tr>
+		<td><%= f.file_field :uploaded%></td></tr>
 
 	<tr><td><%= f.label :message %></td>
 	    <td><%= f.text_field :message %></td>
-
+    <tr><td><%= f.submit  "submit" %></td></tr>
 </table>
 <% end %>	
