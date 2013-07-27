@@ -3,7 +3,7 @@ Myapp::Application.routes.draw do
 
 resources :omniauth_links
 resources :social_stream_comments
-
+resources :header_details
 
 match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks

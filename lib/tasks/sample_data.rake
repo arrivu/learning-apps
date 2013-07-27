@@ -17,7 +17,7 @@ namespace :db do
 						Topic.create!(
 							name: array[0],
 							desc: array[1],
-							account_id: array[2]
+							
 							)
 					end
 
@@ -40,7 +40,7 @@ namespace :db do
 			Course.create!(title: array[0],
 			desc: array[1],
 			topic_id: array[2],
-			account_id: array[3],
+			
 			short_desc: array[1],
 			ispublished: 1 ,
 			start_date: '2013-05-03' ,
@@ -60,10 +60,10 @@ namespace :db do
 					price:array[1],
 					start_date:array[2],
 					end_date:array[3],
-					account_id: array[4]
+					
 					)
 			end
 
-			TaxRate.create!(valid_from:"2013-03-01", valid_until:"2050-03-31",factor:0.0, is_default: true, description: "Service Tax",account_id: "1")
+			TaxRate.create!(valid_from:"2013-03-01", valid_until:"2050-03-31",factor:0.0, is_default: true, description: "Service Tax")
 	end
 end

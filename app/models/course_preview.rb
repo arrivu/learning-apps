@@ -1,6 +1,6 @@
 class CoursePreview < ActiveRecord::Base
 
-	attr_accessible :desc, :enable, :name, :sequence, :video_url, :course_id,:accountid
+	attr_accessible :desc, :enable, :name, :sequence, :video_url, :course_id,:account_id
 	belongs_to :course
 	belongs_to :account
 	
