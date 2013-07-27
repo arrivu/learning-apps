@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "abouts", :force => true do |t|
+    t.string   "title"
+    t.string   "desc"
+    t.string   "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "account_settings", :force => true do |t|
     t.boolean  "knowledge_partners"
     t.boolean  "media_partners"
@@ -313,7 +321,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",   :null => false
     t.string   "image_type"
     t.string   "file_name"
-
+    t.string   "account_id"
   end
 
   create_table "privacypolicies", :force => true do |t|
@@ -322,7 +330,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "account_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-
   end
 
   create_table "rates", :force => true do |t|

@@ -1,7 +1,21 @@
 <% provide(:title, 'Terms and Conitions') %>
 <div class="row">
-
-	<div class="container terms">
+<h3 align = "center">Terms and Conditions</h3>
+<table align="center">
+  <% @term.each do |termsandconditions| %>
+    <tr>
+     <td>
+       <%= termsandconditions.title%>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <%= termsandconditions.desc.html_safe %>
+     </td>
+    </tr>
+    <% end %>
+  </table >
+	<!-- <div class="container terms">
 		<div class="span12">
 		
 			<h3>Website usage terms and conditions </h3>
@@ -74,3 +88,4 @@ The use of this website is subject to the following terms of use:
 		</div>
 	</div>
 </div>
+ -->

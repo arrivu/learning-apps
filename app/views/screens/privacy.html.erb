@@ -2,8 +2,22 @@
 <div class="row">
 	<div class="container privacy">
 		<div class="span12">
+			<h3 align = "center">Privacy Policies</h3>
+<table align="center">
+	<% @privacypolicy.each do |policies| %>
+    <tr>
+		 <td>
+			 <%= policies.title%>
+		 </td>
+	  </tr>
+	  <tr>
+		 <td>
+			<%= policies.desc.html_safe %>
+		 </td>
+		</tr>
+		<% end %></table>
 		
-	  <h2>
+	<!--   <h2>
 	Privacy Policy</h2>
 <h3>
 	What information do we collect?</h3>
@@ -72,7 +86,7 @@
 	mail@ <a href="#">admin@smartcoach.com</a><br />
 	</p>
 <p>
-	&nbsp;</p>
+	&nbsp;</p> -->
 
 	</div>
 </div>

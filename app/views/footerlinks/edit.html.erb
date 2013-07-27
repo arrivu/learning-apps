@@ -1,13 +1,5 @@
 <%= form_for(@footerlink) do |f| %>
-<table><tr><td><%= f.label :aboutus_url %></td><td>
-<%= f.text_field :aboutus_url %></td></tr>
-<tr><td><%= f.label :contactus_url %></td><td>
-<%= f.text_field :contactus_url %></td></tr>
-<tr><td><%= f.label :privacy_policy_url %></td><td>
-<%= f.text_field :privacy_policy_url %></td></tr>
-<tr><td><%= f.label :terms_condition_url %></td><td>
-<%= f.text_field :terms_condition_url %></td></tr>
-<tr><td><%= f.label :youtube_url %></td><td>
+<table<tr><td><%= f.label :youtube_url %></td><td>
 <%= f.text_field :youtube_url %></td></tr>
 <tr><td><%= f.label :linkedin_url %></td><td>
 <%= f.text_field :linkedin_url %></td></tr>
@@ -17,5 +9,7 @@
 <%= f.text_field :facebook_url %></td></tr>
 <tr><td><%= f.label :twitter_url %></td><td>
 <%= f.text_field :twitter_url %></td></tr>
+<tr><td><%= f.label :copy_write %></td><td>
+<%= f.text_field :copy_write %></td></tr>
 <tr><td><%= f.submit "update" %></td></tr></table>
 <% end %>

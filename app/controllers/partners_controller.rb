@@ -3,15 +3,15 @@ class PartnersController < ApplicationController
     before_filter :check_admin_user,:only => [:new,:create,:edit,:show,:update,:destroy,:index]
 
   def new
-    topics
+    
   	@partner=Partner.new
 
   end
   def  create
-    topics
+    
 		@partner = Partner.new(params[:partner])
 
-	   
+	   @partner.account_id=@account_id
 			if @partner.save
 			  flash[:success] = "Details added "
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
@@ -27,8 +27,8 @@ class PartnersController < ApplicationController
   end
 
   def index
-  	 @partner=Partner.paginate(page: params[:page], :per_page => 10)
-      topics
+  	 @partner=Partner.where(:account=>@account_id).paginate(page: params[:page], :per_page => 10)
+      
 
   end
   # def showimage
@@ -48,6 +48,8 @@ class PartnersController < ApplicationController
 
   end
   def update
+     @partner.account_id=@account_id
+      @partner.account_id=@account_id
     @partner = Partner.find(params[:id])
          if @partner.update_attributes(params[:partner])
             flash[:success] = "Partners Details updated"

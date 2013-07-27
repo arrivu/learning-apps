@@ -1,20 +1,16 @@
 <% @footerlink.each do |footerlink| %>
  <table width="100%">
-     <tr>	<td width="20%"><%= footerlink.privacy_policy_url %></td>
-      <td  width="20%"><%= footerlink.aboutus_url %></td>
-
-      <td  width="20%"><%= footerlink.contactus_url %></td>
-      <td  width="20%"><%= footerlink.facebook_url %></td>
+    
+      <tr><%= footerlink.facebook_url %></tr><br/>
      
-      </tr>
-      </table>
-      <table width="100%">
-      	 <td  width="20%"><%= footerlink.google_url %> </td>
-   <td  width="20%"><%= footerlink.linkedin_url %><td>
+     
+     
+      	 <tr><%= footerlink.google_url %></tr><br/>
+  <tr><%= footerlink.linkedin_url %></tr><br/>
    
-      <td  width="20%"><%= footerlink.terms_condition_url %> </td>
-   <td  width="20%"><%= footerlink.twitter_url %><td>
-   	 <td  width="20%"><%= footerlink.twitter_url %><td>
-   	<td  width="20%"><%= link_to "edit",edit_footerlink_path(footerlink) %></td></tr>
+    <tr><%= footerlink.copy_write %> </tr><br/>
+   <tr><%= footerlink.twitter_url %></tr><br/>
+   	 <tr><%= footerlink.twitter_url %></tr><br/>
+   	<tr><%= link_to "edit",edit_footerlink_path(footerlink) %></tr><br/>
       	<% end %>
       	 </table>

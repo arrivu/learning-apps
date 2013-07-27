@@ -4,6 +4,7 @@ class AboutdetailsController < ApplicationController
 	    end
 	    def create
 	        @aboutdetail = Aboutdetail.new(params[:aboutdetail])
+	        @aboutdetail.account_id=@account_id
 			    if @aboutdetail.save
 			      flash[:success] = "About Detail added successfully!!!!"
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
@@ -19,6 +20,7 @@ class AboutdetailsController < ApplicationController
   		end
   		def update
      		 @aboutdetail = Aboutdetail.find(params[:id])
+     		 @aboutdetail.account_id=@account_id
      		 if @aboutdetail.update_attributes(params[:aboutdetail])
         		flash[:success] = "About Detail updated"
         		redirect_to aboutdetails_path

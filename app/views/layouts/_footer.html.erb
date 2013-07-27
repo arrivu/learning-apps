@@ -11,41 +11,23 @@
     <div class="row">
       <div class="four columns mission">
         <p class="headinglike" style="font-size: 20px; font-weight:300;">Beacon learning</p>
+          <% @footerlinks.each do |footerlink| %>
+ <table width="100%">
+    
+      <tr><td><a href=<%= footerlink.facebook_url %> target="_blank" title="facebook"> <%= image_tag "/assets/facebook.png" %>
+            </a><a href=<%= footerlink.google_url %> target="_blank" title="google"> <%= image_tag "/assets/googleplus.png" %><a href="<%= footerlink.linkedin_url %>" target="_blank" title="linkedin"> <%= image_tag "/assets/linkedin.png" %><a href=<%= footerlink.youtube_url %> target="_blank" title="Twitter"> <%= image_tag "/assets/youtube.png" %> <a href=<%= footerlink.twitter_url %> target="_blank" title="Twitter"> <%= image_tag "/assets/twitter.png" %></td></tr><br/>
+     
+   
+        
+         </table>
        
-        <ul class="social">
-          <li>
-            <a href="https://twitter.com/BeaconeLearning" target="_blank" title="Twitter">
-              <%= image_tag "/assets/twitter.png" %>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://www.youtube.com/beaconelearning" target="_blank"  title="Youtube">
-              <%= image_tag "/assets/youtube.png" %>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com/beaconlearningindia" target="_blank"  title="Facebook">
-              <%= image_tag "/assets/facebook.png" %>
-            </a>
-          </li>
-          <li>
-            <a href="https://plus.google.com/107673193130571288433/about?partnerid=gplp0"  target="_blank" title="Google Plus">
-              <%= image_tag "/assets/googleplus.png" %>
-            </a>
-          </li>
-          <li>
-            <a href="http://www.linkedin.com/groups/Beacon-Learning-4939238"  target="_blank" title="LinkedIn">
-              <%= image_tag "/assets/linkedin.png" %>
-            </a>
-          </li>
-
-        </ul>
-
+        
         <p class="copyright">
-          © 2013 Beacon Learning.
+          <%= footerlink.copy_write %>
         </p>
+        <% end %>
       </div>
+    
       <div class="two columns">
         <ul class="link-list site-nav right">
           <li class="heading">Our Company →</li>

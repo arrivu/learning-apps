@@ -83,6 +83,7 @@
     def topics
       @topics=Topic.where(:account_id => @account_id)
         @topics = @topics.sort_by {|x| x.name.length} 
+        @footerlinks=Footerlink.where(:account_id=>@account_id)
     end
 
 

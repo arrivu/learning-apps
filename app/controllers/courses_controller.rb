@@ -35,7 +35,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
 
    @topics = Topic.where(account_id: @account_id.to_s)
 
-
+  
  end
 
  def new

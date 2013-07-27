@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-before_filter :subdomain_authenticate, :only => [:show]
+  before_filter :subdomain_authenticate, :only => [:show]
  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
  def index
   @topics = Topic.where(account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 10)

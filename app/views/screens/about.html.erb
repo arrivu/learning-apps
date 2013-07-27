@@ -1,7 +1,20 @@
 <% provide(:title, 'About') %>
 <% provide(:effectingHeader) %>
 <br/><br/>
-<div class="container movedown">
+<h3 align = "center">About Details</h3>
+<table align="center">
+  <% @aboutdetail.each do |aboutdetails| %>
+    <tr>
+     <td>
+       <%= aboutdetails.title%>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <%= aboutdetails.desc.html_safe %>
+     </td>
+    </tr><% end %></table >
+<!-- <div class="container movedown">
   <div class="row"  align="center">
     <div class="span5" align="left">
         <div class="mycarousel" align="center">
@@ -51,7 +64,7 @@
 
 
     </div><!-- Span5 -->
-    <div class="span7 aboutHead">
+   <!--  <div class="span7 aboutHead">
         <p>
           We specialize in teaching of latest technologies in the comfort of your browser with video lessons, coding challenges, online classes and screencasts.
           <br/>
@@ -59,4 +72,4 @@
         </p>
     </div>
   </div>
-</div>
+</div> --> -->

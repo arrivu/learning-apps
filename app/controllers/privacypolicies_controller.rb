@@ -4,10 +4,11 @@ class PrivacypoliciesController < ApplicationController
   end
  def create
 	        @privacypolicy= Privacypolicy.new(params[:privacypolicy])
+           @privacypolicy.account_id=@account_id
 			    if @privacypolicy.save
 			      flash[:success] = "PrivacyPolicy added successfully!!!!"
 			       # redirect_to @privacypolicy
-              redirect to privacypolicies_path
+              redirect_to privacypolicies_path
 			    else
 			      render :action => 'new'
 			    end
@@ -16,13 +17,14 @@ class PrivacypoliciesController < ApplicationController
   	@privacypolicy = Privacypolicy.find(params[:id])
   end
   def index
-		 @privacypolicy=Privacypolicy.paginate(page: params[:page], :per_page => 10)
+		 @privacypolicy=Privacypolicy.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
 	end
   def edit
   	@privacypolicy=Privacypolicy.find(params[:id])
   end
   def update
      		 @privacypolicy = Privacypolicy.find(params[:id])
+         @privacypolicy.account_id=@account_id
      		 if @privacypolicy.update_attributes(params[:privacypolicy])
         		flash[:success] = "PrivacyPolicy updated"
         			redirect_to privacypolicies_path

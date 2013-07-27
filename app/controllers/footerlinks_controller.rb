@@ -21,10 +21,11 @@ class FooterlinksController < ApplicationController
   end
 
   def index
-  	@footerlink=Footerlink.all
+  	@footerlink=Footerlink.where(:account_id=>@account_id)
   end
   def update
   	@footerlink=Footerlink.find(params[:id])
+    @footerlink.account_id=@accountid_id
   	if @footerlink.update_attributes(params[:footerlink])
   		flash[:success]="Footerlink details updated successfully"
   		redirect_to footerlinks_path

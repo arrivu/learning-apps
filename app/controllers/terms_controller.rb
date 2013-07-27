@@ -4,9 +4,11 @@ class TermsController < ApplicationController
 	    end
 	    def create
 	        @term = Term.new(params[:term])
+
+	        @term.account_id=@account_id
 			    if @term.save
 			      flash[:success] = "Terms added successfully!!!!"
-			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
+			     
 			      redirect_to terms_path
 
 			    else
@@ -19,6 +21,7 @@ class TermsController < ApplicationController
   		end
   		def update
      		 @term = Term.find(params[:id])
+     		  @term.account_id=@account_id
      		 if @term.update_attributes(params[:term])
         		flash[:success] = "Terms updated"
         			redirect_to terms_path
