@@ -1,0 +1,2 @@
+module HeaderDetailsHelper
+end

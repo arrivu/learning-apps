@@ -1,0 +1,29 @@
+
+
+<table>
+
+	<tr>
+		<% @header_detail.each do |header_details| %>
+	<td>
+		
+	   <%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => header_details), :size => "50x50" %> 
+	   <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_detail', :id => header_details), :size => "50x50" %> 
+	</td>
+     
+    </tr>
+
+    <td>
+		<%= header_details.message %>
+	</td>
+	<td>
+		<%= link_to "show",header_detail_path(header_details) %>
+	</td>
+ 	<td>
+ 		<%= link_to "edit",edit_header_detail_path(header_details) %>
+ 	</td> 
+ 	<td>
+ 		<%= link_to "destroy",header_details, method: :delete, data: { confirm: 'Are you sure?' } %>
+ 	</td>
+ </tr>
+ <%end%>
+</table>
