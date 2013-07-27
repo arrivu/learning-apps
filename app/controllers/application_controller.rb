@@ -57,10 +57,14 @@
 
       unless current_subdomain.nil?
          @domain_root_account= Account.find_by_name current_subdomain
+          
+
            if (@domain_root_account == nil)
                 redirect_to request.url.sub(current_subdomain, Account.default.name)
+              else
+                @account_id=Account.find_by_name(current_subdomain).id
             end
-            @account_id=Account.find_by_name(current_subdomain).id
+           
           else
             @domain_root_account=Account.default
 

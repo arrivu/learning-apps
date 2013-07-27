@@ -1,3 +1,17 @@
+<style>
+header{-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+background: white;
+margin: 0;
+padding: 10px 0px;
+height: auto;
+
+top: 0;
+width: 100%;
+z-index: 100;
+}
+</style>
 <%= javascript_tag do %>
 // Pre load images for rollover
 if (document.images) {
@@ -31,14 +45,18 @@ myWindow.close();
 
 <% end %>  
 
-  <header class="navbar navbar-fixed-top" >
-  <div style="width:1275px;margin:0px auto;">
-    <div class="logo" >
-    <a href="/" onMouseOver="swapImage('jack','smile')"  onMouseOut="swapImage('jack','nosmile')"><img src="/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
+<header class="navbar" style="margin-bottom:0px;">
+ <div class="container" >
+    <div class="row">
+      <div class="san12" style="width: 80%;margin: 0px auto;">
+    <div class="span4">
+        <div class="logo">
+          <a href="/" onMouseOver="swapImage('jack','smile')"  onMouseOut="swapImage('jack','nosmile')"><img src="/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
+        </div>
       </div>
-    <div class="container" style= " padding-top:20px;  padding-bottom:20px;float:right; ">
-      <%= link_to "", root_path, id: "logo" ,:style => "left:-150px; " %>
-      <nav style="margin-left:30px;">
+      <div class="span8">
+        <%= link_to "", root_path, id: "logo" ,:style => "left:-150px; " %>
+       <nav style="padding:20px;">
         <ul class="nav pull-right">
           <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
@@ -83,7 +101,12 @@ myWindow.close();
           <% end %>
         </ul>
       </nav>
+      </div>
     </div>
-  </div>
-  
+    </div>
+    </div>
+
 </header>
+
+
+

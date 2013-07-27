@@ -127,7 +127,7 @@ margin-right: 5px;
 font-weight: bold;
 /*background: #2980B9;*/
 /*background-color:  	#2a488e;*/
-background-image:url('../assets/plus1.png');
+background-image:url('../assets/plus.png');
 background-size: 65px 65px;
 color: #fff !important;
 line-height: 1 !important;
@@ -352,7 +352,7 @@ font-size: 26px;
 text-align: center;
 }
 .secondary-content{
-	background-image:url(arrow_bg.png);
+	background-image:url(../img/arrow_bg.png);
 	height: 100px;
 width: 100%;
 background-size: 100% 100%;
@@ -418,8 +418,6 @@ border-radius: 55px;
 border: none;
 }
 
-
-
 .testimonialtext{
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -436,7 +434,7 @@ border: none;
 	margin-bottom: 13px;
 
 	margin: 0 0 17px;
-	padding: 15px 25px 15px 25px;
+	padding: 25px 35px 25px 35px;
 	font-family: verdana ;
 }
 
@@ -457,7 +455,7 @@ margin-right: 100px;
 padding: 10px 0px;
 color: white;
 min-height: 100px;
-background-image: url(bgblack.png);
+background-image: url(../img/bgblack.png);
 }
 
 .drawbordertop{
@@ -490,7 +488,7 @@ background-image: url(bgblack.png);
 	margin-top: 10px;
 	font-weight: normal;
 	/*background: #2980B9 ;*/
-	background: url(button_bg1.png);
+	background: url(../img/button_bg.png);
 	color: #000 !important;
 	line-height: 1 !important;
 	font-size: 25px !important;
@@ -508,7 +506,7 @@ background-image: url(bgblack.png);
 
 .browseourcoursessmall:hover{
 	/*background: #3498DB ;*/
-	background: url(button_bg1.png);
+	background: url(../img/button_bg.png);
 }
 
 .listofkp{
@@ -525,7 +523,7 @@ background-image: url(bgblack.png);
 	float: left;
 	/*margin-left: 10px;*/
 	/*border-right: 1px solid #eee;*/
-    padding:0px 60px;
+    padding:0px 70px;
 }
 
 .listofkp .lastkp{

@@ -31,7 +31,7 @@ class TestimonialsController < ApplicationController
       		end
  		end	
  		def index
- 			 @testimonial=Testimonial.where(:account_id=>@account_id)(page: params[:page], :per_page => 10)
+ 			 @testimonial=Testimonial.where(:account_id=>@account_id)
 		end
 		def show
 				@testimonial = Testimonial.find(params[:id])
