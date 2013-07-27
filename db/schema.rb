@@ -255,6 +255,19 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "header_details", :force => true do |t|
+    t.binary   "logo"
+    t.binary   "theme"
+    t.string   "logo_name"
+    t.string   "logo_type"
+    t.string   "theme_name"
+    t.string   "theme_type"
+    t.string   "message"
+    t.string   "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "invoices", :force => true do |t|
     t.date     "due_at"
     t.date     "paid_at"

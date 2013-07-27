@@ -9,6 +9,6 @@
 #
 
 class Category < ActiveRecord::Base
-  attr_accessible :name,:accountid
+  attr_accessible :name,:account_id
  
 end

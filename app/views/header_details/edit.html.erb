@@ -1,0 +1,26 @@
+
+<%= form_for @header_detail do |f| %>
+<table>
+
+<tr>
+	<td><%=f.label 'logo' %></td>
+	<td><%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => @header_detail.id), :width => "100",:height => "100"%>
+	<%= f.file_field :uploaded_file %></td> 
+</tr>
+<tr>
+	<td><%=f.label 'theme' %></td>
+	<td><%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_detail', :id => @header_detail.id), :width => "100",:height => "100"%>
+	<%= f.file_field :uploaded %></td> 
+</tr>
+
+<tr>
+	<td><%=f.label 'message'%></td>
+	<td><%=f.text_field :message%></td>
+</tr>
+
+<tr >
+   <td><%= f.submit "Update" %> </td>
+</tr>
+
+<% end %>
+</table>
