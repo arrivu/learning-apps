@@ -4576,16 +4576,9 @@ input[type="submit"].btn.btn-mini {
   text-shadow: 0 1px 0 #ffffff;
 }
 
-.navbar .nav > li:hover {
-  
-  
-}
 .navbar .nav > li > a:hover {
 float: none;
-padding: 10px 5px 10px;
-color: #777777;
-text-decoration: none;
-text-shadow: 0 1px 0 #ffffff;
+width: auto;
 border-bottom:3px solid #333;
 font-weight:bold;
 }

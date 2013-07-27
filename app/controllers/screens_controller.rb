@@ -8,7 +8,8 @@ class ScreensController < ApplicationController
     @testimonial=Testimonial.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
     
-
+    
+     
   end
 
   def about
