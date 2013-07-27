@@ -10,7 +10,7 @@
 #
 
 class Topic < ActiveRecord::Base
-  attr_accessible :name, :desc,:id,:color
+  attr_accessible :name, :desc,:id,:color,:account_id
   #has_many :relationships
   #has_one :courses, through: :relationships
   has_many :courses,  :dependent => :delete_all
