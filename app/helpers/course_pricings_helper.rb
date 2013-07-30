@@ -6,7 +6,7 @@ module CoursePricingsHelper
 			start_date=Date.parse(start_date.to_s)
 			end_date=Date.parse(end_date.to_s)
 			account_id=course.account_id
-			if account_id==@account_id.to_s
+			if account_id==@account_id
 			return unless((start_date1..end_date1).to_a & (start_date..end_date).to_a).empty?
 		end
 		end

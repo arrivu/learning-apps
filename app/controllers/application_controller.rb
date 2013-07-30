@@ -75,8 +75,7 @@
     def subdomain_authenticate
       @coursedet=Course.find(params[:id])
      
-      if @coursedet.account_id!=@account_id.to_s
-
+      if @coursedet.account_id!=@account_id
         flash[:error]="Invalid domain"
         redirect_to courses_path
       end

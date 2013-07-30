@@ -8,7 +8,7 @@ class CreateHeaderDetails < ActiveRecord::Migration
       t.string :theme_name
       t.string :theme_type
       t.string :message
-      t.string :account_id
+      t.integer :account_id, :limit=>8
 
       t.timestamps
     end

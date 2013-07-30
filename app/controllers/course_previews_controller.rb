@@ -8,7 +8,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 	def create
 		
 		@course=Course.find(params[:id])
-		params[:course_preview][:account_id]=@account_id.to_s
+		params[:course_preview][:account_id]=@account_id
 		@preview =@course.course_previews.build(params[:course_preview])
 		# @preview.account_id=
 		if @preview.save
@@ -35,7 +35,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 
 	def update
 		@preview = CoursePreview.find(params[:id])
-	   		@preview.account_id=@account_id.to_s
+	   		@preview.account_id=@account_id
 		if @preview.update_attributes(params[:course_preview])
 			flash[:success] = "Successfully Updated Preview."
 			redirect_to course_previews_path

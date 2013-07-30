@@ -4,7 +4,7 @@ class CreateOmniauthLinks < ActiveRecord::Migration
       t.string :face_book
       t.string :linked_in
       t.string :gmail
-      t.string :account_id
+      t.integer :account_id, :limit=>8
 
       t.timestamps
     end

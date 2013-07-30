@@ -6,7 +6,7 @@ class CreateAccountSettings < ActiveRecord::Migration
       t.boolean :slide_show
       t.boolean :popular_speak
       t.boolean :testimonial
-      t.string :account_id
+      t.integer :account_id, :limit=>8
 
       t.timestamps
     end

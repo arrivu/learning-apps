@@ -56,7 +56,7 @@ class CouponsController < ApplicationController
     find_or_generate_coupon
     
     if params[:after]
-      @coupons = Coupon.where(["id >= ?,account_id=?", params[:after],@account_id.to_s]).paginate(page: params[:page], per_page: 10)
+      @coupons = Coupon.where(["id >= ?,account_id=?", params[:after],@account_id]).paginate(page: params[:page], per_page: 10)
     else
       @coupons = Coupon.where(:account_id=>@account_id).paginate(page: params[:page], per_page: 10)
     end
@@ -79,7 +79,7 @@ class CouponsController < ApplicationController
   def create
     respond_to do |format|
       format.html do
-        params[:coupon][:account_id]=@account_id.to_s
+        params[:coupon][:account_id]=@account_id
         @coupon = Coupon.new(params[:coupon])
         how_many = params[:how_many] || 1
         unless Coupon.enough_space?(@coupon.alpha_mask, @coupon.digit_mask, Integer(how_many))
@@ -93,7 +93,7 @@ class CouponsController < ApplicationController
         if @coupon.errors.empty? && @coupon.valid?
           create_count = 0
           Integer(how_many).times do |i|
-             params[:coupon][:account_id]=@account_id.to_s
+             params[:coupon][:account_id]=@account_id
             coupon = Coupon.new(params[:coupon])
             if coupon.save
               @first_coupon ||= coupon.id

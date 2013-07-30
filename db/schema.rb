@@ -16,17 +16,17 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   create_table "aboutdetails", :force => true do |t|
     t.string   "title"
     t.string   "desc"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
     t.string   "desc"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "account_settings", :force => true do |t|
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.boolean  "slide_show"
     t.boolean  "popular_speak"
     t.boolean  "testimonial"
-    t.string   "account_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "account_id",         :limit => 8
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "account_users", :force => true do |t|
-    t.string   "account_id"
+    t.integer  "account_id",      :limit => 8
     t.string   "user_id"
     t.string   "membership_type"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "accounts", :force => true do |t|
@@ -126,18 +126,18 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "digit_code"
     t.string   "digit_mask"
     t.string   "category_one"
-    t.float    "amount_one",        :default => 0.0
-    t.float    "percentage_one",    :default => 0.0
+    t.float    "amount_one",                     :default => 0.0
+    t.float    "percentage_one",                 :default => 0.0
     t.string   "category_two"
-    t.float    "amount_two",        :default => 0.0
-    t.float    "percentage_two",    :default => 0.0
+    t.float    "amount_two",                     :default => 0.0
+    t.float    "percentage_two",                 :default => 0.0
     t.date     "expiration"
-    t.integer  "how_many",          :default => 1
-    t.integer  "redemptions_count", :default => 0
-    t.integer  "integer",           :default => 0
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "account_id"
+    t.integer  "how_many",                       :default => 1
+    t.integer  "redemptions_count",              :default => 0
+    t.integer  "integer",                        :default => 0
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.integer  "account_id",        :limit => 8
   end
 
   add_index "coupons", ["alpha_code"], :name => "index_coupons_on_alpha_code"
@@ -149,10 +149,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "video_url"
     t.integer  "sequence"
     t.integer  "enable"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "course_id"
-    t.string   "account_id"
+    t.integer  "account_id", :limit => 8
   end
 
   create_table "course_pricings", :force => true do |t|
@@ -160,18 +160,18 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.float    "price"
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "account_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "account_id", :limit => 8
   end
 
   create_table "course_statuses", :force => true do |t|
     t.integer  "student_id"
     t.integer  "course_id"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "account_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "account_id", :limit => 8
   end
 
   create_table "courses", :force => true do |t|
@@ -179,11 +179,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "author"
     t.string   "image"
     t.text     "desc"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.integer  "user_id"
-    t.integer  "ispublished",           :default => 0
-    t.string   "releasemonth",          :default => "December"
+    t.integer  "ispublished",                        :default => 0
+    t.string   "releasemonth",                       :default => "December"
     t.integer  "ispopular"
     t.string   "content_type"
     t.binary   "data"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.boolean  "is_coming_soon"
     t.binary   "background_image"
     t.string   "background_image_type"
-    t.string   "account_id"
+    t.integer  "account_id",            :limit => 8
   end
 
   add_index "courses", ["title", "author"], :name => "index_courses_on_title_and_author"
@@ -237,9 +237,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "facebook_url"
     t.string   "google_url"
     t.string   "linkedin_url"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "account_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "account_id",          :limit => 8
     t.string   "copy_write"
   end
 
@@ -264,9 +264,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "theme_name"
     t.string   "theme_type"
     t.string   "message"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "invoices", :force => true do |t|
@@ -274,8 +274,8 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.date     "paid_at"
     t.decimal  "total"
     t.string   "company_name"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "invoice_number"
     t.string   "bill_to"
     t.string   "notes"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "invoice_details"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.string   "account_id"
+    t.integer  "account_id",         :limit => 8
   end
 
   create_table "line_items", :force => true do |t|
@@ -323,27 +323,27 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "face_book"
     t.string   "linked_in"
     t.string   "gmail"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "partners", :force => true do |t|
     t.string   "company_name"
     t.binary   "image"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "image_type"
     t.string   "file_name"
-    t.string   "account_id"
+    t.integer  "account_id",   :limit => 8
   end
 
   create_table "privacypolicies", :force => true do |t|
     t.string   "title"
     t.string   "desc"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "rates", :force => true do |t|
@@ -403,9 +403,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.binary   "background_image"
     t.string   "header"
     t.string   "body_tag"
-    t.string   "account_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.integer  "account_id",            :limit => 8
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "image_name"
     t.string   "image_type"
     t.binary   "data"
@@ -415,18 +415,18 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   create_table "social_stream_comments", :force => true do |t|
     t.string   "twitter_comment_script"
     t.string   "facebook_comment_script"
-    t.string   "account_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.integer  "account_id",              :limit => 8
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "student_courses", :force => true do |t|
     t.integer  "student_id"
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.string   "status"
-    t.string   "account_id"
+    t.integer  "account_id", :limit => 8
   end
 
   create_table "students", :force => true do |t|
@@ -434,9 +434,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "description"
     t.string   "contact_no"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "account_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "account_id",  :limit => 8
   end
 
   create_table "taggings", :force => true do |t|
@@ -453,23 +453,23 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   end
 
   create_table "tax_rates", :force => true do |t|
-    t.date     "valid_from",                                :null => false
+    t.date     "valid_from",                                             :null => false
     t.date     "valid_until"
-    t.decimal  "factor",      :precision => 2, :scale => 2
+    t.decimal  "factor",                   :precision => 2, :scale => 2
     t.boolean  "is_default"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "description"
-    t.string   "account_id"
+    t.integer  "account_id",  :limit => 8
   end
 
   create_table "teaching_staff_courses", :force => true do |t|
     t.integer  "course_id"
     t.integer  "teaching_staff_id"
     t.string   "teaching_staff_type"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "account_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "account_id",          :limit => 8
   end
 
   create_table "teaching_staffs", :force => true do |t|
@@ -480,15 +480,15 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.string   "linkedin_profile_url"
-    t.string   "account_id"
+    t.integer  "account_id",           :limit => 8
   end
 
   create_table "terms", :force => true do |t|
     t.string   "title"
     t.string   "desc"
-    t.string   "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "testimonials", :force => true do |t|
@@ -496,18 +496,18 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "organization"
     t.string   "job"
     t.string   "comment"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "account_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "account_id",   :limit => 8
   end
 
   create_table "topics", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.string   "desc"
     t.string   "color"
-    t.string   "account_id"
+    t.integer  "account_id", :limit => 8
   end
 
   create_table "users", :force => true do |t|

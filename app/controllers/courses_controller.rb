@@ -24,16 +24,16 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   end
 
   def index
-   @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id.to_s).all.count
+   @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
    @countCoursesPerPage = 6
 
    if params[:mycourses]=="mycourses"
-     @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id.to_s).paginate(page: params[:page], per_page: 6)
+     @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
    else
-     @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 6)
+     @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
    end
 
-   @topics = Topic.where(account_id: @account_id.to_s)
+   @topics = Topic.where(account_id: @account_id)
 
   
  end
@@ -48,7 +48,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
    @course = Course.new(params[:course])
    @course.user_id = current_user.id
   
-   @course.account_id=@account_id.to_s
+   @course.account_id=@account_id
    @course.isconcluded="f"
    if @course.save
      flash[:success] = "Course added successfully!!!!"
@@ -67,7 +67,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
  def update
    @course = Course.find(params[:id])
   
-   @course.account_id=@account_id.to_s
+   @course.account_id=@account_id
 
    if @course.update_attributes(params[:course])
      lms_update_course(@course)
@@ -115,23 +115,23 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
 
 
   def upcomming_courses
-    @total_course_count = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id.to_s).all.count
+    @total_course_count = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id.to_s).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
     @topics = Topic.order(:name)
   end
 
   def popular_courses
-    @total_course_count = Course.where(ispopular: 1,:isconcluded=>false,ispublished: 1,account_id: @account_id.to_s).all.count
+    @total_course_count = Course.where(ispopular: 1,:isconcluded=>false,ispublished: 1,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispopular: 1,ispublished: 1,:isconcluded=>false,account_id: @account_id.to_s).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(ispopular: 1,ispublished: 1,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
     @topics = Topic.order(:name)
   end
 
   def datewise_courses
-    @total_course_count = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id.to_s).all.count
+    @total_course_count = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id.to_s).order(:created_at).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).order(:created_at).paginate(page: params[:page], per_page: 6)
     @topics = Topic.order(:name)
   end
 
@@ -151,7 +151,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
     end
 
     def manage_courses
-      @courses = Course.where(account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 10).order(:id)
+      @courses = Course.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10).order(:id)
       @topic = Topic.all
     end
 

@@ -12,7 +12,7 @@ module TaxRatesHelper
 			end_date1 = Date.parse(taxc.valid_until.to_s)
 			start_date2 = Date.parse(start_date2.to_s)
 			end_date2 = Date.parse(end_date2.to_s)
-			account_id=taxc.account_id.to_s
+			account_id=taxc.account_id
 			#logger.debug ((start_date1..end_date1).to_a & (start_date2..end_date2).to_a)
 				if account_id==@account_id.to_s
 				return unless ((start_date1..end_date1).to_a & (start_date2..end_date2).to_a).empty?

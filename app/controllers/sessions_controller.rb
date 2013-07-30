@@ -17,7 +17,7 @@ class SessionsController < Devise::SessionsController
      
      super
 
-        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id.to_s,:membership_type => "student")
+        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
       
 
      # redirect_to :users_path

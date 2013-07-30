@@ -63,7 +63,7 @@ class TaxRatesController < ApplicationController
 	end
 
 	def index
-		@tax_rate=TaxRate.where(account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 10)
+		@tax_rate=TaxRate.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10)
 	end
 
 	def destroy

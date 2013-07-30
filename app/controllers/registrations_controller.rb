@@ -116,11 +116,11 @@ class RegistrationsController < Devise::RegistrationsController
       if current_user 
          # @account=Account.find_by_name(request.subdomain)
         # current_user.account_id=@account_id
-        Student.create(:user_id=>current_user.id,:account_id=>@account_id.to_s) 
+        Student.create(:user_id=>current_user.id,:account_id=>@account_id) 
         
         current_user.add_role(:student)
         # current_user.add_accountid()
-        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id.to_s)
+        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id)
       end
     end
 

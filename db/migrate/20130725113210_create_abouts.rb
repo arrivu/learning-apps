@@ -3,7 +3,7 @@ class CreateAbouts < ActiveRecord::Migration
     create_table :abouts do |t|
       t.string :title
       t.string :desc
-      t.string :account_id
+      t.integer :account_id, :limit=>8
 
       t.timestamps
     end

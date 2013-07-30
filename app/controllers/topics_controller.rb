@@ -2,13 +2,13 @@ class TopicsController < ApplicationController
   before_filter :subdomain_authenticate, :only => [:show]
  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
  def index
-  @topics = Topic.where(account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 10)
+  @topics = Topic.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10)
 end
 
 def show
   @topic = Topic.find(params[:id])
   @total_course_count = @topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id.to_s).size
-  @courses = @topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id.to_s).paginate(page: params[:page], :per_page => 6)
+  @courses = @topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id).paginate(page: params[:page], :per_page => 6)
 
   @topics = Topic.where(:account_id=>@account_id).order(:name)
 end
@@ -20,7 +20,7 @@ end
 def create
   @topic = Topic.new(params[:topic])
   
-      @topic.account_id=@account_id.to_s
+      @topic.account_id=@account_id
   if @topic.save
     flash[:success] = "Successfully Created Category."
     redirect_to topics_path
@@ -35,7 +35,7 @@ end
 
 def update
   @topic = Topic.find(params[:id])
-  @topic.account_id=@account_id.to_s
+  @topic.account_id=@account_id
   if @topic.update_attributes(params[:topic])
     flash[:success] ="Successfully Updated Category."
     redirect_to topics_path
