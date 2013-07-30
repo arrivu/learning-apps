@@ -65,8 +65,8 @@ def update
 
   @coursepricing=CoursePricing.find(params[:id])
   @coursepricing_params=CoursePricing.new(params[:course_pricing])
-  
-   @coursepricing.account_id=current_subdomain.id.to_s
+  @coursepricing.account_id=@account_id.to_s
+   
   course_ids=CoursePricing.where("course_id=? AND id!=?",@coursepricing_params.course_id,@coursepricing.id)
   if nooverlap?(course_ids,@coursepricing_params.start_date,@coursepricing_params.end_date)
    
