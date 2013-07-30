@@ -16,11 +16,12 @@ lms:
 mailserver:
   address: smtp.gmail.com
   port: 587
-  domain: localhost:3000
-  user_name: beaconlms@gmail.com
-  password: beaconlms123$
+  domain: current_subdomain.lvh.me:3000
+  user_name: arrivusystems@gmail.com
+  password: Arrivu123$
+  
 admin_mail:
-  to: beaconlms@gmail.com
+  to: arrivusystems@gmail.com
 payment_gateway:
   enable: false
   merchant_id: "M_blahpache_5678"
@@ -30,12 +31,12 @@ invoices:
   notes: "Thank you for your enrollment!"
 exception_notifer:
   email_prefix: "[Beacon Exception Notifier]"
-  sender_address: "beaconlms@gmail.com"
-  exception_recipients: "beaconlms@gmail.com"
+  sender_address: "arrivusystems@gmail.com"
+  exception_recipients: "arrivusystems@gmail.com"
 omniauth:
   facebook_key: "553752584663567"
   facebook_secret: "06f0e8213795d3896e809b8d8eda9332"
   linkedin_key: "31azcdigi8tt"
   linkedin_secret: "OKd1hmuJoNOg9J2g"
-  google_oauth2_key: "928801233183"
-  google_oauth2_secret: "-nMQ0dEfcaBITxzwYHZPQ3v-"
+  google_oauth2_key: "347634236839.apps.googleusercontent.com"        
+  google_oauth2_secret: "5UnDJ5JcZqn5LWD00-Bi_Sk1"

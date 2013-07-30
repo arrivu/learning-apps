@@ -37,7 +37,10 @@ module ApplicationHelper
 			else
      redirect_to root_url # or whatever
    end
-    end
+  		 
+
+end
+
 
   def http_cache(instant_variable,scope=true,expires=15)
     expires_in expires.minutes

@@ -1,10 +1,14 @@
 class SessionsController < Devise::SessionsController
   include CasHelper
   include LmsHelper
+  
 # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
     @account=Account.find_by_name(current_subdomain)
+    
+
+   
      if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
       #set_flash_message(:notice, :signed_in) if is_navigational_format?
       #
@@ -29,6 +33,7 @@ class SessionsController < Devise::SessionsController
     end
 
   end
+
 
 
 end

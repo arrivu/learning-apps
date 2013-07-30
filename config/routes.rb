@@ -59,7 +59,7 @@ resources :footerlinks
   root :to => 'screens#home'
   match '/about', :to => 'screens#about'
   match '/privacy', :to => 'screens#privacy'
-  match '/terms', :to => 'screens#terms'
+  match '/termscondition', :to => 'screens#termscondition'
   match '/knowledge_partners', :to => 'screens#knowledge_partners'
   match '/user_reviews', :to => 'screens#user_reviews'
 
@@ -95,7 +95,8 @@ resources :footerlinks
   match '/show_image/:id', :to => 'courses#show_image' 
   match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
     match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
-
+  match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
+    match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
   match '/background_image/:id', :to => 'courses#background_image' 
   
 #  match '*a', :to => 'home#routing_error'

@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization
+  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script
   has_many :account_users , :dependent => :destroy
   has_many :partners , :dependent => :destroy
   has_many :courses, :dependent => :destroy

@@ -11,7 +11,16 @@ class AuthenticationController < ApplicationController
       # Authentication found, sign the user in.
       flash[:info] = "Welcome. #{authentication.user.name}"
       #sign_in_and_redirect(:user, authentication.user)
-      login_and_redirect_user(authentication.user)
+        if  @domain_root_account.account_users.where(:user_id=>authentication.user.id).empty?
+           login_and_redirect_user(authentication.user)
+              AccountUser.create(:user_id=>authentication.user.id,:account_id=>@account_id.to_s,:membership_type => "student")
+       
+       else
+        login_and_redirect_user(authentication.user)
+       end
+
+     
+     
     else
       # Authentication not found, thus a new user.
       email=auth['info']['email']
@@ -30,6 +39,8 @@ class AuthenticationController < ApplicationController
         user.apply_omniauth(auth)
         if user.save(:validate => false)          
           Student.create(:user_id=>user.id,:name => user.name,:contact_no => user.phone)
+          AccountUser.create(:user_id=>user.id,:account_id=>@account_id.to_s,:membership_type => "student")
+       
           lms_create_user(user) if lms_enable?
           flash.now[:notice] = "Account created and signed in successfully."
           user.add_role(:student)

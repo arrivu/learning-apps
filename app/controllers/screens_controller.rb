@@ -7,14 +7,15 @@ class ScreensController < ApplicationController
     @partner=Partner.all(:conditions => {:account_id => @account_id},:limit => 6)
     @testimonial=Testimonial.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
-    
-    
+    @header_detail = HeaderDetail.where(:account_id=>@account_id)
+
      
   end
 
   def about
      @aboutdetail = Aboutdetail.where(:account_id=>@account_id)
      @footerlinks=Footerlink.where(:account_id=>@account_id)
+      @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
 
   def faq
@@ -23,14 +24,19 @@ class ScreensController < ApplicationController
   def privacy
      @privacypolicy=Privacypolicy.where(:account_id=>@account_id)
      @footerlinks=Footerlink.where(:account_id=>@account_id)
+      @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
 
-  def terms
+  def termscondition
     @term = Term.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
+     @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
 
   def knowledge_partners
+     @partner=Partner.all(:conditions => {:account_id => @account_id},:limit => 6)
+      @footerlinks=Footerlink.where(:account_id=>@account_id)
+     @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
 
   def user_reviews
@@ -38,5 +44,15 @@ class ScreensController < ApplicationController
   
   def construction
   end 
+ def show_image_logo
+    @header_detail = HeaderDetail.find(params[:id])
+    send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline'
+    # http_cache(@header_detail)
+  end
 
+  def theme_header_image    
+    @header_detail = HeaderDetail.find(params[:id])
+    send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
+    # http_cache(@header_detail)
+  end
 end

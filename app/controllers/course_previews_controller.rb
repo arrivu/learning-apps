@@ -6,10 +6,11 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 	end
 
 	def create
-		topics
+		
 		@course=Course.find(params[:id])
+		params[:course_preview][:account_id]=@account_id.to_s
 		@preview =@course.course_previews.build(params[:course_preview])
-		@preview.account_id=current_subdomain.id.to_s
+		# @preview.account_id=
 		if @preview.save
 			flash[:success] = "Preview Added Successfully."
 			redirect_to course_previews_path
@@ -21,9 +22,9 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 	end
 
 	def index
-		@previews = CoursePreview.paginate(page: params[:page], :per_page => 10)
+		@previews = CoursePreview.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
 		@course = Course.where(:account_id=>@account_id)
-		topics
+		
 		
 	end
 
@@ -34,7 +35,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
 
 	def update
 		@preview = CoursePreview.find(params[:id])
-	   	@preview.account_id=current_subdomain.id.to_s
+	   		@preview.account_id=@account_id.to_s
 		if @preview.update_attributes(params[:course_preview])
 			flash[:success] = "Successfully Updated Preview."
 			redirect_to course_previews_path

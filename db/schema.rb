@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "integer",           :default => 0
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "account_id"
   end
 
   add_index "coupons", ["alpha_code"], :name => "index_coupons_on_alpha_code"
