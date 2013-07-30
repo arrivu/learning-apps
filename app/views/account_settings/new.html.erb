@@ -1,3 +1,8 @@
+<div style="float:left">
+<%= render 'shared/side_menu' %>
+</div>
+<div class="row">
+	<div class="span10 offset3">
 <%= form_for (@account_setting) do |f| %>
 <table>
 	<tr>
@@ -21,3 +26,5 @@
         <tr><td><%= f.submit  "submit" %></td></tr>
 </table>
 <% end %>
+</div>
+</div>

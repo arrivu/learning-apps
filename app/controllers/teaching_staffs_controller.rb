@@ -30,6 +30,7 @@ class TeachingStaffsController < ApplicationController
 
       if @teachingstaff.save
 			@teachingstaff.user.add_role(:teacher)
+			AccountUser.create(:user_id=>authentication.user.id,:account_id=>@account_id.to_s,:membership_type => "teacher")
 			flash[:notice] = "Teaching Staff add successfully"
       lms_create_user(@teachingstaff.user)
       redirect_to teaching_staffs_path
@@ -59,6 +60,7 @@ class TeachingStaffsController < ApplicationController
 
 	def update
 		@teachingstaff=TeachingStaff.find(params[:id])
+
 		if params[:teaching_staff][:user][:attachment]!=nil
 	  								
 									
@@ -72,6 +74,7 @@ class TeachingStaffsController < ApplicationController
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
 									qualification:params[:teaching_staff][:qualification],
 									name:params[:teaching_staff][:user][:name])
+									AccountUser.create(:user_id=>authentication.user.id,:account_id=>@account_id.to_s,:membership_type => "teacher")
 			flash[:notice]="Teaching Staff details updated successfully"
 			redirect_to teaching_staffs_path
 
@@ -89,6 +92,7 @@ class TeachingStaffsController < ApplicationController
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
 									name:params[:teaching_staff][:user][:name]
 								)
+								AccountUser.create(:user_id=>authentication.user.id,:account_id=>@account_id.to_s,:membership_type => "teacher")
 									
 			flash[:notice]="Teaching Staff details updated successfully"
 			redirect_to teaching_staffs_path
@@ -99,7 +103,7 @@ class TeachingStaffsController < ApplicationController
 	end
 	end
 	def index
-		@teachingstaff=TeachingStaff.paginate(page: params[:page], :per_page => 10)
+		@teachingstaff=TeachingStaff.where(:account_id=>@account_id.to_s).paginate(page: params[:page], :per_page => 10)
 	end
 
 	def destroy
