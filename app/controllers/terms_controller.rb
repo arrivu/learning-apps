@@ -30,7 +30,7 @@ class TermsController < ApplicationController
       		end
  		end	
  		def index
- 			 @term=Term.paginate(page: params[:page], :per_page => 10)
+ 			 @term=Term.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
 		end
 		def show
 				@term = Term.find(params[:id])

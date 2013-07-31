@@ -27,8 +27,7 @@ class PartnersController < ApplicationController
   end
 
   def index
-  	 @partner=Partner.where(:account=>@account_id).paginate(page: params[:page], :per_page => 10)
-      
+  	 @partner=Partner.where(:account_id => @account_id).paginate(page: params[:page], :per_page => 15)
 
   end
   # def showimage
