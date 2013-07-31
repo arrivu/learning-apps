@@ -7,6 +7,7 @@
     include SessionsHelper
     include PaymentsHelper 
     include UrlHelper   
+    include SubdomainHelper
     include ActiveMerchant::Billing::Integrations::ActionViewHelper
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_path, :alert => exception.message
@@ -88,6 +89,12 @@
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks=Footerlink.where(:account_id=>@account_id)
     end
+    def user_subdomain(userid)
+      @user=AccountUser.find_by_user_id(userid)
+      @account=account.find(@user.id)
+      return @account.name
 
+    end
+   
 
 end
