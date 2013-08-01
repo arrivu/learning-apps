@@ -65,6 +65,11 @@ myWindow.close();
               <script>
           $('.courseslink').css('left',"-100px");
           </script>
+          <% elsif current_user.has_role? :account_admin %>
+           <li ><%= link_to 'Account_Admin', users_path %></li>
+            <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
            <% else  %>
           <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
      
@@ -94,6 +99,7 @@ myWindow.close();
              
             </ul>
           </li>
+
           <% else %>
           <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
           <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>

@@ -32,7 +32,7 @@ module ApplicationHelper
 
 		def check_admin_user
 			authenticate_user!
-			if current_user.has_role? :site_admin 
+			if current_user.has_role? :account_admin 
 				return
 			elsif current_user.has_role? :admin
 				return
@@ -57,8 +57,16 @@ end
 
   def subdomain_authentication
        :authenticate_user!
-
-      if !current_user.has_role :site_admin
+       if current_user.has_role? :student
+       	  if !@subdomain_id= AccountUser.where(:user_id=>current_user.id , :account_id=>@account_id).empty?
+       	   
+        	return
+      		else
+      			 @subdomain_id= AccountUser.find_by_user_id(current_user.id)
+        	redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
+        # redirect_to root_path(:subdomain => @subdomain_name)
+      		end
+      elsif !current_user.has_role?  :admin
        @subdomain_id= AccountUser.find_by_user_id(current_user.id)
         @subdomain_name=Account.find_by_name(@subdomain_id.account_id)
       if  @account_id==@subdomain_id.account_id
@@ -67,7 +75,8 @@ end
         redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
         # redirect_to root_path(:subdomain => @subdomain_name)
       end
-    end
+
+     end
    end
    
 end

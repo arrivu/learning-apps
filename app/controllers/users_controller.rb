@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index   
       @topics=Topic.where(:account_id => @account_id)
       @topics = @topics.sort_by {|x| x.name.length} 
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     
     query = "%#{params[:query]}%"
       if params[:provider]==nil
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user], :as => :admin)
       redirect_to users_path, :notice => "User updated."
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     users = User.find(params[:id])
     unless users == current_user
       users.destroy

@@ -21,6 +21,8 @@
       redirect_back    
     elsif current_user.has_role? :admin
      users_path
+   elsif current_user.has_role? :account_admin
+    users_path
     else      
       student=Student.where(user_id: current_user.id).first
       if student !=nil 

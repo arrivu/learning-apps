@@ -1,6 +1,7 @@
 class PartnersController < ApplicationController
 
     before_filter :check_admin_user,:only => [:new,:create,:edit,:update,:destroy]
+
     before_filter :subdomain_authentication , :only => [:new,:create, :edit, :index, :destroy]
 
   def new
@@ -9,7 +10,7 @@ class PartnersController < ApplicationController
 
   end
   def  create
-    before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy]
+    
 		@partner = Partner.new(params[:partner])
 
 	   @partner.account_id=@account_id

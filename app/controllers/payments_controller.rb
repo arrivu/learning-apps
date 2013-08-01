@@ -69,7 +69,7 @@ class PaymentsController < ApplicationController
       redirect_req = false
       if @coupon_code && ! @coupon_code.empty?		
         begin					
-         coupon_calc = Coupon.apply(@coupon_code, @price, current_user.id, @course.id)
+         coupon_calc = Coupon.apply(@coupon_code, @price, current_user.id, @course.id,@account_id)
        rescue CouponNotFound
          flash[:error] =  "Coupon not found" 
          redirect_req =true
@@ -161,7 +161,7 @@ end
     @user = current_user
     path = "#{Rails.root}/tmp/invoice_course_id_#{@course.id}_user_id_#{@user.id}.pdf"
     send_data File.read(path),:filename => "invoice.pdf",:type => "application/pdf"
-    UserMailer.delay(:queue => 'tracking').course_payment(@user, @course, @price)
+    UserMailer.delay(:queue => 'tracking').course_payment(@user, @course, @price,@account_id)
   end 
 
 	# it is dummy method it contain the logic after return ccavanue 

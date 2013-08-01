@@ -28,6 +28,8 @@
 <li>
   <%= link_to 'Admin', users_path %>
 </li>
+<% elsif current_user.has_role? :admin %>
+<%= link_to 'Account Admin', users_path %>
 <% end %>
 <% else %>
 
