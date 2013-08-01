@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index   
       @topics=Topic.where(:account_id => @account_id)
       @topics = @topics.sort_by {|x| x.name.length} 
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     
     query = "%#{params[:query]}%"
       if params[:provider]==nil
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user], :as => :admin)
       redirect_to users_path, :notice => "User updated."
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    # authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     users = User.find(params[:id])
     unless users == current_user
       users.destroy
@@ -83,18 +83,5 @@ class UsersController < ApplicationController
       
 
     end
-    def subdomain_authentication
-       :authenticate_user!
-
-      if current_user.has_role :admin
-       @subdomain_id= AccountUser.find_by_user_id(current_user.id)
-        @subdomain_name=Account.find_by_name(@subdomain_id.account_id)
-      if  @account_id==@subdomain_id.account_id
-        return
-      else
-        redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
-        # redirect_to root_path(:subdomain => @subdomain_name)
-      end
-    end
-   end
+    
 end

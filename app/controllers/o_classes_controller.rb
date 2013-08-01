@@ -1,6 +1,7 @@
 class OClassesController < ApplicationController
 	
 before_filter :authenticate_user!, only: [:index, :create, :edit,:update,:delete]
+before_filter :subdomain_authentication , :only => [:new,:create, :edit, :index, :destroy]
 
   def index
 	@countOClassesPerPage = 5

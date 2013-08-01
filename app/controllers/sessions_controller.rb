@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
     @account=Account.find_by_name(current_subdomain)
     
 
-    if !current_user.has_role? :admin
+    if !current_user.has_role?  :account_admin
 
 
      if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?

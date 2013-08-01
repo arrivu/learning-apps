@@ -13,4 +13,7 @@ module CoursesHelper
 			end
 		end
 	end	
+
+	
+
 end
