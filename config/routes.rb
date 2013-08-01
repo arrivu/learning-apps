@@ -85,7 +85,7 @@ resources :footerlinks
   devise_for :users, :controllers => {:registrations => "registrations",:sessions => "sessions"}
 
   devise_scope :user do
-    match '/user_image', :to => 'registrations#user_image' 
+    match '/user_image/:id', :to => 'registrations#user_image' 
   end
   
   resources :users
