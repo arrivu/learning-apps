@@ -3,15 +3,15 @@ class SlidersController < ApplicationController
 
 
 
-  def show_image    
+  def show_image_slider    
     @slider = Slider.find(params[:id])
-    send_data @slider.image, :type => @slider.imagetype, :disposition => 'inline'
+    send_data @slider.image, :type => @slider.image_type, :disposition => 'inline'
     # http_cache(@slider)
   end
 
-  def background_image    
+  def background_image_slider   
     @slider = Slider.find(params[:id])
-    send_data @slider.backgroundimage, :type => @slider.backgroundimagetype, :disposition => 'inline'
+    send_data @slider.background_image, :type => @slider.background_image_type, :disposition => 'inline'
     # http_cache(@slider)
   end
 
@@ -21,6 +21,7 @@ class SlidersController < ApplicationController
 
   def create
   	@slider = Slider.new(params[:slider])
+    @slider.account_id=@account_id
   	if @slider.save
   		flash[:success] = "Created Sucessfully"
   		redirect_to sliders_path
@@ -33,6 +34,8 @@ class SlidersController < ApplicationController
   def update
  
       @slider = Slider.find(params[:id])
+          @slider.account_id=@account_id
+
      if @slider.update_attributes(params[:slider])
       flash[:success] ="Successfully Updated Category."
       redirect_to sliders_path
@@ -49,6 +52,7 @@ class SlidersController < ApplicationController
     redirect_to sliders_path
   end
   def index
-    @slider = Slider.paginate(page: params[:page])
+    @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
+
   end
 end

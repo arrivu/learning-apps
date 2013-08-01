@@ -93,11 +93,14 @@ resources :footerlinks
   resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
   match '/my_courses', :to => 'courses#my_courses'  
   match '/show_image/:id', :to => 'courses#show_image' 
-  match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
-    match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
-  match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
-    match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
   match '/background_image/:id', :to => 'courses#background_image' 
+  match '/show_image_slider/:id', :to => 'sliders#show_image_slider' 
+  match '/background_image_slider/:id', :to => 'sliders#background_image_slider' 
+
+  match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
+  match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
+  match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
+  match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
   
 #  match '*a', :to => 'home#routing_error'
 

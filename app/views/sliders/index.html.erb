@@ -1,9 +1,26 @@
+
+
 <div style="float:left">
 <%= render 'shared/side_menu' %>
 </div>
+<div class="row">
+	<div class="span10 offset3">
 <table>
+	<tr>
+
 	<% @slider.each do |slider| %>
-<tr>
+	<td>
+     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
+
+	   <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
+	</td>
+
+	   <td>
+		<%= slider.header %>
+	</td>
+	<td>
+		<%= slider.body_tag %>
+	</td>
 
 
 <td><%= link_to "show",slider_path(slider) %></td>
@@ -12,3 +29,5 @@
 </tr>
 <% end %>
 </table>
+</div>
+</div>

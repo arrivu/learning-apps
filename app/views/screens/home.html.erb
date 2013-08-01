@@ -1,7 +1,7 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
 <div >
 <% provide(:effectingHeader) %>
-<table>
+<!-- <table>
 
   <tr>
     <% @header_detail.each do |header_details| %>
@@ -19,10 +19,59 @@
   
  </tr>
  <%end%>
+</table> -->
+
+<!-- <table>
+  <tr>
+
+  <% @slider.each do |slider| %>
+  <% if (slider.id%2)== 1 %>
+  <td>
+     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
+
+     <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
+  </td>
+
+     <td>
+    <%= slider.header %>
+  </td>
+  <td>
+    <%= slider.body_tag %>
+  </td>
+</tr>
+<% elsif (slider.id%2)== 2 %>
+<tr>
+<td>
+     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
+
+     <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
+  </td>
+
+     <td>
+    <%= slider.header %>
+  </td>
+  <td>
+    <%= slider.body_tag %>
+  </td>
+</tr>
+<% end %>
+  <% end %>
 </table>
- <div class="homebanner" style="background-image:url(assets/banner.png);background-repeat:no-repeat;background-size:100% 100%;color:white;">
-    <div class="container">
-        <div class="row">
+ -->
+
+
+
+<div>
+
+  <% @slider.each do |slider| %>
+
+<% if (slider.id%2)== 1 %>
+
+     <!-- <div class = "homebanner" style="background-image.action:background_image_slider"; id:"slider";height="770px"; width="214px"></div> -->
+<!--   <div class = "homebanner" style="background-repeat:no-repeat;background-size:100% 100%;color:white;"> -->
+<!-- </div> -->
+<div class="homebanner" style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white;" >  
+            <div class="row">
           <div class="span12" id="slider">
             <!-- Top part of the slider -->
             <div class="row">
@@ -30,44 +79,106 @@
                 <div id="myCarousel" class="carousel slide">
                   <!-- Carousel items -->
                   <div class="carousel-inner">
-                    <div class="active item" data-slide-number="0">      <div class="row">
+      
+
+                    <div class="active item" data-slide-number="0">    
+                      <div class="row">
                       <div class="span12" align="center" >
                         <div class="bannertext">
-                          <h3 style="color:white;margin-left: 50px;">Learning for Life</h3>
+
+     <div>
+      <% @slider.each do |slider| %>
+      <%= slider.header %> 
+     <h3 style="color:white;margin-left: 50px;"></h3>
+     <p><%= slider.body_tag %><p>
+     </div>                 
+                          <!-- <h3 style="color:white;margin-left: 50px;">Learning for Life</h3> -->
                         </div>
                       </div>
+                      </div>
+                    </div>
+                    <% end %>  
+
+
                       <div class="clearfix"></div>
                       <div class="span6" align="center" >
-                        <div class="bannervideo" >
+                        
+<div> 
+
+<% @slider.each do |slider| %>
+
+<%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
+</div> 
+
+                        <!-- <div class="bannervideo" >
                           <iframe class="video-me" src="http://player.vimeo.com/video/27244727?title=1&amp;byline=1&amp;portrait=1&amp;color=ffffff" width="350" height="230" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                        </div>
-                     </div>
-                      <div class="span6" align="justify">
-                        <div class="bannerinfo">
+                        </div> -->
+
+                     <!-- </div> -->
+
+                      <div class="span6" align="justify"></div>
+                        <!-- <div class="bannerinfo">
                           <p>Academic courses, certifications and curated wisdom from the finest academicians to make your learning seamless, progressive and impactful.
                            </p>
-                        </div>
+                        </div -->
                         <%= render 'show_topics' %>
-                      </div>
+                       </div> 
                       <div class="clearfix"></div>
                     </div></div>
+                  </div>
+
+                <!-- </div></div> -->
+              <!-- </div> -->
+            
+    <% end%>
+    
+
+ <% else %> 
+
+ <div class="homebanner" style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white;" > 
+
                     <div class="item" data-slide-number="1"><div class="row">
                       <div class="span12" align="center" >
                         <div class="bannertext">
-                          <h3 style="color:white;margin-left: 50px;">Learning for Life</h3>
+  
+     <div>
+      <% @slider.each do |slider| %>
+      <%= slider.header %>
+      <h3 style="color:white;margin-left: 50px;"></h3> 
+      <p><%= slider.body_tag %></p> -->
+
+      </div>  <% end %>  
+
+    
+                          <!-- <h3 style="color:white;margin-left: 50px;">Learning for Life</h3> -->
                         </div>
                       </div>
+  
                       <div class="clearfix"></div>
                       <div class="span6" align="center" >
                         <div class="bannervideo" >
-                          <img src="assets/GREAT LAKES LOGO.jpg" width="250" height="160"/>
-                        </div>
+
+    <div> 
+<% @slider.each do |slider| %>
+
+<%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
+<!-- </div>   -->
+
+                          <!-- <img src="assets/GREAT LAKES LOGO.jpg" width="250" height="160"/>-->
+                        <!-- </div> -->
                       </div>
                       <div class="span6" align="justify">
-                        <div class="bannerinfo">
+                        <!-- div class="bannerinfo">
                           <p>Industry relevant and high impact online certifications from Great Lakes to propel your career ahead
                             </p>
-                        </div>
+                        </div> -->
+    <div>
+      <% @slider.each do |slider| %>
+
+     <%= slider.header %>
+     <h3 style="color:white;margin-left: 50px;"></h3>
+     <p><%= slider.body_tag %><p>
+     </div> <% end%>
 
 
                         <div class="bannerlearn">
@@ -93,8 +204,11 @@
                                   </span>
                              <% end %>
 
-                           
+        <% end %>     
 
+  <% end %>    
+
+ <% end %>
 
 
                         </div>
@@ -107,6 +221,7 @@
 
                 </div>
               </div>
+  
               <div class="span4" id="carousel-text"></div>
 
             </div>
@@ -214,7 +329,7 @@
 
 
  
- <div class="ourknowledgepartners secondary-content" style="background-image:url(assets/greyband.png);height:auto;">
+  <div class="ourknowledgepartners secondary-content" style="background-image:url(assets/greyband.png);height:auto;"> 
     <div class="container" align="center">
       <div class="row testimonial">
                <h2 style="margin-left: 30px;">Knowledge Partners</h2>
