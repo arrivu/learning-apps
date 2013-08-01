@@ -36,6 +36,7 @@ class PaymentsController < ApplicationController
         student_course.course_id=@course.id
         student_course.status="follow"
         student_course.student_id=current_user.student.id
+        student_course.account_id=@account_id
         student_course.save 
       else
         if @status_check.status!="follow"
@@ -43,6 +44,7 @@ class PaymentsController < ApplicationController
           student_course.course_id=@course.id
           student_course.status="follow"
           student_course.student_id=current_user.student.id
+          student_course.account_id=@account_id
           student_course.save
         end
       end
@@ -182,6 +184,7 @@ end
     student_course.course_id=course.id
     student_course.status="enroll"
     student_course.student_id= user.student.id
+    student_course.account_id=@account_id
     student_course.save
     lms_enroll_student(course.lms_id, user.lms_id)
   end

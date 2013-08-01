@@ -19,16 +19,17 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.name =  params[:teaching_staff][:teaching_staff_user][:name]
 		@teachingstaff.description =  params[:teaching_staff][:description]
 		@teachingstaff.qualification =  params[:teaching_staff][:qualification]
-    @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
+    	@teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
+    	
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],
-								user_type: 3,
+								 user_type: 3,
 								content_type: params[:teaching_staff][:teaching_staff_user][:content_type],
 								attachment: params[:teaching_staff][:teaching_staff_user][:attachment],
 								password: params[:teaching_staff][:teaching_staff_user][:password],
 								password_confirmation: params[:teaching_staff][:teaching_staff_user][:password_confirmation])
 		
-
+		@teachingstaff.account_id=@account_id
       if @teachingstaff.save
 			@teachingstaff.user.add_role(:teacher)
 			AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
@@ -64,12 +65,13 @@ class TeachingStaffsController < ApplicationController
 
 		if params[:teaching_staff][:user][:attachment]!=nil
 	  								
-									
+			@teachingstaff.account_id=@account_id		
 		if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
 									password: params[:teaching_staff][:user][:password],
 									password_confirmation: params[:teaching_staff][:user][:password_confirmation],
   								content_type: params[:teaching_staff][:user][:content_type],
 	  							attachment: params[:teaching_staff][:user][:attachment],
+	  							
 									name:params[:teaching_staff][:user][:name]) && @teachingstaff.update_attributes(
 									description:params[:teaching_staff][:description],
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
@@ -83,7 +85,7 @@ class TeachingStaffsController < ApplicationController
 			render 'edit'
 		end
 	else
-   
+   		@teachingstaff.account_id=@account_id
 		if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
 									password: params[:teaching_staff][:user][:password],
 									password_confirmation: params[:teaching_staff][:user][:password_confirmation],
@@ -92,6 +94,7 @@ class TeachingStaffsController < ApplicationController
 									qualification:params[:teaching_staff][:qualification],
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
 									name:params[:teaching_staff][:user][:name]
+									
 								)
 								AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
 									
