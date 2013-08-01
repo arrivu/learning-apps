@@ -77,7 +77,9 @@ class TeachingStaffsController < ApplicationController
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
 									qualification:params[:teaching_staff][:qualification],
 									name:params[:teaching_staff][:user][:name])
-									AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+									
+									# AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+									
 			flash[:notice]="Teaching Staff details updated successfully"
 			redirect_to teaching_staffs_path
 
@@ -96,8 +98,9 @@ class TeachingStaffsController < ApplicationController
 									name:params[:teaching_staff][:user][:name]
 									
 								)
-								AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-									
+								
+								# AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+								
 			flash[:notice]="Teaching Staff details updated successfully"
 			redirect_to teaching_staffs_path
 
