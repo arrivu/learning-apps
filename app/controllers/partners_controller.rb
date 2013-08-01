@@ -43,13 +43,8 @@ class PartnersController < ApplicationController
     @partner = Partner.find(params[:id])
 
       send_data @partner.image, :type => @partner.image_type, :disposition => 'inline' 
-
-   # 
-
   end
   def update
-    
-      
     @partner = Partner.find(params[:id])
     @partner.account_id=@account_id
          if @partner.update_attributes(params[:partner])

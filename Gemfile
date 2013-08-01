@@ -70,4 +70,5 @@ gem 'annotate', '2.4.1.beta1'
 gem 'jquery-minicolors-rails', '0.0.3'
 #gem 'exception_notification', '3.0.1'
 gem 'subdomain-fu', :git => 'git://github.com/mbleigh/subdomain-fu.git'
+gem 'tinymce-rails','4.0.2'
 

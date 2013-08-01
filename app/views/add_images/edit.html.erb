@@ -1,0 +1,16 @@
+<h3 align = "center">Add Images</h3>
+<table align="center">
+<%= form_for @addimage do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+<tr>
+	<td><%=f.label 'Image' %></td>
+	<td><%= image_tag url_for(:controller => 'add_images',:action => 'show', :id => @addimage.id), :width => "100",:height => "100"%>
+	<%= f.file_field :uploaded_file %></td> 
+</tr>
+<tr>
+<tr >
+   <td><%= f.submit "Update" %> </td>
+</tr>
+
+<% end %>
+</table>

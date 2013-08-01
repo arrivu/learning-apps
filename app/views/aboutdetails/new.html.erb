@@ -1,7 +1,7 @@
 
 <h3 align = "center">About Us</h3>
 <table align="center">
-
+<%= tinymce_assets %>
 <%= form_for @aboutdetail do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <tr>
@@ -15,7 +15,7 @@
 <tr>
    <td><%= f.submit "Save" %> </td>
 </tr>
-
+<%= tinymce %>
 <% end %>
 </table>
 </html>

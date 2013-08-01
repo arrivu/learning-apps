@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",              :null => false
   end
 
+  create_table "add_images", :force => true do |t|
+    t.binary   "image"
+    t.string   "image_type"
+    t.string   "file_name"
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
