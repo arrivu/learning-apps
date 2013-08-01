@@ -11,6 +11,7 @@ module CoursePricingsHelper
 		end
 		end
 	end
+	
 end
 
 

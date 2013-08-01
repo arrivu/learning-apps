@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+    before_filter :subdomain_authentication , :only => [:new,:create, :index, :edit, :destroy]
+
 	def index
     @tags = Tag.order(:name).search(params[:search])
   end
