@@ -1,15 +1,7 @@
-<html>
-<head>
-<script language="javascript" type="text/javascript">
-tinyMCE.init({
-        theme : "advanced",
-        mode : "textareas"
-});
-</script>
-</head>
+
 <h3 align = "center">About Details</h3>
 <table align="center">
-<%= tinymce_assets %>
+
 <%= form_for @aboutdetail do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 <tr>
@@ -19,11 +11,11 @@ tinyMCE.init({
 
 <tr>
 	<td><%=f.label 'Description'%></td>
-	<td><%=f.text_area :desc,:class => "tinymce"%></td>
+	<td><%=f.text_area :desc%></td>
 </tr>
 <tr >
    <td><%= f.submit "Update" %> </td>
 </tr>
-<%= tinymce %>
+
 <% end %>
 </table>

@@ -336,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "image_type"
     t.string   "file_name"
     t.integer  "account_id",   :limit => 8
+    t.string   "comments"
   end
 
   create_table "privacypolicies", :force => true do |t|
