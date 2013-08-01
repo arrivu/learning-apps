@@ -29,7 +29,7 @@ class AboutdetailsController < ApplicationController
       	end
  			end	
  			def index
- 			 	@aboutdetail=Aboutdetail.paginate(page: params[:page], :per_page => 10)
+ 			 	@aboutdetail=Aboutdetail.where(:account_id => @account_id).paginate(page: params[:page], :per_page => 10)
 			end
 			def show
 				@aboutdetail = Aboutdetail.find(params[:id])

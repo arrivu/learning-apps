@@ -16,7 +16,7 @@ lms:
 mailserver:
   address: smtp.gmail.com
   port: 587
-  domain: current_subdomain.lvh.me:3000
+  domain: lvh.me:3000
   user_name: arrivusystems@gmail.com
   password: Arrivu123$
   

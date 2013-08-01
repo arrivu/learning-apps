@@ -335,7 +335,7 @@
                <h2 style="margin-left: 30px;">Knowledge Partners</h2>
 
         <div class="listofkp" >
-          <% @partner.each do |partners| %>
+          <% @partners.each do |partners| %>
           <div class="kp">
             <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
           </div>

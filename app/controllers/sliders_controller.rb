@@ -1,6 +1,6 @@
 class SlidersController < ApplicationController
-    before_filter :check_admin_user,:only => [:new,:create,:edit,:show,:update,:destroy,:index]
-
+    before_filter :check_admin_user,:only => [:new,:create,:edit,:show,:update,:destroy]
+    before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy]
 
 
   def show_image_slider    
@@ -55,4 +55,18 @@ class SlidersController < ApplicationController
     @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
 
   end
+  def subdomain_authentication
+       :authenticate_user!
+
+      if current_user.has_role :admin
+       @subdomain_id= AccountUser.find_by_user_id(current_user.id)
+        @subdomain_name=Account.find_by_name(@subdomain_id.account_id)
+      if  @account_id==@subdomain_id.account_id
+        return
+      else
+        redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
+        # redirect_to root_path(:subdomain => @subdomain_name)
+      end
+    end
+   end
 end

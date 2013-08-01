@@ -8,7 +8,9 @@ class SessionsController < Devise::SessionsController
     @account=Account.find_by_name(current_subdomain)
     
 
-   
+    if !current_user.has_role? :admin
+
+
      if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
       #set_flash_message(:notice, :signed_in) if is_navigational_format?
       #
@@ -32,6 +34,18 @@ class SessionsController < Devise::SessionsController
       user_cas_sign_in( current_user)
     end
 
+  end
+    else
+       @subdomain_id= AccountUser.find_by_user_id(current_user.id)
+      if  @account_id==@subdomain_id.account_id
+          super
+          if current_user 
+          user_cas_sign_in( current_user)
+          end
+        else
+        domain_restrict
+      end
+  #redirect_to root_url
   end
 
 
@@ -86,5 +100,23 @@ end
         end
       end
     end
+    def domain_restrict
+     redirect_path = after_sign_out_path_for(resource_name)
+     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+     set_flash_message :notice, "invalid domain check your domain" if signed_out && is_navigational_format?
+    ## We actually need to hardcode this as Rails default responder doesn't
+    ## support returning empty response on GET request
+    respond_to do |format|
+      format.all { head :no_content }
+     format.any(*navigational_formats) { redirect_to redirect_path }
+    end
+
+    # super
+    flash[:notice]="Invalid domain"
+    cas_sign_out
+    lms_logout
+    
+  end
+
 
 end

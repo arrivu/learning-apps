@@ -7,6 +7,7 @@ class AccountSettingsController < ApplicationController
 
   def create
   	@account_setting = AccountSetting.new(params[:account_setting])
+    @account_setting.account_id=@account_id
   	if @account_setting.save
   	flash[:success] = "Sucessfully created"
   	redirect_to account_settings_path
@@ -23,13 +24,14 @@ class AccountSettingsController < ApplicationController
 
   def update
    @account_setting = AccountSetting.find(params[:id])
+   @account_setting.account_id=@account_id
      if @account_setting.update_attributes(params[:account_setting])
       flash[:success] ="Successfully Updated Category."
       redirect_to account_settings_path
      end
   end
   def index
-   @account_setting = AccountSetting.paginate(page: params[:page])
+   @account_setting = AccountSetting.where(:account_id=>@account_id).paginate(page: params[:page])
   end
 
   def destroy
