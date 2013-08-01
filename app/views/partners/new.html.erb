@@ -16,6 +16,10 @@
 	
 	<td><%= f.file_field :uploaded_file %></td>
 </tr>
+<tr>
+	<td><%=f.label 'Comments'%></td>
+	<td><%=f.text_area :comments, :size => "30x10" %></td>
+</tr>
 <tr >
    <td><%= f.submit "Save" %> </td>
 </tr>

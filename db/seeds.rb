@@ -22,9 +22,9 @@ account =Account.create! :active => true, :name=>"portal", :no_of_courses=>"0", 
 puts 'SETTING UP DEFAULT USER LOGIN'
 
 if Rails.env.development?
-  user =User.create! :name => 'Administrator', :email => 'beacon@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
+  user =User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
 else
-  user = User.create! :name => 'Administrator', :email => 'portal.admin@beaconlearning.in', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
+  user = User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
 end
 puts 'User created: ' << user.name
 @account_user = account.add_user(user, 'SiteAdmin')
