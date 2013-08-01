@@ -11,6 +11,8 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   before_filter :no_admin_user_allow, :only=>[:my_courses]
   caches_page :show_image,:background_image
   before_filter :subdomain_authenticate, :only=>[:show]
+  before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
+   :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   def show_image    
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
@@ -271,4 +273,19 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
       render :conclude_course
     end
   end
+  def subdomain_authentication
+       :authenticate_user!
+
+      if current_user.has_role :admin
+       @subdomain_id= AccountUser.find_by_user_id(current_user.id)
+        @subdomain_name=Account.find_by_name(@subdomain_id.account_id)
+      if  @account_id==@subdomain_id.account_id
+        return
+      else
+        redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
+        # redirect_to root_path(:subdomain => @subdomain_name)
+      end
+    end
+   end
+
 end

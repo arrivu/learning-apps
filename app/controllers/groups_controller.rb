@@ -41,4 +41,5 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_url, notice: "Successfully destroyed group."
   end
+  
 end

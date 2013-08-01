@@ -37,6 +37,7 @@ module ApplicationHelper
 			else
      redirect_to root_url # or whatever
    end
+   
   		 
 
 end
