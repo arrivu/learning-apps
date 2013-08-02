@@ -36,7 +36,7 @@
 					<tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
 						<td>
 
-							<%= f.collection_select :teaching_staff_ids, TeachingStaff.order(:name), :id, :name, {}, {multiple: false} %>
+							<%= f.collection_select :teaching_staff_ids, TeachingStaff.where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %>
 
 
 						</td></tr>
