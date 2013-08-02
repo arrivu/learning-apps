@@ -40,6 +40,7 @@ resources :footerlinks
   resources :privacypolicies
   resources :terms
   resources :aboutdetails
+  resources :add_images
   match 'payments/course_payment_gateway',:to=>'payments#course_payment_gateway'
   match 'payments/course_payment',:to=>'payments#course_payment'
   match 'payments/follow_course',:to=>'payments#follow_course'
