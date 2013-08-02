@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/mbleigh/subdomain-fu.git
-  revision: dfbd86448694e019a805830f0866599da7e2bae1
+  revision: 3752799a02c0e18abd0a1bfb422925e880dc754e
   specs:
     subdomain-fu (1.0.0.beta3)
 
@@ -38,7 +38,7 @@ GEM
       sprockets (~> 2.2.1)
     active_merchant_ccavenue (0.1.0)
       activemerchant (>= 1.7.3)
-    active_utils (1.0.5)
+    active_utils (2.0.0)
       activesupport (>= 2.3.11)
       i18n
     activemerchant (1.32.1)
@@ -124,8 +124,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
-    faraday (0.8.7)
-      multipart-post (~> 1.1)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -249,7 +249,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-rc4 (0.1.5)
-    sass (3.2.9)
+    sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)

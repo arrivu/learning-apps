@@ -73,7 +73,7 @@ class UsersController < ApplicationController
          
     else
       @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page], :per_page => 10) 
-    @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
+      @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
     
     end
     respond_to do |format|

@@ -21,6 +21,7 @@
 //= require jquery-minicolors-simple_form
 //= require tinymce
 
+
 $(function() {
   $(".pagination").on("click", function() {
     $(".pagination").html("Page is loading...");
