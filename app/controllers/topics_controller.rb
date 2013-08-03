@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_filter :subdomain_authenticate, :only => [:show]
+   before_filter :valid_domain_check, :only=>[:show,:edit]
  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
  def index

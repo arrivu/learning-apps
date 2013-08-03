@@ -38,7 +38,7 @@ class Course < ActiveRecord::Base
   has_many :student_courses, :dependent =>:destroy
   has_many :students, :through => :student_courses
   has_many :teaching_staff_courses, :dependent =>:destroy
-  has_many :teaching_staffs, :through => :teaching_staff_courses 
+  has_many :teaching_staffs, :through => :teaching_staff_courses
   has_many :course_coupons, :dependent =>:destroy
   has_many :coupons, :through => :course_coupons 
   has_one  :rating_cache

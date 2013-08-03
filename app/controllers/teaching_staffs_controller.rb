@@ -4,6 +4,7 @@ class TeachingStaffsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_admin_user
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+   before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
 
 

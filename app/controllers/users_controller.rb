@@ -27,8 +27,8 @@ class UsersController < ApplicationController
             @users = User.where("lower(name) like ? or lower(email) like ?", query.downcase,query.downcase).paginate(page: params[:page], :per_page => 10) 
             @total_users = User.where("lower(name) like ? or lower(email) like ?", query.downcase,query.downcase).count
           else
-            @users = User.all.paginate(page: params[:page], :per_page => 10)
-            @total_users = User.all.count
+            @users =User.all.paginate(page: params[:page], :per_page => 10)
+            @total_users =User.all.count
         end
       end  
     end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
          
     else
       @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page], :per_page => 10) 
-      @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
+    @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
     
     end
     respond_to do |format|

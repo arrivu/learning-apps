@@ -1,5 +1,7 @@
 class PrivacypoliciesController < ApplicationController
-  before_filter :subdomain_authentication , :only => [:new,:create, :index, :edit, :destroy]
+  before_filter :check_admin_user, :only=>, :only=>[:new, :create, :edit, :index]
+   before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
+    before_filter :valid_domain_check, :only=>[:show,:edit]
   def new
   	@privacypolicy=Privacypolicy.new
   end

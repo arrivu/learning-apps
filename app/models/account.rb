@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
   has_many :tax_rates,:dependent =>:destroy
   has_many :teaching_staffs, :dependent =>:destroy
   has_many :testimonials, :dependent => :destroy
+  has_many  :teaching_staff_courses, :dependent => :destroy
 
   def self.default
     Account.first

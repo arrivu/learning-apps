@@ -33,7 +33,7 @@ module ApplicationHelper
 		def check_admin_user
 			authenticate_user!
 			if current_user.has_role? :account_admin 
-				return
+			 return
 			elsif current_user.has_role? :admin
 				return
 			else	
@@ -77,6 +77,14 @@ end
       end
 
      end
+   end
+   def account_create_restrict
+   	if current_user.has_role? :admin
+   		return
+   	else
+   		redirect_to root_url
+   	end
+
    end
    
 end

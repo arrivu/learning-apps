@@ -34,7 +34,7 @@ class ScreensController < ApplicationController
   end
 
   def knowledge_partners
-     @partner=Partner.all(:conditions => {:account_id => @account_id},:limit => 6)
+     @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 6)
       @footerlinks=Footerlink.where(:account_id=>@account_id)
      @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end

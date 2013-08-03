@@ -10,9 +10,9 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   before_filter :signed_in_user, :only=>[:my_courses]
   before_filter :no_admin_user_allow, :only=>[:my_courses]
   caches_page :show_image,:background_image
-  before_filter :subdomain_authenticate, :only=>[:show]
+  before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
-   :completed_courses,:updatecompleted_details,:index,:conclude_course,:concluded_course_update]
+   :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   def show_image    
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
@@ -51,6 +51,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
    @course.user_id = current_user.id
   
    @course.account_id=@account_id
+  
    @course.isconcluded="f"
    if @course.save
      flash[:success] = "Course added successfully!!!!"
@@ -70,7 +71,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
    @course = Course.find(params[:id])
   
    @course.account_id=@account_id
-
+ 
    if @course.update_attributes(params[:course])
      lms_update_course(@course)
      flash[:success] ="Successfully Updated Course."  

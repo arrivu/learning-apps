@@ -76,13 +76,19 @@
       end
 
     end
-    def subdomain_authenticate
+    def valid_domain_check
+ # get the model name using controller_name.classify.constantize
+      @coursedet= controller_name.classify.constantize.find(params[:id])
 
-      @coursedet=Course.find(params[:id])
-     
       if @coursedet.account_id!=@account_id
         flash[:error]="Invalid domain"
-        redirect_to courses_path
+        if current_user.has_role? :admin
+         redirect_to users_path
+       elsif current_user.has_role? :account_admin
+        redirect_to users_path
+        else
+          redirect_to courses_path
+        end
       end
 
 
@@ -93,8 +99,5 @@
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks=Footerlink.where(:account_id=>@account_id)
     end
-   
-    
-   
-
+ 
 end

@@ -2,6 +2,7 @@ class TaxRatesController < ApplicationController
 	include TaxRatesHelper
 	before_filter :check_admin_user, :only => [:new, :edit, :destroy,:index]
 	before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+	 before_filter :valid_domain_check, :only=>[:show,:edit]
 	def new
 		@tax_rate=TaxRate.new
 	end
