@@ -9,6 +9,7 @@ class ScreensController < ApplicationController
     @footerlinks=Footerlink.where(:account_id=>@account_id)
     @header_detail = HeaderDetail.where(:account_id=>@account_id)
     @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
+    @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
      
   end
 

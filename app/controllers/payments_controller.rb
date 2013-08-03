@@ -64,6 +64,7 @@ class PaymentsController < ApplicationController
 
       @price = price_of_course_according_to_date(@course)
       @user = current_user
+
       @coupon_code = params[:coupon_code] if !params[:coupon_code].blank?
       coupon_calc = {}
       redirect_req = false
@@ -113,6 +114,7 @@ class PaymentsController < ApplicationController
        session[:coupon_rate]=@coupon_rate      
        session[:coupon_price]=@price- @coupon_price 
        session[:course_price]=@grand_total
+       session[:account_id]=@account_id
      end
    end
 

@@ -58,7 +58,7 @@ class CouponsController < ApplicationController
     find_or_generate_coupon
     
     if params[:after]
-      @coupons = Coupon.where(["id >= ?,account_id=?", params[:after],@account_id]).paginate(page: params[:page], per_page: 10)
+      @coupons = Coupon.where(["id >= ? and account_id=?", params[:after],@account_id]).paginate(page: params[:page], per_page: 10)
     else
       @coupons = Coupon.where(:account_id=>@account_id).paginate(page: params[:page], per_page: 10)
     end

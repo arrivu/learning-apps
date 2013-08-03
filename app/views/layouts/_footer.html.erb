@@ -108,7 +108,8 @@ End of Zopim Live Chat Script -->
          <%= footerlink.copy_write %>
         </p>
         <% end %>
-      </div>
+
+         </div>
       <div class="two columns">
         <ul class="link-list site-nav right">
           <li class="heading">Our Company </li>
@@ -126,6 +127,18 @@ End of Zopim Live Chat Script -->
               <% end %>                               
        </ul>
       </div>
+            <% @social_stream_comments.each do |social_stream_comment| %>
+             <li> <%= social_stream_comment.twitter_comment_script.html_safe %></li>
+
+             <li><%= social_stream_comment.facebook_comment_script.html_safe %> </iframe></li>
+              <% end %> 
+      <!--  <div class="two columns">
+        <ul class="link-list library-nav right">
+         <li class="heading">Browse full library</li>            
+             <!--            -->                     
+       </ul>
+      </div> 
+
       
    <!--    <div class="two columns end">
         <ul class="link-list contact-nav right">
