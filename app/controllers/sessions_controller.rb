@@ -18,9 +18,9 @@ class SessionsController < Devise::SessionsController
       # redirect_to "ibm.lvh.me:3000"
      
      super
-
+         if !current_user.has_role?  :admin
         AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
-      
+        end
 
      # redirect_to :users_path
 
