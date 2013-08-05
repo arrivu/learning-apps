@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
 	before_filter :signed_in_user
   before_filter :no_admin_user_allow
-  
+  before_filter :valid_domain_check, :only=>[:course_payment,:follow_course,:course_payment_gateway,:confirm_course_payment,:invoice_pdf]
   include InvoicesHelper
   include LmsHelper
 

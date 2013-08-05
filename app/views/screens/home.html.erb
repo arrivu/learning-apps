@@ -301,6 +301,8 @@
         <!-- <h2 class="ribbon">
           <span class="title">Our Courses</span>
         </h2> -->
+        <% @account_settings.each do |account_setting| %>
+        <% if  account_setting.popular_speak == true %>
         <h2 style="margin-left:30px;"> Popular Courses</h2>
       </div>
     </div>
@@ -326,9 +328,9 @@
       </div>
     </div>
   </div>
+<% end %>
 
-
- 
+  <% if  account_setting.knowledge_partners == true %>
   <div class="ourknowledgepartners secondary-content" style="background-image:url(assets/greyband.png);height:auto;"> 
     <div class="container" align="center">
       <div class="row testimonial">
@@ -345,6 +347,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 
 
           
@@ -367,7 +370,7 @@
       </div>
     </div> 
   </div>
-
+ <% if  account_setting.testimonial == true %>
 <div class="ourcustomers " >
     <div class="secondary-content">
     <div class="container" align="center">
@@ -419,7 +422,7 @@
             </div>
             </div>
   
-          </div>
+          </div><% end %>
 
                <% end %>               
     <%end%>
@@ -457,7 +460,7 @@
               </div>
     </div>
   </div>
-
+<% end %>
 <div class="bottomadsection">
     <div class="container">
       <div class="row">
@@ -473,6 +476,7 @@
       </div>
     </div>
   </div>
+  
 
 
 

@@ -20,17 +20,17 @@ class AboutdetailsController < ApplicationController
 
       def edit
     		@aboutdetail=Aboutdetail.find(params[:id])
-  		end
+  	  end
   		def update
      		 @aboutdetail = Aboutdetail.find(params[:id])
      		 @aboutdetail.account_id=@account_id
      		 if @aboutdetail.update_attributes(params[:aboutdetail])
         		flash[:success] = "About Detail updated"
         		redirect_to aboutdetails_path
-        else
-        			render :action => 'edit'
-      	end
- 			end	
+       		 else
+        		render :action => 'edit'
+      		end
+ 		end	
  			def index
  			 	@aboutdetail=Aboutdetail.where(:account_id => @account_id).paginate(page: params[:page], :per_page => 10)
 			end

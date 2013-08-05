@@ -11,7 +11,7 @@ tinyMCE.init({
 <table align="center">
 <%= tinymce_assets %>
 <%= form_for @aboutdetail do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+ 
 <tr>
 	<td><%=f.label 'Title'%></td>
 	<td><%=f.text_field :title%></td>

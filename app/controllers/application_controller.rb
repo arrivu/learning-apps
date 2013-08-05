@@ -1,7 +1,7 @@
   class ApplicationController < ActionController::Base
     before_filter :load_account
     before_filter :topics
-
+    
     protect_from_forgery
     include ApplicationHelper
     include CoursesHelper
@@ -78,7 +78,13 @@
     end
     def valid_domain_check
  # get the model name using controller_name.classify.constantize
-      @coursedet= controller_name.classify.constantize.find(params[:id])
+ 
+  if controller_name== "payments"
+    @modelname="Course"
+  else
+     @modelname=controller_name.classify
+  end
+      @coursedet= @modelname.constantize.find(params[:id])
 
       if @coursedet.account_id!=@account_id
         flash[:error]="Invalid domain"
@@ -100,5 +106,6 @@
         @footerlinks=Footerlink.where(:account_id=>@account_id)
         @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
     end
+    
  
 end
