@@ -15,7 +15,8 @@ module InvoicesHelper
     invoice.tax_description = tax.description#params[:tax_description]#@tax_rate.description
     
     invoice.paid_at = Date.today
-    invoice.currency = Payday::Config.default.currency 
+    invoice.currency = Payday::Config.default.currency
+    invoice.account_id=@account_id
     #invoice.invoice_details = 
     #invoice.invoice_number = 
     invoice.notes = "#{Settings.invoices.notes}"
@@ -38,6 +39,7 @@ module InvoicesHelper
     invoice.tax_description = tax.description#'Tax'    
     invoice.paid_at = Date.today
     invoice.currency = Payday::Config.default.currency 
+   
     invoice.notes = "#{Settings.invoices.notes}"
     invoice.line_items << LineItem.new(:price => price , :quantity => 1, :description =>  course.title)
     if session[:coupon_rate].to_i != 0

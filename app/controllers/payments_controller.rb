@@ -143,10 +143,11 @@ end
     @subtotal=@price - @discount
     @tax = Course.tax_calculation(@course,@subtotal)
     @user = current_user
+
     if session[:payment_completed] ==nil
       if params[:coupon_code].present?
        @coupon = Coupon.find_coupon(params[:coupon_code], user_id = current_user.id, metadata=@course.id)
-       Coupon.redeem(params[:coupon_code], @user.id, tx_id, @coupon.metadata)
+       Coupon.redeem(params[:coupon_code], @user.id, tx_id, @coupon.metadata,@account_id)
       end
 
      enroll_student(@course, current_user)
