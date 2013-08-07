@@ -1,0 +1,114 @@
+ <div id="top">
+                <!-- .navbar -->
+                <div class="navbar navbar-static-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <a class="brand" href="index.html"><img src="../assets/admin_logo.png"></a>
+                            <!-- .topnav -->
+    <!--                        <div id="topbar">
+          <ul id="identity">
+      <li class="user_name"><a href="/about/15">monickam</a></li>
+      <li class="first inbox"><a href="/conversations"><span>Inbox</span>
+      </a></li>
+    <li><a href="/profile/settings">Settings</a></li>
+    <li class="user_id" style="display: none;">15</li>
+    <li class="course_id" style="display: none;"></li>
+    <li id="current_context_code" style="display: none;">user_15</li>
+    <li class="user_long_name" style="display: none;">monickam</li>
+    <li class="logout"><a style="cursor:pointer;" onclick="openWin();">Logout</a></li>
+</ul>
+
+    </div> -->
+                            <!-- /.topnav -->
+
+<!-- <div class="btn-toolbar topnav">
+                                <div class="btn-group">
+                                    <a class="btn" data-placement="bottom" data-original-title="Logout" rel="tooltip"
+                                       href="login.html"><i class="icon-off"></i></a></div>
+                            </div> -->
+                             <nav style="padding:0px;">
+        <ul class="nav pull-right">
+          <li> <%= link_to "Course Library", courses_path %></li>
+          <% if user_signed_in?%>
+          <% if current_user.has_role? :admin %>
+            <li ><%= link_to 'Admin', users_path %></li>
+              <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+          <% elsif current_user.has_role? :account_admin %>
+           <li ><%= link_to 'Account_Admin', users_path %></li>
+            <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+           <% else  %>
+          <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
+     
+          <script>
+          $('.courseslink').css('left',"-140px");
+          </script>
+               <% end  %>       
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <% if current_user.image_blob == nil %>
+                <% if current_user.omni_image_url == nil %>
+                <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= gravatar_for_with_size current_user, "20x20"%>
+                </div><% else  %>
+                 <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%> 
+                </div>
+                <% end  %>
+                <% else  %>
+                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
+                <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+            </a>
+            <ul class="dropdown-menu">
+              
+              <li><%= link_to "My Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: "delete" ,  :onclick=> "logout_lms();" %></li>
+             
+            </ul>
+          </li>
+
+          <% else %>
+          <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
+          <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+
+          <% end %>
+        </ul>
+      </nav>
+
+
+
+
+                            <div class="nav-collapse collapse">
+                                <!-- .nav -->
+                               <!--  <ul class="nav">
+                                    <li class="active"><a href="index.html">Dashboard</a></li>
+                                    <li><a href="table.html">Tables</a></li>
+                                    <li><a href="file.html">File Manager</a></li>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            Form Elements <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="form-general.html">General</a></li>
+                                            <li><a href="form-validation.html">Validation</a></li>
+                                            <li><a href="form-wysiwyg.html">WYSIWYG</a></li>
+                                            <li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>
+                                        </ul>
+                                    </li>
+                                </ul> -->
+                                <!-- /.nav -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar -->
+            </div>
+            <!-- END TOP BAR -->

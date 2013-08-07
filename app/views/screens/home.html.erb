@@ -1,299 +1,50 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
-<div >
+<div style="width:1349px;margin:0px auto;">
 <% provide(:effectingHeader) %>
-<!-- <table>
-
-  <tr>
-    <% @header_detail.each do |header_details| %>
-  <td>
-    
-     <%= image_tag url_for(:controller => 'screens',:action => 'show_image_logo', :id => header_details), :size => "50x50" %> 
-     <%= image_tag url_for(:controller => 'screens',:action => 'theme_header_image', :id => header_details), :size => "1500x100" %> 
-  </td>
-     
-    </tr>
-
-    <td>
-    <%= header_details.message %>
-  </td>
-  
- </tr>
- <%end%>
-</table> -->
-
-<!-- <table>
-  <tr>
-
-  <% @slider.each do |slider| %>
-  <% if (slider.id%2)== 1 %>
-  <td>
-     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
-
-     <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
-  </td>
-
-     <td>
-    <%= slider.header %>
-  </td>
-  <td>
-    <%= slider.body_tag %>
-  </td>
-</tr>
-<% elsif (slider.id%2)== 2 %>
-<tr>
-<td>
-     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
-
-     <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
-  </td>
-
-     <td>
-    <%= slider.header %>
-  </td>
-  <td>
-    <%= slider.body_tag %>
-  </td>
-</tr>
-<% end %>
-  <% end %>
-</table>
- -->
 
 
-
-<div>
-
-  <% @slider.each do |slider| %>
-
-<% if (slider.id%2)== 1 %>
-
-     <!-- <div class = "homebanner" style="background-image.action:background_image_slider"; id:"slider";height="770px"; width="214px"></div> -->
-<!--   <div class = "homebanner" style="background-repeat:no-repeat;background-size:100% 100%;color:white;"> -->
-<!-- </div> -->
-<div class="homebanner" style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white;" >  
+<div class="homebanner" style="">
             <div class="row">
-          <div class="span12" id="slider">
-            <!-- Top part of the slider -->
+         
+           
             <div class="row">
-              <div class="" id="carousel-bounding-box">
-                <div id="myCarousel" class="carousel slide">
-                  <!-- Carousel items -->
-                  <div class="carousel-inner">
-      
+               <div id="slideshow1" class="sliders">
+                <% @slider.each do |slider| %>
 
-                    <div class="active item" data-slide-number="0">    
-                      <div class="row">
+      <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 300px; width: 100%;" class="active-slide slide"><div class="row">
+        <div class="container">
                       <div class="span12" align="center" >
-                        <div class="bannertext">
-
-     <div>
-      <% @slider.each do |slider| %>
-      <%= slider.header %> 
-     <h3 style="color:white;margin-left: 50px;"></h3>
-     <p><%= slider.body_tag %><p>
-     </div>                 
-                          <!-- <h3 style="color:white;margin-left: 50px;">Learning for Life</h3> -->
-                        <!-- </div> -->
-                      <!-- </div> -->
-                      <!-- </div> -->
-                    </div>
-                    <% end %>  
-
-
-                      <div class="clearfix"></div>
+                        <div class="bannertext">  
+     <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
+     
+     </div>     </div>  
+               <div class="clearfix"></div>
                       <div class="span6" align="center" >
-                        
-<div> 
-
-<% @slider.each do |slider| %>
 
 <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
 </div> 
+<div class="span6" align="justify">
+<p><%= slider.body_tag %><p>
+<%= render 'show_topics' %>
+</div>    
+ <div class="clearfix"></div>
+                    </div>  
+</div>
 
-                        <!-- <div class="bannervideo" >
-                          <iframe class="video-me" src="http://player.vimeo.com/video/27244727?title=1&amp;byline=1&amp;portrait=1&amp;color=ffffff" width="350" height="230" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                        </div> -->
-
-                     <!-- </div> -->
-
-                      <div class="span6" align="justify"></div>
-                        <!-- <div class="bannerinfo">
-                          <p>Academic courses, certifications and curated wisdom from the finest academicians to make your learning seamless, progressive and impactful.
-                           </p>
-                        </div -->
-                        <%= render 'show_topics' %>
-                       </div> 
-                      <div class="clearfix"></div>
-                    </div></div>
-                  </div>
-
-                <!-- </div></div> -->
-              <!-- </div> -->
-            
-    <% end%>
-    
-
- <% else %> 
-
- <div class="homebanner" style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white;" > 
-
-                    <div class="item" data-slide-number="1"><div class="row">
-                      <div class="span12" align="center" >
-                        <div class="bannertext">
-  
-     <div>
-      <% @slider.each do |slider| %>
-      <%= slider.header %>
-      <h3 style="color:white;margin-left: 50px;"></h3> 
-      <p><%= slider.body_tag %></p> -->
-
-      </div>  <% end %>  
-
-    
-                          <!-- <h3 style="color:white;margin-left: 50px;">Learning for Life</h3> -->
-                        </div>
-                      </div>
-  
-                      <div class="clearfix"></div>
-                      <div class="span6" align="center" >
-                        <div class="bannervideo" >
-
-    <div> 
-<% @slider.each do |slider| %>
-
-<%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
-<!-- </div>   -->
-
-                          <!-- <img src="assets/GREAT LAKES LOGO.jpg" width="250" height="160"/>-->
-                        <!-- </div> -->
-                      </div>
-                      <div class="span6" align="justify">
-                        <!-- div class="bannerinfo">
-                          <p>Industry relevant and high impact online certifications from Great Lakes to propel your career ahead
-                            </p>
-                        </div> -->
-    <div>
-      <% @slider.each do |slider| %>
-
-     <%= slider.header %>
-     <h3 style="color:white;margin-left: 50px;"></h3>
-     <p><%= slider.body_tag %><p>
-     </div> <% end%>
-
-
-                        <div class="bannerlearn">
-                          <span class="learnheading" style="color:white;">Explore:</span>
-                               <% topic = Topic.find_by_name("Finance") rescue nil? %>
-                              <% if !!topic %>
-                                  <span class="badge1 leartopic"><%= link_to "Finance Programs", topic, class: "badge1" %>
-                                   |
-                                  </span>
-                              <% else %>
-                                  <span class="badge1 leartopic"><%= link_to "Finance Programs", courses_path, class: "badge1" %>
-                                    |
-                                  </span>
-                              <% end %>
-                               <% topic = Topic.find_by_name("Analytics") rescue nil? %>
-                              <% if !!topic %>
-                                  <span class="badge1 leartopic"><%= link_to "Analytics Programs", topic, class: "badge1" %>
-
-                                  </span>
-                              <% else %>
-                  about                <span class="badge1 leartopic"><%= link_to "Analytics Programs", courses_path, class: "badge1" %>
-
-                                  </span>
-                             <% end %>
-
-        <% end %>     
-
-  <% end %>    
-
- <% end %>
-
-
-                        </div>
-
-                      </div>
-                      <div class="clearfix"></div>
-                    </div></div>
-
-                  </div>
-
-                </div>
-              </div>
-  
-              <div class="span4" id="carousel-text"></div>
-
-            </div>
-
-          </div>
-
-        </div> <!--/Slider-->
-      <div class="carousel-nav">
-        <a href="#" data-to="0" class="active">1</a>
-        <a href="#" data-to="1">2</a>
-
-      </div>
-
+   </div>
+<%end%>
 
     </div>
+        </div>
+</div>
+</div>
+  <script type="text/javascript">
+      $(document).ready(function () {
+        $("#slideshow1").sliders({ interval: 5000 });
+      });
+    </script>
 
-
-      <script>
-          jQuery(document).ready(function($) {
-
-              $('#myCarousel').carousel({
-                  interval: 5000
-              });
-
-              $('#carousel-text').html($('#slide-content-0').html());
-
-              //Handles the carousel thumbnails
-              $('[id^=carousel-selector-]').click( function(){
-                  var id_selector = $(this).attr("id");
-                  var id = id_selector.substr(id_selector.length -1);
-                  var id = parseInt(id);
-                  $('#myCarousel').carousel(id);
-              });
-
-
-              // When the carousel slides, auto update the text
-              $('#myCarousel').on('slid', function (e) {
-                  var id = $('.item.active').data('slide-number');
-                  $('#carousel-text').html($('#slide-content-'+id).html());
-              });
-
-
-          });
-      </script>
-   <script type="text/javascript">
-       $(window).load(function() {
-           $('#myCarousel').carousel();
-
-           $(".carousel-nav a").click(function(e){
-               e.preventDefault();
-               var index = parseInt($(this).attr('data-to'));
-               $('#myCarousel').carousel(index);
-               var nav = $('.carousel-nav');
-               var item = nav.find('a').get(index);
-               nav.find('a.active').removeClass('active');
-               $(item).addClass('active');
-           });
-
-           $("#myCarousel").bind('slide', function(e) {
-               var elements = 2; // change to the number of elements in your nav
-               var nav = $('.carousel-nav');
-               var index = $('#myCarousel').find('.item.active').index();
-               index = (index == elements - 1) ? 0 : index + 1;
-               var item = nav.find('a').get(index);
-               nav.find('a.active').removeClass('active');
-               $(item).addClass('active');
-           });
-       });
-   </script>
-
-    </div>
-  </div>
+    
 <div class="homecourse">
     <div class="secondary-content">
     <div class="container" align="center">
@@ -312,7 +63,7 @@
               Learn where to start and what to take next with our courses
           </div> 
         </div> -->
-           
+            
               <%= render 'shared/courselist' %>
             
               <div align="center">
@@ -329,16 +80,21 @@
 
 
  
-  <div class="ourknowledgepartners secondary-content" style="background-image:url(assets/greyband.png);height:auto;"> 
+  <div class="ourknowledgepartners secondary-content" > 
     <div class="container" align="center">
       <div class="row testimonial">
                <h2 style="margin-left: 30px;">Knowledge Partners</h2>
 
         <div class="listofkp" >
           <% @partners.each do |partners| %>
+          <div class="span4" style="width: 30%;">
           <div class="kp">
             <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
           </div>
+           <div class="testimonialtext">
+                       "Sachin Ramesh Tendulkar AM is an Indian cricketer widely acknowledged as one of the greatest batsmen in One Day International cricket In 2002, Wisden Cricketers' Almanack ranked him the second greatest" 
+</div>
+</div>
          <% end %>
         </div>
       
@@ -381,88 +137,38 @@
           <div class="span12" style="margin-left:100px;">
             
              <% @testimonial.each do |testimonials| %>
-                            <% if (testimonials.id%3)== 1 %>
-              
-                <div class="span4" style="margin-left: 115px;margin-top: 30px;width: 30%;">
+                       
+                <div class="span4" style="width: 30%;">
        
           <div class="verticalcustomerbox testimonial-one" align="center">
-                <div class="testimonialtext" style="background-image: url(assets/review1.png);background-size: 100% 100%;">
+                <div class="testimonialtext">
                         "<%=testimonials.comment%>" 
 </div> <div class="testimonialauthor" >
                  
-              "<%= testimonials.name %>,<br/><%=testimonials.organization%>           
+              -<%= testimonials.name %>,<br/><%=testimonials.organization%>           
                 
             </div>
-          </div></div>
-               <% elsif (testimonials.id%3)== 2 %>
-               <div class="span4" style="margin-left: -65px;margin-top: -10px;width: 30%;">
-       
-          <div class="verticalcustomerbox testimonial-two" align="center">
-<div class="testimonialtext" style="background-image: url(assets/review2.png);background-size: 100% 100%;">
-                        "<%=testimonials.comment%>" 
-</div> <div class="testimonialauthor" >
-                 
-              "<%= testimonials.name %>,<br/><%=testimonials.organization%>           
-                
-            </div>
-</div></div>
-               <% else %>
-               <div class="span4" style="margin-left: -57px;margin-top: 15px;width: 35%;">
-       
-          <div class="verticalcustomerbox testimonial-three" align="center">
-<div class="testimonialtext" style="background-image: url(assets/review3.png);background-size: 100% 100%;">
-                        "<%=testimonials.comment%>" 
-</div> <div class="testimonialauthor" >
-                 
-              "<%= testimonials.name %>,<br/><%=testimonials.organization%>           
-                
-            </div>
-            </div>
-  
-          </div>
 
-               <% end %>               
+                   </div></div>
+               
     <%end%>
-        
-       
-       <!--  <div class="span4" style="margin-left: -65px;margin-top: -10px;width: 30%;">
-          <div class="verticalcustomerbox testimonial-two">
-            
-            <div class="testimonialtext" style="background-image: url(assets/review2.png);background-size: 100% 100%;">
-              "I love Beacon for the quality of content and the teaching methodology. The video lectures are very interesting and one can learn at their own pace. Learning becomes so much more enjoyable when you can see the results for yourself."
-            </div>
-            <div class="testimonialauthor">
-              -Kate,<br/>Business Manager
-            </div>
-          </div>
-        </div>
-        <div class="span4" style="margin-left: -57px;margin-top: 15px;width: 35%;">
-          <div class="verticalcustomerbox testimonial-three">
-            
-            <div class="testimonialtext" style="background-image: url(assets/review3.png);background-size: 100% 100%;height: 235px;">
-              "Being in sales for five years, I have been negotiating deals for a living. But I must confess, the Negotiations course really blew me off. There was so much to learn - concepts I'd never thought of explained in wonderfully simple and practical ways. I loved the course for it gave me a skill that is so tangible that I use it every day. Thumbs up Beacon ! "
-            </div>
-            <div class="testimonialauthor">
-              - Arun,<br/>Sales Executive
-            </div>
-          </div>
-        </div> -->
-      </div>
+           </div>
       </div>
       <div align="center">
          
-              <a href=""><img src="assets/plus1.png" class="browsemore"></a>
+              <a href=""><img src="assets/plus.png" class="browsemore"></a>
                 <h6 style="color:black;margin-left:0px;font-size: 18px;">Read More Reviews</h6>
-             
+                     
               </div>
     </div>
   </div>
 
-<div class="bottomadsection">
+<div class="bottomadsection" style="color:#000;">
     <div class="container">
       <div class="row">
         <div class="span12" align="center" style="width: 95%;">
-          <h3 style="font-size: 38px;">Step up Your Learning Curve!</h3>
+          <h3 style="font-size: 38px;">Step up Your Learning Curve!
+          </h3>
           
           <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
 
@@ -473,7 +179,6 @@
       </div>
     </div>
   </div>
-
 
 
 

@@ -8,12 +8,11 @@
   <%= render 'layouts/shim' %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
-<script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9:all.js"></script>
-</head>
+<!-- <script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9:all.js"></script>
+ --></head>
 <body>
 
   <% if check_null(yield(:effectingHeader)) %>
-  
   <%= render 'layouts/header' %>
   <% else %>
   <!-- Do Nothing -->
