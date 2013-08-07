@@ -5,21 +5,18 @@
 </div>
 <% end %>
 
-<div class="row">
-  <div class="span10 ">
+
 
 
 <%= simple_form_for(@coupon) do |f| %>
 
 
-
-
-<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-  <h3 align="center">New Coupon </h3>
+ <h3 align="center">New Coupon </h3>
 
 
 <%= render 'shared/error_messages', object: f.object %>
-<table class="tableform">
+ <div id="collapse4" class="body">
+                                            <table id="dataTable" class="table table-condensed table-hover ">
   <tr><th>Course Name</th><td>
 
 <div id='all_course'>
@@ -106,7 +103,6 @@
 
 
                           </script>
-                        </div>
-</div>
-</div>
 
+
+</div>

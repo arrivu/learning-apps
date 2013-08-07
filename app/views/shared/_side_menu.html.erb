@@ -54,37 +54,24 @@
                         <ul class="collapse " id="user">
                            <li><%= link_to "Users", users_path %></li> 
             <li><%= link_to "Interested Users", interested_users_path %></li>
+             <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>  
 
                         </ul></li>
+                        <li class="accordion-group "><%= link_to "Accounts", accounts_path %></li>
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                              Course Library 
                         </a>
                         <ul class="collapse " id="form-nav">
-                           <li><%= link_to "New Course Library", new_course_path %></li>
-      <li><%= link_to "Manage Course Library", manage_courses_path %></li>
-      <li><%= link_to "Course Status Search",course_status_search_path %></li>  
-      <li><%= link_to "Conclude Course", conclude_course_path %></li>
+                          <li><%= link_to "Category", topics_path %></li>  
+                          <li><%= link_to "Course Library", manage_courses_path %></li>
+                          <li><%= link_to "Course Price",course_pricings_path %></li>  
+                          <li><%= link_to "Course Preview",course_previews_path %></li> 
+                          <li><%= link_to "Conclude Course", conclude_course_path %></li>
+                          <li><%= link_to "Course Status Search",course_status_search_path %></li>  
                         </ul>
                     </li>
-                   <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#category">
-                            Category
-                        </a>
-                        <ul class="collapse" id="category">
-                            <li><%= link_to "New Category",new_topic_path %> </li>
-      <li><%= link_to "Manage Category", topics_path %></li>    
-                        </ul>
-                    </li>
-                    <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#preview">
-                           Course Preview
-                        </a>
-                        <ul class="collapse" id="preview">
-                          <li><%= link_to "New Preview",new_course_preview_path %></li>
-      <li><%= link_to "Manage Preview",course_previews_path %></li> 
-                        </ul>
-                    </li>
+                        
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon">
                             Coupon
@@ -94,16 +81,7 @@
       <li><%= link_to "Manage Coupon", coupons_path %></li>  
                         </ul>
                     </li>
-                    <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#price">
-                            Course Price
-                        </a>
-                        <ul class="collapse" id="price">
-                           <li><%= link_to "New Course Price",new_course_pricing_path %></li>       
-      <li><%= link_to "Manage Course Price",course_pricings_path %></li>  
-                        </ul>
-                    </li>
-                    <li class="accordion-group ">
+                                       <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#tax">
                             Tax
                         </a>
@@ -112,14 +90,28 @@
       <li><%= link_to "Manage Taxes",tax_rates_path %></li>  
                         </ul>
                     </li>
-                    <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#teacher">
-                            Teacher
+                   <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#page">
+                             Static Pages
                         </a>
-                        <ul class="collapse" id="teacher">
-                          <li><%= link_to "New Teacher", new_teaching_staff_path %></li>
-      <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>   
-                        </ul>
+                        <ul class="collapse " id="page">
+                           <li><%= link_to "About Details", 'aboutdetails/new' %></li>
+                          <li><%= link_to "Terms & Conditions",'terms/new' %></li>  
+                         </ul>
+                    </li>
+                     <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home">
+                             Home Page Details
+                        </a>
+                        <ul class="collapse " id="home">
+                          <li><%= link_to "Header", new_header_detail_path %></li>
+      <li><%= link_to "Knowledge Partner", new_partner_path %></li>
+      <li><%= link_to "Testimonial", new_testimonial_path %></li>
+      <li><%= link_to "Slider", new_slider_path %></li>
+      <li><%= link_to "Social Stream Comments", new_social_stream_comment_path %></li>
+      <li><%= link_to "Footer Links", new_footerlink_path %></li>
+
+                         </ul>
                     </li>
                     
                 </ul>
