@@ -5,29 +5,55 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
     before_filter :valid_domain_check, :only=>[:show,:edit]
 
    def show_image_detail  
-    @header_detail =HeaderDetail.find_by_account_id(2)
+    @header_detail =HeaderDetail.find(params[:id])
     # @header_detail = HeaderDetail.find(params[:id])
     send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline'
     # http_cache(@header_detail)
   end
 
   def theme_image_detail    
-    @header_detail = HeaderDetail.find(params[:id])
+    @header_detail = HeaderDetail.find_by_account_id(2)
     send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
     # http_cache(@header_detail)
   end
+
+  def show_image_show  
+    @header_detail = HeaderDetail.find_by_account_id(params[:account_id])
+    send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline'
+    # http_cache(@header_detail)
+  end
+
+  def theme_image_show  
+    @header_detail = HeaderDetail.find_by_account_id(params[:account_id])
+    send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
+    # http_cache(@header_detail)
+  end
+  
+
+
   def new
   	@header_detail = HeaderDetail.new
   end
 
   def create
   	@header_detail = HeaderDetail.new(params[:header_detail])
+
+
+    if(params[:header_detail][:logo_name]!=nil)
+     params[:header_detail][:logo_name].original_filename= params[:header_detail][:logo_name].original_filename + "#{(Time.now.to_i.to_s + Time.now.usec.to_s).ljust(16, '0')}#{File.extname(params[:header_detail][:logo_name].original_filename)}"
+      file_name=params[:header_detail][:logo_name].original_filename
+      directory="#{Rails.root}/public/images"
+      path=File.join(directory,file_name)
+      File.open(path, "wb") { |f| f.write(params[:header_detail][:logo_name].read) }
+      @header_detail.logo_name=file_name
+     end
+        @header_detail.account_id=@account_id
   	if @header_detail.save
   		flash[:success] = "Successfully create"
   		redirect_to header_details_path
      else
       render :action => 'new' 
-  end
+    end
   end
   def edit
 

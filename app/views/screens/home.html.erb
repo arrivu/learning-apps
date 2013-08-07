@@ -131,6 +131,9 @@
     </div> 
   </div>
 
+  <% @account_settings.each do |account_setting| %>
+<% if account_setting.testimonial ==true %>
+
 <div class="ourcustomers " >
     <div class="secondary-content">
     <div class="container" align="center">
@@ -160,6 +163,9 @@
                    </div></div>
                
     <%end%>
+    <% end %>
+   <% end %>
+
            </div>
       </div>
       <div align="center">

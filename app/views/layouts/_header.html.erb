@@ -1,17 +1,3 @@
-<style>
-header{-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
--moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-background: white;
-margin: 0;
-padding: 10px 0px;
-height: auto;
-
-top: 0;
-width: 100%;
-z-index: 100;
-}
-</style>
 <%= javascript_tag do %>
 // Pre load images for rollover
 if (document.images) {
@@ -65,23 +51,26 @@ myWindow.close();
 </header> -->
 
 
+
+
+
+
 <header class="navbar" style="margin-bottom:0px;">
-  <div style="width:1275px;margin:0px auto;">
-    <div class="row">
-      <div class="san12" style="width: 100%;margin: 0px auto;">
     <div class="span4">
-        <div class="logo">
-          <a href="/" onMouseOver="swapImage('jack','smile')"  onMouseOut="swapImage('jack','nosmile')"><img src="/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
-        </div>
-      </div>
-      <div class="">
-        <%= link_to "", root_path, id: "logo" ,:style => "left:-150px; " %>
+ <div class="logo">
+         <%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => 'header_details.id'), :size => "250x100" %>
+ </div>
+  </div>
+
        <nav style="padding:20px;">
         <ul class="nav pull-right">
           <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
           <% if current_user.has_role? :admin %>
             <li ><%= link_to 'Admin', users_path %></li>
+
+          
+
               <script>
           $('.courseslink').css('left',"-100px");
           </script>
@@ -96,7 +85,8 @@ myWindow.close();
           <script>
           $('.courseslink').css('left',"-140px");
           </script>
-               <% end  %>       
+               <% end  %>      
+
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                <% if current_user.image_blob == nil %>
@@ -123,16 +113,16 @@ myWindow.close();
           <% else %>
           <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
           <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-
           <% end %>
+
+
         </ul>
+
       </nav>
+
       </div>
     </div>
     </div>
     </div>
 
 </header>
-
-
-
