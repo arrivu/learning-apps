@@ -13,7 +13,7 @@ module InvoicesHelper
     tax=tax_rate_for_today
     invoice.tax_rate = tax.factor#params[:tax_rate] # tax_rate.factor
     invoice.tax_description = tax.description#params[:tax_description]#@tax_rate.description
-    
+    invoice.account_id=@account_id
     invoice.paid_at = Date.today
     invoice.currency = Payday::Config.default.currency 
     #invoice.invoice_details = 
@@ -38,7 +38,9 @@ module InvoicesHelper
     invoice.tax_description = tax.description#'Tax'    
     invoice.paid_at = Date.today
     invoice.currency = Payday::Config.default.currency 
+    @headerdetails=HeaderDetail.where(:account_id=>@account_id)
     invoice.notes = "#{Settings.invoices.notes}"
+    Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/#{@headerdetails.logo_name}"
     invoice.line_items << LineItem.new(:price => price , :quantity => 1, :description =>  course.title)
     if session[:coupon_rate].to_i != 0
       invoice.line_items << LineItem.new(:price => -(session[:coupon_price].to_f), :quantity => 1, :description =>session[:coupon_des])
