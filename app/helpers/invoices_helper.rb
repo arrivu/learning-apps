@@ -38,7 +38,10 @@ module InvoicesHelper
     invoice.tax_rate = tax.factor#params[:tax_rate] 
     invoice.tax_description = tax.description#'Tax'    
     invoice.paid_at = Date.today
-    Payday::Config.default.company_name = current_subdomain.to_s+"\nEducation Services\n Private Limited"
+    @header_detail =HeaderDetail.find_by_account_id(2)
+    @png=(send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline')
+    Payday::Config.default.invoice_logo =File.open(@header_detail.logo).to_binery
+    Payday::Config.default.company_name = current_subdomain.to_s + "\nEducation Services\n Private Limited"
     Payday::Config.default.company_details = "Gurgaon, Haryana - 122016"
     invoice.currency = Payday::Config.default.currency 
     invoice.notes = "#{Settings.invoices.notes}"
