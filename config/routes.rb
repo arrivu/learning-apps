@@ -100,6 +100,9 @@ resources :footerlinks
 
   match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
   match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
+    match '/show_image_show/:id', :to => 'header_details#show_image_show' 
+    match '/theme_image_show/:id', :to => 'header_details#theme_image_show' 
+
   match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
   match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
   # match '/valid_domain_user', :to => 'sessions#valid_domain_user' 

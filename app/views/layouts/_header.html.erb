@@ -45,23 +45,44 @@ myWindow.close();
 
 <% end %>  
 
+
+
+
+
 <header class="navbar" style="margin-bottom:0px;">
+
+ 
+
  <div class="container" >
     <div class="row">
-      <div class="san12" style="width: 80%;margin: 0px auto;">
+
+      <div class="san12" style="width: 100%;margin: 0px auto">
+ 
+    <a href= "/"><%= image_tag url_for(:controller => 'header_details',:action => 'show_image_show', :id => 'header_details.id'), :size => "222x100" %> </a>
+       
     <div class="span4">
+
+       <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_show', :id => 'header_details.id'), :size => "2500x100" %>
+      
         <div class="logo">
-          <a href="/" onMouseOver="swapImage('jack','smile')"  onMouseOut="swapImage('jack','nosmile')"><img src="/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
+
+     
+     
+       
         </div>
-      </div>
+        </div>
       <div class="span8">
-        <%= link_to "", root_path, id: "logo" ,:style => "left:-150px; " %>
+        <%= link_to "", root_path, id: "logo" ,:style => "right:-150px; " %>
+
        <nav style="padding:20px;">
         <ul class="nav pull-right">
           <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
           <% if current_user.has_role? :admin %>
             <li ><%= link_to 'Admin', users_path %></li>
+
+          
+
               <script>
           $('.courseslink').css('left',"-100px");
           </script>
@@ -76,7 +97,8 @@ myWindow.close();
           <script>
           $('.courseslink').css('left',"-140px");
           </script>
-               <% end  %>       
+               <% end  %>      
+
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                <% if current_user.image_blob == nil %>
@@ -103,16 +125,16 @@ myWindow.close();
           <% else %>
           <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
           <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-
           <% end %>
+
+
         </ul>
+
       </nav>
+
       </div>
     </div>
     </div>
     </div>
 
 </header>
-
-
-
