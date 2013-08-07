@@ -81,7 +81,6 @@ $(document).ready(function()
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
- <h3 align = "center">Interested Users</h3>
    <table>
    <tr>
    <td><%= form_tag "/interested_users", :method => 'get' do %></td>
@@ -97,7 +96,7 @@ $(document).ready(function()
    <% end %>
                                         <header>
                                             <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Found <%=pluralize(@total_users,"user")%> </h5>
+                                            <h5>Interested Users </h5>
                                         </header>
                                         <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">

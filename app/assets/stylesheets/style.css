@@ -120,6 +120,7 @@ Website: http://www.onokumus.com
   float: left;
   position: relative;
   width: 220px;
+  margin-top: 4px;
 }
 #left .user-media {
   color: #fff;
