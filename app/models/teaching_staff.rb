@@ -24,7 +24,7 @@ class TeachingStaff  < ActiveRecord::Base
   end
 
   def courses
-    self.teaching_staff_courses.where(:teaching_staff_id => self.id)
+    self.teaching_staff_courses.where(:teaching_staff_id => self.id,:account_id => @account_id)
   end
 
 end

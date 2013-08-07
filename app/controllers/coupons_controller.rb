@@ -27,7 +27,7 @@ class CouponsController < ApplicationController
   def redeem
     respond_to do |wants|
       wants.js do
-        Coupon.redeem(params[:coupon_code], params[:user_id], params[:tx_id], params[:metadata]).to_json
+        Coupon.redeem(params[:coupon_code], params[:user_id], params[:tx_id], params[:metadata],params[:account_id]).to_json
       end
     end
   end

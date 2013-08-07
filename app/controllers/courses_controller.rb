@@ -13,6 +13,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
+  
   def show_image    
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
@@ -54,6 +55,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   
    @course.isconcluded="f"
    if @course.save
+
      flash[:success] = "Course added successfully!!!!"
      lms_create_course(@course)
      redirect_to manage_courses_path
@@ -274,5 +276,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
       render :conclude_course
     end
   end
+
+
   
 end

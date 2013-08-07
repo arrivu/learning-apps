@@ -24,7 +24,7 @@
   </tr>
   <tr style="background:aliceblue;padding: 5px 0px;;font-size: 15px;text-align:center;">
   <td style="font-size: 15px;font-weight:bold;text-align: left;">Total</td>
-  <td style="text-align: left;"><div class="span4">Rs.  <%=  @tax+@price  %> </div></td>
+  <td style="text-align: left;"><div class="span4">Rs.  <%=  @tax+@price  %><%= @account_id %> </div></td>
   </tr>
 
 </table>
@@ -39,6 +39,7 @@
                    :email => "test@test.com",
                    :phone =>  "9893171496" %>    
         <%  service.redirect :return_url =>(payments_confirm_course_payment_url(:id=>@course)) %>
+        <%= @account_id %>
         <%= submit_tag 'Proceed to payment',:class=>'enroll'  %>
       <% end %>
     <% else %>

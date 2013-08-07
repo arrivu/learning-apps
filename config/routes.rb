@@ -102,10 +102,11 @@ resources :footerlinks
   match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
   match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
   match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
+  # match '/valid_domain_user', :to => 'sessions#valid_domain_user' 
   
 #  match '*a', :to => 'home#routing_error'
 
   devise_scope :user do
-    match '/sign_out', :to => 'sessions#destroy'
+    match '/sign_out', :to => 'users#destroy'
   end
 end

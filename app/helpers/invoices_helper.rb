@@ -15,7 +15,8 @@ module InvoicesHelper
     invoice.tax_description = tax.description#params[:tax_description]#@tax_rate.description
     
     invoice.paid_at = Date.today
-    invoice.currency = Payday::Config.default.currency 
+    invoice.currency = Payday::Config.default.currency
+    invoice.account_id=@account_id
     #invoice.invoice_details = 
     #invoice.invoice_number = 
     invoice.notes = "#{Settings.invoices.notes}"
@@ -37,6 +38,8 @@ module InvoicesHelper
     invoice.tax_rate = tax.factor#params[:tax_rate] 
     invoice.tax_description = tax.description#'Tax'    
     invoice.paid_at = Date.today
+    Payday::Config.default.company_name = current_subdomain.to_s+"\nEducation Services\n Private Limited"
+    Payday::Config.default.company_details = "Gurgaon, Haryana - 122016"
     invoice.currency = Payday::Config.default.currency 
     invoice.notes = "#{Settings.invoices.notes}"
     invoice.line_items << LineItem.new(:price => price , :quantity => 1, :description =>  course.title)
@@ -44,6 +47,6 @@ module InvoicesHelper
       invoice.line_items << LineItem.new(:price => -(session[:coupon_price].to_f), :quantity => 1, :description =>session[:coupon_des])
     end
       #invoice.line_items << LineItem.new(:price => params[:tax_rate] ,:quantity => 1,  :description =>  params[:tax_description])
-      invoice.render_pdf_to_file("#{Rails.root}/tmp"+"/invoice_course_id_#{course.id}_user_id_#{user.id}.pdf")
+      invoice.render_pdf_to_file("#{Rails.root}/tmp" + "/invoice_course_id_#{course.id}_user_id_#{user.id}.pdf")
    end
  end

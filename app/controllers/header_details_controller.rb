@@ -5,7 +5,8 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
     before_filter :valid_domain_check, :only=>[:show,:edit]
 
    def show_image_detail  
-    @header_detail = HeaderDetail.find(params[:id])
+    @header_detail =HeaderDetail.find_by_account_id(2)
+    # @header_detail = HeaderDetail.find(params[:id])
     send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline'
     # http_cache(@header_detail)
   end

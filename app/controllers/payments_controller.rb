@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
 	before_filter :signed_in_user
   before_filter :no_admin_user_allow
-  
+  before_filter :valid_domain_check, :only=>[:course_payment,:follow_course,:course_payment_gateway,:confirm_course_payment,:invoice_pdf]
   include InvoicesHelper
   include LmsHelper
 
@@ -143,10 +143,11 @@ end
     @subtotal=@price - @discount
     @tax = Course.tax_calculation(@course,@subtotal)
     @user = current_user
+
     if session[:payment_completed] ==nil
       if params[:coupon_code].present?
        @coupon = Coupon.find_coupon(params[:coupon_code], user_id = current_user.id, metadata=@course.id)
-       Coupon.redeem(params[:coupon_code], @user.id, tx_id, @coupon.metadata)
+       Coupon.redeem(params[:coupon_code], @user.id, tx_id, @coupon.metadata,@account_id)
       end
 
      enroll_student(@course, current_user)
