@@ -44,22 +44,33 @@ myWindow.close();
 }
 
 <% end %>  
+<!-- <header class="navbar navbar-fixed-top">
+  <div style="width:1275px;margin:0px auto;">
+    <div class="logo">
+    <a href="/" onmouseover="swapImage('jack','smile')" onmouseout="swapImage('jack','nosmile')"><img src="http://beacon-test.herokuapp.com/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
+      </div>
+    <div class="container" style=" padding-top:20px;  padding-bottom:20px;float:right; ">
+      <a href="/" id="logo" style="left:-150px; "></a>
+      <nav style="margin-left:30px;">
+        <ul class="nav pull-right">
+          <li> <a href="/courses">Course Library</a></li>
+          <li><a href="#loginmodal" role="button" data-toggle="modal">Log In</a></li>
+          <li><a href="#sign_up_Modal" role="button" data-toggle="modal">Create Account</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+</header> -->
+
 
 
 
 
 
 <header class="navbar" style="margin-bottom:0px;">
-
- 
-
- <div class="container" >
-    <div class="row">
-
-      <div class="san12" style="width: 100%;margin: 0px auto">
- 
-    <a href= "/"><%= image_tag url_for(:controller => 'header_details',:action => 'show_image_show', :id => 'header_details.id'), :size => "222x100" %> </a>
-       
+5
     <div class="span4">
 
        <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_show', :id => 'header_details.id'), :size => "2500x100" %>
@@ -71,8 +82,6 @@ myWindow.close();
        
         </div>
         </div>
-      <div class="span8">
-        <%= link_to "", root_path, id: "logo" ,:style => "right:-150px; " %>
 
        <nav style="padding:20px;">
         <ul class="nav pull-right">

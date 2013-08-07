@@ -10,7 +10,7 @@ class ScreensController < ApplicationController
     @header_detail = HeaderDetail.where(:account_id=>@account_id)
     @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
     @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
-     @account_settings=AccountSetting.where(:account_id=>@account_id)
+    @account_settings=AccountSetting.where(:account_id=>@account_id)
   end
 
   def about
