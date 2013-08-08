@@ -1,0 +1,17 @@
+
+
+
+<% simple_form_for @topic, 
+    :url => url_for(:action => 'category_details', :controller => 'topics'),
+    :method => 'post' do |f| %>
+<table><tr><td><%= f.label :topic_id, "Category" %></td>
+												<td>
+													<% topics_array = Topic.where(:account_id=>@account_id).map { |topic| [topic.name, topic.id] } %>
+
+													<%= f.select(:root_id,options_for_select(topics_array))%>
+
+
+												</td></tr>
+												<tr><td>><%= f.label :topic_id, "SubCategory" %></td><td><%= f.text_field :name%></td></tr>
+												<tr><td><%= f.submit "save" %></td></tr></table>
+<% end %>

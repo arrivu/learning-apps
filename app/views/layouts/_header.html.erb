@@ -1,17 +1,4 @@
 <%= javascript_tag do %>
-// Pre load images for rollover
-if (document.images) {
-  smile = new Image;
-  nosmile = new Image;
-
-  smile.src = "/assets/beaconslogop.png";
-  nosmile.src = "/assets/zbeaconslogo.png";
-}
-function swapImage(thisImage,newImage) {
-  if (document.images) {
-    document[thisImage].src = eval(newImage + ".src");
-  }
-}
 function logout_lms()
 
 { myWindow =window.open('<%= "#{Settings.lms.root_url}#{Settings.lms.logout_path}" %>',"_blank")
@@ -75,10 +62,14 @@ myWindow.close();
           $('.courseslink').css('left',"-100px");
           </script>
           <% elsif current_user.has_role? :account_admin %>
+          
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+
            <li ><%= link_to 'Account_Admin', users_path %></li>
             <script>
           $('.courseslink').css('left',"-100px");
           </script>
+          <% end %>
            <% else  %>
           <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
      

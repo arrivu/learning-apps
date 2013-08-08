@@ -3,7 +3,7 @@ class HeaderDetailsController < ApplicationController
 before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_image_detail,:theme_image_detail]
    before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index,:show_image_detail, :theme_image_detail]
     before_filter :valid_domain_check, :only=>[:show,:edit]
-
+   before_filter :front_page_registration_restrict, :only=>[:new,:create]
    def show_image_detail  
     @header_detail =HeaderDetail.find(params[:id])
     # @header_detail = HeaderDetail.find(params[:id])
@@ -64,6 +64,22 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
   def update
   
   @header_detail = HeaderDetail.find(params[:id])
+   if(params[:header_detail][:logo_name]!=nil)
+      params[:header_detail][:logo_name].original_filename= params[:header_detail][:logo_name].original_filename + "#{(Time.now.to_i.to_s + Time.now.usec.to_s).ljust(16, '0')}#{File.extname(params[:header_detail][:logo_name].original_filename)}"
+      file_name=params[:header_detail][:logo_name].original_filename
+      directory="#{Rails.root}/public/images"
+      path=File.join(directory,file_name)
+
+      if(@header_detail.logo_name!=nil && File.exists?("#{Rails.root}/public/images/"+@header_detail.logo_name))
+        File.delete( "#{Rails.root}/public/images/" +@header_detail.logo_name)
+      end
+      File.open(path, "wb") { |f| f.write( params[:header_detail][:logo_name].read)}
+       params[:header_detail][:logo_name]=file_name      
+    else
+       params[:header_detail][:logo_name]=@header_detail.logo_name
+
+    end
+  @header_detail.account_id=@account_id
          if @header_detail.update_attributes(params[:header_detail])
             flash[:success] = "Header Details updated"
             redirect_to header_details_path
@@ -84,7 +100,7 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
   
 
   def index
-    @header_detail = HeaderDetail.paginate(page: params[:page])
+    @header_detail = HeaderDetail.where(:account_id=>@account_id).paginate(page: params[:page])
   end
   
    def destroy

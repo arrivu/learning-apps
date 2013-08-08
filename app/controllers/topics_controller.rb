@@ -57,5 +57,13 @@ def destroy
     redirect_to topics_url
   end
 end
+# def category_details
+#   new
+#   # @topic = Topic.new(params[:topic])
+# end
+# def sub_category_details
+#   @topic = Topic.new(params[:topic])
+# end
+
 
 end

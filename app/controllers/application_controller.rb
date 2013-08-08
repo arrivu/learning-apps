@@ -106,6 +106,15 @@
         @footerlinks=Footerlink.where(:account_id=>@account_id)
         @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
     end
+
+    def front_page_registration_restrict 
+       @front_page= controller_name.classify.constantize.find_by_account_id(@account_id)
+       if @front_page!=nil
+        redirect_to users_path
+      else
+        return
+      end
+    end
     
  
 end
