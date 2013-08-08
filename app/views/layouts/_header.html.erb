@@ -1,17 +1,3 @@
-<style>
-header{-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
--moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-background: white;
-margin: 0;
-padding: 10px 0px;
-height: auto;
-
-top: 0;
-width: 100%;
-z-index: 100;
-}
-</style>
 <%= javascript_tag do %>
 function logout_lms()
 
@@ -58,16 +44,10 @@ myWindow.close();
 
 <header class="navbar" style="margin-bottom:0px;">
     <div class="span4">
-
-       <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_show', :id => 'header_details.id'), :size => "2500x100" %>
-      
-        <div class="logo">
-
-     
-     
-       
-        </div>
-        </div>
+ <div class="logo">
+         <%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => 'header_details.id'), :size => "250x100" %>
+ </div>
+  </div>
 
        <nav style="padding:20px;">
         <ul class="nav pull-right">
