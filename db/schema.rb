@@ -518,6 +518,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "desc"
     t.string   "color"
     t.integer  "account_id", :limit => 8
+    t.integer  "parent_id",  :limit => 8
+    t.integer  "root_id",    :limit => 8
+    t.boolean  "global"
   end
 
   create_table "users", :force => true do |t|

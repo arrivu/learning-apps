@@ -13,19 +13,6 @@ z-index: 100;
 }
 </style>
 <%= javascript_tag do %>
-// Pre load images for rollover
-if (document.images) {
-  smile = new Image;
-  nosmile = new Image;
-
-  smile.src = "/assets/beaconslogop.png";
-  nosmile.src = "/assets/zbeaconslogo.png";
-}
-function swapImage(thisImage,newImage) {
-  if (document.images) {
-    document[thisImage].src = eval(newImage + ".src");
-  }
-}
 function logout_lms()
 
 { myWindow =window.open('<%= "#{Settings.lms.root_url}#{Settings.lms.logout_path}" %>',"_blank")
@@ -70,7 +57,6 @@ myWindow.close();
 
 
 <header class="navbar" style="margin-bottom:0px;">
-5
     <div class="span4">
 
        <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_show', :id => 'header_details.id'), :size => "2500x100" %>
