@@ -41,8 +41,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.has_role? :student
       @student=Student.where(user_id: @user.id).first
-      @enrolled_courses= @student.course_enroll
-      @completed_courses=@student.course_complete        
+      @enrolled_courses=Course.joins(:student_courses).where('student_courses.status = ? and student_courses.student_id=? and student_courses.account_id=?', "enroll",@user.student.id,@account_id) 
+       @completed_courses=Course.joins(:student_courses).where('student_courses.status = ? and student_courses.student_id=? and student_courses.account_id=?', "completed",@user.student.id,@account_id) 
+
+      # @enrolled_courses= @student.course_enroll
+      # @completed_courses=@student.course_complete        
     end
   end
   
