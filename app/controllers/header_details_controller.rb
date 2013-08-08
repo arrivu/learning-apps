@@ -12,7 +12,7 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
   end
 
   def theme_image_detail    
-    @header_detail = HeaderDetail.find_by_account_id(2)
+    @header_detail = HeaderDetail.find(params[:id])
     send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
     # http_cache(@header_detail)
   end
