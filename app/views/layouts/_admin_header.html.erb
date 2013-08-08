@@ -41,7 +41,9 @@
           $('.courseslink').css('left',"-100px");
           </script>
           <% elsif current_user.has_role? :account_admin %>
-       
+          
+       <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+
            <li ><%= link_to 'Account_Admin', users_path %></li>
          
            <% end %>

@@ -10,7 +10,7 @@
 		<% @header_detail.each do |header_details| %>
 	<td>
 		
-	   <%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => header_details), :size => "50x50" %> 
+	   <%= image_tag("../images/#{header_details.logo_name}", :size=> "70x70") %>
 	   <%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_detail', :id => header_details), :size => "50x50" %> 
 	</td>
      

@@ -7,7 +7,7 @@
 <table>
 	<tr>
 		<td>
-			<%= image_tag url_for(:controller => 'header_details',:action => 'show_image_detail', :id => @header_detail.id), width: "50", height: "50"%>
+			<%= image_tag("/images/#{@header_detail.logo_name}", :size=> "70x70") %>
 	    </td>
        <td>
 			<%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_detail', :id => @header_detail.id), width: "50", height: "50"%>

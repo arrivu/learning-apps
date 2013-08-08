@@ -62,10 +62,14 @@ myWindow.close();
           $('.courseslink').css('left',"-100px");
           </script>
           <% elsif current_user.has_role? :account_admin %>
+          
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+
            <li ><%= link_to 'Account_Admin', users_path %></li>
             <script>
           $('.courseslink').css('left',"-100px");
           </script>
+          <% end %>
            <% else  %>
           <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
      
