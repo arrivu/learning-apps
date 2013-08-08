@@ -9,7 +9,7 @@ class SocialStreamCommentsController < ApplicationController
   def create
   	@social_stream_comment=SocialStreamComment.new(params[:social_stream_comment])
   	@social_stream_comment.account_id=@account_id
-  	if @social_stream_comments.save
+  	if @social_stream_comment.save
   		flash[:success]="Social Stream comments Submitted Successfully"
   		redirect_to social_stream_comments_path
   	else
