@@ -1,5 +1,4 @@
-<div style="float:left">
-<%= render 'shared/side_menu' %>
+<!-- <div style="float:left">
 </div>
 <div class="row">
 	<div class="span10 offset3">
@@ -34,3 +33,76 @@
 </div>
 </div>
 
+ -->
+
+ <div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content">
+                <!-- .outer -->
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+        <div id="collapse4" class="body">
+                                            <table id="dataTable" class="table table-condensed table-hover ">
+                                            <%= form_for (@account) do |f| %>
+<tr><td><%= f.label :name %></td>
+<td><%= f.text_field :name %></td></tr>
+<tr><td><%= f.label :organization %></td>
+<td>
+<%= f.text_field :organization %></td></tr>
+
+<tr><td><%= f.label :no_of_users %></td>
+<td>
+<%= f.text_field :no_of_users %></td></tr>
+<tr><td><%= f.label :no_of_courses %></td>
+<td>
+<%= f.text_field :no_of_courses %></td></tr>
+<tr><td><%= f.label :support_script %></td>
+<td>
+<%= f.text_area :support_script %></td></tr>
+<tr><td><%= f.label :google_analytics_script %></td>
+<td>
+<%= f.text_area :google_analytics_script %></td></tr>
+
+<tr><td><%= f.label :activate %></td>
+<td>
+<%= f.check_box :active %></td></tr>
+<tr><td><%= f.submit "Save" %></td></tr>
+
+
+<% end %>
+                                            </table>
+
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+   <div class="left" style="padding: 20px;">
+        
+           <%= link_to "Add New Course", url_for(:controller => "courses", :action => "new"), :class=> "btn btn-default btn-large", :style=> "margin:10px;" %>
+            </div>
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+       

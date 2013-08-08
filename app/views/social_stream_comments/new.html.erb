@@ -1,5 +1,4 @@
-<div style="float:left">
-<%= render 'shared/side_menu' %>
+<!-- <div style="float:left">
 </div>
 <div class="row">
 	<div class="span10 offset3">
@@ -11,4 +10,45 @@
 <tr><td></td><td><%= f.submit "save" %></td></tr></table>
 <% end %>
 </div>
+</div> -->
+
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content">
+               
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+  <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+                                            <h5>Social Stream Comments </h5>
+                                        </header>
+                                                                            <div id="collapse4" class="body">
+                                           
+        <table id="dataTable" class="table table-condensed table-hover">
+<%= form_for (@social_stream_comment) do |f| %>
+<tr><td><%= f.label :facebook_comment_script %></td><td>
+<%= f.text_area :facebook_comment_script, :size => "50x8" %></td></tr>
+<tr><td><%= f.label :twitter_comment_script %></td><td>
+<%= f.text_area :twitter_comment_script, :size => "50x8"%></td></tr>
+<tr><td></td><td><%= f.submit "save" %></td></tr>
+<% end %>	</table>
 </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                    </div>
+                </div>
+
+            </div>
+                
+
+            <div id="push"></div>
+ </div>
+<div class="clearfix"></div>
