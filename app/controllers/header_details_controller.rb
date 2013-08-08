@@ -28,9 +28,7 @@ before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_ima
     send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
     # http_cache(@header_detail)
   end
-  
-
-
+ 
   def new
   	@header_detail = HeaderDetail.new
   end
