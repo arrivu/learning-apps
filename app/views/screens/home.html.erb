@@ -11,7 +11,8 @@
                <div id="slideshow1" class="sliders">
                 <% @slider.each do |slider| %>
 
-      <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 300px; width: 100%;" class="active-slide slide"><div class="row">
+<div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 300px; width: 100%;" class="active-slide slide">
+  <div class="row">
         <div class="container">
                       <div class="span12" align="center" >
                         <div class="bannertext">  

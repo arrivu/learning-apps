@@ -105,7 +105,7 @@
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks=Footerlink.where(:account_id=>@account_id)
         @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
-        @header_detail = HeaderDetail.where(:account_id=>@account_id)
+        @header_details = HeaderDetail.where(:account_id=>@account_id)
     end
 
     def front_page_registration_restrict 
