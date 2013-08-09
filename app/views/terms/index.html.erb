@@ -1,4 +1,4 @@
-<h3 align = "center">Terms and Conditions</h3>
+<!-- <h3 align = "center">Terms and Conditions</h3>
 <table align="center">
 	<% @term.each do |termsandconditions| %>
     <tr>
@@ -21,4 +21,82 @@
 			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>
   <%end%>
-</table>
+</table> -->
+
+<div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content">
+                <!-- .outer -->
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                                                         <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+<h5> Terms Details</h5><% if Term.find_by_account_id(@account_id) == nil %> <%= link_to "Add Terms Details", "terms/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
+                                        </header>
+                                        <div id="collapse4" class="body">
+                                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                  
+      <tr class="tab_head">
+        <th >Title</th>
+        <th >Content</th>
+        <th ></th>
+        <th></th>
+        
+
+      </tr>
+    </thead>
+    <tbody>
+  <% @term.each do |termsandconditions| %>
+    <tr>
+		 <td>
+			 <%= termsandconditions.title%>
+		 </td>
+	  
+		 <td>
+			<%= termsandconditions.desc.html_safe %>
+		 </td>
+		
+			<td><%= link_to "edit",edit_term_path(termsandconditions) %></td> 
+		
+			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <%end%>
+        
+
+    </tbody>
+                                            </table>
+
+                                   </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+   <div class="left" style="padding: 20px;">
+         <%= link_to "Add New Account", url_for(:controller => "accounts", :action => "new"), :class=> "btn btn-default btn-large", :style=> "margin:10px;" %>
+           <%= link_to "Add New Course", url_for(:controller => "courses", :action => "new"), :class=> "btn btn-default btn-large", :style=> "margin:10px;" %>
+            </div>
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

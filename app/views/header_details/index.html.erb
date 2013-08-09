@@ -49,7 +49,8 @@
                                         <header>
                                             <div class="icons"><i class="icon-move"></i></div>
                                             <h5>Header Details </h5>
-<%= link_to "Add Header Details", "header_details/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %> 
+<% if HeaderDetail.find_by_account_id(@account_id) == nil %>
+<%= link_to "Add Header Details", "header_details/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %> <% end%>
                                         </header>
                                         <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">

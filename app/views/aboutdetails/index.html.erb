@@ -36,65 +36,42 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                                       <h3 align = "center">Users</h3>
-   <table>
-   <tr>
-   <td><%= form_tag "", :method => 'get' do %></td>
-   <td><%= label_tag(:query,"Username or Email") %></td>
-   <td><%= text_field_tag(:query,params[:query]) %></td>
-   <td><%= label_tag(:provider,"Login Type") %></td>
-
-
-   <td><%= select_tag(:provider, options_for_select(['All',['Signup','signup'],['Facebook','facebook'],['Linkedin','linkedin'],['Google','google_oauth2']], :selected => params[:provider])) %></td>
-
-
-   <td valign="top"><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %></td>
-   </tr>
- </table>
-   
-   <% end %>
-                                        <header>
+                                                                         <header>
                                             <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Found <%=pluralize(@total_users,"user")%> </h5>
+<h5> About Details</h5><% if Aboutdetail.find_by_account_id(@account_id) == nil %> <%= link_to "Add About Details", "aboutdetails/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
                                         </header>
                                         <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                                 <thead>
                                                   
       <tr class="tab_head">
-        <th >Username</th>
-        <th >Email</th>
-        <th >Registered</th>
-        <th>Login Type</th>
-        <th >Role</th>
+        <th >Title</th>
+        <th >Content</th>
+        <th ></th>
+        <th></th>
+        
 
-        <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        <td ><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%=l user.created_at , :format=>'%d %b. %Y %I:%M'%></td>
-        <% if user.provider=="google_oauth2" %>
-        <td>google</td>
-        <% else %>
-        <td><%= user.provider %></td>
-        <% end %>
-        <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
-        <td >
-          <% if current_user.has_role? :admin %>
-          <% unless user==current_user %>
-          <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-          <%= render user %>
-          <% end %>
-        </td>
-        <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
-      </tr>
-      <% end %>
-      <% end %>
+    <% @aboutdetail.each do |aboutdetails| %>
+    <tr>
+		 <td>
+			 <%= aboutdetails.title%>
+		 </td>
+	  
+	  
+		 <td>
+			<%= aboutdetails.desc.html_safe %>
+		 </td>
+		
+					
+			<td><%= link_to "edit",edit_aboutdetail_path(aboutdetails) %></td> 
+		
+			<td><%= link_to "destroy",aboutdetails, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+  <%end%>
+        
 
     </tbody>
                                             </table>
