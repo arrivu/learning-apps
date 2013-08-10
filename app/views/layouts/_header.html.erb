@@ -15,7 +15,6 @@ function logout_lms()
 myWindow.close();
 
 }
-
 <% end %>  
 <!-- <header class="navbar navbar-fixed-top">
   <div style="width:1275px;margin:0px auto;">
@@ -43,7 +42,7 @@ myWindow.close();
    <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
 <% @header_details.each do |header_details| %>
 
-<header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;">
+<header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 95px;">
     <div class="span4">
  <div class="logo">
          <%= image_tag("../images/#{header_details.logo_name}", :size=> "220x100") %>
@@ -103,8 +102,8 @@ myWindow.close();
           </li>
 
           <% else %>
-          <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
-          <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+<li><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
+<li><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
           <% end %>
 
 
@@ -120,10 +119,10 @@ myWindow.close();
 </header>
 <% end %>
 <%else%>
-<header class="navbar" >
+<header class="navbar" style="min-height: 95px;">
     <div class="span4">
  <div class="logo">
-         <%= image_tag("assets/logo.png", :size=> "220x100") %>
+         <%= image_tag("assets/arrivu_logo.png", :size=> "220x100") %>
  </div>
   </div>
 
