@@ -64,9 +64,9 @@
 			<%= termsandconditions.desc.html_safe %>
 		 </td>
 		
-			<td><%= link_to "edit",edit_term_path(termsandconditions) %></td> 
+			<td><%= link_to "edit",edit_term_path(termsandconditions), :class=> "btn btn-default" %></td> 
 		
-			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-default" %></td>
 		</tr>
   <%end%>
         
@@ -88,7 +88,7 @@
             </div></div>
             <!-- END CONTENT -->
 <div class="left" style="padding: 0px;width: 210px;float: right;">
-    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-user"></i>Add New Account</a>
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Account</a>
     <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
     </div>
 

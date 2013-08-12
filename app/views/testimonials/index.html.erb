@@ -39,8 +39,8 @@
         <th >Organization</th>
         <th >Job</th>
         <th>Comments</th>
-        <th ></th>
-        <th></th>
+        <th >Edit</th>
+        <th>Delete</th>
           <!--  <th></th> -->
          </tr>
     </thead>
@@ -51,8 +51,11 @@
  <td><%=testimonials.job%></td>
  <td><%=testimonials.comment%></td>
 <!--  <td><%= link_to "show",testimonial_path(testimonials) %></td> -->
- <td><%= link_to "edit",edit_testimonial_path(testimonials) %></td> 
- <td><%= link_to "destroy",testimonials, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ <td><%= link_to (edit_testimonial_path(testimonials)) do%><i class="icon icon-edit"></i><% end%></td> 
+ <td>
+    <%= link_to(testimonials, :method => :delete, :confirm => 'Are you sure?') do %>
+           <i class="icon icon-remove"></i>
+          <% end %></td>
 </tr>
  <%end%>         </tbody>      </table>
 

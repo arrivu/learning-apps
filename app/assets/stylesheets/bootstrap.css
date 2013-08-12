@@ -66,7 +66,7 @@ a:hover,
 a:active {
   outline: 0;
 }
-
+.icon{padding-right:10px;}
 sub,
 sup {
   position: relative;
@@ -319,7 +319,7 @@ a:hover {
 
 .span10 {
   width: 780px;
-  min-height: 800px;
+
 }
 
 .span9 {
@@ -2330,7 +2330,7 @@ table th[class*="span"],
   background-position: -144px 0;
 }
 
-.icon-user {
+.icon-user{
   background-position: -168px 0;
 }
 
