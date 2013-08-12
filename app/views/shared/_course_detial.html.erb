@@ -70,7 +70,12 @@
                 <% elsif @status=="completed" %>
                 
                 <% else %>
-                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+                 <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user   .id).empty? %>
+
+                     <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+                  <% else %>
+                       <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary"  >Enroll</a>
+                  <% end %>
                 <% end %> 
 
               <% end %> 
@@ -81,9 +86,11 @@
               <!--  <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Follow</a> -->
               
               <% else %>
-               <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
-              <!-- <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Enroll</a> -->
-
+             <% if !AccountUser.where(  :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
+                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+              <% else %>
+                 <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary" ,payments_follow_course_path(:id=>@course.id) >Enroll</a>
+                  <% end %>
               <% end %> 
             <% end %> 
 
@@ -116,7 +123,7 @@
 
   </div>
 </div>
-
+<%= render 'layouts/alert_popup'%>
 <div class="container clearfix">
 </div>
 </div>
