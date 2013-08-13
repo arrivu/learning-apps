@@ -1,28 +1,4 @@
- <h3 align = "center">About Details</h3>
-<table align="center">
-	<% @aboutdetail.each do |aboutdetails| %>
-    <tr>
-		 <td>
-			 <%= aboutdetails.title%>
-		 </td>
-	  </tr>
-	  <tr>
-		 <td>
-			<%= aboutdetails.desc.html_safe %>
-		 </td>
-		</tr>
-		<tr>
-			<td><%= link_to "show",aboutdetail_path(aboutdetails) %></td>
-		</tr> 
-		<tr>
-			<td><%= link_to "edit",edit_aboutdetail_path(aboutdetails) %></td> 
-		</tr>
-		<tr>
-			<td><%= link_to "destroy",aboutdetails, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-  <%end%>
-<<<<<<< HEAD
-</table> -->
+
 
 <div id="wrap">
 
@@ -48,8 +24,10 @@
       <tr class="tab_head">
         <th >Title</th>
         <th >Content</th>
-        <th ></th>
-        <th></th>
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+
+        <!-- <th ></th> -->
+        <!-- <th></th> -->
         
 
       </tr>
@@ -66,10 +44,20 @@
 			<%= aboutdetails.desc.html_safe %>
 		 </td>
 		
-					
-			<td><%= link_to "edit",edit_aboutdetail_path(aboutdetails) %></td> 
-		
-			<td><%= link_to "destroy",aboutdetails, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+  <td> <%= link_to(edit_aboutdetail_path(aboutdetails)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+
+
+
+    <td>
+    <%= link_to(edit_aboutdetail_path(aboutdetails),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
 		</tr>
   <%end%>
         
@@ -106,7 +94,7 @@
        
 
 
-=======
+
 </table> 
->>>>>>> e5a8e249cb7f041e914de58710b96ed001e4f25a
+
 

@@ -94,7 +94,7 @@
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%=t '.action', :default => t("helpers.action") %></th>
     </tr>
   </thead>
   <tbody>
@@ -113,8 +113,9 @@
         <td><%= course.end_date %></td>
         <td><%=l course.created_at, :format=>'%d %b. %Y %I:%M' %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-          edit_course_path(course), :class => 'btn btn-mini' %>
+          <%= link_to(edit_course_path(course)) do%><i class="icon icon-edit"></i><% end%>
+        
+        
           <%=hidden_field t('.destroy', :default => t("helpers.links.destroy")),
           course_path(course),
           :method => :delete,

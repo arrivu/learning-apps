@@ -1,27 +1,4 @@
-<!-- <h3 align = "center">Terms and Conditions</h3>
-<table align="center">
-	<% @term.each do |termsandconditions| %>
-    <tr>
-		 <td>
-			 <%= termsandconditions.title%>
-		 </td>
-	  </tr>
-	  <tr>
-		 <td>
-			<%= termsandconditions.desc.html_safe %>
-		 </td>
-		</tr>
-		<tr>
-			<td><%= link_to "show",term_path(termsandconditions) %></td>
-		</tr>
-		<tr>
-			<td><%= link_to "edit",edit_term_path(termsandconditions) %></td> 
-		</tr>
-		<tr>
-			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-  <%end%>
-</table> -->
+
 
 <div id="wrap">
 
@@ -47,9 +24,7 @@
       <tr class="tab_head">
         <th >Title</th>
         <th >Content</th>
-        <th ></th>
-        <th></th>
-        
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
 
       </tr>
     </thead>
@@ -64,9 +39,22 @@
 			<%= termsandconditions.desc.html_safe %>
 		 </td>
 		
-			<td><%= link_to "edit",edit_term_path(termsandconditions), :class=> "btn btn-default" %></td> 
-		
-			<td><%= link_to "destroy",termsandconditions, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-default" %></td>
+
+  <td> <%= link_to(edit_term_path(termsandconditions)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+
+
+
+    <td>
+    <%= link_to(edit_term_path(termsandconditions),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+
+
 		</tr>
   <%end%>
         

@@ -45,7 +45,7 @@
         <th >Active</th>
 
         <th>Action</th>
-        <th></th>
+        <!-- <th></th> -->
       </tr>
     </thead>
     <tbody>
@@ -55,7 +55,11 @@
      
       <td><%= account.no_of_courses %></td>
       <td><%= account.no_of_users %> </td>
-   <td><%= account.active %><td><td><%= link_to "edit",edit_account_path(account) %></td></tr>
+   <td><%= account.active %>
+
+  <td> <%= link_to(edit_account_path(account)) do%><i class="icon icon-edit"></i><% end%>
+  </td>
+ </tr>
       	<% end %>
     </tbody>
                                             </table>

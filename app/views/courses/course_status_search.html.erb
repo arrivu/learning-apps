@@ -69,8 +69,14 @@
             <tr><td ><%= course.course.title %></td>
             <td ><%= course.student.user.name if !!course.student.user  %></td>
             <td><%= course.status %></td>
-           <td> <%= link_to t('.edit', :default => t("helpers.links.edit")),
-            completed_courses_path(:id=>course.id), :class => 'btn btn-mini' %></td></tr>
+
+             <td> <%= link_to(completed_courses_path(:id=>course.id)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+           <!-- <td> <%= link_to t('.edit', :default => t("helpers.links.edit")),
+            completed_courses_path(:id=>course.id), :class => 'btn btn-mini' %></td> -->
+
+          </tr>
             <% end %></table>
 
 
