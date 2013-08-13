@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "account_id",      :limit => 8
-    t.string   "user_id"
+    t.integer  "user_id",         :limit => 255
     t.string   "membership_type"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "accounts", :force => true do |t|

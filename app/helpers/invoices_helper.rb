@@ -46,7 +46,11 @@ module InvoicesHelper
     invoice.currency = Payday::Config.default.currency 
     # @headerdetails=HeaderDetail.where(:account_id=>@account_id)
     invoice.notes = "#{Settings.invoices.notes}"
-    Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/#{@header_detail.logo_name}"
+     if @header_detail.nil?
+        Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/arrivu_logo.png"
+       else  
+         Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/#{@header_detail.logo_name}"
+       end
     # Payday::Config.default.invoice_logo.size="50x50"
     invoice.line_items << LineItem.new(:price => price , :quantity => 1, :description =>  course.title)
     if session[:coupon_rate].to_i != 0

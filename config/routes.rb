@@ -114,4 +114,5 @@ resources :footerlinks
   devise_scope :user do
     match '/sign_out', :to => 'users#destroy'
   end
+  match '/add_account_id', :to=>'courses#add_account_id'
 end
