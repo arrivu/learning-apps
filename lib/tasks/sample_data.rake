@@ -7,10 +7,10 @@ namespace :db do
 				1],
 				2 => ["Digital Marketing",
 					"Category Digital Marketing",
-					1],
+					1,1,1],
 					3 => ["Entrepreneurship",
 						"Category Entrepreneurship",
-						1]
+						1,2,1]
 					}
 
 					topics_hash.each do |key, array|
@@ -18,6 +18,8 @@ namespace :db do
 							name: array[0],
 							desc: array[1],
 							account_id:  array[2],
+							parent_id: array[3],
+							root_id: array[4],
 							)
 					end
 
