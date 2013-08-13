@@ -1,6 +1,8 @@
 class HeaderDetailsController < ApplicationController
   # caches_page :show_image_detail,:theme_image_detail
-before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_image_detail]
+
+  before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index,:show_image_detail]
+
    before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index,:show_image_detail]
     before_filter :valid_domain_check, :only=>[:show,:edit]
    before_filter :front_page_registration_restrict, :only=>[:new,:create]
