@@ -1,12 +1,16 @@
-         <br>
-         <% provide(:title, 'A Smarter Way to Learn') %>
-         <% provide(:effectingHeader) %>
-         <%= render 'shared/course_header' %>
-         <%= render 'shared/courselist' %>
-       </div>
-     </div>
-   </div>
-   <div class='apple_pagination' align="center">
-    
-     <%= will_paginate @courses, :container => false %>
-   </div>
+ <% if current_user !=nil %>
+
+ <% if current_user.has_role? :admin %>
+  <%= render 'topics/create_sub_category' %>
+
+
+ 
+<% elsif current_user.has_role? :account_admin %>
+ <%= render 'topics/create_sub_category' %>
+
+<% else%>
+<%= render 'topics/topics_show' %>
+<% end %>
+<% else %>
+<%= render 'topics/topics_show' %>
+<% end %>
