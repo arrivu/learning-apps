@@ -74,7 +74,7 @@
        
        <th >Created At</th>
 
-       <th >Action</th>
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
      </tr></thead>
 <% @teachingstaff.each do |teachingstaff| %>
 <tr><td>
@@ -87,15 +87,21 @@
 <%= teachingstaff.qualification %></td><td>
 
 <%= teachingstaff.description %></td><td>
-<%=l teachingstaff.created_at, :format=>'%d %b. %Y %I:%M' %></td><td>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-      edit_teaching_staff_path(teachingstaff), :class => 'btn btn-mini' %>
+<%=l teachingstaff.created_at, :format=>'%d %b. %Y %I:%M' %></td>
 
-      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-      teaching_staff_path(teachingstaff),
-      :method => :delete,
-      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-      :class => 'btn btn-mini btn-danger' %></td><td></tr>
+
+  <td> <%= link_to(edit_teaching_staff_path(teachingstaff)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+    <td>
+    <%= link_to(edit_teaching_staff_path(teachingstaff),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+
+</tr>
 
 <% end %>
 </table>                                   </div>

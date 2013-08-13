@@ -24,7 +24,11 @@
  <tr><td>Twitter_Url</td><td><%= footerlink.twitter_url %></td></tr>
  <tr><td>Youtube_Url</td><td><%= footerlink.twitter_url %></td></tr>
  <tr><td>Copyright</td><td><%= footerlink.copy_write %></td> </tr>
- <tr><td></td><td><%= link_to "edit",edit_footerlink_path(footerlink) %></td></tr>
+
+<tr><td></td><td> <%= link_to(edit_footerlink_path(footerlink)) do%><i class="icon icon-edit"></i><% end%>
+</td></tr>
+
+ <!-- <tr><td></td><td><%= link_to "edit",edit_footerlink_path(footerlink) %></td></tr> -->
  <% end %>
 
                      </table>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   require 'csv'
   
   def index   
-      @topics=Topic.where(:account_id => @account_id)
+      @topics= Topic.where("parent_id!=root_id AND account_id =?", @account_id)
       @topics = @topics.sort_by {|x| x.name.length} 
     # authorize! :index, @user, :message => 'Not authorized as an administrator.'
     

@@ -80,15 +80,7 @@
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
            <i class="icon icon-trash"></i>
-          <% end %><!-- </td>
-
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_topic_path(topic), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      topic_path(topic),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %> -->
+          <% end %>
         </td>
     </tr>
     <% end %>

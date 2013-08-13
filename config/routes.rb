@@ -105,7 +105,7 @@ resources :footerlinks
 
   match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
   match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
-  # match '/category_details', :to => 'topics#category_details'  
+   match '/category_details', :to => 'topics#category_details'  
   # match '/sub_category_details', :to => 'topics#sub_category_details'  
   # match '/valid_domain_user', :to => 'sessions#valid_domain_user' 
   

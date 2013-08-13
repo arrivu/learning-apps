@@ -31,7 +31,7 @@
         <tr class="tab_head">
       <th>Facebook</th>
       <th>Twitter</th>
-      <th></th>
+        <th>Action</th>
       
     </tr>
   </thead>
@@ -39,7 +39,9 @@
    <% @social_stream_comments.each do|social_stream_comment| %>
 <tr><td><%= social_stream_comment.facebook_comment_script%></td>
 <td><%= social_stream_comment.twitter_comment_script%></td>
-<td><%= link_to "edit",edit_social_stream_comment_path(social_stream_comment) %></td>
+
+<td> <%= link_to(edit_social_stream_comment_path(social_stream_comment)) do%><i class="icon icon-edit"></i><% end%>
+</td> 
 </tr>
 <% end %>
   </tbody>
