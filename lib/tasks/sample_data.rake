@@ -25,15 +25,15 @@ namespace :db do
 
 		courses_hash = {
 			1 => ["Analytics Using SAS", 
-			 	"Learn Big data analytics using the language of SAS",1,
+			 	"Learn Big data analytics using the language of SAS",3,
 			 	1
 			 	],
 			2 => ["SOCIAL MEDIA MARKETING", 
-			 	"Gaining traffic & attention through social media",1,
+			 	"Gaining traffic & attention through social media",3,
 			 	1
 			 	],
 			3 => ["FINANCIAL MODELING", 
-			 	"Learn Big data analytics using the language of SAS",1,
+			 	"Learn Big data analytics using the language of SAS",3,
 			 	1
 			 	]
 			}
