@@ -1,29 +1,4 @@
- <h3 align = "center">About Details</h3>
-<table align="center">
-	<% @aboutdetail.each do |aboutdetails| %>
-    <tr>
-		 <td>
-			 <%= aboutdetails.title%>
-		 </td>
-	  </tr>
-	  <tr>
-		 <td>
-			<%= aboutdetails.desc.html_safe %>
-		 </td>
-		</tr>
-		<tr>
-			<td><%= link_to "show",aboutdetail_path(aboutdetails) %></td>
-		</tr> 
-		<tr>
-			<td><%= link_to "edit",edit_aboutdetail_path(aboutdetails) %></td> 
-		</tr>
-		<tr>
-			<td><%= link_to "destroy",aboutdetails, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-  <%end%>
-<<<<<<< HEAD
-</table> -->
-
+ 
 <div id="wrap">
 
   <%= render 'shared/side_menu' %>
@@ -106,7 +81,7 @@
        
 
 
-=======
+
 </table> 
->>>>>>> e5a8e249cb7f041e914de58710b96ed001e4f25a
+
 
