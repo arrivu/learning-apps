@@ -49,7 +49,7 @@
      <div id="left">
 <ul id="menu" class="unstyled accordion collapse in">
                               <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
-                             Users
+                             <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
                         </a>
                         <ul class="collapse " id="user">
                            <li><%= link_to "Users", users_path %></li> 
@@ -57,10 +57,12 @@
              <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>  
 
                         </ul></li>
-                        <li class="accordion-group "><%= link_to "Accounts", accounts_path %></li>
+                        <li class="accordion-group "><%= link_to(accounts_path) do %><i class="icon icon-briefcase" style="paddign:0px 10px;"></i>Accounts<% end %>
+
+                        </li>
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
-                             Course Library 
+                             <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
                         </a>
                         <ul class="collapse " id="form-nav">
                           <li><%= link_to "Category", topics_path %></li>  
@@ -74,16 +76,16 @@
                         
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon">
-                            Coupon
+                           <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon
                         </a>
                         <ul class="collapse" id="coupon">
                           <li><%= link_to "New Coupon", new_coupon_path %></li>
       <li><%= link_to "Manage Coupon", coupons_path %></li>  
                         </ul>
                     </li>
-                                       <li class="accordion-group ">
+        <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#tax">
-                            Tax
+         <i class="icon icon-qrcode" style="paddign:0px 10px;"></i>Tax
                         </a>
                         <ul class="collapse" id="tax">
                            <li><%= link_to "Create Tax", new_tax_rate_path %></li>
@@ -92,7 +94,7 @@
                     </li>
                    <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#page">
-                             Static Pages
+                             <i class="icon icon-file" style="paddign:0px 10px;"></i>Static Pages
                         </a>
                         <ul class="collapse " id="page">
                            <li><%= link_to "About Us", 'aboutdetails' %></li>
@@ -100,12 +102,12 @@
                           <li><%= link_to "Terms & Conditions",'terms' %></li>  
                          </ul>
                     </li>
-                     <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home">
-                             Home Page Details
+<li class="accordion-group ">
+<a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home">
+                             <i class="icon icon-file" style="paddign:0px 10px;"></i>Home Page Details
                         </a>
                         <ul class="collapse " id="home">
-                          <li><%= link_to "Header", 'header_detials' %></li>
+                          <li><%= link_to "Header", 'header_details' %></li>
       <li><%= link_to "Knowledge Partner", 'partners' %></li>
       <li><%= link_to "Testimonial", 'testimonials' %></li>
       <li><%= link_to "Slider", 'sliders' %></li>

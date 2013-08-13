@@ -13,7 +13,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
-  
+  @@course_id
   def show_image    
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
@@ -85,6 +85,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
 
  def show
    @course = Course.find(params[:id])
+   @@course_id=@course
    @price_detail = CoursePricing.find_by_course_id(@course.id)
    if @price_detail!=nil
       @price=@price_detail.price
@@ -277,6 +278,23 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
     end
   end
 
+ def add_account_id
+      @course= @@course_id
+    if !current_user.has_role?  :admin
 
+      if AccountUser.where(:user_id=>current_user.id ,  :account_id=> @account_id).empty?
+          if current_user.has_role? :student
+            AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
+            
+
+              redirect_to payments_confirm_course_payment_path(:id=>@course.id)
+          elsif current_user.has_role? :teacher
+             AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "teacher")
+           
+            redirect_to payments_confirm_course_payment_path(:id=>@course.id)
+         end 
+       end
+    end
+  end
   
 end

@@ -23,7 +23,7 @@
                                     <div class="box">
    <header>
  <div class="icons"><i class="icon-move"></i></div>
-   <h5>Social Stram Comments </h5> <%= link_to "Add New Social Stream Comment", "social_stream_comments/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %>
+   <h5>Social Stram Comments </h5><% if SocialStreamComment.find_by_account_id(@account_id) == nil %> <%= link_to "Add New Social Stream Comment", "social_stream_comments/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
        </header>
  <div id="collapse4" class="body">
   <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
@@ -31,7 +31,7 @@
         <tr class="tab_head">
       <th>Facebook</th>
       <th>Twitter</th>
-      <th></th><th></th>
+      <th></th>
       
     </tr>
   </thead>
@@ -39,6 +39,7 @@
    <% @social_stream_comments.each do|social_stream_comment| %>
 <tr><td><%= social_stream_comment.facebook_comment_script%></td>
 <td><%= social_stream_comment.twitter_comment_script%></td>
+<td><%= link_to "edit",edit_social_stream_comment_path(social_stream_comment) %></td>
 </tr>
 <% end %>
   </tbody>
