@@ -44,13 +44,15 @@ myWindow.close();
 
 <header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 95px;">
     <div class="span4">
- <div class="logo">
-         <%= image_tag("../images/#{header_details.logo_name}", :size=> "220x100") %>
+ <div class="logo" >
+        <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "220x100") %> </a>
  </div>
   </div>
-<%= header_details.message %>
+<div style="float:left;width: 50%;text-align: center;"><h2><%= header_details.message %></h2></div>
        <nav style="padding:20px;">
+
         <ul class="nav pull-right">
+
           <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
           <% if current_user.has_role? :admin %>

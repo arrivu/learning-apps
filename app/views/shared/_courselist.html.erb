@@ -8,31 +8,34 @@
           <div class="card-a course-inner">
             <div class="course-progress" data-width="0%" style="width: 0%;"></div>
             <% if course.data!=nil %>
-            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "130", height: "130",:class=>"course-badge img-circle" %>
+            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "130", height: "130",:class=>"course-badge img-circle", :style=>"border: 5px solid #E7E372;" %>
             <% else %>
-            <%= image_tag "test.png", width: "130", height: "130",:class=>"course-badge img-circle" %>
+            <%= image_tag "test.png", width: "130", height: "130",:class=>"course-badge img-circle", :style=>"border: 5px solid #E7E372;" %>
             <% end %>
             <% if course.is_coming_soon %>
               <div class="coming_soon"><%= image_tag("coming_soon.png") %></div>
             <% elsif price_of_course_according_to_date(course).to_i ==0 %>
               <div class="free"><%= image_tag("free.png") %></div>
             <% end %>
-          <div class="course-content">
-              <em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em>
-            
-              <!-- <em class="label-b">Free Course</em> -->
-
-              <%=link_to(course) do %><h3 class="course-name"><%= course.title.split(' ').map(&:capitalize).join(' ') %></h3>
+          <div class="course-content" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');">
+            <!-- <em class="label-b">Free Course</em> -->
+              <%=link_to(course) do %><h3 class="course-name"><%= course.title.split(' ').map(&:capitalize).join(' ') %><em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em><span style="float:right;">Rs&nbsp;<%= price_of_course_according_to_date(course).to_i %></span></h3>
               <p class="course-desc"><%= course.short_desc  %></p>
               <%end%></div>
+<div style="width: 60px;font-size: 11px;float: left;margin: 5px 10px;background: #fff;color: black;box-shadow: 2px 1px 2px #ccc;border-radius: 4px;">
+  <div style="text-align: center;padding: 10px 0px;border-radius: 4px;background: #f2e1ac;"><i class="icon icon-large icon-user"></i></div><span class="learners_count"><%= pluralize(@subscribers_count, "Learner") %> </span> </div>
 
+  <div style="width: 60px;font-size: 11px;float: left;margin: 5px 10px;background: #fff;color: black;box-shadow: 2px 1px 2px #ccc;border-radius: 4px;">
+  <div style="text-align: center;padding: 10px 0px;border-radius: 4px;background: #f2e1ac;"><i class="icon icon-large icon-book"></i></div><span class="learners_count"><%= pluralize(@modules_count, "Modules") %> </span> </div>
+  <div style="float:right;position: relative;"><table><tr><td><%= image_tag "learner.jpg", width: "40", height: "40",:class=>"img-circle", :style=>"border: 3px solid #E7E370;"%> </td>
+   <td><%= image_tag "learner.jpg", width: "40", height: "40",:class=>"img-circle", :style=>"border: 3px solid #E7E370;"%></td></tr></table>
+</div>
             </div>
           </article>
         </div>
 
       </div>
       <%end%>
-      
     </div>
   </div>
   
