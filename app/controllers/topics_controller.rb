@@ -4,7 +4,8 @@ class TopicsController < ApplicationController
  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
  @@id
  def index
-  @topics = Topic.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10)
+  #Topic.wh
+  @topic_details = Topic.where("parent_id=? AND root_id=? AND account_id=?",0,0,@account_id).paginate(page: params[:page], :per_page => 10)
 end
 
 def show

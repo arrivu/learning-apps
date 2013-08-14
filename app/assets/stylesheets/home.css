@@ -509,6 +509,9 @@ font-size: 15px;
 padding: 10px 0px;
 color: #000;
 min-height: 100px;
+
+/*background-image: url(../img/bgblack.png);*/
+
 background-color: #d14836;
 	background-image: -webkit-linear-gradient(top,#f1f1f1,#fff);
 	background-image: -moz-linear-gradient(top,#f1f1f1,#fff);
@@ -516,6 +519,7 @@ background-color: #d14836;
 	background-image: -o-linear-gradient(top,#f1f1f1,#fff);
 	background-image: linear-gradient(top,#f1f1f1,#fff);
 
+>>>>>>> 3a984c8201399e6cf46012783b255d5a421940ba
 }
 
 .drawbordertop{
