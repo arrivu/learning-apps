@@ -38,7 +38,7 @@
 </table>
 </div>
 </div>
-<div class='apple_pagination' align="center"><%= will_paginate  @topics, :container => false %></div>
+<div class='apple_pagination' align="center"><%= will_paginate  @topic_details, :container => false %></div>
  -->
 
   <div id="wrap">
@@ -69,7 +69,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @topics.each do |topic| %>
+    <% @topic_details.each do |topic| %>
       <tr>
 <td><%= link_to topic.name, topic_path(topic) %></td>
 <td><span style="width:20px;background-color:<%= topic.color %>">&nbsp;&nbsp;&nbsp;</span></td>

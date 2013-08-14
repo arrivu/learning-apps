@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
  @@id
  def index
   #Topic.wh
-  @topics = Topic.where("parent_id=? AND root_id=? AND account_id=?",0,0,@account_id).paginate(page: params[:page], :per_page => 10)
+  @topic_details = Topic.where("parent_id=? AND root_id=? AND account_id=?",0,0,@account_id).paginate(page: params[:page], :per_page => 10)
 end
 
 def show
