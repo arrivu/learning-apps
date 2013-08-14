@@ -9,6 +9,7 @@
     include PaymentsHelper 
     include UrlHelper   
     include SubdomainHelper
+    
     include ActiveMerchant::Billing::Integrations::ActionViewHelper
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_path, :alert => exception.message
@@ -81,7 +82,7 @@
      @modelname=controller_name.classify
   end
       @coursedet= @modelname.constantize.find(params[:id])
-
+    if @account_id!=nil
       if @coursedet.account_id!=@account_id
         flash[:error]="Invalid domain"
         if current_user.has_role? :admin
@@ -92,6 +93,16 @@
           redirect_to courses_path
         end
       end
+    else
+      
+      if @coursedet.global==true
+        
+        return
+      else
+        flash[:error]="Invalid domain"
+        redirect_to courses_path
+      end
+    end
 
 
     end

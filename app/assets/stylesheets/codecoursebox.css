@@ -152,7 +152,7 @@ border-radius:5px;
 /*margin-left:20px;*/
 font:14px/1.231 source-sans-pro, sans-serif;
 }
-.course-content:hover{background-size:500px 400px;}
+/*.course-content:hover{background-size:500px 400px;}*/
 .label.label-offset, .label-offset.label-a, .path-tags ul a.label-offset, .label-offset.label-b, .label-offset.label-c, .label-offset.label-d {
 position: relative;
 /*right: -25px;*/
@@ -211,7 +211,7 @@ font-size: 1.5em;
 letter-spacing: -1px;
 margin: 0 10px 0 0;
 padding-top:160px;
-text-shadow: 1px 1px 1px #ddd;
+text-shadow: 1px 1px 1px #000;
 }
 
 .course .course-desc {

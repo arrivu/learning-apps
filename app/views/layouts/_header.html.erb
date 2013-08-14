@@ -40,7 +40,7 @@ myWindow.close();
 
 
    <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
-<% @header_details.each do |header_details| %>
+    <% @header_details.each do |header_details| %>
 
 <header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 95px;">
     <div class="span4">

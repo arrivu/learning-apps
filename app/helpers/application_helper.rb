@@ -82,7 +82,8 @@ end
    	if current_user.has_role? :admin
    		return
    	else
-   		redirect_to root_url
+      flash[:error] = "Invalid authenticator"
+   		redirect_to users_url
    	end
 
    end

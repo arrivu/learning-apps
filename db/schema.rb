@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.binary   "background_image"
     t.string   "background_image_type"
     t.integer  "account_id",            :limit => 8
+    t.boolean  "global"
   end
 
   add_index "courses", ["title", "author"], :name => "index_courses_on_title_and_author"
