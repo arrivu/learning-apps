@@ -19,11 +19,11 @@ border-bottom: 1px solid #eee;
 	background-image: linear-gradient(top,#ECF0F1,#BDC3C7);*/
 	/*background:#f2e1ac;*/
 
-background-color:#ffe6b3;
-border-radius:10px;
+/*background-color:#ffe6b3;
+border-radius:10px;*/
 	/*background-color:#fae58a;*/
 	text-align:center;
-	  box-shadow: 0 3px 5px 7px #cccccc;
+/*	  box-shadow: 0 3px 5px 7px #cccccc;*/
    margin-top: -20px;
 }
 
@@ -60,13 +60,13 @@ position: relative;
 }
 
 .pagehead h1 {
-margin: 0 0 10px;
+/*margin: 0 0 10px;*/
 font-size: 20px;
 font-weight: normal;
 line-height: 28px;
 color: #495961;
 z-index: 0;
-margin-left: 30px;
+/*margin-left: 30px;*/
 }
 
 .pagehead.separation h1 {

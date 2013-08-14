@@ -11,9 +11,9 @@
                <div id="slideshow1" class="sliders">
                 <% @slider.each do |slider| %>
 
-<div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 300px; width: 100%;" class="active-slide slide">
+<div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
   <div class="row">
-        <div class="container">
+        <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:45px 0px;margin: 30px auto;">
                       <div class="span12" align="center" >
                         <div class="bannertext">  
      <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
@@ -47,7 +47,7 @@
 
     
 <div class="homecourse">
-    <div class="secondary-content">
+    <div class="secondary-content yellobg">
     <div class="container" align="center">
       <div class="row testimonial">
         <!-- <h2 class="ribbon">
@@ -69,13 +69,11 @@
             
               <%= render 'shared/courselist' %>
             
-              <div align="center">
+              <div align="center" style="margin-top: 50px;">
          
 
-                <%= link_to "", courses_path, :class => "browsemore" %>
-              <h6 style="color:black;margin-left:0px;font-size: 18px;"> Discover More courses</h6> 
-
-               
+                <%= link_to "Discover More courses", courses_path, :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
+                           
               </div>
       </div>
     </div>
@@ -85,12 +83,18 @@
 
 
  
-  <div class="ourknowledgepartners secondary-content" > 
+  <div class="ourknowledgepartners" > 
 
-
+ <div class="secondary-content ">
     <div class="container" align="center">
       <div class="row testimonial">
-               <h2 style="margin-left: 30px;">Knowledge Partners</h2>
+           <h2 style="margin-left: 30px;">Knowledge Partners</h2>
+      </div>
+    </div>
+  </div>
+    <div class="container" align="center">
+      <div class="row testimonial">
+               
 
         <div class="listofkp" >
           <% @partners.each do |partners| %>
@@ -139,7 +143,7 @@
     <div class="secondary-content">
     <div class="container" align="center">
       <div class="row testimonial">
-       <h2 style="margin-left: 5px;font-size: 35px;">Learners <span style="color:#ff0000;"> Love</span> Beacon</h2>
+       <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
         </div>
     </div>
   </div>
@@ -171,8 +175,8 @@
       </div>
       <div align="center">
          
-              <a href=""><img src="assets/plus.png" class="browsemore"></a>
-                <h6 style="color:black;margin-left:0px;font-size: 18px;">Read More Reviews</h6>
+             
+             <%= link_to "Read More Reviews", '', :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
                      
               </div>
     </div>

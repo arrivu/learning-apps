@@ -4,7 +4,7 @@ class ScreensController < ApplicationController
     @courses = Course.all(:conditions => {:ispopular => 1,:account_id => @account_id},:limit => 6)
     @topics=Topic.where("parent_id!=root_id AND account_id=?",@account_id)
     @topics = @topics.sort_by {|x| x.name.length}
-    @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 6)
+    @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 3)
     @testimonial=Testimonial.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
     @header_details = HeaderDetail.where(:account_id=>@account_id)
