@@ -1,11 +1,12 @@
 class TopicsController < ApplicationController
    before_filter :valid_domain_check, :only=>[:show,:edit]
- before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
- before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
- @@id
+   before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
+   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+   @@id
  def index
-  #Topic.wh
-  @topic_details = Topic.where("parent_id=? AND root_id=? AND account_id=?",0,0,@account_id).paginate(page: params[:page], :per_page => 10)
+    # Topic.wh
+  # @topic_details = Topic.all(:conditions => "parent_id IS NULL" , "root_id IS NULL" , :account_id => @account_id)
+   @topic_details = Topic.where("parent_id IS NULL AND root_id IS NULL AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 10)
 end
 
 def show
