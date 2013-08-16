@@ -522,7 +522,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "parent_topic_id", :limit => 8
     t.integer  "root_topic_id",   :limit => 8
     t.boolean  "is_global"
+    t.string   "ancestry"
   end
+
+  add_index "topics", ["ancestry"], :name => "index_topics_on_ancestry"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false

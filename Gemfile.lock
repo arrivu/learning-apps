@@ -66,6 +66,8 @@ GEM
     acts_as_commentable (3.0.1)
     addressable (2.3.5)
     afm (0.2.0)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     annotate (2.4.1.beta1)
     arel (3.0.2)
     bcrypt-ruby (3.1.1)
@@ -295,6 +297,7 @@ DEPENDENCIES
   active_merchant_ccavenue (= 0.1.0)
   activemerchant (= 1.32.1)
   acts_as_commentable (= 3.0.1)
+  ancestry
   annotate (= 2.4.1.beta1)
   best_in_place (= 2.1.0)
   better_errors (= 0.8.0)
