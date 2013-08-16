@@ -50,9 +50,8 @@
         <th>Popular Courses</th>
         <th >Testimonials</th>
 
-        <th></th>
-       <!--  <th></th> -->
-        <th></th>
+ <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+
       </tr>
     </thead>
     <tbody>
@@ -64,9 +63,22 @@
 <td><%= account_setting.popular_speak %></td>
 <td><%= account_setting.testimonial %></td>
 
- <!-- <td><%= link_to "show",account_setting_path(account_setting) %></td> -->
- <td><%= link_to "edit",edit_account_setting_path(account_setting) %></td> 
- <td><%= link_to "destroy",account_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+        <td> <%= link_to(edit_account_setting_path(account_setting)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+
+
+
+    <td>
+    <%= link_to(account_setting_path(account_setting),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+ 
 </tr>
 <% end %>
 

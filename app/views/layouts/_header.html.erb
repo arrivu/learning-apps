@@ -45,8 +45,12 @@ myWindow.close();
 <header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 95px;">
     <div class="span4">
  <div class="logo" >
-        <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "220x100") %> </a>
- </div>
+
+    <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
+    
+       <div style="float:left;position:relative;color:#fff;margin-top:-35px;margin-left: 150px;" ><%= header_details.message %></div>
+        </div>
+
   </div>
 <div style="float:left;width: 50%;text-align: center;"><h2><%= header_details.message %></h2></div>
        <nav style="padding:20px;">
@@ -124,7 +128,11 @@ myWindow.close();
 <header class="navbar" style="min-height: 95px;">
     <div class="span4">
  <div class="logo">
+<<<<<<< HEAD
+        <a herf = "/"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
+=======
          <%= image_tag("canvas/arrivu_logo.png", :size=> "220x100") %>
+>>>>>>> 53af810f1824f105c3717053242008493ede6ab3
  </div>
   </div>
 
