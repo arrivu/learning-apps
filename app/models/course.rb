@@ -39,8 +39,8 @@ class Course < ActiveRecord::Base
   has_many :students, :through => :student_courses
   has_many :teaching_staff_courses, :dependent =>:destroy
   has_many :teaching_staffs, :through => :teaching_staff_courses
-  has_many :course_coupons, :dependent =>:destroy
-  has_many :coupons, :through => :course_coupons 
+  #has_many :course_coupons, :dependent =>:destroy
+  #has_many :coupons, :through => :course_coupons
   has_one  :rating_cache
   belongs_to :user
   belongs_to :account
@@ -54,7 +54,7 @@ class Course < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 100 }
 
-  has_one :course_status
+  #has_one :course_status
   #has_many :course_payments
   has_many :course_previews
 

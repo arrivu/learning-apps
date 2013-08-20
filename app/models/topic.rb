@@ -14,8 +14,6 @@ class Topic < ActiveRecord::Base
   has_ancestry
   has_many :courses,  :dependent => :delete_all
   belongs_to :account
-  has_many :sub_topics,:class_name => "Topic" ,:foreign_key =>  'parent_topic_id' ,:dependent => :destroy
-  has_many :all_topics, :class_name => 'Topic', :foreign_key =>  'account_id'
   validates :name, presence: true, length: { maximum: 100 }
 
 end

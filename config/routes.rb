@@ -1,26 +1,14 @@
 Myapp::Application.routes.draw do
 
-
-resources :omniauth_links
-resources :social_stream_comments
-resources :header_details
-
-match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
-resources :footerlinks
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  resources :footerlinks
   resources :accounts
-
-
-
-
-
-
-
-  match 'teaching_staffs/new',:to=>'teaching_staffs#new'
+  resources :omniauth_links
+  resources :social_stream_comments
+  resources :header_details
   resources :course_pricings
   resources :teaching_staffs
   resources :tax_rates
-  match '/rate' => 'rater#create', :as => 'rate'
-
   resources :coupons do
     collection do
       get 'test'
@@ -31,16 +19,15 @@ resources :footerlinks
   resources :sliders
   resources :account_settings
   resources :contacts
-  resources :faqs
-  resources :blogs
-  resources :tags
   resources :courses
   resources :testimonials
   resources :partners
   resources :privacypolicies
-  resources :terms
+  resources :terms_and_conditions
   resources :aboutdetails
   resources :add_images
+  match '/rate' => 'rater#create', :as => 'rate'
+  match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   match 'payments/course_payment_gateway',:to=>'payments#course_payment_gateway'
   match 'payments/course_payment',:to=>'payments#course_payment'
   match 'payments/follow_course',:to=>'payments#follow_course'
@@ -49,9 +36,7 @@ resources :footerlinks
 
   resources :topics
   resources :tutorials
-  resources :groups
   resources :under_constructions
-  resources :o_classes
   resources :course_previews
 
   authenticated :user do
@@ -63,9 +48,6 @@ resources :footerlinks
   match '/termscondition', :to => 'screens#termscondition'
   match '/knowledge_partners', :to => 'screens#knowledge_partners'
   match '/user_reviews', :to => 'screens#user_reviews'
-
-  #match '/contact', :to => 'screens#contact'
-  #match '/faq', :to => 'screens#faq'
   match '/construction', :to => 'screens#construction'
   match '/manage_courses', :to => 'courses#manage_courses'
   match '/upcomming_courses', :to => 'courses#upcomming_courses'
@@ -74,7 +56,6 @@ resources :footerlinks
   match '/subscribed_courses', :to => 'courses#subscribed_courses'
   match '/course_status_search', :to => 'courses#course_status_search'
   match '/completed_courses', :to => 'courses#completed_courses'
-
   match '/updatecompleted_details', :to => 'courses#updatecompleted_details'
   match '/conclude_course', :to =>'courses#conclude_course'
   match '/concluded_course_update', :to=> 'courses#concluded_course_update'
@@ -97,19 +78,13 @@ resources :footerlinks
   match '/background_image/:id', :to => 'courses#background_image'
   match '/show_image_slider/:id', :to => 'sliders#show_image_slider'
   match '/background_image_slider/:id', :to => 'sliders#background_image_slider'
-
   match '/show_image_detail/:id', :to => 'header_details#show_image_detail'
   match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail'
-    match '/show_image_show/:id', :to => 'header_details#show_image_show'
-    match '/theme_image_show/:id', :to => 'header_details#theme_image_show'
-
+  match '/show_image_show/:id', :to => 'header_details#show_image_show'
+  match '/theme_image_show/:id', :to => 'header_details#theme_image_show'
   match '/show_image_logo/:id', :to => 'screens#show_image_logo'
   match '/theme_header_image/:id', :to => 'screens#theme_header_image'
-   match '/add_sub_topics', :to => 'topics#add_sub_topics'
-  # match '/sub_add_sub_topics', :to => 'topics#sub_add_sub_topics'
-  # match '/valid_domain_user', :to => 'sessions#valid_domain_user'
-
-#  match '*a', :to => 'home#routing_error'
+  match '/add_sub_topics', :to => 'topics#add_sub_topics'
 
   devise_scope :user do
     match '/sign_out', :to => 'users#destroy'
