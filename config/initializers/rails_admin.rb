@@ -85,5 +85,8 @@ RailsAdmin.config do |config|
   end
 
   config.authorize_with :cancan
-
+  config.model 'User' do
+    field :name do
+    end
+  end
 end
