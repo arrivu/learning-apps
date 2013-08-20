@@ -85,11 +85,5 @@ RailsAdmin.config do |config|
   end
 
   config.authorize_with :cancan
-  config.model User do
-    edit do
-        partial :user
-    end
-  end
-
 
 end
