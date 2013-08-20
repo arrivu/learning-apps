@@ -23,7 +23,7 @@
       <tr class="tab_head">
         <th >Title</th>
         <th >Content</th>
-        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.action") %></th>
 
         <!-- <th ></th> -->
         <!-- <th></th> -->
@@ -50,13 +50,13 @@
 
 
 
-    <td>
-    <%= link_to(edit_aboutdetail_path(aboutdetails),
+    <!-- <td>
+    <%= link_to(aboutdetail_path(aboutdetails),
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
            <i class="icon icon-trash"></i>
           <% end %>
-        </td>
+        </td> -->
 		</tr>
   <%end%>
         

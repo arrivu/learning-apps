@@ -15,7 +15,11 @@ class Topic < ActiveRecord::Base
   #has_one :courses, through: :relationships
   has_many :courses,  :dependent => :delete_all
   belongs_to :account
-  has_many :sub_topics ,:class => "Topic" ,:foreign_key =>  "parent_id"
   validates :name, presence: true, length: { maximum: 100 }
-
+  belongs_to :topic
+  # Topic.wh
+  has_many :topics, :class_name => "Topic",
+    :foreign_key => 'parent_topic_id', :order => "created_at desc", :dependent => :delete_all
+ has_many :topics, :class_name => "Topic",
+    :foreign_key => 'root_topic_id', :order => "created_at desc", :dependent => :delete_all
 end
