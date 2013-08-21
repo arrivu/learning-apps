@@ -47,8 +47,10 @@ end
 
 
   def http_cache(instant_variable,scope=true,expires=15)
-    expires_in expires.minutes
-    fresh_when instant_variable, public: scope
+    unless RAILS.env.development?
+      expires_in expires.minutes
+      fresh_when instant_variable, public: scope
+    end
   end
   #  def http_cache(instant_variable,scope=true)
   #    fresh_when instant_variable, public: scope
