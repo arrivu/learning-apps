@@ -1,5 +1,10 @@
 class Account < ActiveRecord::Base
   attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script
+  RESERVED_SUBDOMAINS = %w(
+  admin api assets blog calendar  developer developers docs files ftp git lab mail manage pages sites ssl staging status support www
+)
+  validates_exclusion_of :name, :in => RESERVED_SUBDOMAINS,
+                         :message => "Subdomain/Account Name %{value} is reserved."
   has_many :account_users , :dependent => :destroy
   has_many :partners , :dependent => :destroy
   has_many :courses, :dependent => :destroy

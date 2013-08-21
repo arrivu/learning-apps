@@ -485,7 +485,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"
+<<<<<<< HEAD
     t.text     "description",          :limit => 255
+=======
+    t.text     "description"
+>>>>>>> 57523b09086b23dcf82972e1cd855ac87119cb91
     t.string   "qualification"
     t.integer  "user_id"
     t.datetime "created_at",                          :null => false
@@ -514,14 +518,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "topics", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "desc"
     t.string   "color"
-    t.integer  "account_id", :limit => 8
-    t.integer  "parent_id",  :limit => 8
-    t.integer  "root_id",    :limit => 8
-    t.boolean  "global"
+    t.integer  "account_id",      :limit => 8
+    t.integer  "parent_topic_id", :limit => 8
+    t.integer  "root_topic_id",   :limit => 8
+    t.boolean  "is_global"
   end
 
   create_table "users", :force => true do |t|

@@ -21,7 +21,7 @@
                         <td>
                           <% topics_array = Topic.where(:id=>params[:id]).map { |topic| [topic.name, topic.id] } %>
 
-                          <%= f.label(:root_id,options_for_select(topics_array))%>
+                          <%= f.label(:root_topic_id,options_for_select(topics_array))%>
         <tr>
 
           <td><%= f.label :name, :class => 'control-label' %></td>

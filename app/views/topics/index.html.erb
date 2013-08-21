@@ -85,7 +85,7 @@
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
            <i class="icon icon-trash"></i><% end %>
-         <% Topic.where("parent_id==root_id AND parent_id=?",topic.id).each do |topiccategory| %>
+         <% Topic.where("parent_topic_id = root_topic_id AND parent_topic_id=?",topic.id).each do |topiccategory| %>
              <tr><td></td>
     <td><%= link_to topiccategory.name, topic_path(topiccategory) %></td><td></td>
     <td><span style="width:20px;background-color:<%= topiccategory.color %>">&nbsp;&nbsp;&nbsp;</span></td>
@@ -97,7 +97,7 @@
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
            <i class="icon icon-trash"></i><% end %>
-           <% Topic.where("parent_id!=root_id AND parent_id=? AND root_id=?",topiccategory.id,topic.id).each do |topicsubcategory| %>
+           <% Topic.where("parent_topic_id!=root_topic_id AND parent_topic_id=? AND root_topic_id=?",topiccategory.id,topic.id).each do |topicsubcategory| %>
              <tr><td></td><td></td>
     <td><%= link_to topicsubcategory.name, topic_path(topicsubcategory) %></td>
     <td><span style="width:20px;background-color:<%= topicsubcategory.color %>">&nbsp;&nbsp;&nbsp;</span></td>

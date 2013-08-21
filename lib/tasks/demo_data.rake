@@ -20,7 +20,7 @@ namespace :db do
 
          footer_hash = {
                    1 => ["social_links"],
-                   2 => ["companyprofile"]
+                   2 => ["company_profile"]
               
                }
                footer_hash.each do |key,array|
@@ -35,7 +35,33 @@ namespace :db do
                		terms_condition_url: array[1],
                     )
                end
+         header_hash = {
 
+        1 => ["logo"],
+        2 => ["header_background"],
+        3 => ["header_title"] 
+    }
+    header_hash.each do |key,array|
+    	header.create!(logo: array[0],
+    		header_background: array[1],
+    		header_title: array[2],
+    		)
+    end
+
+    slider_hash = {
+    	1 => ["image"],
+    	2 => ["background_image"],
+    	3 => ["header"],
+    	4 => ["body_tag"]
+
+    }
+     slider_hash.each do |key,array|
+     	slider.create!(image: array[0],
+     	   slider.background_image: array[1],
+     	   slider.header: array[2];
+     	   slider.body_tag: array[3],
+     	   )
+     end
         
 		courses_hash = {
 			1 => ["Algorithm Using Program", 
@@ -55,7 +81,7 @@ namespace :db do
 			topic_id: array[2],
 			short_desc: array[1],
 			ispublished: 1 ,
-			start_date: '2013-05-03' ,
+			start_date: '2013-08-03' ,
 			end_date: '2013-12-03',
 			isconcluded: 'f',
 			)
@@ -63,9 +89,9 @@ namespace :db do
 
 			@courses=Course.all
 			course_price_hash={
-				1=>[@courses[0].id,"10000","2013-02-01","2014-03-31"],
-				2=>[@courses[1].id,"10000","2013-02-01","2014-03-31"],
-				3=>[@courses[2].id,"10000","2013-02-01","2014-03-31"],
+				1=>[@courses[0].id,"10000","2013-08-01","2014-08-31"],
+				2=>[@courses[1].id,"10000","2013-08-01","2014-08-31"],
+				3=>[@courses[2].id,"10000","2013-08-01","2014-08-31"],
 			}
 			course_price_hash.each do |key,array|
 				CoursePricing.create!(course_id:array[0],
@@ -74,6 +100,7 @@ namespace :db do
 					end_date:array[3])
 			end
 
-			TaxRate.create!(valid_from:"2013-03-01", valid_until:"2050-03-31",factor:0.0, is_default: true, description: "Service Tax")
+			TaxRate.create!(valid_from:"2013-08-01", valid_until:"2050-08-31",factor:0.0, is_default: true, description: "Service Tax")
+			Coupon.create!(course: "Algorithm Using Program", alpha_code: "AA-BB-CC", digit_mask: "11-22-33",  )
 	end
 end
