@@ -14,6 +14,8 @@ class Account < ActiveRecord::Base
   has_many :teaching_staffs, :dependent =>:destroy
   has_many :testimonials, :dependent => :destroy
   has_many  :teaching_staff_courses, :dependent => :destroy
+  validates :name, presence: true
+  validates :organization, presence: true
 
   def self.default
     Account.first

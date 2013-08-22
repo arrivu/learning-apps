@@ -9,9 +9,12 @@ class AccountsController < ApplicationController
   end
   def create
   	@account=Account.new(params[:account])
+     params[:account][:name]=@account.name.downcase
   	if @account.save
   		flash[:success]="Account details created Successfully"
   		redirect_to accounts_path
+    else
+      render "new"
   	end
 end
 
@@ -21,9 +24,14 @@ end
   end
   def update
   	@account=Account.find(params[:id])
+    params[:account][:name]=@account.name.downcase
+   
+
   	if @account.update_attributes(params[:account])
   		flash[:success]="Account details updated Successfully"
   		redirect_to accounts_path
+    else
+       render "edit"
   	end
   end
 
