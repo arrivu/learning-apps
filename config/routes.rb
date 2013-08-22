@@ -1,6 +1,8 @@
 Myapp::Application.routes.draw do
 
 
+  themes_for_rails
+
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details

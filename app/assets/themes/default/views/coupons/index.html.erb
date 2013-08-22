@@ -1,0 +1,91 @@
+
+      
+<div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content">
+                <!-- .outer -->
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                                                        <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+                                            <h5>Manage Coupons</h5>
+                                        </header>
+                                        <div id="collapse4" class="body">
+<table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+<thead>
+                                                  
+      <tr class="tab_head">
+    <th>Course</th>
+    <th>Alpha code</th>   
+    <th>Digit code</th>      
+    <th >Amount off</th>
+    <th >Percentage off</th>    
+    <th>Expiration</th>     
+    <th >No Of times<br/>Redeemable</th>
+    <th>Current<br/> Redeem count</th> 
+
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+</thead>
+  <% @coupons.each do |coupon| %>
+  <tr>
+   <td><%= Coupon.course_name(coupon.metadata)%></td>
+    <td><%= coupon.alpha_code %></td>
+     <td><%= coupon.digit_code %></td>   
+      
+    <td ><%= coupon.amount_one %></td>
+    <td ><%= coupon.percentage_one %></td>
+    <td><%= coupon.expiration %></td> 
+    <td><%= coupon.how_many %></td>   
+    <td ><%= coupon.redemptions_count %></td>
+
+
+<td> <%= link_to(edit_coupon_path(coupon)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+    <td>
+    <%= link_to(coupon_path(coupon),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>  
+  </tr>
+  <% end %>
+</table>
+
+
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div>
+                   </div>
+            <!-- END CONTENT -->
+   <div class="left" style="padding: 0px;width: 210px;float: right;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
+    </div>
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

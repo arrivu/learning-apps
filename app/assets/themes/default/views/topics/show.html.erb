@@ -1,0 +1,16 @@
+ <% if current_user !=nil %>
+
+ <% if current_user.has_role? :admin %>
+  <%= render 'topics/create_sub_category' %>
+
+
+ 
+<% elsif current_user.has_role? :account_admin %>
+ <%= render 'topics/create_sub_category' %>
+
+<% else%>
+<%= render 'topics/topics_show' %>
+<% end %>
+<% else %>
+<%= render 'topics/topics_show' %>
+<% end %>

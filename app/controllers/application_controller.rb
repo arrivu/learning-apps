@@ -1,4 +1,5 @@
   class ApplicationController < ActionController::Base
+    theme "classic"
     before_filter :load_account
     before_filter :topics
     

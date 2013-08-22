@@ -1,0 +1,36 @@
+
+ <div style="float:left">
+  <%= render 'shared/side_menu' %>
+</div>
+<div class="row">
+  <div class="span12 offset3" style="min-height:550px;">
+<div  align="center" style="margin:30px 0px 0px 0px">
+  <h3>Manage Course Status</h3>
+  <%= form_tag "/course_status_search", :method => 'get' do %>
+               Course: <%= select_tag :search, options_from_collection_for_select(Course.all, "id", "title",:selected => params[:search]) , {:prompt => 'ALL'} %>
+              
+              Status:
+              <%= select_tag(:searchstatus, options_for_select(['All','enroll','completed'],:selected => params[:searchstatus])) %>
+
+              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %><% end %>
+              <hr>
+            </div>
+            <table class="table table-condensed table-hover table table-striped">
+              <tr class="tab_head">
+                <th style="background:#2A488E;color:white;">Course Name</th>
+                <th style="background:#2A488E;color:white;">Student</th>
+                <th style="background:#2A488E;color:white;">Status</th>
+                <th style="background:#2A488E;color:white;">Action</th>
+              </tr>
+            <% @coursesstauts.each do |course| %>
+            <tr><td ><%= course.course.title %></td>
+            <td ><%= course.student.user.name if !!course.student.user  %></td>
+            <td><%= course.status %></td>
+           <td> <%= link_to t('.edit', :default => t("helpers.links.edit")),
+      			completed_courses_path(:id=>course.id), :class => 'btn btn-mini' %></td></tr>
+            <% end %></table>
+          </div>
+        </div>
+      </div>
+      <div class='apple_pagination' align="center"><%= will_paginate  @coursesstauts, :container => false %></div>
+

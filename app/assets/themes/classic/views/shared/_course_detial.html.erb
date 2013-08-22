@@ -1,0 +1,122 @@
+ 
+<% if @course.background_image ==nil %>
+<div class="coursedetailtop" style="background-color: #d14836;background-image: -webkit-linear-gradient(top,#2C3E50,#ECF0F1); background-image: -moz-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -ms-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -o-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: linear-gradient(top,#2C3E50,#ECF0F1);  color:#fff;  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C3E50', endColorstr='#ECF0F1'); 
+" id="top">
+<% else %>
+<div class="coursedetailtop" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => @course.id) %>');" id="top">
+<% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="span4">
+        <div class="coursevideo">
+          
+         
+        </div>
+      </div>
+      <div class="span7">
+        <div class="coursedesc">
+          <div class="coursetitle">
+            <h3><%= @course.title %></h3>
+          </div>
+          <div class="subtitle">
+            <h4><%= @course.short_desc %></h4>
+          </div>
+          <div class="subtitle" style="color:#fcff00">
+            <% if @course.is_coming_soon %>
+            <h4>Date to be announced</h4>
+            <% else %>
+            <% start=""
+              if @course.start_date != nil 
+                start=@course.start_date.to_formatted_s(:long)
+              end
+              duration=""
+              if @course.start_date != nil and @course.end_date != nil 
+                x=(@course.end_date - @course.start_date).to_i
+                y=x/7
+                z=x%7
+                duration = pluralize(y,"Week") 
+                if(z != 0) 
+                  duration = duration + " " + pluralize(z,"Day") 
+                end
+                duration = duration + " Long"
+                #duration=distance_of_time_in_words(@course.start_date,@course.end_date)
+              end
+              next_session=""
+              if @course.start_date != nil and @course.end_date != nil 
+                next_session="Next Session: #{start} (#{duration})"
+              end
+             %>
+            <h4><%= next_session %></h4>
+            <% end %>
+            <% if @price.to_i != 0 %>
+            <h2 style="color:white">Rs&nbsp;<%= @price.to_i %></h2>
+            <% end %>
+          </div>
+          <div class="container clearfix"></div>
+          <div class="subsection">
+
+            <% if (current_user.present? ) %>
+              <% if !(current_user.has_role? :admin) %>
+
+                <% if @course.is_coming_soon %>
+                <% if @status!="follow" %>
+
+                  <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
+                  <% end %>
+                <% elsif @status=="enroll" %>
+                <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class="enroll">Go To Class
+                </div></a>
+                <% elsif @status=="completed" %>
+                
+                <% else %>
+                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+                <% end %> 
+
+              <% end %> 
+
+            <% else %>
+              <% if @course.is_coming_soon %>
+                <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
+              <!--  <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Follow</a> -->
+              
+              <% else %>
+               <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+              <!-- <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Enroll</a> -->
+
+              <% end %> 
+            <% end %> 
+
+            <a href="#previewcourse"><div class="shortlist">
+              Preview
+            </div></a>
+
+          </div>
+          <div class="clearfix"></div>
+          <div style="margin-left: 80px;">
+           <a>
+            <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%> 
+            <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
+            <br align = "center">
+            <% end %>
+            <%= rating_for @course, "rate"  %>
+            <div id="rating" style="color:#fff;"><%= pluralize(@qty,"Rate") if !!@qty%></div>
+            <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
+           </a>
+            <div style="height:40px;"><%= image_tag "group.png" if @subscribers_count >= 1 %><b class="learners_count"><%= pluralize(@subscribers_count, "Learner") if @subscribers_count >= 1%> </b> </div>
+
+           <% end %>
+          </a>
+        </div>
+      </div>
+      <div class="container clearfix"></div>
+    </div>
+  </div>
+  <div class="container clearfix">
+
+  </div>
+</div>
+
+<div class="container clearfix">
+</div>
+</div>

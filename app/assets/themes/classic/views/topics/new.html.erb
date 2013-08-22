@@ -1,0 +1,29 @@
+<div style="float:left">
+	<%= render 'shared/side_menu' %>
+</div>
+<br>
+<div class="row">
+	<div class="span8 offset3" style="min-height:500px;">
+		
+				<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
+			<h3 align = "center">New Category</h3>
+
+			<%- model_class = Topic -%>
+
+			 <%= simple_form_for @topic, :html => { :class => 'form-horizontal' } do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <table class="table table-hover ">
+        <tr>
+          <td><%= f.label :name, :class => 'control-label' %></td>
+
+          <td><%= f.text_field :name, :class => 'text_field',:maxlength => 30 , :autofocus => true%></td></tr>
+          <tr><td><%= f.label :color, :class => 'control-label' %> </td>
+          	<td> <%= f.input :color, as: :minicolors,label:false %></td>
+          </tr>
+          <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Create Category", :class => 'btn btn-primary'  %></td></tr>
+
+          <% end %>
+        </table>
+	
+		</div>
+	</div></div>
