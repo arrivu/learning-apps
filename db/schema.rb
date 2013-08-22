@@ -485,11 +485,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"
-    t.text     "description"
+    t.text     "description",          :limit => 255
     t.string   "qualification"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "linkedin_profile_url"
     t.integer  "account_id",           :limit => 8
   end
