@@ -47,7 +47,7 @@ module InvoicesHelper
     # @headerdetails=HeaderDetail.where(:account_id=>@account_id)
     invoice.notes = "#{Settings.invoices.notes}"
      if @header_detail.nil?
-        Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/beaconslogo"
+        Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/arrivu_logo.png"
        else  
          Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/#{@header_detail.logo_name}"
        end
