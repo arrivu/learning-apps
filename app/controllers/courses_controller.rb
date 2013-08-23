@@ -171,17 +171,17 @@ end
 
     def course_status_search
       if(params[:search] == nil || params[:search] == "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("status!='shortlisted' and account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
-      elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("course_id=#{params[:search]} and account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+      elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All' )
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 15)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("course_id=#{params[:search]} and status='#{params[:searchstatus]} and ,account_id=?'",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
 
       elsif(params[:search] == nil || params[:search] == "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}',account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
 
       else
-        @coursesstauts = StudentCourse.where("status!='shortlisted',account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
       end
     end
 
