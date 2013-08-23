@@ -1,0 +1,4 @@
+<% @accountthemes.each do |accounttheme| %>
+<%= accounttheme.name %>
+<%= link_to(edit_account_theme_path(accounttheme)) do%>Edit<% end%>
+<% end %>

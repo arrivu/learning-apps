@@ -1,10 +1,13 @@
 Myapp::Application.routes.draw do
 
-themes_for_rails
 
+
+themes_for_rails
+resources :themes
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details
+resources :account_themes
 
 match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks

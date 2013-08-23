@@ -1,7 +1,8 @@
   class ApplicationController < ActionController::Base
-    theme "classic"
     before_filter :load_account
+   
     before_filter :topics
+    before_filter :theme_create
     
     protect_from_forgery
     include ApplicationHelper
@@ -16,7 +17,16 @@
       redirect_to root_path, :alert => exception.message
   end
   include TaxRatesHelper
-
+  def theme_create
+     @account_theme= AccountTheme.find_by_account_id(@domain_root_account.id)
+    if  @account_theme!=nil
+    
+     theme @account_theme.name
+    else
+    theme "default"
+    end
+  end
+    
 
   def after_sign_in_path_for(resource_or_scope)
     if redirect_back_req?

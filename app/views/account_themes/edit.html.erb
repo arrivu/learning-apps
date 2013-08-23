@@ -1,0 +1,7 @@
+<%= form_for (@accountthemes) do |f| %>
+<%= f.label :name %>
+<% themes_array = Theme.all.map { |theme| [theme.name, theme.id] } %>
+
+													<%= f.select(:name,options_for_select(themes_array))%>
+<%= f.submit "save" %>
+<% end %>
