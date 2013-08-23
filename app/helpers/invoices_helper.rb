@@ -39,10 +39,11 @@ module InvoicesHelper
     invoice.tax_description = tax.description#'Tax'    
     invoice.paid_at = Date.today
     @header_detail =HeaderDetail.find_by_account_id(@account_id)
+    @contact_details= AccountContactDetail.find_by_account_id(@account_id)
     # @png=(send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline')
     # Payday::Config.default.invoice_logo =File.open(@header_detail.logo).to_binery
-    Payday::Config.default.company_name = current_subdomain.to_s + "\nEducation Services\n Private Limited"
-    Payday::Config.default.company_details = "Gurgaon, Haryana - 122016"
+    Payday::Config.default.company_name = @domain_root_account.organization.to_s 
+    Payday::Config.default.company_details = @contact_details.address
     invoice.currency = Payday::Config.default.currency 
     # @headerdetails=HeaderDetail.where(:account_id=>@account_id)
     invoice.notes = "#{Settings.invoices.notes}"

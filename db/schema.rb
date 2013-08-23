@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",              :null => false
   end
 
+  create_table "account_contact_details", :force => true do |t|
+    t.string   "address"
+    t.string   "email_id"
+    t.integer  "account_id", :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
   create_table "account_settings", :force => true do |t|
     t.boolean  "knowledge_partners"
     t.boolean  "media_partners"

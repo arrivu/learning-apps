@@ -1,0 +1,6 @@
+<% @account_contact_detail.each do |account_contact_detail| %>
+<%= account_contact_detail.email_id %>
+<%= account_contact_detail.address %>
+<%= link_to(edit_account_contact_detail_path(account_contact_detail)) do%>Edit<% end%>
+
+<% end %>

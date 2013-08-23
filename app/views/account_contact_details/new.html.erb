@@ -1,0 +1,8 @@
+<%= form_for @account_contact_detail do |f| %>
+<%= f.label :email_id %>
+<%=  f.text_field :email_id %>
+<%= f.label :address %>
+<%=  f.text_area :address %>
+<%= f.submit "save" %>
+<% end %>
+

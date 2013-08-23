@@ -1,6 +1,9 @@
 Myapp::Application.routes.draw do
 
 
+  
+resources :account_contact_details
+
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details
