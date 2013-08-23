@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",                      :null => false
   end
 
+  create_table "account_themes", :force => true do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "account_users", :force => true do |t|
     t.integer  "account_id",      :limit => 8
     t.integer  "user_id"
@@ -510,6 +517,12 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "account_id",   :limit => 8
+  end
+
+  create_table "themes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "topics", :force => true do |t|

@@ -51,10 +51,13 @@
                               <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
                              <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
                         </a>
+                         <ul class="collapse " id="user">
+                          <li><%= link_to "Theme", new_theme_path %></li>
+                         </ul>
                         <ul class="collapse " id="user">
                            <li><%= link_to "Users", users_path %></li> 
-            <li><%= link_to "Interested Users", interested_users_path %></li>
-             <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>  
+                         <li><%= link_to "Interested Users", interested_users_path %></li>
+                         <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>
 
                         </ul></li>
                         <li class="accordion-group "><%= link_to(accounts_path) do %><i class="icon icon-briefcase" style="paddign:0px 10px;"></i>Accounts<% end %>

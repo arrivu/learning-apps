@@ -1,7 +1,6 @@
 Myapp::Application.routes.draw do
 
-
-  themes_for_rails
+themes_for_rails
 
 resources :omniauth_links
 resources :social_stream_comments
@@ -10,13 +9,6 @@ resources :header_details
 match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks
   resources :accounts
-
-
-
-
-
-
- 
   match 'teaching_staffs/new',:to=>'teaching_staffs#new'  
   resources :course_pricings
   resources :teaching_staffs
@@ -117,4 +109,5 @@ resources :footerlinks
     match '/sign_out', :to => 'users#destroy'
   end
   match '/add_account_id', :to=>'courses#add_account_id'
+  resources :themes
 end
