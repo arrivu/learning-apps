@@ -1,5 +1,5 @@
 class AccountThemesController < ApplicationController
-before_filter :theme_check_account_admin
+before_filter :theme_check_create_admin
 before_filter :front_page_registration_restrict, :only  => [:new,:create]
 	def new
 		@accountthemes = AccountTheme.new
