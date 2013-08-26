@@ -40,12 +40,14 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-   <h3 align = "center">Edit Category</h3>
-                                                                            <div id="collapse4" class="body">
-                                           
+                          <div id="collapse4" class="body">
+                                           <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+                                            <h5>Edit Category</h5>
+                                        </header>
     <%= simple_form_for @topic, :html => { :class => 'form-horizontal' } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+      <table id="dataTable" class="table table-condensed table-hover">
        
         <% if @topic.root_id!=nil %>
         <tr><td><%= f.label :topic_id, "Root ID" %></td>
@@ -55,14 +57,13 @@
 
 
                           <%= f.select(:root_id,options_for_select(topics_array))%>
-        <tr>
-          <% end %>
+           </td></tr><% end %>
          <% if @topic.parent_id!=nil %>
            <tr><td><%= f.label :topic_id, "Parent ID" %></td>
                         <td>
                           <% topics_array = Topic.where(:id=>@topic.parent_id).map { |topic| [topic.name, topic.id] } %>
 
-                          <%= f.select(:root_id,options_for_select(topics_array))%>
+                          <%= f.select(:root_id,options_for_select(topics_array))%></td>
         <tr>
 
     <% end %>
@@ -73,7 +74,7 @@
            <tr><td><%= f.label :color, :class => 'control-label' %> </td>
             <td> <%= f.input :color, as: :minicolors,label:false %></td>
           </tr>
-          <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Update Category", :class => 'btn btn-primary'  %></td></tr>
+          <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Update Category", :class => 'btn btn-primary yellobg'  %></td></tr>
 
           <% end %>
         </table>

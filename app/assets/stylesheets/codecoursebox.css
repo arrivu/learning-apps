@@ -209,8 +209,10 @@ color: #b54322;
 color: #fff;
 font-size: 1.5em;
 letter-spacing: -1px;
-margin: 0 10px 0 0;
-padding-top:160px;
+
+margin: 0 10px 0 100px;
+padding-top:30px;
+height: 145px;
 text-shadow: 1px 1px 1px #000;
 }
 
@@ -249,7 +251,7 @@ font:source-sans-pro, sans-serif;
 }
 
 .learners_count{
-  /*  line-height: 50px;*/
+/*    line-height: 50px;*/
     vertical-align: top;
     /*padding: 0px 10px;*/
 /*    color:#f89406;*/
