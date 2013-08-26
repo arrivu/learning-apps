@@ -58,12 +58,8 @@
 
    def load_account
 
-   
-
       unless current_subdomain.nil?
          @domain_root_account= Account.find_by_name current_subdomain
-          
-
            if (@domain_root_account == nil)
                 redirect_to request.url.sub(current_subdomain, Account.default.name)
               else
@@ -86,7 +82,7 @@
      @modelname=controller_name.classify
   end
       @coursedet= @modelname.constantize.find(params[:id])
-
+    if @account_id!=nil
       if @coursedet.account_id!=@account_id
         flash[:error]="Invalid domain"
         if current_user.has_role? :admin
@@ -97,12 +93,22 @@
           redirect_to courses_path
         end
       end
+    else
+      
+      if @coursedet.global==true
+        
+        return
+      else
+        flash[:error]="Invalid domain"
+        redirect_to courses_path
+      end
+    end
 
 
     end
 
     def topics
-       @topics=Topic.where("parent_id!=root_id AND account_id =?", @account_id)
+        @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks=Footerlink.where(:account_id=>@account_id)
         @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)

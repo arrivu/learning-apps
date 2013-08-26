@@ -1,4 +1,4 @@
-<div class="container courseclub" >
+<!-- <div class="container courseclub" >
   <div class="row">
     
     <% @courses.each do |course|%>
@@ -18,7 +18,7 @@
               <div class="free"><%= image_tag("free.png") %></div>
             <% end %>
           <div class="course-content" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');">
-            <!-- <em class="label-b">Free Course</em> -->
+  
               <%=link_to(course) do %><h3 class="course-name" style="text-align:right;"><%= course.title.split(' ').map(&:capitalize).join(' ') %></h3>
               <p class="course-desc"><%= course.short_desc  %><em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em><span style="float:right;">Rs&nbsp;<%= price_of_course_according_to_date(course).to_i %></span></p>
               <%end%></div>
@@ -58,4 +58,37 @@
       <%end%>
     </div>
   </div>
-  
+ -->  
+<div class="row evenflow">
+  <div class="resource-row">
+<div class="span3 content-box resource" style="background-image: url(https://learnable-images.s3.amazonaws.com/books/jscss1_medium_landscape.jpg);">
+<div class="type-tag-positioner">
+<div class="type "><span class="prefix">Book</span></div>
+</div>
+<div class="details">
+<h2>
+<a href="/books/jump-start-css">Jump Start CSS</a>
+</h2>
+<p class="author">
+by Louis Lazaris
+</p>
+<ul>
+<li class="length time">
+<i class="icon-book"></i>
+150 pg
+</li>
+<li class="users">
+<i class="icon-user"></i>
+1016
+</li>
+<li class="rating">
+</li>
+</ul>
+<p class="desc">
+Your flying start into the visual and vibrant world of CSS
+</p>
+</div>
+</div>
+
+</div>
+</div>

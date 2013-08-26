@@ -299,7 +299,7 @@ DEPENDENCIES
   best_in_place (= 2.1.0)
   better_errors (= 0.8.0)
   binding_of_caller (= 0.7.1)
-  bootstrap-sass (= 2.3.1.0)
+  bootstrap-sass
   bootstrap-will_paginate (= 0.0.6)
   cancan (= 1.6.9)
   canvas!

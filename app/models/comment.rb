@@ -10,7 +10,7 @@
 #  body             :text             default("")
 #  subject          :string(255)      default("")
 #  user_id          :integer          default(0), not null
-#  parent_id        :integer
+#  parent_topic_id        :integer
 #  lft              :integer
 #  rgt              :integer
 #  created_at       :datetime         not null

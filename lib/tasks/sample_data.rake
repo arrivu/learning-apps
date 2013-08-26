@@ -18,8 +18,8 @@ namespace :db do
 							name: array[0],
 							desc: array[1],
 							account_id:  array[2],
-							parent_id: array[3],
-							root_id: array[4],
+							parent_topic_id: array[3],
+							root_topic_id: array[4],
 							)
 					end
 

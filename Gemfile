@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 gem 'jquery-rails','2.2.1'
 gem 'figaro', '0.6.4'
-gem 'bootstrap-sass', '2.3.1.0'
+gem 'bootstrap-sass'
 gem 'devise', '2.2.3'
 gem 'cancan', '1.6.9'
 #gem 'devise_cas_authenticatable',">=1.2.1"

@@ -27,6 +27,7 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   end
 
   def index
+    if @account_id!=nil
    @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
    @countCoursesPerPage = 6
 
@@ -36,8 +37,11 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
      @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
    end
 
-   @topics = Topic.where("parent_id!=root_id AND account_id =?", @account_id)
-
+   @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
+ else
+  @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
+  @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
+end
   
  end
 

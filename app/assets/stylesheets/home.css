@@ -509,6 +509,9 @@ font-size: 15px;
 padding: 10px 0px;
 color: #000;
 min-height: 100px;
+
+/*background-image: url(../img/bgblack.png);*/
+
 background-color: #d14836;
 	background-image: -webkit-linear-gradient(top,#f1f1f1,#fff);
 	background-image: -moz-linear-gradient(top,#f1f1f1,#fff);

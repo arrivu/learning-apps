@@ -145,10 +145,12 @@
 										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
 											<td><%= f.check_box :is_coming_soon %></td></tr>
 
+									<tr><td><%= f.label :global, "Global Course" %></td>
+											<td><%= f.check_box :global %></td></tr>
 
 											<tr><td><%= f.label :topic_id, "Category" %></td>
 												<td>
-													<% topics_array = Topic.where("parent_id!=root_id AND account_id=?",@account_id).map { |topic| [topic.name, topic.id] } %>
+													<% topics_array = Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).map { |topic| [topic.name, topic.id] } %>
 
 													<%= f.select(:topic_id,options_for_select(topics_array))%>
 
