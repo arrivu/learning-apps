@@ -22,7 +22,7 @@
     if  @account_theme!=nil
      theme @account_theme.name
     else
-    theme "default"
+    theme "classic"
     end
   end
     
