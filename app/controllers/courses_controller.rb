@@ -17,13 +17,17 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   def show_image    
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
-    http_cache(@course)
+    unless Rails.env.development?
+      http_cache(@course)
+    end
   end
 
   def background_image    
     @course = Course.find(params[:id])
     send_data @course.background_image, :type => @course.background_image_type, :disposition => 'inline'
+    unless Rails.env.development?
     http_cache(@course)
+   end
   end
 
   def index

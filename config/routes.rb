@@ -1,20 +1,15 @@
 Myapp::Application.routes.draw do
 
 
-resources :omniauth_links
-resources :social_stream_comments
-resources :header_details
+  themes_for_rails
 
-match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
-resources :footerlinks
+  resources :omniauth_links
+  resources :social_stream_comments
+  resources :header_details
+
+  match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
+  resources :footerlinks
   resources :accounts
-
-
-
-
-
-
- 
   match 'teaching_staffs/new',:to=>'teaching_staffs#new'  
   resources :course_pricings
   resources :teaching_staffs

@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "aboutdetails", :force => true do |t|
     t.string   "title"
-    t.string   "desc"
+    t.text     "desc"
     t.integer  "account_id", :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "abouts", :force => true do |t|
     t.string   "title"
-    t.string   "desc"
+    t.text     "desc"
     t.integer  "account_id", :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "privacypolicies", :force => true do |t|
     t.string   "title"
-    t.string   "desc"
+    t.text     "desc"
     t.integer  "account_id", :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -496,7 +496,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "terms", :force => true do |t|
     t.string   "title"
-    t.string   "desc"
+    t.text     "desc"
     t.integer  "account_id", :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
