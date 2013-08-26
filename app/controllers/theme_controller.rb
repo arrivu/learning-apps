@@ -35,3 +35,4 @@ class ThemeController < ApplicationController
     end
 
   end
+end

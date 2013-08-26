@@ -20,7 +20,6 @@
   def theme_create
      @account_theme= @domain_root_account.account_theme
     if  @account_theme!=nil
-    
      theme @account_theme.name
     else
     theme "default"
