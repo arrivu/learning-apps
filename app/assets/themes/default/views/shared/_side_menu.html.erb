@@ -60,6 +60,26 @@
                         <li class="accordion-group "><%= link_to(accounts_path) do %><i class="icon icon-briefcase" style="paddign:0px 10px;"></i>Accounts<% end %>
 
                         </li>
+                        </li>
+                       <!--  <li class="accordion-group "><%= link_to(themes_path) do %><i class="icon icon-briefcase" style="paddign:0px 10px;"></i>Themes<% end %>
+
+                        </li> -->
+
+                         <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#themes">
+                           <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Themes
+                        </a>
+                        <ul class="collapse" id="themes">
+                          <li><%= link_to "New themes", new_theme_path %></li>                 </ul>
+                    </li>
+ <li class="accordion-group ">
+                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#accountthemes">
+                           <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Account Themes
+                        </a>
+                        <ul class="collapse" id="accountthemes">
+                          <li><%= link_to "New Accountthemes", new_account_theme_path %></li>                 </ul>
+                    </li>
+
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                              <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 

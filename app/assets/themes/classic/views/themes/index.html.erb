@@ -1,0 +1,57 @@
+                     
+                            
+        <div style="float:left">
+  <%= render 'shared/side_menu' %>
+</div>
+
+<br>
+<div class="row">
+  <div class="span6 offset3" style="min-height:530px;">
+   <h3 align = "center">Themes</h3>
+   
+
+   <table class="table  table-striped">
+    <thead>
+      <tr class="tab_head">
+        <th> Name </th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th> 
+
+      </tr>
+    </thead>
+    <tbody>
+<% @themes.each do |theme| %>
+      <tr>
+        
+<td><%=theme.name %></td>
+
+<td><%= link_to t('.edit', :default => t("helpers.links.edit")),edit_theme_path(theme), :class => 'btn btn-mini' %></td>
+            
+        </td></tr><% end %>
+
+     
+
+    </tbody>
+  </table>
+
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+      
+<div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+               
+       
+                                    
+                                
+                            
+                      
+                  
