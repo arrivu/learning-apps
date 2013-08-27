@@ -1,5 +1,5 @@
 class Slider < ActiveRecord::Base
-  attr_accessible :account_id, :attachment, :background, :background_image, :body_tag, :header, :image, :image_name, :image_type, :data, :background_image_type
+  attr_accessible :account_id, :attachment, :background, :background_image, :body_tag, :header, :image, :image_name, :image_type, :data, :background_image_type, :background_image_name
   belongs_to :slider
 
 def attachment=(incoming_file)
@@ -12,6 +12,7 @@ def attachment=(incoming_file)
   def background=(incoming_file)
     self.background_image_type = incoming_file.content_type
     self.background_image = incoming_file.read
+    self.background_image_name=incoming_file.original_filename
   end
 
 

@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
  def index
     # Topic.wh
   # @topic_details = Topic.all(:conditions => "parent_topic_id IS NULL" , "root_topic_id IS NULL" , :account_id => @account_id)
-   @topic_details = Topic.where("parent_topic_id IS NULL AND root_topic_id IS NULL AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 10)
+   @topic_details = Topic.where("parent_topic_id IS NULL AND root_topic_id IS NULL AND account_id=?",@domain_root_account.id).paginate(page: params[:page], :per_page => 10)
 end
 
 def show

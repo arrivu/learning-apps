@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "account_id",      :limit => 8
-    t.integer  "user_id",         :limit => 255
+    t.integer  "user_id"
     t.string   "membership_type"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "accounts", :force => true do |t|
@@ -421,6 +421,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "image_type"
     t.binary   "data"
     t.string   "background_image_type"
+    t.string   "background_image_name"
   end
 
   create_table "social_stream_comments", :force => true do |t|
@@ -485,15 +486,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"
-<<<<<<< HEAD
-    t.text     "description",          :limit => 255
-=======
     t.text     "description"
->>>>>>> 57523b09086b23dcf82972e1cd855ac87119cb91
     t.string   "qualification"
     t.integer  "user_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "linkedin_profile_url"
     t.integer  "account_id",           :limit => 8
   end
