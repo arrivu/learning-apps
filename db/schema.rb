@@ -386,7 +386,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "image_type"
     t.binary   "data"
     t.string   "background_image_type"
-    t.string   "background_image_name"
   end
 
   create_table "social_stream_comments", :force => true do |t|
