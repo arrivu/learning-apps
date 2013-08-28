@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
   attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script
+  cattr_accessor :current
   RESERVED_SUBDOMAINS = %w(
   admin api assets blog calendar demo developer developers docs files ftp git lab mail manage pages sites ssl staging status support www
 )
@@ -15,8 +16,23 @@ class Account < ActiveRecord::Base
   has_many :testimonials, :dependent => :destroy
   has_many :teaching_staff_courses, :dependent => :destroy
   has_one  :account_theme
+  has_one  :account_setting
+  has_one  :terms_and_condition
   def self.default
     Account.first
+  end
+
+  def self.load_account
+    unless current_subdomain.nil?
+      @domain_root_account= Account.find_by_name current_subdomain
+      if (@domain_root_account == nil)
+        redirect_to request.url.sub(current_subdomain, Account.default.name)
+      else
+        @account_id= @domain_root_account.id
+      end
+    else
+      @domain_root_account=Account.default
+    end
   end
 
   def add_user(user, membership_type = nil)

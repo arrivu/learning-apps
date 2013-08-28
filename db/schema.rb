@@ -85,24 +85,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "blogs", :force => true do |t|
-    t.string   "title"
-    t.string   "author"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.text     "content"
-    t.integer  "ispublished",  :default => 0
-    t.string   "releasemonth", :default => "December"
-    t.string   "image"
-    t.integer  "user_id"
-  end
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
     t.text     "comment"
@@ -197,7 +179,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.text     "desc"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
-    t.integer  "user_id"
     t.integer  "ispublished",                        :default => 0
     t.string   "releasemonth",                       :default => "December"
     t.integer  "ispopular"
@@ -236,14 +217,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "faqs", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "order_id"
-    t.text     "question"
-    t.text     "answer"
-  end
-
   create_table "footerlinks", :force => true do |t|
     t.string   "aboutus_url"
     t.string   "contactus_url"
@@ -258,19 +231,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",                       :null => false
     t.integer  "account_id",          :limit => 8
     t.string   "copy_write"
-  end
-
-  create_table "groupings", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "tutorial_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "header_details", :force => true do |t|
@@ -321,21 +281,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "item_type"
   end
 
-  create_table "o_classes", :force => true do |t|
-    t.string   "name"
-    t.string   "desc"
-    t.integer  "no_of_days"
-    t.integer  "no_of_hours_per_day"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.time     "start_time_of_day"
-    t.time     "end_time_of_day"
-    t.integer  "no_of_student_per_class"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "user_id"
-  end
-
   create_table "omniauth_links", :force => true do |t|
     t.string   "face_book"
     t.string   "linked_in"
@@ -363,6 +308,19 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
@@ -458,16 +416,20 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   end
 
   create_table "taggings", :force => true do |t|
-    t.integer  "blog_id"
     t.integer  "tag_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
   end
 
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
   create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "tax_rates", :force => true do |t|
@@ -501,7 +463,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "account_id",           :limit => 8
   end
 
-  create_table "terms", :force => true do |t|
+  create_table "terms_and_conditions", :force => true do |t|
     t.string   "title"
     t.text     "desc"
     t.integer  "account_id", :limit => 8
@@ -535,7 +497,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "parent_topic_id", :limit => 8
     t.integer  "root_topic_id",   :limit => 8
     t.boolean  "is_global"
+    t.string   "ancestry"
+    t.integer  "position"
   end
+
+  add_index "topics", ["ancestry"], :name => "index_topics_on_ancestry"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false

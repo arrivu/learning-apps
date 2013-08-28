@@ -3,7 +3,11 @@
    
     before_filter :topics
     before_filter :theme_create
-    
+    before_filter :set_current_account
+    def set_current_account
+      #  set @current_account from session data here
+      Account.current = @domain_root_account
+    end
     protect_from_forgery
     include ApplicationHelper
     include CoursesHelper
@@ -22,7 +26,7 @@
     if  @account_theme!=nil
      theme @account_theme.name
     else
-    theme "classic"
+    theme "default"
     end
   end
     
@@ -67,20 +71,16 @@
 
 
    def load_account
-
       unless current_subdomain.nil?
          @domain_root_account= Account.find_by_name current_subdomain
-           if (@domain_root_account == nil)
-                redirect_to request.url.sub(current_subdomain, Account.default.name)
-              else
-                @account_id=Account.find_by_name(current_subdomain).id
-            end
-           
-          else
+             if (@domain_root_account == nil)
+                   redirect_to request.url.sub(current_subdomain, Account.default.name)
+                else
+               @account_id= @domain_root_account.id
+             end
+       else
             @domain_root_account=Account.default
-
-            
-      end
+       end
 
     end
     def valid_domain_check
@@ -118,15 +118,15 @@
     end
 
     def topics
-       @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
+        @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
         @topics = @topics.sort_by {|x| x.name.length} 
-        @footerlinks=Footerlink.where(:account_id=>@account_id)
-        @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
-        @header_details = HeaderDetail.where(:account_id=>@account_id)
+        @footerlinks = Footerlink.where(:account_id=> @domain_root_account.id)
+        @social_stream_comments=SocialStreamComment.where(:account_id=> @domain_root_account.id)
+        @header_details = HeaderDetail.where(:account_id=>@domain_root_account.id)
     end
 
     def front_page_registration_restrict 
-       @front_page= controller_name.classify.constantize.find_by_account_id(@account_id)
+       @front_page= controller_name.classify.constantize.find_by_account_id(@domain_root_account.id)
        if @front_page!=nil
         redirect_to users_path
       else

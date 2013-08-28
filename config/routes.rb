@@ -1,23 +1,18 @@
 Myapp::Application.routes.draw do
 
-
-
+mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 themes_for_rails
 resources :themes
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details
 resources :account_themes
-
-match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks
   resources :accounts
-  match 'teaching_staffs/new',:to=>'teaching_staffs#new'  
+  match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   resources :course_pricings
   resources :teaching_staffs
   resources :tax_rates
-  match '/rate' => 'rater#create', :as => 'rate'
-
   resources :coupons do
     collection do
       get 'test'
@@ -28,29 +23,26 @@ resources :footerlinks
   resources :sliders
   resources :account_settings
   resources :contacts
-  resources :faqs
-  resources :blogs
-  resources :tags
-  resources :courses 
+  resources :courses
   resources :testimonials
   resources :partners
   resources :privacypolicies
-  resources :terms
+  resources :terms_and_conditions
   resources :aboutdetails
   resources :add_images
+  match '/rate' => 'rater#create', :as => 'rate'
+  match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   match 'payments/course_payment_gateway',:to=>'payments#course_payment_gateway'
   match 'payments/course_payment',:to=>'payments#course_payment'
   match 'payments/follow_course',:to=>'payments#follow_course'
   match 'payments/confirm_course_payment',:to=>'payments#confirm_course_payment'
   match "/download_pdf(.:format)" => "payments#invoice_pdf", :method => :get, :as=>:invoice_pdf
- 
+
   resources :topics
   resources :tutorials
-  resources :groups
   resources :under_constructions
-  resources :o_classes
   resources :course_previews
-  
+
   authenticated :user do
     root :to => 'screens#home'
   end
@@ -60,18 +52,14 @@ resources :footerlinks
   match '/termscondition', :to => 'screens#termscondition'
   match '/knowledge_partners', :to => 'screens#knowledge_partners'
   match '/user_reviews', :to => 'screens#user_reviews'
-
-  #match '/contact', :to => 'screens#contact'
-  #match '/faq', :to => 'screens#faq'
-  match '/construction', :to => 'screens#construction'  
+  match '/construction', :to => 'screens#construction'
   match '/manage_courses', :to => 'courses#manage_courses'
-  match '/upcomming_courses', :to => 'courses#upcomming_courses' 
-  match '/popular_courses', :to => 'courses#popular_courses'  
+  match '/upcomming_courses', :to => 'courses#upcomming_courses'
+  match '/popular_courses', :to => 'courses#popular_courses'
   match '/datewise_courses', :to => 'courses#datewise_courses'
   match '/subscribed_courses', :to => 'courses#subscribed_courses'
   match '/course_status_search', :to => 'courses#course_status_search'
   match '/completed_courses', :to => 'courses#completed_courses'
-
   match '/updatecompleted_details', :to => 'courses#updatecompleted_details'
   match '/conclude_course', :to =>'courses#conclude_course'
   match '/concluded_course_update', :to=> 'courses#concluded_course_update'
@@ -83,30 +71,24 @@ resources :footerlinks
   devise_for :users, :controllers => {:registrations => "registrations",:sessions => "sessions"}
 
   devise_scope :user do
-    match '/user_image/:id', :to => 'registrations#user_image' 
+    match '/user_image/:id', :to => 'registrations#user_image'
   end
-  
+
   resources :users
   match '/auth/:provider/callback' => 'authentication#create'
   resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
-  match '/my_courses', :to => 'courses#my_courses'  
-  match '/show_image/:id', :to => 'courses#show_image' 
-  match '/background_image/:id', :to => 'courses#background_image' 
-  match '/show_image_slider/:id', :to => 'sliders#show_image_slider' 
-  match '/background_image_slider/:id', :to => 'sliders#background_image_slider' 
-
-  match '/show_image_detail/:id', :to => 'header_details#show_image_detail' 
-  match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail' 
-    match '/show_image_show/:id', :to => 'header_details#show_image_show' 
-    match '/theme_image_show/:id', :to => 'header_details#theme_image_show' 
-
-  match '/show_image_logo/:id', :to => 'screens#show_image_logo' 
-  match '/theme_header_image/:id', :to => 'screens#theme_header_image' 
-   match '/category_details', :to => 'topics#category_details'  
-  # match '/sub_category_details', :to => 'topics#sub_category_details'  
-  # match '/valid_domain_user', :to => 'sessions#valid_domain_user' 
-  
-#  match '*a', :to => 'home#routing_error'
+  match '/my_courses', :to => 'courses#my_courses'
+  match '/show_image/:id', :to => 'courses#show_image'
+  match '/background_image/:id', :to => 'courses#background_image'
+  match '/show_image_slider/:id', :to => 'sliders#show_image_slider'
+  match '/background_image_slider/:id', :to => 'sliders#background_image_slider'
+  match '/show_image_detail/:id', :to => 'header_details#show_image_detail'
+  match '/theme_image_detail/:id', :to => 'header_details#theme_image_detail'
+  match '/show_image_show/:id', :to => 'header_details#show_image_show'
+  match '/theme_image_show/:id', :to => 'header_details#theme_image_show'
+  match '/show_image_logo/:id', :to => 'screens#show_image_logo'
+  match '/theme_header_image/:id', :to => 'screens#theme_header_image'
+  match '/add_sub_topics', :to => 'topics#add_sub_topics'
 
   devise_scope :user do
     match '/sign_out', :to => 'users#destroy'

@@ -17,7 +17,9 @@
 class Course < ActiveRecord::Base
   self.per_page = 6
   acts_as_commentable
-  attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished, 
+  acts_as_taggable
+  default_scope  Course.where(ispublished: 1,isconcluded: "f",account_id: "#{Account.current.id}")
+  attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
   :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
   :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
@@ -39,8 +41,8 @@ class Course < ActiveRecord::Base
   has_many :students, :through => :student_courses
   has_many :teaching_staff_courses, :dependent =>:destroy
   has_many :teaching_staffs, :through => :teaching_staff_courses
-  has_many :course_coupons, :dependent =>:destroy
-  has_many :coupons, :through => :course_coupons 
+  #has_many :course_coupons, :dependent =>:destroy
+  #has_many :coupons, :through => :course_coupons
   has_one  :rating_cache
   belongs_to :user
   belongs_to :account
@@ -54,7 +56,7 @@ class Course < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 100 }
 
-  has_one :course_status
+  #has_one :course_status
   #has_many :course_payments
   has_many :course_previews
 

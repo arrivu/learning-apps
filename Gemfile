@@ -71,6 +71,12 @@ gem 'jquery-minicolors-rails', '0.0.3'
 #gem 'exception_notification', '3.0.1'
 gem 'subdomain-fu', :git => 'git://github.com/mbleigh/subdomain-fu.git'
 gem 'tinymce-rails','4.0.2'
+gem 'ancestry'
+gem 'rails_admin'
+gem 'rails_admin-i18n'
+gem 'rails_admin_nestable'
+gem 'paper_trail'
+gem 'paperclip'
 gem "themes_for_rails", "~> 0.5.1"
 gem 'acts-as-taggable-on'
 

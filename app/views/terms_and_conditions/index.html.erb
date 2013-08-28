@@ -15,7 +15,7 @@
                                     <div class="box">
                                                                          <header>
                                             <div class="icons"><i class="icon-move"></i></div>
-<h5> Terms Details</h5><% if Term.find_by_account_id(@account_id) == nil %> <%= link_to "Add Terms Details", new_terms_and_condition_path, :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
+<h5> Terms Details</h5><% if TermsAndCondition.find_by_account_id(@account_id) == nil %> <%= link_to "Add Terms Details",new_terms_and_condition_path, :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
                                         </header>
                                         <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
@@ -29,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-  <% @term.each do |termsandconditions| %>
+  <% @terms_and_condition.each do |termsandconditions| %>
     <tr>
 		 <td>
 			 <%= termsandconditions.title%>
@@ -40,14 +40,14 @@
 		 </td>
 		
 
-  <td> <%= link_to( edit_terms_and_conditions_path (termsandconditions)) do%><i class="icon icon-edit"></i><% end%>
+  <td> <%= link_to(edit_terms_and_condition_path(termsandconditions)) do%><i class="icon icon-edit"></i><% end%>
 
     </td> 
 
 
 
     <!-- <td>
-    <%= link_to(term_path(termsandconditions),
+    <%= link_to(terms_and_condition_path(termsandconditions),
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
            <i class="icon icon-trash"></i>
