@@ -22,10 +22,16 @@ account =Account.create! :active => true, :name=>"portal", :no_of_courses=>"0", 
 puts 'SETTING UP DEFAULT USER LOGIN'
 
 if Rails.env.development?
-  user =User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
+  user =User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
+   # user_account=User.create! :name=> 'Account Admin', :email => 'demo23@arrivusystems.com',:password=>'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
 else
-  user = User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"admin"
+  user = User.create! :name => 'Administrator', :email => 'learning@arrivusystems.com', :password => 'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
+	 # user_account=User.create! :name=> 'Account Admin', :email => 'demo23@arrivusystems.com',:password=>'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
 end
 puts 'User created: ' << user.name
 @account_user = account.add_user(user, 'SiteAdmin')
 user.add_role :admin
+
+# puts 'User created: ' << user_account.name
+# @account_user = account.add_user(user_account, 'AccountAdmin')
+# user_account.add_role :account_admin

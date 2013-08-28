@@ -1,12 +1,12 @@
 class TopicsController < ApplicationController
-   before_filter :valid_domain_check, :only=>[:show,:edit]
-   before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
-   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
- @@id
+    before_filter :valid_domain_check, :only=>[:show,:edit]
+    before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
+    before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+     @@id
 
- def index
-  @topics = Topic.roots.where(:account_id=>@domain_root_account.id)
- end
+    def index
+      @topics = Topic.roots.where(:account_id=>@domain_root_account.id)
+    end
 
     def show
       @topic = Topic.find(params[:id])
