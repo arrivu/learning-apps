@@ -1,17 +1,14 @@
 class TagsController < ApplicationController
-    before_filter :subdomain_authentication , :only => [:new,:create, :index, :edit, :destroy]
-     before_filter :valid_domain_check, :only=>[:show,:edit]
 
-	def index
-    @tags = Tag.order(:name).search(params[:search])
+  before_filter :subdomain_authentication , :only => [:new,:create, :index, :edit, :destroy]
+  before_filter :valid_domain_check, :only=>[:show,:edit]
+
+  def index
+    @tags = @domain_root_account.tags
   end
 
   def show
-    @tag = Tag.find(params[:id])
-    @countBlogsPerPage = 5
-    #@courses_for_topic = @topic.courses.paginate(page: params[:page], per_page: 5)
-    @blogs_for_tag = @tag.blogs.paginate(page: params[:page], per_page: 5)
-    @tags = Tag.order(:name)
+
   end
 
   def new
@@ -19,8 +16,7 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(params[:tag])
-    if @tag.save
+    if Tag.create(:name => params[:tag][:name],:account_id => @domain_root_account.id)
       redirect_to tags_path, notice: "Successfully created tag."
     else
       render :new
@@ -34,7 +30,7 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update_attributes(params[:tag])
-      redirect_to @tag, notice: "Successfully updated tag."
+      redirect_to tags_path, notice: "Successfully updated tag."
     else
       render :edit
     end

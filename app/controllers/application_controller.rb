@@ -2,7 +2,7 @@
     before_filter :load_account
    
     before_filter :topics
-    before_filter :theme_create
+   # before_filter :theme_create
     before_filter :set_current_account
     def set_current_account
       #  set @current_account from session data here

@@ -169,9 +169,12 @@
 										
 
 										<tr><td><%= f.label :topic_id, "Topics" %></td>
-											<td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                                                <td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                                        <tr><td><%= f.label :tags, "Update Tags" %></td>
+                                          <td><%= f.collection_select :tags, @domain_root_account.tags.order(:name), :id, :name, { :selected_values => @course.taggings}, {multiple: true}%></td></tr>
 
-											<tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
+
+            <tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
 												</td></tr>
 											
 											<% end %>

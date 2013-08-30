@@ -17,8 +17,8 @@
 class Course < ActiveRecord::Base
   self.per_page = 6
   acts_as_commentable
-  acts_as_taggable
-  #default_scope  Course.where(ispublished: 1,isconcluded: "f",account_id: "#{Account.current.id}")
+  cattr_accessor :tags
+  attr_accessible :content, :name, :tag_list
   attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
   :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
   :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global
@@ -51,6 +51,8 @@ class Course < ActiveRecord::Base
 
   
   has_many :course_pricings
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   #before_save { |course| course.category = category.downcase }
 
@@ -146,6 +148,7 @@ class Course < ActiveRecord::Base
    self.course_pricings.find(:all, :conditions => "#{Date.today} >= start_date or #{Date.today} <= end_date")
   end
 
+  #-------------------------------Private Methods-------------------
   private
   def sanitize_filename(filename)
     #get only the filename, not the whole path (from IE)
@@ -162,4 +165,6 @@ class Course < ActiveRecord::Base
   def self.human_attribute_name(attr, options={})
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
+
+
 end

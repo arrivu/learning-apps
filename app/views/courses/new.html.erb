@@ -155,7 +155,8 @@
 													<%= f.select(:topic_id,options_for_select(topics_array))%>
 
 												</td></tr>
-											
+              <tr><td><%= f.label :tags, "Add Tags" %></td>
+                <td><%= f.collection_select :tags, @domain_root_account.tags.order(:name), :id, :name, { }, {multiple: true}%></td></tr>
 											
 											
 

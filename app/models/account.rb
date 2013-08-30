@@ -18,6 +18,7 @@ class Account < ActiveRecord::Base
   has_one  :account_theme
   has_one  :account_setting
   has_one  :terms_and_condition
+  has_many :tags
   def self.default
     Account.first
   end

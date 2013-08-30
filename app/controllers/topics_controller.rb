@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
 
  def index
   @topics = Topic.roots.where(:account_id=>@domain_root_account.id)
+  @topics ||= []
  end
 
     def show

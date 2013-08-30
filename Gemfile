@@ -78,5 +78,5 @@ gem 'rails_admin_nestable'
 gem 'paper_trail'
 gem 'paperclip'
 gem "themes_for_rails", "~> 0.5.1"
-gem 'acts-as-taggable-on'
+#gem 'acts-as-taggable-on'
 

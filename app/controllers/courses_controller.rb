@@ -56,14 +56,13 @@ end
 
 
  def create
+   tags_array = params[:course][:tags]
+   params[:course].delete :tags
    @course = Course.new(params[:course])
-   @course.user_id = current_user.id
-  
    @course.account_id=@account_id
-  
    @course.isconcluded="f"
    if @course.save
-
+     tag_list(tags_array,@course)
      flash[:success] = "Course added successfully!!!!"
      lms_create_course(@course)
      redirect_to manage_courses_path
@@ -79,9 +78,9 @@ end
 
  def update
    @course = Course.find(params[:id])
-  
-   @course.account_id=@account_id
- 
+
+   tag_list(params[:course][:tags],@course)
+   params[:course].delete :tags
    if @course.update_attributes(params[:course])
      lms_update_course(@course)
      flash[:success] ="Successfully Updated Course."  
@@ -303,6 +302,15 @@ end
          end 
        end
     end
+ end
+
+  def tag_list(tags_array,course)
+    tag_array = tags_array.delete_if{ |x| x.empty? }
+    tag_array.map do |n|
+      Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+    end
   end
+
+
   
 end

@@ -95,4 +95,5 @@ resources :footerlinks
   end
   match '/add_account_id', :to=>'courses#add_account_id'
   resources :themes
+  resources :tags
 end
