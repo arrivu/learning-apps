@@ -26,4 +26,6 @@ class Account < ActiveRecord::Base
     au ||= self.account_users.create(:user_id => user.id, :membership_type => membership_type)
   end
 
+
+
 end

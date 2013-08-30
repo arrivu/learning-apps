@@ -7,9 +7,16 @@ before_filter :front_page_registration_restrict, :only=>[:new,:create]
       @account_setting = AccountSetting.new
   end
 
+
   def create
+  
+    
   	@account_setting = AccountSetting.new(params[:account_setting])
     @account_setting.account_id=@account_id
+    
+
+    # @account_setting.settings[:knowledge_partners]= false
+    # @account_setting.settings[:media_partners]= false
   	if @account_setting.save
   	flash[:success] = "Sucessfully created"
   	redirect_to account_settings_path

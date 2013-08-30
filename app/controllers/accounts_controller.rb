@@ -6,9 +6,21 @@ class AccountsController < ApplicationController
      
   def new
   	@account=Account.new
+
+
+
   end
+
+
   def create
+
+      # hash = {:knowledge_partners=>false, :media_partners=>false}
+
+
+# Account.whe
   	@account=Account.new(params[:account])
+     # @account[:settings][:knowledge_partners]=false
+     # @account[:settings][:knowledge_part]=false
   	if @account.save
   		flash[:success]="Account details created Successfully"
   		redirect_to accounts_path
