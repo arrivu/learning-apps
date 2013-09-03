@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.boolean  "active"
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
-    t.string   "settings",                :default => "string"
+    t.text     "settings",                :default => "string"
+    t.text     "seetingsnew"
   end
 
   create_table "add_images", :force => true do |t|

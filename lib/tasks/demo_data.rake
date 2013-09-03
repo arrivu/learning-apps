@@ -196,6 +196,7 @@ CoursePreview.create!(
 
 
             User.create!(
+              name: "Abdul",
              image_blob: File.read('public/images/viewlogo.png'),
              email: "abdul@gmail.com",
              password: "abdulabdul",
