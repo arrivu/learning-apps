@@ -552,7 +552,7 @@ background-color: #d14836;
 	font-weight: normal;
 	background: #ffda55 ;
 	/*background: url(../img/button_bg.png);*/
-	color: #fff !important;
+	color: #000 ;
 	line-height: 1 !important;
 	font-size: 25px !important;
 	font-family: source-sans-pro, sans-serif;
@@ -652,4 +652,9 @@ color:white;
  /* color:#2a488e;*/
  color:orange;
   font-weight: bold;
+}
+.resource .details .desc
+{
+	min-height:50px;
+	font-weight: bold;
 }

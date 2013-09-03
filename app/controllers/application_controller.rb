@@ -108,7 +108,7 @@
     end
 
     def topics
-       @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
+        @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks=Footerlink.where(:account_id=>@account_id)
         @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)

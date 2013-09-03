@@ -1,4 +1,4 @@
-<div class="container courseclub" >
+<!-- <div class="container courseclub" >
   <div class="row">
     
     <% @courses.each do |course|%>
@@ -18,12 +18,13 @@
               <div class="free"><%= image_tag("free.png") %></div>
             <% end %>
           <div class="course-content" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');">
-            <!-- <em class="label-b">Free Course</em> -->
-              <%=link_to(course) do %><h3 class="course-name"><%= course.title.split(' ').map(&:capitalize).join(' ') %><em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em><span style="float:right;">Rs&nbsp;<%= price_of_course_according_to_date(course).to_i %></span></h3>
-              <p class="course-desc"><%= course.short_desc  %></p>
+  
+              <%=link_to(course) do %><h3 class="course-name" style="text-align:right;"><%= course.title.split(' ').map(&:capitalize).join(' ') %></h3>
+              <p class="course-desc"><%= course.short_desc  %><em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em><span style="float:right;">Rs&nbsp;<%= price_of_course_according_to_date(course).to_i %></span></p>
               <%end%></div>
 <div style="width: 65px;text-align: center;font-size: 11px;float: left;margin: 5px 10px;background: #fff;color: black;box-shadow: 2px 1px 2px #ccc;border-radius: 4px;">
-  <div style="text-align: center;padding: 10px 0px;border-radius: 4px;background: #ffda55;"><i class="icon icon-large icon-user"></i></div><span class="learners_count"><%= pluralize(@subscribers_count, "Learner") %> </span> </div>
+  <div style="text-align: center;padding: 10px 0px;border-radius: 4px;background: #ffda55;"><i class="icon icon-large icon-user"></i></div><span class="learners_count">
+  <%= pluralize(@subscribers_count, "Learner") %> </span> </div>
 
   <div style="width: 65px;text-align: center;font-size: 11px;float: left;margin: 5px 10px;background: #fff;color: black;box-shadow: 2px 1px 2px #ccc;border-radius: 4px;">
   <div style="text-align: center;padding: 10px 0px;border-radius: 4px;background: #ffda55;"><i class="icon icon-large icon-book"></i></div><span class="learners_count"><%= pluralize(@modules_count, "Modules") %> </span> </div>
@@ -57,4 +58,60 @@
       <%end%>
     </div>
   </div>
-  
+ -->  
+<div class="row evenflow">
+       <div class="resource-row">
+      <% @courses.each do |course|%>
+<div class="span3 content-box resource" style="float: left;width: 22%;">
+   
+<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100% 100%;">
+   <% if course.data!=nil %>
+            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
+            <% else %>
+            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+            <% end %>
+<div class="type " <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
+</div>
+<div class="details">
+<h2>
+<%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
+</h2>
+
+<ul>
+<li class="length time">
+<table><tr><td><i class="icon-book"></i></td><td style="verticle-align:bottom;">150 pg</td></tr></table>
+
+</li>
+<li class="users">
+  <table><tr><td><i class="icon-user"></i></td><td style="verticle-align:bottom;"> 15</td></tr></table>
+</li>
+<li class="rating">
+</li>
+</ul>
+<p class="desc">
+<%= course.short_desc  %></p>
+<ul class="author" style="text-align: center;border-bottom:0px;">
+
+ <% course.teaching_staffs.each do |author|%>
+<li>        <% if author.user.image_blob == nil %>
+
+        <% if author.user.omni_image_url == nil %>
+                <%= gravatar_for_with_size author, "25x20" %></td>
+      
+      
+        <% else  %>
+       <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%> 
+      
+        <% end  %>
+        <% else  %>
+ <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
+              <% end  %>
+
+        
+        <br>Louis Lazaris</li> <% end %>
+</ul>
+</div>
+</div>
+<%end%>
+</div>
+</div>

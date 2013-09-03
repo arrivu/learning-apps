@@ -707,6 +707,7 @@ margin: 5px
  border: 1px solid #ddd;
 box-shadow: 1px 2px 1px #333;
 border-radius: 5px;
+font-size: 16px;
 }
 .btn-group .btn {
   -webkit-border-radius: 0 !important;
@@ -1157,12 +1158,16 @@ border-radius: 5px;
 .nav.nav-tabs {
   border: medium none;
   margin-bottom: 0;
+  padding: 5px 0px;
+  margin-top: 10px;
+  border-bottom: 2px solid #efefef;
+  border-top: 2px solid #efefef;
 }
 .tab-content {
-  border: 1px solid #DDDDDD;
+  /*border: 1px solid #DDDDDD;*/
   border-radius: 5px 5px 5px 5px;
   margin: 0;
-  padding: 20px;
+  padding: 15px;
 }
 /*END TABS*/
 /*COMMENTS*/

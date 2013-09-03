@@ -42,18 +42,17 @@ myWindow.close();
    <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
     <% @header_details.each do |header_details| %>
 
-<header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 95px;">
+<header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 45px;">
     <div class="span4">
  <div class="logo" >
 
     <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
     
-       <div style="float:left;position:relative;color:#fff;margin-top:-35px;margin-left: 150px;" ><%= header_details.message %></div>
-        </div>
+             </div>
 
   </div>
-<div style="float:left;width: 50%;text-align: center;"><h2><%= header_details.message %></h2></div>
-       <nav style="padding:20px;">
+<!-- <div style="float:left;width: 50%;text-align: center;"><h2><%= header_details.message %></h2></div> -->
+       <nav style="padding:0px;">
 
         <ul class="nav pull-right">
 
@@ -125,14 +124,14 @@ myWindow.close();
 </header>
 <% end %>
 <%else%>
-<header class="navbar" style="min-height: 95px;">
+<header class="navbar" style="min-height: 45px;">
     <div class="span4">
  <div class="logo">
-        <a herf = "/"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
+        <a href="/"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
  </div>
   </div>
 
-       <nav style="padding:20px;">
+       <nav style="padding:0px;">
         <ul class="nav pull-right">
           <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
