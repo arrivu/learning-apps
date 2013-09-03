@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "account_id",         :limit => 8
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.string   "settings"
   end
 
   create_table "account_users", :force => true do |t|
@@ -57,10 +56,9 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "support_script"
     t.string   "google_analytics_script"
     t.boolean  "active"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.text     "settings",                :default => "string"
-    t.text     "seetingsnew"
+    t.text     "settings"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "add_images", :force => true do |t|
