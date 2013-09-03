@@ -52,7 +52,8 @@
                     <tr> <td>        <%= f.label :tag_tokens, "Update Tags" %></td>
                          <td>
                            <div class="field">
-                             <%= f.text_field :tag_tokens, data: {load: @course.tags} %>
+                             <%= f.text_field :tag_tokens, :class => "token_input", "data-pre" => @course.tags.map(&:attributes).to_json %>
+
                            </div>
                          </td>
                          </tr>
