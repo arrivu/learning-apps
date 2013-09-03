@@ -6,5 +6,13 @@ class Tag < ActiveRecord::Base
   has_many :taggings
   has_many :courses, through: :taggings
 
+  def self.tokens(query)
+    tags = where("name like ?", "%#{query}%")
+    if tags.empty?
+      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+    else
+      tags
+    end
+  end
 
 end

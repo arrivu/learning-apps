@@ -5,11 +5,12 @@ class TagsController < ApplicationController
 
   def index
     @tags = @domain_root_account.tags
+    respond_to do |format|
+      format.html
+      format.json { render json: @tags.tokens(params[:q]) }
+    end
   end
 
-  def show
-
-  end
 
   def new
     @tag = Tag.new

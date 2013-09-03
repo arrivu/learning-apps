@@ -56,13 +56,14 @@ end
 
 
  def create
-   tags_array = params[:course][:tags]
-   params[:course].delete :tags
+   tags_token = params[:course][:tag_tokens]
+   params[:course].delete :tag_tokens
    @course = Course.new(params[:course])
+
    @course.account_id=@account_id
    @course.isconcluded="f"
    if @course.save
-     tag_list(tags_array,@course)
+     tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
      lms_create_course(@course)
      redirect_to manage_courses_path
@@ -304,11 +305,19 @@ end
     end
  end
 
-  def tag_list(tags_array,course)
-    tag_array = tags_array.delete_if{ |x| x.empty? }
-    tag_array.map do |n|
-      Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+  def tag_list(tags_token,course)
+    tags_list= tags_token.gsub!(/<<<(.+?)>>>/) { Tag.find_or_create_by_name_and_account_id(name: $1,account_id: @domain_root_account.id).id }
+    if tags_list.nil?
+      tags_token.split(",").map do |n|
+        Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+      end
+       else
+         tags_list.split(",").map do |n|
+           Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+         end
     end
+
+
   end
 
 
