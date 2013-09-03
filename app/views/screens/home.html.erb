@@ -1,30 +1,38 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
 <div style="width:1349px;margin:0px auto;">
 <% provide(:effectingHeader) %>
-
-
+<div class="student-header">
+<div class="container">
+<div class="row">
+<div class="inner">
+<h1><% @header_details.each do |header_details| %>
+<!-- Aussie students, Sign up for free --><%= header_details.message %> <%end%>
+</h1>
+</div>
+</div>
+</div>
+</div>
 <div class="homebanner" style="">
             <div class="row">
-         
-           
+                   
             <div class="row">
                <div id="slideshow1" class="sliders">
                 <% @slider.each do |slider| %>
 
 <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
   <div class="row">
-        <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:45px 0px;margin: 30px 185px;">
+        <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 10px 185px;height:300px;">
                       <div class="span12" align="center" >
                         <div class="bannertext">  
      <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
      
      </div>     </div>  
                <div class="clearfix"></div>
-                      <div class="span6" align="center" >
+                      <div class="span4" align="center" >
 
 <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
 </div> 
-<div class="span6" align="justify">
+<div class="span5" align="justify">
 <p><%= slider.body_tag %><p>
 <%= render 'show_topics' %>
 </div>    
@@ -44,7 +52,41 @@
         $("#slideshow1").sliders({ interval: 5000 });
       });
     </script>
+<section class="main keynumbers">
+<div class="container">
+<div class="row-fluid pagination-centered">
+<div class="span3">
+<h2>
+<img src="assets/PNG/Grey/64/Bookmark.png">
+4,164
+</h2>
+<p>Courses</p>
+</div>
+<div class="span3">
+<h2>
+<img src="assets/PNG/Grey/64/User.png">
+1,107
+</h2>
+<p>Users</p>
+</div>
+<div class="span3">
+<h2>
+<img src="assets/PNG/Grey/64/Document Add.png">
+1,261
+</h2>
+<p>Modules</p>
+</div>
+<div class="span3">
+<h2>
+<img src="assets/PNG/Grey/64/Bookmark.png">
+1,403
+</h2>
+<p>Categories</p>
+</div>
+</div>
 
+</div>
+</section>
     
 <div class="homecourse">
     <div class="secondary-content yellobg">
@@ -69,10 +111,10 @@
             
               <%= render 'shared/courselist' %>
             
-              <div align="center" style="margin-top: 50px;">
+              <div align="center" style="">
          
 
-                <%= link_to "Discover More courses", courses_path, :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
+                <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall" , :style=>"color:#000"%>
                            
               </div>
       </div>
@@ -149,7 +191,7 @@
   </div>
          <div class="container" >
       <div class="row">
-          <div class="span12" style="margin-left:100px;">
+          <div class="span12">
             
              <% @testimonial.each do |testimonials| %>
                        
@@ -176,7 +218,7 @@
       <div align="center">
          
              
-             <%= link_to "Read More Reviews", '', :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
+             <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
                      
               </div>
     </div>

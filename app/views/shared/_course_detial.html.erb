@@ -1,4 +1,3 @@
- 
 <% if @course.background_image ==nil %>
 <div class="coursedetailtop" style="background-color: #d14836;background-image: -webkit-linear-gradient(top,#2C3E50,#ECF0F1); background-image: -moz-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -ms-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -o-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: linear-gradient(top,#2C3E50,#ECF0F1);  color:#fff;  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C3E50', endColorstr='#ECF0F1'); 
 " id="top">
@@ -11,7 +10,7 @@
 <div class="span12">
       <div class="span2">
         <div class="coursevideo">
-             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => @course.id), width: "130", height: "130",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => @course.id), width: "130", height: "130",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
         </div>
       </div>
       <div class="span6">
@@ -49,15 +48,15 @@
              %>
             <h4><%= next_session %></h4>
             <% end %>
-            
+            <% if @price.to_i != 0 %>
+            <h2 style="color:white">Rs&nbsp;<%= @price.to_i %></h2>
+            <% end %>
           </div>
           </div>
         
       </div><div class="span4" style="float:right;margin-top: -15px;">
   <div class="subsection">
-<% if @price.to_i != 0 %>
-            <h2 style="color:white">Rs&nbsp;<%= @price.to_i %></h2>
-            <% end %>
+
             <% if (current_user.present? ) %>
               <% if !(current_user.has_role? :admin) %>
 
@@ -103,9 +102,9 @@
             <% end %> 
             <% end%>
 
-            <a href="#previewcourse"><div class="shortlist">
+          <!--   <a href="#previewcourse"><div class="shortlist">
               Preview
-            </div></a>
+            </div></a> -->
 
           </div>
           <div class="clearfix"></div>

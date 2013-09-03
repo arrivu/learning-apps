@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "account_users", :force => true do |t|
     t.integer  "account_id",      :limit => 8
-    t.integer  "user_id",         :limit => 255
+    t.integer  "user_id"
     t.string   "membership_type"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "accounts", :force => true do |t|
@@ -485,11 +485,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"
-    t.text     "description",          :limit => 255
+    t.text     "description"
     t.string   "qualification"
     t.integer  "user_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "linkedin_profile_url"
     t.integer  "account_id",           :limit => 8
   end
@@ -514,14 +514,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "topics", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "desc"
     t.string   "color"
-    t.integer  "account_id", :limit => 8
-    t.integer  "parent_id",  :limit => 8
-    t.integer  "root_id",    :limit => 8
-    t.boolean  "global"
+    t.integer  "account_id",      :limit => 8
+    t.integer  "parent_topic_id", :limit => 8
+    t.integer  "root_topic_id",   :limit => 8
+    t.boolean  "is_global"
   end
 
   create_table "users", :force => true do |t|
