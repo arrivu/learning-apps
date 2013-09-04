@@ -134,7 +134,7 @@ namespace :db do
                     account_id: 2 
                 )
 
-                Term.create!(
+                    TermsAndCondition.create!(
                   	title:"Terms and condtions",
                     desc:"By using this service, you agree that you have read, understand 
                           and agree to these terms. You also agree to review this agreement 

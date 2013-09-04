@@ -1,0 +1,26 @@
+
+<div class="modal fade" id="alert_popup_Modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="color:#000;">Information</h4>
+      </div>
+      <div class="modal-body" style="color:#000;">
+        <%= simple_form_for @course,:url => url_for(:action => 'add_account_id',
+         :controller => 'courses'),
+         :method => 'put' do |f| %>
+        <p>You are going to registered on a new orgnization.Are you sure to join with this organization  </p>
+      </div>
+
+      <div class="modal-footer">
+       
+        <%= f.button :submit, "Ok", :class => 'btn-primary yellobg',:url=>url_for(payments_course_payment_path(:id=>@course.id)),:class=>"enroll" %> 
+
+       <!--  <button type="button" class="btn btn-primary" data-dismiss="modal" >Ok</button> -->
+        <button type="button" class="btn btn-primary yellobg" data-dismiss="modal">Cancel</button>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

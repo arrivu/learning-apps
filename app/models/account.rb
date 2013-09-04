@@ -13,7 +13,6 @@ class Account < ActiveRecord::Base
   has_many :tax_rates,:dependent =>:destroy
   has_many :teaching_staffs, :dependent =>:destroy
   has_many :testimonials, :dependent => :destroy
-  has_many :teaching_staff_courses, :dependent => :destroy
   has_one  :account_theme
   has_one  :account_setting
   has_one  :terms_and_condition
@@ -21,6 +20,9 @@ class Account < ActiveRecord::Base
   cattr_accessor :account_settings_options
   self.account_settings_options = {}
   has_many :tags
+  has_many  :teaching_staff_courses, :dependent => :destroy
+  validates :name, presence: true
+  validates :organization, presence: true
   def self.default
     Account.first
   end

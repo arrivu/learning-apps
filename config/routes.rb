@@ -1,13 +1,11 @@
 Myapp::Application.routes.draw do
-
-mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-themes_for_rails
-resources :themes
-resources :omniauth_links
-resources :social_stream_comments
-resources :header_details
-resources :account_themes
-resources :footerlinks
+  themes_for_rails
+  resources :themes
+  resources :omniauth_links
+  resources :social_stream_comments
+  resources :header_details
+  resources :account_themes
+  resources :footerlinks
   resources :accounts
   match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   resources :course_pricings
@@ -18,7 +16,7 @@ resources :footerlinks
       get 'test'
       get 'apply'
       get 'redeem'
-    end
+      end
   end
   resources :sliders
   resources :account_settings

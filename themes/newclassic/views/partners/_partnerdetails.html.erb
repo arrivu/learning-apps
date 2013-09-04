@@ -1,0 +1,27 @@
+<h3 align = "center">Knowledge Partners</h3>
+<table align="center">
+<tr>
+	<% @partner.each do |partner| %>
+	
+	<td>
+		<%= partner.company_name %>
+	</td>
+	<td>
+		
+	   <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners), :size => "50x50" %> 
+	</td>
+	<td>
+         <%=partner.comments %>
+	</td>	
+	<td>
+		<%= link_to "show",partner_path(partner) %>
+	</td>
+ 	<td>
+ 		<%= link_to "edit",edit_partner_path(partner) %>
+ 	</td> 
+ 	<td>
+ 		<%= link_to "destroy",partner, method: :delete, data: { confirm: 'Are you sure?' } %>
+ 	</td>
+ </tr>
+ <%end%>
+</table>

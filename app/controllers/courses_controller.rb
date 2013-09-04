@@ -131,21 +131,21 @@ end
     @total_course_count = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
     @courses = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
-    @topics = Topic.order(:name)
+    @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
   def popular_courses
     @total_course_count = Course.where(ispopular: 1,:isconcluded=>false,ispublished: 1,account_id: @account_id).all.count
     @countCoursesPerPage = 6
     @courses = Course.where(ispopular: 1,ispublished: 1,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
-    @topics = Topic.order(:name)
+    @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
   def datewise_courses
     @total_course_count = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
     @courses = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).order(:created_at).paginate(page: params[:page], per_page: 6)
-    @topics = Topic.order(:name)
+    @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
     # Just to redirect, needed due to button click event
@@ -165,22 +165,22 @@ end
 
     def manage_courses
       @courses = Course.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10).order(:id)
-      @topic = Topic.all
+      @topic = Topic.where("parent_topic_id!=root_topic_id")
     end
 
     def course_status_search
       if(params[:search] == nil || params[:search] == "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("status!='shortlisted' and account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
-      elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("course_id=#{params[:search]} and account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+      elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All' )
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 15)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("course_id=#{params[:search]} and status='#{params[:searchstatus]} and ,account_id=?'",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
 
       elsif(params[:search] == nil || params[:search] == "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}',account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
 
       else
-        @coursesstauts = StudentCourse.where("status!='shortlisted',account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
       end
     end
 
@@ -189,7 +189,7 @@ end
       @total_course_count =StudentCourse.where(:status =>"enroll").map(&:course_id).uniq.size
       @courses = Course.where(id: StudentCourse.where(:status =>"enroll").map(&:course_id).uniq).paginate(page: params[:page], per_page: 6)
       @countCoursesPerPage = 6
-      @topics = Topic.order(:name)
+      @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
     end
 
     def my_courses
