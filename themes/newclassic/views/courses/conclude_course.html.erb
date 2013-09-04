@@ -1,0 +1,145 @@
+<!-- <div style="float:left">
+</div>
+
+<div class="row">
+	<div class="span8 offset3" style="min-height:600px">
+		
+		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;margin:20px;padding:10px;">
+
+			<%= form_tag "/concluded_course_update", :method=>'put' do %>
+			<div class="divrow">
+				<div>
+					<h3 align="center">Courses Conclude</h3>
+				</div>
+				<div class="divleft">
+					<label>Course Name</label>
+				</div>
+				<div class="divright">
+
+					<%= select_tag :search, options_from_collection_for_select(Course.where("isconcluded!=? and account_id=?","t",@account_id), "id", "title") , {:prompt => 'ALL'} %>
+				</div>
+			</div>
+			<div class="divrow">
+				<div class="divleft">
+					<label>Concluded</label>
+
+				</div>
+				
+				<div class="divright">
+					<%= check_box_tag :isconcluded %>
+				</div>
+			</div>
+
+			<div class="divrow">
+				<div class="divleft">
+					<label>Concluded Review </label>
+				</div>
+				<div class="divright">
+					<%= text_area_tag :concluded_review %>
+				</div>
+<%= hidden_field_tag :id %>
+			</div>
+			<div class="divrow">
+				<div class="divleft">
+					&nbsp;
+				</div>
+				<div class="divright">
+					<%= submit_tag "Save",class:"btn btn-primary",:data => { :confirm => "Are you sure?" } %>
+				</div>
+			</div>
+
+			<br>
+
+			<% end %>
+		</div>
+	</div>
+
+</div> -->
+
+ <div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content">
+               
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+
+    <div id="collapse4" class="body">
+                                           
+      <%= form_tag "/concluded_course_update", :method=>'put' do %>
+			<div class="divrow">
+				<div>
+					<h3 align="center">Courses Conclude</h3>
+				</div>
+				<div class="divleft">
+					<label>Course Name</label>
+				</div>
+				<div class="divright">
+
+					<%= select_tag :search, options_from_collection_for_select(Course.where("isconcluded!=? and account_id=?","t",@account_id), "id", "title") , {:prompt => 'ALL'} %>
+				</div>
+			</div>
+			<div class="divrow">
+				<div class="divleft">
+					<label>Concluded</label>
+
+				</div>
+				
+				<div class="divright">
+					<%= check_box_tag :isconcluded %>
+				</div>
+			</div>
+
+			<div class="divrow">
+				<div class="divleft">
+					<label>Concluded Review </label>
+				</div>
+				<div class="divright">
+					<%= text_area_tag :concluded_review %>
+				</div>
+<%= hidden_field_tag :id %>
+			</div>
+			<div class="divrow">
+				<div class="divleft">
+					&nbsp;
+				</div>
+				<div class="divright">
+					<%= submit_tag "Save",class:"btn btn-primary yellobg",:data => { :confirm => "Are you sure?" } %>
+				</div>
+			</div>
+
+			<br>
+
+			<% end %>
+
+
+                     
+</div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                    </div>
+                </div>
+            </div>
+                        </div>
+            <!-- END CONTENT -->
+<div class="left" style="padding: 0px;width: 210px;float: right;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
+    </div>
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

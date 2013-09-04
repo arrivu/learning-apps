@@ -1,0 +1,14 @@
+<div style="float:left">
+<%= render 'shared/side_menu' %>
+</div>
+<div class="row">
+	<div class="span10 offset3">
+<%= form_for (@social_stream_comment) do |f| %>
+<%= f.label :facebook_comment_script %>
+<%= f.text_area :facebook_comment_script %>
+<%= f.label :twitter_comment_script %>
+<%= f.text_area :twitter_comment_script%>
+<%= f.submit "update" %>
+<% end %>
+</div>
+</div>

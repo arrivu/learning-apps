@@ -658,3 +658,16 @@ color:white;
 	min-height:50px;
 	font-weight: bold;
 }
+.type:before {
+background: rgba(255,0,0,0);
+border: 1em solid rgba(255,0,255,0.3);
+border-width: 1em 1em 1em 0;
+border-color: rgba(0,0,0,0.5) rgba(0,0,0,0) rgba(0,0,0,0.5) rgba(0,0,0,0);
+position: absolute;
+top: 0;
+right: -13px;
+display: block;
+width: 0px;
+height: 1px;
+content: '';
+}

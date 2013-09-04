@@ -1,0 +1,202 @@
+<%= javascript_tag do %>
+function logout_lms()
+
+{ myWindow =window.open('<%= "#{Settings.lms.root_url}#{Settings.lms.logout_path}" %>',"_blank")
+
+ $.ajax({
+  url: '<%= destroy_user_session_path %>',
+      type: "GET",
+      crossDomain: true,
+      async:false,
+    success: function(){
+
+ }
+   });
+myWindow.close();
+
+}
+<% end %>  
+<!-- <header class="navbar navbar-fixed-top">
+  <div style="width:1275px;margin:0px auto;">
+    <div class="logo">
+    <a href="/" onmouseover="swapImage('jack','smile')" onmouseout="swapImage('jack','nosmile')"><img src="http://beacon-test.herokuapp.com/assets/zbeaconslogo.png" width="222" height="71" border="0" name="jack"></a>
+      </div>
+    <div class="container" style=" padding-top:20px;  padding-bottom:20px;float:right; ">
+      <a href="/" id="logo" style="left:-150px; "></a>
+      <nav style="margin-left:30px;">
+        <ul class="nav pull-right">
+          <li> <a href="/courses">Course Library</a></li>
+          <li><a href="#loginmodal" role="button" data-toggle="modal">Log In</a></li>
+          <li><a href="#sign_up_Modal" role="button" data-toggle="modal">Create Account</a></li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+</header> -->
+
+
+
+
+   <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
+    <% @header_details.each do |header_details| %>
+
+<header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 45px;">
+    <div class="span4">
+ <div class="logo" >
+
+    <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
+    
+             </div>
+
+  </div>
+<!-- <div style="float:left;width: 50%;text-align: center;"><h2><%= header_details.message %></h2></div> -->
+       <nav style="padding:0px;">
+
+        <ul class="nav pull-right">
+
+          <li> <%= link_to "Course Library", courses_path %></li>
+          <% if user_signed_in?%>
+          <% if current_user.has_role? :admin %>
+            <li ><%= link_to 'Admin', users_path %></li>
+
+          
+
+              <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+          <% elsif current_user.has_role? :account_admin %>
+          
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+
+           <li ><%= link_to 'Account_Admin', users_path %></li>
+            <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+          <% end %>
+           <% else  %>
+          <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
+     
+          <script>
+          $('.courseslink').css('left',"-140px");
+          </script>
+               <% end  %>      
+
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <% if current_user.image_blob == nil %>
+                <% if current_user.omni_image_url == nil %>
+                <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= gravatar_for_with_size current_user, "20x20"%>
+                </div><% else  %>
+                 <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%> 
+                </div>
+                <% end  %>
+                <% else  %>
+                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
+                <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+            </a>
+            <ul class="dropdown-menu">
+              
+              <li><%= link_to "My Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: "delete" ,  :onclick=> "logout_lms();" %></li>
+             
+            </ul>
+          </li>
+
+          <% else %>
+<li><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
+<li><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+          <% end %>
+
+
+        </ul>
+
+      </nav>
+
+      </div>
+    </div>
+    </div>
+    </div>
+
+</header>
+<% end %>
+<%else%>
+<header class="navbar" style="min-height: 45px;">
+    <div class="span4">
+ <div class="logo">
+        <a href="/"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
+ </div>
+  </div>
+
+       <nav style="padding:0px;">
+        <ul class="nav pull-right">
+          <li> <%= link_to "Course Library", courses_path %></li>
+          <% if user_signed_in?%>
+          <% if current_user.has_role? :admin %>
+            <li ><%= link_to 'Admin', users_path %></li>
+
+          
+
+              <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+          <% elsif current_user.has_role? :account_admin %>
+          
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+
+           <li ><%= link_to 'Account_Admin', users_path %></li>
+            <script>
+          $('.courseslink').css('left',"-100px");
+          </script>
+          <% end %>
+           <% else  %>
+          <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
+     
+          <script>
+          $('.courseslink').css('left',"-140px");
+          </script>
+               <% end  %>      
+
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               <% if current_user.image_blob == nil %>
+                <% if current_user.omni_image_url == nil %>
+                <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= gravatar_for_with_size current_user, "20x20"%>
+                </div><% else  %>
+                 <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%> 
+                </div>
+                <% end  %>
+                <% else  %>
+                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
+                <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+            </a>
+            <ul class="dropdown-menu">
+              
+              <li><%= link_to "My Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: "delete" ,  :onclick=> "logout_lms();" %></li>
+             
+            </ul>
+          </li>
+
+          <% else %>
+          <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
+          <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+          <% end %>
+
+
+        </ul>
+
+      </nav>
+
+      </div>
+    </div>
+    </div>
+    </div>
+
+</header>
+<%end%>

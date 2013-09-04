@@ -304,6 +304,8 @@ font-size: .95em;
 outline: 1px solid #dbdbdb;
 float: none;
 display: table-cell;
+box-shadow: 2px 3px 4px #ddd;
+background:#fff;
 }
 
 
@@ -317,8 +319,9 @@ background-image: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70
 background-image: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%);
 background-image: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%);
 background-image: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 70%);
-top: 0;
-left: 0;
+top: 5px;
+background-repeat: no-repeat;
+left: 5px;
 display: block;
 margin: 0 0 -12em;
 width: 100%;

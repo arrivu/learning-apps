@@ -1,0 +1,33 @@
+<div style="float:left">
+<%= render 'shared/side_menu' %>
+</div>
+<div class="row">
+	<div class="span10 offset3">
+
+<%= form_for (@account) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+<table><tr><td><%= f.label :name %></td>
+<td><%= f.text_field :name %></td></tr>
+<tr><td><%= f.label :organization %></td>
+<td>
+<%= f.text_field :organization %></td></tr>
+
+<tr><td><%= f.label :no_of_users %></td>
+<td>
+<%= f.text_field :no_of_users %></td></tr>
+<tr><td><%= f.label :no_of_courses %></td>
+<td>
+<%= f.text_field :no_of_courses %></td></tr>
+<tr><td><%= f.label :support_script %></td>
+<td>
+<%= f.text_area :support_script %></td></tr>
+<tr><td><%= f.label :google_analytics_script %></td>
+<td>
+<%= f.text_area :google_analytics_script %></td></tr>
+<tr><td><%= f.label :activate %></td>
+<td>
+<%= f.check_box :active %></td></tr>
+<tr><td><%= f.submit "update" %></td></tr></table>
+<% end %>
+</div>
+</div>
