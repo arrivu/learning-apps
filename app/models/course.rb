@@ -17,15 +17,12 @@
 class Course < ActiveRecord::Base
   self.per_page = 6
   acts_as_commentable
-  acts_as_taggable
-  #default_scope  Course.where(ispublished: 1,isconcluded: "f",account_id: "#{Account.current.id}")
+  attr_accessible :content, :name, :tag_list
   attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
   :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
   :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
   scope :teacher_assistants, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher_assitant")
-
-  #has_many :relationships
   scope :enrolled_students, joins(:student_courses).where('student_courses.status = ?', "enroll") 
   scope :completed_students, joins(:student_courses).where('student_courses.status = ?', "completed") 
   scope :shortlisted_students, joins(:student_courses).where('student_courses.status = ?', "shortlisted") 
@@ -41,34 +38,24 @@ class Course < ActiveRecord::Base
   has_many :students, :through => :student_courses
   has_many :teaching_staff_courses, :dependent =>:destroy
   has_many :teaching_staffs, :through => :teaching_staff_courses
-  #has_many :course_coupons, :dependent =>:destroy
-  #has_many :coupons, :through => :course_coupons
   has_one  :rating_cache
   belongs_to :user
   belongs_to :account
   belongs_to :category
   letsrate_rateable "rate"
-
-  
   has_many :course_pricings
-
-  #before_save { |course| course.category = category.downcase }
-
+  has_many :taggings
+  has_many :tags, through: :taggings
+  attr_reader :tag_tokens
+  def tag_tokens=(tokens)
+    self.tag_ids = Tag.ids_from_tokens(tokens)
+  end
   validates :title, presence: true, length: { maximum: 100 }
-
-  #has_one :course_status
-  #has_many :course_payments
   has_many :course_previews
-
   has_many :invoices
-
-  #before_save { |course| course.category = category.downcase }
-
   validates :desc, presence: true, length: { maximum: 1000 }
   validates  :short_desc, presence: true, length:{maximum: 100}
-
   default_scope order: 'courses.created_at ASC'
-
   def self.course_price(course)
     course.course_pricings.each do |course_price|
       if course_price.start_date <= Date.today && course_price.end_date >= Date.today
@@ -77,17 +64,14 @@ class Course < ActiveRecord::Base
     end
     return @price
   end
-
   def self.tax_calculation(course, price)
     tax_rate= ApplicationController.helpers.tax_rate_for_today.factor
     tax = price.to_f * (tax_rate.to_f/100.to_f)
     return tax.round(2)
   end
-
   def student_enrolled
     load_student("enroll")  
   end
-
   def student_completed
     load_student("completed")  
   end 
@@ -146,6 +130,7 @@ class Course < ActiveRecord::Base
    self.course_pricings.find(:all, :conditions => "#{Date.today} >= start_date or #{Date.today} <= end_date")
   end
 
+  #-------------------------------Private Methods-------------------
   private
   def sanitize_filename(filename)
     #get only the filename, not the whole path (from IE)
@@ -162,4 +147,6 @@ class Course < ActiveRecord::Base
   def self.human_attribute_name(attr, options={})
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
+
+
 end

@@ -20,6 +20,7 @@
 //= require jquery-minicolors
 //= require jquery-minicolors-simple_form
 //= require tinymce
+//= require jquery.tokeninput
 
 
 $(function() {
