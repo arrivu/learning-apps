@@ -48,7 +48,43 @@ class Account < ActiveRecord::Base
   add_setting :slide_show, :root_only => false, :boolean => true, :default => false
   add_setting :popular_speak, :root_only => true, :boolean => true, :default => false
   add_setting :testimonial, :root_only => true, :boolean => true, :default => false
-
+  add_setting :cas_enable, :root_only => true,:boolean => true, :default => true
+  add_setting :cas_expiry_time, :root_only => true, :default => 28800
+  add_setting :cas_url, :root_only => true
+  add_setting :cas_login_path, :root_only => true, :default => true
+  add_setting :cas_login_path, :root_only => true, :default => true
+  add_setting :lms_enable, :root_only => true,:boolean => true, :default => true
+  add_setting :lms_account_id, :root_only => true, :default => 1
+  add_setting :lms_oauth_token, :root_only => true
+  add_setting :lms_root_url, :root_only => true
+  add_setting :lms_course_url_path, :root_only => true, :default => true
+  add_setting :lms_api_root_url, :root_only => true
+  add_setting :lms_logout_path, :root_only => true, :default => true
+  add_setting :mailserver_address, :root_only => true
+  add_setting :mailserver_port, :root_only => true, :default => 587
+  add_setting :mailserver_domain, :root_only => true
+  add_setting :mailserver_user_name, :root_only => true
+  add_setting :mailserver_password, :root_only => true
+  add_setting :admin_mail_to, :root_only => true
+  add_setting :payment_gateway_enable, :root_only => true,:boolean => true
+  add_setting :payment_gateway_merchant_id, :root_only => true
+  add_setting :payment_gateway_work_key, :root_only => true
+  add_setting :payment_gateway_ccavenue_account, :root_only => true
+  add_setting :invoices_notes, :root_only => true, :default => true
+  add_setting :exception_notifer_email_prefix, :root_only => true
+  add_setting :exception_notifer_sender_address, :root_only => true
+  add_setting :exception_notifer_exception_recipients, :root_only => true
+  add_setting :omniauth_facebook_key, :root_only => true
+  add_setting :omniauth_facebook_secret, :root_only => true
+  add_setting :omniauth_linkedin_key, :root_only => true
+  add_setting :omniauth_linkedin_secret, :root_only => true
+  add_setting :omniauth_google_oauth2_key, :root_only => true
+  add_setting :omniauth_google_oauth2_secret, :root_only => true
+  add_setting :knowledge_partners, :root_only => true
+  add_setting :media_partners, :root_only => true
+  add_setting :slide_show, :root_only => true
+  add_setting :popular_speak, :root_only => true
+  add_setting :testimonial, :root_only => true
 
   def settings=(hash)
     if hash.is_a?(Hash)

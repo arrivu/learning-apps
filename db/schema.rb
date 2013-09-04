@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "support_script"
     t.string   "google_analytics_script"
     t.boolean  "active"
+    t.text     "settings"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
