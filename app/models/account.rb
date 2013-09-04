@@ -49,7 +49,7 @@ add_setting :cas_enable, :root_only => true,:boolean => true, :default => true
 add_setting :cas_expiry_time, :root_only => true, :default => 28800
 add_setting :cas_url, :root_only => true
 add_setting :cas_login_path, :root_only => true, :default => true
-add_setting :cas_login_path, :root_only => true, :default => true
+add_setting :cas_logout_path, :root_only => true, :default => true
 
 add_setting :lms_enable, :root_only => true,:boolean => true, :default => true
 add_setting :lms_account_id, :root_only => true, :default => 1 

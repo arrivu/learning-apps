@@ -1,6 +1,14 @@
 Myapp::Application.routes.draw do
 
 
+  get "settings/new"
+
+  get "settings/edit"
+
+  get "settings/show"
+
+  get "settings/index"
+
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details
