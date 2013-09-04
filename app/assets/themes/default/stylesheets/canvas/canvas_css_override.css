@@ -1,0 +1,28 @@
+#header{background:url("../canvas/mgmc_logo.jpg?v1") repeat-x scroll center transparent}
+
+#header-logo,#header.no-user #header-logo{
+    background:url("../canvas/mgmc_logo.jpg?v1") no-repeat scroll 0 0 transparent;
+    bottom:11px;height:40px;left:12px;width:160px;position:absolute;text-indent:-9999px
+   }
+
+#header-logo:hover,#header.no-user #header-logo:hover{
+    background:url("../canvas/mgmc_logo.jpg?v1")
+    no-repeat scroll 0 0 transparent;bottom:11px;height:40px;left:12px;width:160px;position:absolute;text-indent:-9999px
+   }
+#header-logo-secondary{
+    display:none;background:url("../canvas/mgmc_logo.jpg")
+    no-repeat;width:135px;height:26px;right:26px;bottom:6px;position:absolute
+}
+#menu{margin-left:200px}
+.menu-item .menu-item-title,.menu-item .menu-item-no-drop{color:#1e5a83;text-shadow:none}
+#header-logo.original,#header.no-user #header-logo.original{bottom:12px}
+#header-inner{padding-top:26px;position:relative}
+#login_form .btn-primary,#login_form .btn-primary:hover{
+    background-color:#4183c4;background-image:none;border:none!important
+}
+
+body.modal #modal-box.login-box h1,body.modal #modal-box.login-box .h1{
+    height:107px;margin:0 0 105px;
+    background-color:transparent;background-image:url("../canvas/mgmc_logo.jpg?v1");
+    background-repeat:no-repeat;background-position:68px 46px;text-indent:-999em
+}

@@ -56,14 +56,13 @@ end
 
 
  def create
+   tags_token = params[:course][:tag_tokens]
+   params[:course].delete :tag_tokens
    @course = Course.new(params[:course])
-   @course.user_id = current_user.id
-  
    @course.account_id=@account_id
-  
    @course.isconcluded="f"
    if @course.save
-
+     tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
      lms_create_course(@course)
      redirect_to manage_courses_path
@@ -79,10 +78,10 @@ end
 
  def update
    @course = Course.find(params[:id])
-  
-   @course.account_id=@account_id
- 
+   tags_token = params[:course][:tag_tokens]
+   params[:course].delete :tag_tokens
    if @course.update_attributes(params[:course])
+     tag_list(tags_token,@course)
      lms_update_course(@course)
      flash[:success] ="Successfully Updated Course."  
      redirect_to manage_courses_url
@@ -303,6 +302,36 @@ end
          end 
        end
     end
+ end
+
+  def tag_list(tags_token,course)
+    tags_list= tags_token.gsub!(/<<<(.+?)>>>/) { Tag.find_or_create_by_name_and_account_id(name: $1,account_id: @domain_root_account.id).id }
+     if tags_list.nil?
+         delete_tags(course,tags_token)
+         tags_token.split(",").map do |n|
+             Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+          end
+     else
+         tags_list.split(",").map do |n|
+           Tagging.find_or_create_by_tag_id_and_course_id(tag_id: n.to_i, course_id: course.id)
+         end
+     end
+
   end
-  
-end
+
+  def delete_tags(course,tags_token)
+    tag_id_arr = Array.new
+    course.tags.each do |tag|
+      tag_id_arr  << tag.id.to_s
+    end
+    tag_array =tags_token.split(",")
+    deleted_tag=  tag_id_arr - tag_array
+    unless deleted_tag.nil?
+      deleted_tag.each do |tag_id|
+        course.taggings.find_by_tag_id(tag_id).destroy
+      end
+    end
+  end
+
+ end
+

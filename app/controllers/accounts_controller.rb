@@ -3,10 +3,13 @@ class AccountsController < ApplicationController
     before_filter :subdomain_authentication, :only  => [:new,:create,:edit,:show,:update,:destroy,:index]
     before_filter :account_create_restrict
    
-     
+# 
+
   def new
   	@account=Account.new
   end
+
+
   def create
   	@account=Account.new(params[:account])
      params[:account][:name]=@account.name.downcase
@@ -17,8 +20,6 @@ class AccountsController < ApplicationController
       render "new"
   	end
 end
-
-
   def edit
   	@account=Account.find(params[:id])
   end
@@ -43,6 +44,4 @@ end
   	# 
   	@account=Account.all
   end
-
-  
 end

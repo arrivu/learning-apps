@@ -1,0 +1,206 @@
+<% provide(:title, 'A Smarter Way to Learn') %>
+<div style="width:1349px;margin:0px auto;">
+<% provide(:effectingHeader) %>
+
+
+<div class="homebanner" style="">
+            <div class="row">
+         
+           
+            <div class="row">
+               <div id="slideshow1" class="sliders">
+                <% @slider.each do |slider| %>
+
+<div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
+  <div class="row">
+        <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:45px 0px;margin: 30px auto;">
+                      <div class="span12" align="center" >
+                        <div class="bannertext">  
+     <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
+     
+     </div>     </div>  
+               <div class="clearfix"></div>
+                      <div class="span6" align="center" >
+
+<%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
+</div> 
+<div class="span6" align="justify">
+<p><%= slider.body_tag %><p>
+<%= render 'show_topics' %>
+</div>    
+ <div class="clearfix"></div>
+                    </div>  
+</div>
+
+   </div>
+<%end%>
+
+    </div>
+        </div>
+</div>
+</div>
+  <script type="text/javascript">
+      $(document).ready(function () {
+        $("#slideshow1").sliders({ interval: 5000 });
+      });
+    </script>
+
+    
+<div class="homecourse">
+    <div class="secondary-content yellobg">
+    <div class="container" align="center">
+      <div class="row testimonial">
+        <!-- <h2 class="ribbon">
+          <span class="title">Our Courses</span>
+        </h2> -->
+        <% @account_settings.each do |account_setting| %>
+        <% if  account_setting.popular_speak == true %>
+        <h2 style="margin-left:30px;"> Popular Courses</h2>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+      <div class="row">
+        <!-- <div class="span12" align="center">
+          <div class="bannersubtitle">
+              Learn where to start and what to take next with our courses
+          </div> 
+        </div> -->
+            
+              <%= render 'shared/courselist' %>
+            
+              <div align="center" style="margin-top: 50px;">
+         
+
+                <%= link_to "Discover More courses", courses_path, :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
+                           
+              </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+ 
+  <div class="ourknowledgepartners" > 
+
+ <div class="secondary-content ">
+    <div class="container" align="center">
+      <div class="row testimonial">
+           <h2 style="margin-left: 30px;">Knowledge Partners</h2>
+      </div>
+    </div>
+  </div>
+    <div class="container" align="center">
+      <div class="row testimonial">
+               
+
+        <div class="listofkp" >
+          <% @partners.each do |partners| %>
+          <div class="span4" style="width: 30%;">
+          <div class="kp">
+            <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
+          </div>
+           <div class="testimonialtext">
+                       "Sachin Ramesh Tendulkar AM is an Indian cricketer widely acknowledged as one of the greatest batsmen in One Day International cricket In 2002, Wisden Cricketers' Almanack ranked him the second greatest" 
+</div>
+</div>
+         <% end %>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
+          
+      <!-- <div class="listofkp" >
+          <div class="firstkp">
+           <a href="<%= knowledge_partners_path %>"> <img src="assets/jigsaw.png" /></a>
+          </div>
+          <div class="kp">
+            <a href="<%= knowledge_partners_path %>"> <img src="assets/GREAT LAKES LOGO.jpg" />   </a>
+          </div>
+          <div class="lastkp">
+            <a href="<%= knowledge_partners_path %>"> <img src="assets/eduPristineLogo.jpg" />  </a>
+          </div>
+        </div>
+        <div align="center">
+         
+              <%= link_to "", knowledge_partners_path, :class => "browselist" %>
+                <h6 style="color:steelblue;margin:0px;"> Know more about out Partners</h6>               
+              </div> -->
+      </div>
+    </div> 
+  </div>
+
+  <% @account_settings.each do |account_setting| %>
+<% if account_setting.testimonial ==true %>
+
+<div class="ourcustomers " >
+    <div class="secondary-content">
+    <div class="container" align="center">
+      <div class="row testimonial">
+       <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
+        </div>
+    </div>
+  </div>
+         <div class="container" >
+      <div class="row">
+          <div class="span12" style="margin-left:100px;">
+            
+             <% @testimonial.each do |testimonials| %>
+                       
+                <div class="span4" style="width: 30%;">
+       
+          <div class="verticalcustomerbox testimonial-one" align="center">
+                <div class="testimonialtext">
+                        "<%=testimonials.comment%>" 
+</div> <div class="testimonialauthor" >
+                 
+              -<%= testimonials.name %>,<br/><%=testimonials.organization%>           
+                
+            </div>
+
+
+                   </div></div>
+               
+    <%end%>
+    <% end %>
+   <% end %>
+
+           </div>
+      </div>
+      <div align="center">
+         
+             
+             <%= link_to "Read More Reviews", '', :class => "btn btn-primary yellobg" , :style=>"color:#000"%>
+                     
+              </div>
+    </div>
+  </div>
+
+<div class="bottomadsection">
+
+    <div class="container">
+      <div class="row">
+        <div class="span12" align="center" style="width: 95%;">
+          <h3 style="font-size: 38px;">Step up Your Learning Curve!
+          </h3>
+          
+          <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+

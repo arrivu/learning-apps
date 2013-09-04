@@ -1,25 +1,22 @@
-# == Schema Information
-#
-# Table name: tags
-#
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class Tag < ActiveRecord::Base
-	attr_accessible :name
+  attr_accessible :account_id, :name
+  validates :name,:account_id, presence: true
+  validates_uniqueness_of :name, :scope => :account_id
+  belongs_to :account
   has_many :taggings
-  has_many :blogs, through: :taggings
+  has_many :courses, through: :taggings
 
-
-  def self.search(search)
-  	if search
-      find(:all, conditions: ['name LIKE ?', "%#{search}%"])
+  def self.tokens(query)
+    tags = where("name like ?", "%#{query}%")
+    if tags.empty?
+      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
     else
-      find(:all)
+      tags
     end
+  end
+  def self.ids_from_tokens(tokens)
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
+    tokens.split(',')
   end
 
 end

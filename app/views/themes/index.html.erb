@@ -1,0 +1,70 @@
+
+<div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content">
+                <!-- .outer -->
+                <div class="container-fluid outer" style="background:#fff;">
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                                       <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+                                            <h5>Themes </h5>
+                                        </header>
+                                        <div id="collapse4" class="body">
+                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                  
+      <tr class="tab_head">
+            <th> Name </th>
+       <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+         </tr>
+    </thead>
+   <tbody>
+    	<% @themes.each do |theme| %>
+    	<tr>
+    		<td><%= theme.name %></td>
+
+
+			<td><%= link_to(edit_theme_path(theme)) do %><i class="icon icon-edit"></i><% end %>
+			
+		</td></tr><% end %>
+
+
+</tbody>
+
+                                            </table>
+
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+           <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+  
+               
+       
+                                    
+                                
+                            
+                      
+                  

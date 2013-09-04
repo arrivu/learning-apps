@@ -73,3 +73,4 @@ gem 'subdomain-fu', :git => 'git://github.com/mbleigh/subdomain-fu.git'
 gem 'tinymce-rails','4.0.2'
 gem "themes_for_rails", "~> 0.5.1"
 
+

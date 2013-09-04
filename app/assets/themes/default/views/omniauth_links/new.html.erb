@@ -1,0 +1,10 @@
+<%= form_for(@omniauth_link) do |f| %>
+<table><tr><td>
+	<%= f.label :face_book %></td><td>
+<%= f.text_field :face_book %></td></tr>
+<tr><td><%= f.label :gmail %></td><td>
+<%= f.text_field :gmail %></td></tr>
+<tr><td><%= f.label :linked_in %></td><td>
+<%= f.text_field :linked_in %></td></tr>
+<tr><td></td><td><%= f.submit "save" %></td></tr></table>
+<% end %>

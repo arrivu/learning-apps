@@ -1,0 +1,67 @@
+<div style="float:left">
+  <%= render 'shared/side_menu' %>
+</div>
+
+<br>
+<div class="row">
+  <div class="span12 offset3" style="min-height:530px;">
+   <h3 align = "center">Interested Users</h3>
+   <table>
+   <tr>
+   <td><%= form_tag "/interested_users", :method => 'get' do %></td>
+   
+   <td><%= label_tag(:search,"Courses") %></td>
+
+   <td><%= select_tag :search, options_from_collection_for_select(Course.all, "id", "title",:selected => params[:search]) , {:prompt => 'ALL'} %></td>
+
+   <td valign="top"><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %></td>
+   </tr>
+ </table>
+   
+   <% end %>
+           <div class="coursecount pull-left">
+          <span class="badge badge-info">Found <%=pluralize(@total_users,"user")%> </span>
+        </div><br/><br/>
+
+   <table class="table table-condensed table-hover table table-striped tablesorter" id="myTable">
+    <thead>
+      <tr class="tab_head">
+        <th >Username</th>
+        <th >Email</th>
+        <th >Interested Course</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      Download:
+ 
+  <%= link_to "Excel", interested_users_path(format: "xls",:search =>params[:search]) %>
+      <% @users.each do |user| %>
+      <tr>
+        <td ><%= link_to user.student.user.name %></td>
+        <td><%= user.student.user.email %></td>
+        <td><%= user.course.title %></td>
+        <td><%=l user.created_at , :format=>'%d %b. %Y %I:%M'%></td>
+        
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+<div class='apple_pagination' align="center"><%= will_paginate  @users, :container => false %></div>
+<script>
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter(); 
+    } 
+); 
+</script>  

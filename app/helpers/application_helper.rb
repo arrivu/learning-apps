@@ -40,6 +40,7 @@ module ApplicationHelper
 
      redirect_to root_url # or whatever
    end
+  
    
   		 
 
@@ -55,7 +56,26 @@ end
   #  def http_cache(instant_variable,scope=true)
   #    fresh_when instant_variable, public: scope
   #  end
- 
+  def theme_check_account_admin
+      authenticate_user!
+      if current_user.has_role? :account_admin 
+       return
+      
+      else  
+
+     redirect_to root_url # or whatever
+   end
+ end
+ def theme_check_create_admin
+      authenticate_user!
+      if current_user.has_role? :admin 
+       return
+      
+      else  
+
+     redirect_to root_url # or whatever
+   end
+ end
 
   def subdomain_authentication
        :authenticate_user!
