@@ -1,2 +1,2 @@
-module AccountSettingsHelper
+module AccountsHelper
 end

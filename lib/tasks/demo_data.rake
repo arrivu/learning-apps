@@ -1,48 +1,42 @@
 #encoding: utf-8
-
 namespace :db do
-
 	task demo: :environment do
-
 	account =Account.create! :active => true, :name=>"demo", :no_of_courses=>"0", :no_of_users=>"0", :organization=>"learning Portal"
-puts 'SETTING UP DEFAULT USER LOGIN'
+  puts 'SETTING UP DEFAULT USER LOGIN'
+  if Rails.env.development?
+     user_account=User.create! :name=> 'Account Admin', :email => 'demo@arrivusystems.com',:password=>'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
+  end
+  puts 'User created: ' << user_account.name
+  @account_user = account.add_user(user_account, 'AccountAdmin')
+  user_account.add_role :account_admin
 
- 
- if Rails.env.development?
-   user_account=User.create! :name=> 'Account Admin', :email => 'demo@arrivusystems.com',:password=>'Admin123$', :password_confirmation => 'Admin123$', :provider=>"sign_up"
- end
+		topics_hash = {
+			1 => ["Algorithm",
+				"Category Algorithm",2],
+				2 => ["Concept of Digital",
+					"Category Concept of Digital",2,1,1],
+					3 => ["Engineering",
+						"Category Engineering",2,2,1]
+					}
 
-    puts 'User created: ' << user_account.name
-    @account_user = account.add_user(user_account, 'AccountAdmin')
-    user_account.add_role :account_admin
+					topics_hash.each do |key, array|
+						Topic.create!(
+							name: array[0],
+							desc: array[1],
+							account_id: array[2],
+							parent_topic_id: array[3],
+							root_topic_id: array[4]
+							)
+					end
 
-                topics_hash = {
-            			1 => ["Algorithm",
-            				"Category Algorithm",2],
-            				2 => ["Concept of Digital",
-            					"Category Concept of Digital",2,1,1],
-            					3 => ["Engineering",
-            						"Category Engineering",2,2,1]
-            					}
+  Account.create!(
+    knowledge_partners: "TRUE",
+    media_partners: "TRUE",
+    slide_show: "TRUE",
+    popular_speak: "TRUE",
+    testimonial: "TRUE",
+    account_id: 2)
 
-              	topics_hash.each do |key, array|
-          					Topic.create!(
-          							name: array[0],
-          							desc: array[1],
-          							account_id: array[2],
-          							parent_topic_id: array[3],
-          							root_topic_id: array[4]
-          							)
-          			end
-
-                AccountSetting.create!(
-                  knowledge_partners: "TRUE",
-                  media_partners: "TRUE",
-                  slide_show: "TRUE",
-                  popular_speak: "TRUE",
-                  testimonial: "TRUE",
-                  account_id: 2)
-        
                	Footerlink.create!(youtube_url: "https://www.youtube.com",
                		linkedin_url: "https://www.linkedin.com",
                		google_url: "https://www.plus.google.com",
@@ -140,7 +134,7 @@ puts 'SETTING UP DEFAULT USER LOGIN'
                     account_id: 2 
                 )
 
-                Term.create!(
+                    TermsAndCondition.create!(
                   	title:"Terms and condtions",
                     desc:"By using this service, you agree that you have read, understand 
                           and agree to these terms. You also agree to review this agreement 
@@ -149,7 +143,7 @@ puts 'SETTING UP DEFAULT USER LOGIN'
                           use of this site will be deemed your conclusive acceptance of any modified agreement",
                     account_id: 2 
                 )
-              
+
                 TeachingStaff.create!(
                     name: "Ram" ,
                     description: "aaaaaaa",
@@ -256,5 +250,6 @@ puts 'SETTING UP DEFAULT USER LOGIN'
   
           			TaxRate.create!(valid_from:"2013-08-01", valid_until:"2050-08-31",factor:0.0, is_default: true, description: "Service Tax", account_id: 2 )
           		  Coupon.create!(metadata:1 ,name: "Algorithm Using Program", description: "learning about only use the learning part and use the coupons", alpha_mask: "AA-BB-CC", digit_mask: "11-22-33", amount_one: 0.0, percentage_one: 0.0, expiration: "2014-08-01", account_id: 2 )
+
 	end
 end

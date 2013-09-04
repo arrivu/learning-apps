@@ -1,0 +1,93 @@
+<div style="float:left">
+<%= render 'shared/side_menu' %>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="span12 offset3">
+<% provide(:title, 'Create Course') %>
+<br>
+<div class="row">
+	<div class="span10">
+		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
+			<table class="table table-hover ">
+				<tr>
+					<h3 align = "center">Edit Course Library</h3>
+				</tr>
+
+				<%= simple_form_for(@course) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<tr><td><%= f.label :title, "Title" %></td>
+					<td><%= f.text_field :title %></td></tr>
+
+
+										<tr><td><%= f.label :start_date, "Start Date" %></td><td>
+
+						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
+					</td></tr>
+
+					<tr><td><%= f.label :end_date, "End Date" %></td><td>
+
+						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
+					</td></tr>
+
+
+					<tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
+						<td>
+
+							<%= f.collection_select :teaching_staff_ids, TeachingStaff.order(:name), :id, :name, {}, {multiple: false} %>
+
+
+						</td></tr>
+						<tr><td><%= f.label :short_desc, "Short Description" %></td>
+							<td><%= f.text_field :short_desc %></td></tr>
+						
+
+						<tr><td><%= f.label :desc, "Course Description" %></td>
+							<td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
+
+							<tr><td>  </td><td>
+								<% if @course.data!=nil %>
+								<%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
+								<% end %>
+							</td></tr>
+
+							<tr><td><%= f.label 'attachment', "Image" %></td>
+								<td><%= f.file_field 'attachment' %></td></tr>
+
+							<tr><td>  </td><td>
+								<% if @course.background_image != nil %>
+
+								<%= image_tag url_for(:controller=>"courses", :action => 'background_image', :id =>  @course.id), :size => "450x103" %>
+							<% end %>
+							</td></tr>
+
+									<tr><td><%= f.label 'background', "Background Image (1350x310)" %></td>
+									<td><%= f.file_field 'background' %></td></tr>
+
+
+								<tr><td><%= f.label :ispopular, "Popular" %></td>
+									<td><%= f.check_box :ispopular %></td></tr>
+
+									<tr><td><%= f.label :ispublished, "Publish" %></td>
+										<td><%= f.check_box :ispublished 	%></td></tr>
+
+										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
+											<td><%= f.check_box :is_coming_soon %></td></tr>
+
+
+										<tr><td><%= f.label :topic_id, "Topics" %></td>
+											<td><%= f.collection_select :topic_id, Topic.order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+
+											<tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
+												</td></tr>
+											
+											<% end %>
+
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>

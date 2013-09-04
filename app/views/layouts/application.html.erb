@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,28 +9,28 @@
   <%= render 'layouts/shim' %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
-<!-- <script src="//use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9:all.js"></script>
- --></head>
+</head>
 <body>
 
-  <% if check_null(yield(:effectingHeader)) %>
-  <%= render 'layouts/header' %>
-  <% else %>
-  <!-- Do Nothing -->
-  <% end %>
-  <!-- <div class="container"> -->
+<% if check_null(yield(:effectingHeader)) %>
 
-  <% unless response.cache_control[:public] %>
+    <%= render 'layouts/header' %>
+<% else %>
+    <!-- Do Nothing -->
+<% end %>
+<!-- <div class="container"> -->
+
+<% unless response.cache_control[:public] %>
     <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 <% end %>
-    <%= yield %>
+<%= yield %>
 
-    <%= render 'layouts/login_popup' %>
-    <%= render 'layouts/signup_popup' %>
+<%= render 'layouts/login_popup' %>
+<%= render 'layouts/signup_popup' %>
 <%= render 'layouts/forgot_password' %>
-  <%= render 'layouts/footer' %>
+<%= render 'layouts/footer' %>
 </body>
 <%= debug(params) if Rails.env.development? %>
 </html>

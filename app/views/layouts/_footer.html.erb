@@ -38,7 +38,7 @@
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Contact Us", new_contact_path %></li>
           <li><%= link_to "Privacy Policy", privacy_path %></li>
-          <li><%= link_to "Terms & Conditions ", terms_path %></li>
+          <li><%= link_to "Terms & Conditions ", terms_and_conditions_path %></li>
         </ul> 
       </div>
       
@@ -81,7 +81,8 @@ End of Zopim Live Chat Script -->
 
     <div class="row">
       <div class="four columns mission">
-        <p class="headinglike" style="font-size: 20px; font-weight:300;">Beacon learning</p>
+
+        <p class="headinglike" style="font-size: 20px; font-weight:300;"><%= @domain_root_account.organization %></p>
         <% @footerlinks.each do |footerlink| %>
         <ul class="social">
      <li>
@@ -116,7 +117,7 @@ End of Zopim Live Chat Script -->
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Contact Us", new_contact_path %></li>
           <li><%= link_to "Privacy Policy", privacy_path %></li>
-          <li><%= link_to "Terms & Conditions ", termscondition_path %></li>
+          <li><%= link_to "Terms & Conditions ", terms_and_conditions_path %></li>
         </ul> 
       </div>
       <div class="two columns">

@@ -1,5 +1,5 @@
 class Coupon < ActiveRecord::Base
-  require 'errors'
+  #require 'errors'
   attr_accessible :name, :description,:expiration,:how_many,:category_one,:category_two,:amount_one,
                   :percentage_one,:amount_two,:percentage_two,:alpha_mask,:digit_mask,:metadata,:account_id
   

@@ -155,14 +155,18 @@
 													<%= f.select(:topic_id,options_for_select(topics_array))%>
 
 												</td></tr>
-											
-											
-											
 
-												<tr><td></td><td><%= f.submit "Add Course", class: "btn btn-large btn-primary" %>
+                                            <tr> <td> <%= f.label :tag_tokens, "Add Tags" %></td>
+                                              <td>
+                                                  <div class="field">
+                                                   <%= f.text_field :tag_tokens, data: {load: @course.taggings}, :autofocus => false%>
+                                                  </div>
+                                               </td>
+                                            </tr>
+									     	   <tr><td></td><td><%= f.submit "Add Course", class: "btn btn-large btn-primary" %>
 												</td></tr></table>
 												<% end %>
-</div>
+                                      </div>
                                     </div>
                                 </div>
                             </div> 

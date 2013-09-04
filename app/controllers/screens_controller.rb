@@ -10,7 +10,8 @@ class ScreensController < ApplicationController
     @header_details = HeaderDetail.where(:account_id=>@account_id)
     @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
     @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
-    @account_settings=AccountSetting.where(:account_id=>@account_id)
+    @account_settings=Account.where(:account_id=>@account_id)
+    # @account_settings=Account.where(:account_id=>@account_id)
   end
 
   def about
@@ -29,7 +30,7 @@ class ScreensController < ApplicationController
   end
 
   def termscondition
-    @term = Term.where(:account_id=>@account_id)
+    @terms_and_condition = TermsAndCondition.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
      @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end

@@ -1,8 +1,8 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script, :settings, :add_setting
+  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script, :settings
   RESERVED_SUBDOMAINS = %w(
   admin api assets blog calendar  developer developers docs files ftp git lab mail manage pages sites ssl staging status support www
-)
+  )
   validates_exclusion_of :name, :in => RESERVED_SUBDOMAINS,
                          :message => "Subdomain/Account Name %{value} is reserved."
   has_many :account_users , :dependent => :destroy
@@ -13,12 +13,19 @@ class Account < ActiveRecord::Base
   has_many :tax_rates,:dependent =>:destroy
   has_many :teaching_staffs, :dependent =>:destroy
   has_many :testimonials, :dependent => :destroy
+  has_one  :account_theme
+  has_one  :account_setting
+  has_one  :terms_and_condition
+  serialize :settings, Hash
+  cattr_accessor :account_settings_options
+  self.account_settings_options = {}
+  has_many :tags
   has_many  :teaching_staff_courses, :dependent => :destroy
-
+  validates :name, presence: true
+  validates :organization, presence: true
   def self.default
     Account.first
   end
-
 
   def add_user(user, membership_type = nil)
     return nil unless user && user.is_a?(User)
@@ -27,14 +34,7 @@ class Account < ActiveRecord::Base
     au ||= self.account_users.create(:user_id => user.id, :membership_type => membership_type)
   end
 
-serialize :settings, Hash
-
-
-       
-  cattr_accessor :account_settings_options
-  self.account_settings_options = {}
-
-def self.add_setting(setting, opts=nil)
+  def self.add_setting(setting, opts=nil)
     self.account_settings_options[setting.to_sym] = opts || {}
     if (opts && opts[:boolean] && opts.has_key?(:default))
       if opts[:default]
@@ -44,6 +44,7 @@ def self.add_setting(setting, opts=nil)
       end
     end
   end
+
 
 add_setting :cas_enable, :root_only => true,:boolean => true, :default => true
 add_setting :cas_expiry_time, :root_only => true, :default => 28800
@@ -93,23 +94,7 @@ add_setting :slide_show, :root_only => true
 add_setting :popular_speak, :root_only => true
 add_setting :testimonial, :root_only => true
 
-# # add_setting :knowledge_partners
-# # add_setting :media_partners
-# # add_setting :slide_show
-# # add_setting :popular_speak
-# # add_setting :testimonial
-# def settings
-#     result = self.read_attribute(:settingsnew)
-#     return result if result
-#     return write_attribute(:settingsnew, {}) unless frozen?
-#     {}.freeze
-#   end
-# # Returns +true+ if the attributes hash has been frozen.
-#       def frozen?
-#         @attributes.frozen?
-#       end
-
-def settings=(hash)
+  def settings=(hash)
     if hash.is_a?(Hash)
       hash.each do |key, val|
         if account_settings_options && account_settings_options[key.to_sym]
@@ -137,6 +122,10 @@ def settings=(hash)
     settings
   end
 
-
-
+  def settings
+    result = self.read_attribute(:settingsnew)
+    return result if result
+    return write_attribute(:settingsnew, {}) unless frozen?
+    {}.freeze
+  end
 end

@@ -17,38 +17,31 @@
 #
 
 class User < ActiveRecord::Base
-  
-  include CasHelper
-  include LmsHelper
-
+  unless @domain_root_account.nil?
+  default_scope User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id )
+  end
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and 
+  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable
-  # Setup accessible (or protected) attributes for your model
+         :recoverable, :rememberable, :trackable, :validatable
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  include CasHelper
+  include LmsHelper
   attr_accessible :role_ids, :as => :admin
+  attr_accessible :attachment,:content_type,:image_blob,:lms_id,:name, :email, :password, :password_confirmation,
+                  :remember_me, :omni_image_url, :phone,:user_type,:sub_plan,:user_desc, :provider,:subtype, :uid,
+                  :reset_password_sent_at
 
-  attr_accessible :attachment,:content_type,:image_blob,:lms_id,:name, :email, :password, :password_confirmation, :remember_me, :omni_image_url, :phone,:user_type,:sub_plan,:user_desc, :provider,:subtype, :uid
-
-  has_many :courses, dependent: :destroy
-  has_many :o_classes, :class_name => "O_Classe"
-  # has_many :tutorials, dependent: :destroy
-  has_many :blogs, dependent: :destroy
   has_many :authentication, :dependent => :delete_all
-
   has_many :comments
-  has_one :student
+  has_one  :student
   has_many :invoices
   has_many :account_users
-  has_one :teaching_staff , dependent: :destroy 
+  has_one  :teaching_staff , dependent: :destroy
   accepts_nested_attributes_for :teaching_staff
-  
-
-  # has_one :teaching_staffs, dependent: :destroy
-  # has_one :students, dependent: :destroy
-
   def teachingdetails
    self.teaching_staff_courses.where(:teaching_staff_type => "teacher_assitant")
   end
@@ -75,13 +68,13 @@ class User < ActiveRecord::Base
 	end
 
   def attachment=(incoming_file)
-    if incoming_file!=nil
+    if incoming_file!=nil && incoming_file != ""
       self.content_type = incoming_file.content_type
       self.image_blob = incoming_file.read
     end
   end
 
-  before_destroy:delete_in_lms
+  before_destroy :delete_in_lms
   def delete_in_lms
     if lms_enable? 
       lmsuser=CanvasREST::User.new
@@ -93,7 +86,6 @@ class User < ActiveRecord::Base
   def self.insert_user_role(user_id,role_id)
     find_by_sql("insert into users_roles(user_id,role_id) values(#{user_id},#{role_id})")  
   end
-  
-  
+
 end
 
