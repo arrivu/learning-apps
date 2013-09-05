@@ -29,7 +29,7 @@ namespace :db do
 							)
 					end
 
-  AccountSetting.create!(
+  Account.create!(
     knowledge_partners: "TRUE",
     media_partners: "TRUE",
     slide_show: "TRUE",

@@ -3,31 +3,54 @@
 </div>
 <div class="row">
 	<div class="span10 offset3">
-<%= form_for (@account_setting) do |f| %>
-
-
-
-
-
+<%= form_for :update_settings, :url => url_for(:controller => 'accounts', :action => 'update_settings') do |f| %>
 <table>
 	<tr>
 		<td><%= f.label :knowledge_partners %></td>
-		<td><%= f.check_box :knowledge_partners %></td></tr>
+		<td><%= f.check_box :knowledge_partners_enable %></td></tr>
 
 	<tr><td><%= f.label :media_partners %></td>
-		<td><%= f.check_box :media_partners %></td></tr>
+		<td><%= f.check_box :media_partners_enable %></td></tr>
 
 
 		<tr><td><%= f.label :slide_show %></td>
-		<td><%= f.check_box :slide_show %></td></tr>
+		<td><%= f.check_box :slide_show_enable %></td></tr>
 
 		
 		<tr><td><%= f.label :popular_speak %></td>
-		<td><%= f.check_box :popular_speak %></td></tr>
+		<td><%= f.check_box :popular_speak_enable %></td></tr>
 		
 
-		<tr><td><%= f.label :testimonial %></td>
-	    <td><%= f.check_box :testimonial %></td></tr>
+		<tr><td><%= f.label   :testimonial %></td>
+	    <td><%= f.check_box :testimonial_enable %></td></tr>
+
+			<tr><td><%= f.label :popular_course %></td>
+	    <td><%= f.check_box :popular_course_enable %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_facebook_key %></td>
+	    <td><%= f.text_field :omniauth_facebook_key %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_facebook_secret %></td>
+	    <td><%= f.text_field :omniauth_facebook_secret %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_linkedin_key %></td>
+	    <td><%= f.text_field :omniauth_linkedin_key %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_linkedin_secret %></td>
+	    <td><%= f.text_field :omniauth_linkedin_secret %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_google_oauth2_key %></td>
+	    <td><%= f.text_field :omniauth_google_oauth2_key %></td></tr>
+
+	    <tr><td><%= f.label :omniauth_google_oauth2_secret %></td>
+	    <td><%= f.text_field :omniauth_google_oauth2_secret %></td></tr>
+<!-- 
+	    <tr><td><%= f.label :testimonial %></td>
+	    <td><%= f.text_field :testimonial %></td></tr>
+
+	    <tr><td><%= f.label :testimonial %></td>
+	    <td><%= f.text_field :testimonial %></td></tr>
+	 -->
         <tr><td><%= f.submit  "submit" %></td></tr>
 </table>
 <% end %>

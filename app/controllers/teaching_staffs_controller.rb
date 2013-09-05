@@ -1,10 +1,10 @@
 
 class TeachingStaffsController < ApplicationController
   include LmsHelper
-  before_filter :authenticate_user!
-  before_filter :check_admin_user
+  before_filter :authenticate_user!, :except => :teaching_staff_signup
+  before_filter :check_admin_user, :except => :teaching_staff_signup
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
-   before_filter :valid_domain_check, :only=>[:show,:edit]
+  before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
 
 
@@ -44,21 +44,8 @@ class TeachingStaffsController < ApplicationController
 	end
 	end
 
-	# def create
-	# 	@teachingstaff=TeachingStaff.new(params[:teaching_staff])
-	# 	if @teachingstaff.save
-	# 		flash[:notice]="Teaching Staff details created successfully"
-	# 		redirect_to new_teaching_staff_path
-	# 	else
-	# 		render 'new'
-	# 	end			
-	# end
-
 	def edit
 		@teachingstaff=TeachingStaff.find(params[:id])
-
-
-		#@teachingstaff.build_user
 	end
 
 	def update
@@ -78,9 +65,6 @@ class TeachingStaffsController < ApplicationController
                   linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
 									qualification:params[:teaching_staff][:qualification],
 									name:params[:teaching_staff][:user][:name])
-									
-									# AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-									
 			flash[:notice]="Teaching Staff details updated successfully"
 			redirect_to teaching_staffs_path
 
@@ -119,6 +103,34 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.destroy
 		redirect_to teaching_staffs_path
 		flash[:notice] = "Deleted teaching staff details successfully"
-	end
+  end
+
+  def teaching_staff_signup
+    @teachingstaff = TeachingStaff.new
+    @teachingstaff.name =  params[:teaching_staff][:teaching_staff_user][:name]
+    @teachingstaff.description =  params[:teaching_staff][:description]
+    @teachingstaff.qualification =  params[:teaching_staff][:qualification]
+    @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
+
+    @teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
+                              email: params[:teaching_staff][:teaching_staff_user][:email],
+                              user_type: 3,
+                              content_type: params[:teaching_staff][:teaching_staff_user][:content_type],
+                              attachment: params[:teaching_staff][:teaching_staff_user][:attachment],
+                              password: params[:teaching_staff][:teaching_staff_user][:password],
+                              password_confirmation: params[:teaching_staff][:teaching_staff_user][:password_confirmation])
+
+    @teachingstaff.account_id=@account_id
+    if @teachingstaff.save
+      @teachingstaff.user.add_role(:teacher)
+      AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+      flash[:notice] = "Account has been created.However you cannot login now ,"
+      lms_create_user(@teachingstaff.user)
+      redirect_to root_path
+
+    else
+     render :teaching_staff_signup
+    end
+  end
 	
 end

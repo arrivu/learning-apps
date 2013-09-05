@@ -121,12 +121,7 @@
     end
 
     def front_page_registration_restrict 
-       @front_page= controller_name.classify.constantize.find_by_account_id(@domain_root_account.id)
-       if @front_page!=nil
-        redirect_to users_path
-      else
         return
-      end
     end
     
  

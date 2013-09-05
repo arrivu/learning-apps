@@ -21,7 +21,8 @@
 //= require jquery-minicolors-simple_form
 //= require tinymce
 //= require jquery.tokeninput
-
+//= require rails.validations
+//= require rails.validations.simple_form
 
 $(function() {
   $(".pagination").on("click", function() {
