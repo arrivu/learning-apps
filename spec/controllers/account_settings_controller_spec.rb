@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AccountSettingsController do
+describe AccountsController do
 
   describe "GET 'new'" do
     it "returns http success" do

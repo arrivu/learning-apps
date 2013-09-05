@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
     before_filter :subdomain_authentication, :only  => [:new,:create,:edit,:show,:update,:destroy,:index]
     before_filter :account_create_restrict
    
-# 
+
 
   def new
   	@account=Account.new
@@ -41,7 +41,12 @@ end
   end
 
   def index
-  	# 
   	@account=Account.all
+  end
+
+  def update_settings
+   @domain_root_account.settings=params[:update_settings]
+   @domain_root_account.save!
+      render :update_settings
   end
 end
