@@ -19,7 +19,6 @@ mailserver:
   domain: lvh.me:3000
   user_name: arrivusystems@gmail.com
   password: Arrivu123$
-  
 admin_mail:
   to: arrivusystems@gmail.com
 payment_gateway:
