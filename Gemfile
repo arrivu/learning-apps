@@ -9,6 +9,8 @@ gem 'cancan', '1.6.9'
 #gem 'devise_cas_authenticatable',">=1.2.1"
 gem 'rolify', '3.2.0'
 gem 'simple_form', '2.1.0'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 gem 'omniauth','1.1.4'
 gem 'omniauth-facebook','1.4.1'
 gem 'omniauth-linkedin','0.1.0'
@@ -52,16 +54,9 @@ gem 'email_spec', '1.4.0', :group => :test
 gem 'launchy', '2.3.0', :group => :test
 gem 'capybara', '2.1.0', :group => :test
 gem 'factory_girl_rails', '4.2.1', :group => [:development, :test]
-
 gem 'rest-client', '1.6.7'
 gem 'json','1.7.7'
 gem 'rails_config', '0.3.3'
-
-gem 'simple_form', '2.1.0'
-# group :development do
-#gem 'pg', '0.12.2'
- #gem 'mysql2'
-# end
 gem 'acts_as_commentable', '3.0.1'
 gem 'letsrate', '1.0.8'
 gem 'canvas',:git => 'git://github.com/m-narayan/canvas', :branch => 'beacon-deploy' 
@@ -71,6 +66,6 @@ gem 'jquery-minicolors-rails', '0.0.3'
 #gem 'exception_notification', '3.0.1'
 gem 'subdomain-fu', :git => 'git://github.com/mbleigh/subdomain-fu.git'
 gem 'tinymce-rails','4.0.2'
+gem 'ancestry'
 gem "themes_for_rails", "~> 0.5.1"
-
 
