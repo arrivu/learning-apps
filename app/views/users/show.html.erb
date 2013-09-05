@@ -1,10 +1,21 @@
+<div id="wrap">
 
-<div style="float:left">
-	<%= render 'shared/side_menu' %>
-</div>
-<br>
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content">
+                <!-- .outer -->
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
 
-<div class="row">
+                                        <div id="collapse4" class="body">
+                                          <div class="icons"><span class="badge badge-info"><%= @user.name %></span></div>
+
+                                          <div class="row">
   <div class="span8 offset3" style="min-height:500px;">
    <table cellpadding="10"> <% if @user.image_blob == nil %>
      <tr><td> <% if @user.omni_image_url == nil %>
@@ -130,3 +141,36 @@
 
         </div><!-- End of span8 --> 
       </div>
+                                          
+                                    </div>
+                                
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+<div class="left" style="padding: 0px;width: 16%;float: right;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-user"></i>Add New Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
+    </div>
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+       
+
+
+
+

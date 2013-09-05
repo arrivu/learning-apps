@@ -1,14 +1,14 @@
 <div id="wrap">
   <%= render 'shared/side_menu' %>
    <div id="content">
-     <div class="container-fluid outer" style="background:#fff;">
+     <div class="container-fluid outer"  >
        <div class="row-fluid">
          <div class="span12 inner">
            <div class="row-fluid">
              <div class="span12">
                <div class="box">
                  <div id="collapse4" class="body">
-                  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                  <table id="dataTable" >
                    <%= simple_form_for(@course) do |f| %>
                     <%= render 'shared/error_messages', object: f.object %>
                     <tr><td><%= f.label :title, "Title" %></td>
@@ -48,11 +48,11 @@
                     <tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
                                 <td><%= f.check_box :is_coming_soon %></td></tr>
                     <tr><td><%= f.label :topic_id, "Topics" %></td>
-                                <td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                    <td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
                     <tr> <td>        <%= f.label :tag_tokens, "Update Tags" %></td>
                          <td>
                            <div class="field">
-                             <%= f.text_field :tag_tokens, :class => "token_input", "data-pre" => @course.tags.map(&:attributes).to_json %>
+         <%= f.text_field :tag_tokens, :class => "token_input", "data-pre" => @course.tags.map(&:attributes).to_json %>
 
                            </div>
                          </td>

@@ -151,6 +151,8 @@ Website: http://www.onokumus.com
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.icons{height: 30px;}
 /* END #left div */
 /* BEGIN main content */
 #content {
@@ -161,6 +163,7 @@ margin-right: 0;
 -o-transition: margin-left 0.4s;
 transition: margin-left 0.4s;
 width: 68%;
+float:left;
 }
 #content .main {
   padding: 10px;
@@ -408,7 +411,7 @@ padding: 0px;
 margin: 5px
 }
 #content .outer .inner {
-  background: #fff;
+ /* background: #fff;*/
   padding: 0;
 }
 /* BEGIN body.side-right styles */

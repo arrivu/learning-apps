@@ -145,11 +145,11 @@
             <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
           </div>
             <div class="testimonialtext">
-                       "Consistently ranked amongst the top ten business schools in the country, Great Lakes is well known for its world class faculty, pedagogy and academic prowess."  
+                       "<%= partners.comments%>"  
 </div> 
-         <% end %>
+         
         </div>
-      
+      <% end %>
       </div>
     </div>
   </div>

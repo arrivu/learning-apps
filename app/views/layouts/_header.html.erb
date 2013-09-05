@@ -44,7 +44,7 @@ myWindow.close();
 
 <header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 45px;">
     <div class="span4">
- <div class="logo" >
+ <div class="logo" style="height:55px;">
 
     <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
     
