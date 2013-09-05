@@ -94,4 +94,5 @@ Myapp::Application.routes.draw do
   match '/add_account_id', :to=>'courses#add_account_id'
   resources :themes
   resources :tags
+  match '/tagged_courses', :to =>'courses#tagged_courses'
 end
