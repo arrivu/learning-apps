@@ -60,7 +60,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @account_setting.each do |account_setting| %> 
+        <% if @domain_root_account.knowledge_partners %>
 <tr>
 <td><%= account_setting.knowledge_partners %></td>
 <td><%= account_setting.media_partners %></td>
