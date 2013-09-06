@@ -14,7 +14,6 @@ class Account < ActiveRecord::Base
   has_many :teaching_staffs, :dependent =>:destroy
   has_many :testimonials, :dependent => :destroy
   has_one  :account_theme
-  has_one  :account_setting
   has_one  :terms_and_condition
 
   serialize :settings, Hash
