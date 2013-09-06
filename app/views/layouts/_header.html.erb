@@ -97,14 +97,11 @@ myWindow.close();
 
        <nav style="padding:0px;">
         <ul class="nav pull-right">
-          <li> <%= link_to "Course Library", courses_path %></li>
+          <li> <%= link_to "Course Library", courses_path, :style=>"color:black" %></li>
           <% if user_signed_in?%>
           <% if current_user.has_role? :admin %>
             <li ><%= link_to 'Admin', users_path %></li>
-
-          
-
-              <script>
+         <script>
           $('.courseslink').css('left',"-100px");
           </script>
           <% elsif current_user.has_role? :account_admin %>
