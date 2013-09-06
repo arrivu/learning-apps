@@ -29,17 +29,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",              :null => false
   end
 
-  create_table "account_settings", :force => true do |t|
-    t.boolean  "knowledge_partners"
-    t.boolean  "media_partners"
-    t.boolean  "slide_show"
-    t.boolean  "popular_speak"
-    t.boolean  "testimonial"
-    t.integer  "account_id",         :limit => 8
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-  end
-
   create_table "account_themes", :force => true do |t|
     t.string   "name"
     t.integer  "account_id"
@@ -374,49 +363,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
-
-  create_table "settings", :force => true do |t|
-    t.string   "knowledge_partners"
-    t.string   "media_partners"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "account_id"
-    t.boolean  "popular_speak"
-    t.boolean  "slide_show"
-    t.boolean  "testimonial"
-    t.boolean  "cas_enable"
-    t.integer  "cas_expiry_time"
-    t.string   "cas_url"
-    t.string   "cas_login_path"
-    t.string   "cas_logout_path"
-    t.boolean  "lms_enable"
-    t.integer  "lms_account_id"
-    t.string   "lms_oauth_token"
-    t.string   "lms_root_url"
-    t.string   "lms_course_url_path"
-    t.string   "lms_api_root_url"
-    t.string   "lms_logout_path"
-    t.string   "mailserver_address"
-    t.integer  "mailserver_port"
-    t.string   "mailserver_domain"
-    t.string   "mailserver_user_name"
-    t.string   "mailserver_password"
-    t.string   "admin_mail_to"
-    t.boolean  "payment_gateway_enable"
-    t.integer  "payment_gateway_merchant_id"
-    t.integer  "payment_gateway_work_key"
-    t.integer  "payment_gateway_ccavenue_account"
-    t.integer  "invoices_notes"
-    t.string   "exception_notifer_email_prefix"
-    t.string   "exception_notifer_sender_address"
-    t.string   "exception_notifer_exception_recipients"
-    t.string   "omniauth_facebook_key"
-    t.string   "omniauth_facebook_secret"
-    t.string   "omniauth_linkedin_key"
-    t.string   "omniauth_linkedin_secret"
-    t.string   "omniauth_google_oauth2_key"
-    t.string   "omniauth_google_oauth2_secret"
-  end
 
   create_table "sliders", :force => true do |t|
     t.binary   "image"

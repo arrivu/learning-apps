@@ -13,91 +13,169 @@
                                     <div class="box">
                                         <div id="collapse4" class="body">
        <%= form_for :update_settings, :url => url_for(:controller => 'accounts', :action => 'update_settings')  do |f| %>
-<table>
-	<tr>
+
+
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#account">Account Settings</a></li>
+  <li><a href="#cas">Cas Settings</a></li>
+  <li><a href="#lms">Lms Settings</a></li>
+  <li><a href="#mail">Mail Settings</a></li>
+  <li><a href="#payment">Payment Settings</a></li>
+  <li><a href="#social">Socialmedia Settings</a></li>
+
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="account">
+
+  <table>
+	  <tr>
 		<td><%= f.label :knowledge_partners %></td>
 		<td><%= f.check_box :knowledge_partners_enable, :checked => @domain_root_account.settings[:knowledge_partners_enable] %></td>
-	<td><%= f.label   :lms_enable %></td>
-	    <td><%= f.check_box   :lms_enable, :checked => @domain_root_account.settings[:lms_enable] %></td></tr>
+	  </tr>
 
-	<tr><td><%= f.label :media_partners %></td>
-		<td><%= f.check_box :media_partners_enable, :checked => @domain_root_account.settings[:media_partners_enable] %></td><td><%= f.label    :lms_account_id %></td>
-	   <td><%= f.text_field :lms_account_id, :value => @domain_root_account.settings[:lms_account_id] %></td></tr>
+	  <tr><td><%= f.label :media_partners %></td>
+		<td><%= f.check_box :media_partners_enable, :checked => @domain_root_account.settings[:media_partners_enable] %></td></tr>
 
 
 		<tr><td><%= f.label :slide_show %></td>
-		<td><%= f.check_box :slide_show_enable, :checked => @domain_root_account.settings[:slide_show_enable] %></td><td><%= f.label    :lms_oauth_token %></td>
-		<td><%= f.text_field   :lms_oauth_token, :value => @domain_root_account.settings[:lms_oauth_token] %></td></tr>
+		<td><%= f.check_box :slide_show_enable, :checked => @domain_root_account.settings[:slide_show_enable] %></td></tr>
 
 		
 		<tr><td><%= f.label :popular_speak %></td>
-		<td><%= f.check_box :popular_speak_enable, :checked => @domain_root_account.settings[:popular_speak_enable] %></td><td><%= f.label    :lms_root_url %></td>
-	   <td><%= f.text_field   :lms_root_url, :value => @domain_root_account.settings[:lms_root_url] %></td></tr>
+		<td><%= f.check_box :popular_speak_enable, :checked => @domain_root_account.settings[:popular_speak_enable] %></td></tr>
 
 		<tr><td><%= f.label   :testimonial %></td>
-	  <td><%= f.check_box :testimonial_enable, :checked => @domain_root_account.settings[:testimonial_enable] %></td><td><%= f.label  :lms_course_url_path %></td>
-	   <td><%= f.text_field :lms_course_url_path, :value => @domain_root_account.settings[:lms_course_url_path] %></td></tr>
+	  <td><%= f.check_box :testimonial_enable, :checked => @domain_root_account.settings[:testimonial_enable] %></td></tr>
 
 	   <tr><td><%= f.label :popular_course %></td>
-	   <td><%= f.check_box :popular_course_enable, :checked => @domain_root_account.settings[:popular_course_enable] %></td><td><%= f.label  :lms_api_root_url %></td>
-	   <td><%= f.text_field :lms_api_root_url, :value => @domain_root_account.settings[:lms_api_root_url] %></td></tr>
+	   <td><%= f.check_box :popular_course_enable, :checked => @domain_root_account.settings[:popular_course_enable] %></td></tr>
+	</table>
+ </div>
 
+  <div class="tab-pane" id="cas">
+		<table>
 	    <tr><td><%= f.label   :cas_enable %></td>
-	    <td><%= f.check_box   :cas_enable, :checked => @domain_root_account.settings[:cas_enable] %></td><td><%= f.label  :lms_logout_path %></td>
-	   <td><%= f.text_field :lms_logout_path, :value => @domain_root_account.settings[:lms_logout_path] %></td></tr>
+	    <td><%= f.check_box   :cas_enable, :checked => @domain_root_account.settings[:cas_enable] %></td></tr>
 
 	    <tr><td><%= f.label   :cas_expiry_time %></td>
-	    <td><%= f.text_field  :cas_expiry_time, :value => @domain_root_account.settings[:cas_expiry_time] %></td><td><%= f.label  :payment_gateway_enable %></td>
-	   <td><%= f.check_box :payment_gateway_enable, :checked => @domain_root_account.settings[:payment_gateway_enable] %></td></tr>
+	    <td><%= f.text_field  :cas_expiry_time, :value => @domain_root_account.settings[:cas_expiry_time] %></td></tr>
 
 	    <tr><td><%= f.label   :cas_url %></td>
-	    <td><%= f.text_field  :cas_url, :value => @domain_root_account.settings[:cas_url] %></td><td><%= f.label  :payment_gateway_merchant_id %></td>
-	   <td><%= f.text_field :payment_gateway_merchant_id, :value => @domain_root_account.settings[:payment_gateway_merchant_id] %></td></tr>
+	    <td><%= f.text_field  :cas_url, :value => @domain_root_account.settings[:cas_url] %></td></tr>
 
 	    <tr><td><%= f.label   :cas_login_path %></td>
-	    <td><%= f.text_field  :cas_login_path, :value => @domain_root_account.settings[:cas_login_path] %></td><td><%= f.label  :payment_gateway_work_key %></td>
-	   <td><%= f.text_field :payment_gateway_work_key, :value => @domain_root_account.settings[:payment_gateway_work_key] %></td></tr>
+	    <td><%= f.text_field  :cas_login_path, :value => @domain_root_account.settings[:cas_login_path] %></td></tr>
 
 	    <tr><td><%= f.label   :cas_logout_path %></td>
-	    <td><%= f.text_field  :cas_logout_path, :value => @domain_root_account.settings[:cas_logout_path] %></td><td><%= f.label  :payment_gateway_ccavenue_account %></td>
-	   <td><%= f.text_field :payment_gateway_ccavenue_account, :value => @domain_root_account.settings[:payment_gateway_ccavenue_account] %></td></tr>
+	    <td><%= f.text_field  :cas_logout_path, :value => @domain_root_account.settings[:cas_logout_path] %></td></tr>
+	  </table>
+  </div>
 
-   <tr><td><%= f.label  :mailserver_address %></td>
-	   <td><%= f.text_field :mailserver_address, :value => @domain_root_account.settings[:mailserver_address] %></td><td><%= f.label  :admin_mail_to %></td>
-	   <td><%= f.text_field :admin_mail_to, :value => @domain_root_account.settings[:admin_mail_to] %></td></tr>
+  <div class="tab-pane" id="lms">
+		<table>
+			<tr><td><%= f.label :lms_enable %></td>
+	   	<td><%= f.check_box :lms_enable, :checked => @domain_root_account.settings[:lms_enable] %></td></tr>	
+
+			<tr><td><%= f.label    :lms_account_id %></td>
+	   	<td><%= f.text_field :lms_account_id, :value => @domain_root_account.settings[:lms_account_id] %></td></tr>
+
+			<tr><td><%= f.label    :lms_oauth_token %></td>
+			<td><%= f.text_field   :lms_oauth_token, :value => @domain_root_account.settings[:lms_oauth_token] %></td></tr>
+
+		   <tr><td><%= f.label    :lms_root_url %></td>
+		   <td><%= f.text_field   :lms_root_url, :value => @domain_root_account.settings[:lms_root_url] %></td></tr>
+		   
+		   <tr><td><%= f.label  :lms_course_url_path %></td>
+		   <td><%= f.text_field :lms_course_url_path, :value => @domain_root_account.settings[:lms_course_url_path] %></td></tr>
+
+		   <tr><td><%= f.label  :lms_api_root_url %></td>
+		   <td><%= f.text_field :lms_api_root_url, :value => @domain_root_account.settings[:lms_api_root_url] %></td></tr>
+
+		   <tr><td><%= f.label  :lms_logout_path %></td>
+	   	 <td><%= f.text_field :lms_logout_path, :value => @domain_root_account.settings[:lms_logout_path] %></td></tr>
+		</table>
+  </div>
+
+ <div class="tab-pane" id="mail">
+
+	<table>
+		<tr><td><%= f.label  :mailserver_address %></td>
+	   <td><%= f.text_field :mailserver_address, :value => @domain_root_account.settings[:mailserver_address] %></td></tr>
 
 	   <tr><td><%= f.label  :mailserver_port %></td>
-	   <td><%= f.text_field :mailserver_port, :value => @domain_root_account.settings[:mailserver_port] %></td><td><%= f.label :invoices_notes %></td>
-	   <td><%= f.text_field :invoices_notes, :value => @domain_root_account.settings[:invoices_notes] %></td></tr>
+	   <td><%= f.text_field :mailserver_port, :value => @domain_root_account.settings[:mailserver_port] %></td></tr>
 
 	   <tr><td><%= f.label  :mailserver_domain %></td>
-	   <td><%= f.text_field :mailserver_domain, :value => @domain_root_account.settings[:mailserver_domain] %></td><td><%= f.label :exception_notifer_email_prefix %></td>
-	   <td><%= f.text_field :exception_notifer_email_prefix, :value => @domain_root_account.settings[:exception_notifer_email_prefix] %></td></tr>
+	   <td><%= f.text_field :mailserver_domain, :value => @domain_root_account.settings[:mailserver_domain] %></td></tr>
 
 	   <tr><td><%= f.label  :mailserver_user_name %></td>
-	   <td><%= f.text_field :mailserver_user_name, :value => @domain_root_account.settings[:mailserver_user_name] %></td><td><%= f.label :exception_notifer_sender_address %></td>
-	   <td><%= f.text_field :exception_notifer_sender_address, :value => @domain_root_account.settings[:exception_notifer_sender_address] %></td></tr>
+	   <td><%= f.text_field :mailserver_user_name, :value => @domain_root_account.settings[:mailserver_user_name] %></td></tr>
 
 	   <tr><td><%= f.label  :mailserver_password %></td>
-	   <td><%= f.text_field :mailserver_password, :value => @domain_root_account.settings[:mailserver_password] %></td><td><%= f.label :exception_notifer_exception_recipients %></td>
-	   <td><%= f.text_field :exception_notifer_exception_recipients, :value => @domain_root_account.settings[:exception_notifer_exception_recipients] %></td></tr>
+	   <td><%= f.text_field :mailserver_password, :value => @domain_root_account.settings[:mailserver_password] %></td></tr>
 
-	   <tr><td><%= f.label :omniauth_facebook_key %></td>
-	   <td><%= f.text_field :omniauth_facebook_key, :value => @domain_root_account.settings[:omniauth_facebook_key] %></td><td><%= f.label :omniauth_facebook_secret %></td>
-	<td><%= f.text_field :omniauth_facebook_secret, :value => @domain_root_account.settings[:omniauth_facebook_secret] %></td></tr>
+	   <tr><td><%= f.label  :admin_mail_to %></td>
+	   <td><%= f.text_field :admin_mail_to, :value => @domain_root_account.settings[:admin_mail_to] %></td></tr>
+  </table>
+ </div>
 
-	<tr><td><%= f.label :omniauth_linkedin_key %></td>
-	<td><%= f.text_field :omniauth_linkedin_key, :value => @domain_root_account.settings[:omniauth_linkedin_key] %></td><td><%= f.label :omniauth_linkedin_secret %></td>
-	<td><%= f.text_field :omniauth_linkedin_secret, :value => @domain_root_account.settings[:omniauth_linkedin_secret] %></td></tr>
+  <div class="tab-pane" id="payment">
+  	<table>
+	   <tr><td><%= f.label  :payment_gateway_enable %></td>
+	   <td><%= f.check_box :payment_gateway_enable, :checked => @domain_root_account.settings[:payment_gateway_enable] %></td></tr>
 
-	<tr><td><%= f.label :omniauth_google_oauth2_key %></td>
-	<td><%= f.text_field :omniauth_google_oauth2_key, :value => @domain_root_account.settings[:omniauth_google_oauth2_key] %></td><td><%= f.label :omniauth_google_oauth2_secret %></td>
-	<td><%= f.text_field :omniauth_google_oauth2_secret, :value => @domain_root_account.settings[:omniauth_google_oauth2_secret] %></td></tr>
- 
-	
+	   <tr><td><%= f.label  :payment_gateway_merchant_id %></td>
+	   <td><%= f.text_field :payment_gateway_merchant_id, :value => @domain_root_account.settings[:payment_gateway_merchant_id] %></td></tr>
+
+	   <tr><td><%= f.label  :payment_gateway_work_key %></td>
+	   <td><%= f.text_field :payment_gateway_work_key, :value => @domain_root_account.settings[:payment_gateway_work_key] %></td></tr>
+
+	   <tr><td><%= f.label  :payment_gateway_ccavenue_account %></td>
+	   <td><%= f.text_field :payment_gateway_ccavenue_account, :value => @domain_root_account.settings[:payment_gateway_ccavenue_account] %></td></tr>
+
+	    <tr><td><%= f.label :invoices_notes %></td>
+	   <td><%= f.text_field :invoices_notes, :value => @domain_root_account.settings[:invoices_notes] %></td></tr>
+	 </table>
+  </div>
+
+  <div class="tab-pane" id="social">
+  	<table>
+			<tr><td><%= f.label :omniauth_facebook_key %></td>
+	   	<td><%= f.text_field :omniauth_facebook_key, :value => @domain_root_account.settings[:omniauth_facebook_key] %></td></tr>
+
+		  <tr><td><%= f.label :omniauth_facebook_secret %></td>
+			<td><%= f.text_field :omniauth_facebook_secret, :value => @domain_root_account.settings[:omniauth_facebook_secret] %></td></tr>
+
+			<tr><td><%= f.label :omniauth_linkedin_key %></td>
+			<td><%= f.text_field :omniauth_linkedin_key, :value => @domain_root_account.settings[:omniauth_linkedin_key] %></td></tr>
+
+			<tr><td><%= f.label :omniauth_linkedin_secret %></td>
+			<td><%= f.text_field :omniauth_linkedin_secret, :value => @domain_root_account.settings[:omniauth_linkedin_secret] %></td></tr>
+
+			<tr><td><%= f.label :omniauth_google_oauth2_key %></td>
+			<td><%= f.text_field :omniauth_google_oauth2_key, :value => @domain_root_account.settings[:omniauth_google_oauth2_key] %></td></tr>
+
+			<tr><td><%= f.label :omniauth_google_oauth2_secret %></td>
+			<td><%= f.text_field :omniauth_google_oauth2_secret, :value => @domain_root_account.settings[:omniauth_google_oauth2_secret] %></td></tr>
+
+			<tr><td><%= f.submit  "submit" %></td></tr>
+
+		</table>
+  </div>
+
+</div>
+
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
 	 
-        <tr><td><%= f.submit  "submit" %></td></tr>
-</table>
+        
 <% end %>
                                        </div>
                                     </div>
