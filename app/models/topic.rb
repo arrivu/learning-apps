@@ -19,6 +19,6 @@ class Topic < ActiveRecord::Base
   # Topic.wh
   has_many :topics, :class_name => "Topic",
     :foreign_key => 'parent_topic_id', :order => "created_at desc", :dependent => :delete_all
- has_many :topics, :class_name => "Topic",
+  has_many :topics, :class_name => "Topic",
     :foreign_key => 'root_topic_id', :order => "created_at desc", :dependent => :delete_all
 end
