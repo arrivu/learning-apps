@@ -1,30 +1,3 @@
-<!-- <div style="float:left">
-</div>
-<div class="row">
-	<div class="span10 offset3">
-<%= form_for (@slider) do |f| %>
-
-	<tr>
-		<td><%= f.label :image %></td>
-		<td><%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => @slider.id), :width => "200",:height => "200"%>
-		<td><%= f.file_field 'attachment' %></td></tr>
-
-    	<tr><td><%= f.label :backgroundimage %></td>
-    		<td><%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => @slider.id), :width => "200",:height => "200"%>
-		<td><%= f.file_field 'background' %></td></tr>
-
-		<tr><td><%= f.label :header %></td>
-		<td><%= f.text_field :header %></td></tr>
-
-		<tr><td><%= f.label :body_tag %></td>
-		<td><%= f.text_field :body_tag %></td></tr>
-
-		
-        <tr><td><%= f.submit  "update" %></td></tr>
-<% end %>
-</div>
-</div> -->
-
 <div id="wrap">
 
   <%= render 'shared/side_menu' %>
@@ -38,11 +11,9 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                                                       <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Edit Knowledge Partner</h5>
-                                        </header>
+                                                
                                         <div id="collapse4" class="body">
+                                            <div class="icons"><span class="badge badge-info">Edit Slider </span></div>
                             <table id="dataTable" class="table  table-condensed table-hover ">
 <%= form_for (@slider) do |f| %>
 
