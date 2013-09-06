@@ -28,10 +28,21 @@
 <li class="rating">
 </li>
 </ul>
+  Tags:
 <ul style="border-top:0px;">
-<li>
-  Tags:<a href=""><em class="label-a label-offset" style="background: #ddd;padding: 2px;border-radius: 4px;"> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em></a>
-  </li>
+
+
+<%course.tags.each do |tag| %>
+ <li>
+
+   <em class="label-a label-offset" style="background: #ddd;padding: 2px;border-radius: 4px;">
+    <b>
+      <%= link_to tag.name, tagged_courses_path(tag:tag) %>
+    </b>
+   </em>
+
+ </li>
+  <%end  %>
 </ul>
 <p class="desc">
 <%= course.short_desc  %></p>
@@ -53,7 +64,7 @@
               <% end  %>
 
         
-        <br>Louis Lazaris</li> <% end %>
+        <br><%= author.user.name %></li> <% end %>
 </ul>
 </div>
 </div>
