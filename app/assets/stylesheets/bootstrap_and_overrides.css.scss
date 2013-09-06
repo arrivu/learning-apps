@@ -39,11 +39,5 @@ vertical-align: middle;
 border: 0;
 -ms-interpolation-mode: bicubic;
 }
-img {
-max-width: 100%;
-width: auto\9;
-min-height:55px;
-vertical-align: middle;
-border: 0;
--ms-interpolation-mode: bicubic;
-}
+
+.resource .type-tag-positioner img{height:80px;}
