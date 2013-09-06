@@ -29,7 +29,6 @@ resources :footerlinks
       end
   end
   resources :sliders
-  resources :account_settings
   resources :contacts
   resources :courses
   resources :testimonials

@@ -3,7 +3,7 @@
     before_filter :load_account
     before_filter :topics
   #  before_filter :theme_create
-   # before_filter :set_mailer_settings
+    #before_filter :set_mailer_settings
     include ApplicationHelper
     include CoursesHelper
     include SessionsHelper
