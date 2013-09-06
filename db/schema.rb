@@ -448,10 +448,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.text     "description"
     t.string   "qualification"
     t.integer  "user_id"
+    t.integer  "account_id",           :limit => 8
+    t.text     "linkedin_profile_url"
+    t.boolean  "is_active"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.string   "linkedin_profile_url"
-    t.integer  "account_id",           :limit => 8
   end
 
   create_table "terms_and_conditions", :force => true do |t|

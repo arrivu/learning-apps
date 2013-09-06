@@ -1,9 +1,9 @@
   class ApplicationController < ActionController::Base
+    protect_from_forgery
     before_filter :load_account
-   
     before_filter :topics
   #  before_filter :theme_create
-    protect_from_forgery
+   # before_filter :set_mailer_settings
     include ApplicationHelper
     include CoursesHelper
     include SessionsHelper
@@ -123,6 +123,20 @@
     def front_page_registration_restrict 
         return
     end
-    
+
+    private
+
+    def set_mailer_settings
+
+      ActionMailer::Base.smtp_settings = {
+          :address  => @domain_root_account.settings[:mailserver_address],
+          :port  => @domain_root_account.settings[:mailserver_port],
+          :domain => @domain_root_account.settings[:mailserver_domain],
+          :authentication => "plain",
+          :enable_starttls_auto => true,
+          :user_name => @domain_root_account.settings[:mailserver_user_name] ,
+          :password => @domain_root_account.settings[:mailserver_password] }
+
+    end
  
 end

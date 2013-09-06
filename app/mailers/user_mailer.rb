@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   
- default :from => "admin@beacon.com"
+ default :from => "arrivusystems@gmail.com"
   
   def course_payment(user,course,price)
   	@email = user.email
@@ -14,6 +14,11 @@ class UserMailer < ActionMailer::Base
   def mail_contact(name,email,message)
   	message="Name: #{name}\nEmail: #{email}\nMessage:\n#{message}" 
   	mail(:to => Settings.admin_mail.to, :subject => "Contact Us",:body => message)
+  end
+
+  def teaching_staffs_activation(teaching_staff)
+    @teaching_staff =teaching_staff
+    mail(:to => teaching_staff.user.email, :subject => "Account Activation")
   end
   
 end
