@@ -109,5 +109,21 @@ end
    	end
 
    end
-   
+
+      def totalmodulescount
+        modules_count=0
+        @domain_root_account=Account.find_by_name(current_subdomain)
+        @courses=@domain_root_account.courses
+        @courses.each do |course|
+          modules=lms_get_modules(course).count
+          if modules == nil
+            modules_count=0
+          else
+            modules_count+=modules
+          end
+
+        end
+          modules_count
+
+      end
 end

@@ -62,28 +62,28 @@
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-           <%= root_account.courses.count %>
+             <%= @domain_root_account.courses.count %>
           </h2>
           <p>Courses</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
-            1,107
+          <%= @domain_root_account.account_users.count %>
           </h2>
           <p>Users</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
-            1,261
+            <%=  modules_count=totalmodulescount %>
           </h2>
           <p>Modules</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            1,403
+            <%= @domain_root_account.topics.count %>
           </h2>
           <p>Categories</p>
         </div>
