@@ -1,25 +1,30 @@
- <% if current_user !=nil %>
+<%- model_class = Topic -%>
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+  <div id="content">
+    <div class="container-fluid outer"  >
+      <div class="row-fluid">
+        <div class="span12 inner">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="box">
+                <header>
+                  <div class="icons"><i class="icon-move"></i></div>
+                  <h5> Category </h5>
+                </header>
+                <div id="collapse4" class="body">
+                  <%= nested_topics @topic.subtree.arrange(:order => :created_at) %>
+                  <p><%= link_to "Back to All Categories", topics_path %></p>
+                </div>
 
- <% if current_user.has_role? :admin %>
- <% if @topic.root_topic_id!=@topic.parent_topic_id %>
- <%= render 'topics/topics_show' %>
- <% else %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="push"></div>
+  <div class="clearfix"></div>
+</div>
 
-  <%= render 'topics/create_sub_category' %>
-<% end %>
-
- 
-<% elsif current_user.has_role? :account_admin %>
- <% if @topic.root_topic_id!=@topic.parent_topic_id %>
- <%= render 'topics/topics_show' %>
- <% else %>
-
-  <%= render 'topics/create_sub_category' %>
-<% end %>
-
-<% else%>
-<%= render 'topics/topics_show' %>
-<% end %>
-<% else %>
-<%= render 'topics/topics_show' %>
-<% end %>
