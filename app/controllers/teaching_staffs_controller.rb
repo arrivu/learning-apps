@@ -115,6 +115,7 @@ class TeachingStaffsController < ApplicationController
 
   def teaching_staff_signup
     @teachingstaff = TeachingStaff.new
+    unless params[:teaching_staff].nil?
     @teachingstaff.name =  params[:teaching_staff][:teaching_staff_user][:name]
     @teachingstaff.description =  params[:teaching_staff][:description]
     @teachingstaff.qualification =  params[:teaching_staff][:qualification]
@@ -140,6 +141,7 @@ class TeachingStaffsController < ApplicationController
     else
      render :teaching_staff_signup
     end
+   end
   end
 
   def activate_teaching_staff
