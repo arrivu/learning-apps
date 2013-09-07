@@ -58,6 +58,7 @@
   <section class="main keynumbers">
     <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">
+       <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
         <div class="span3">
           <h2>
@@ -91,6 +92,7 @@
     <%end%>
     </div>
   </section>
+  <% end %>
 
   <div class="homecourse">
     <div class="secondary-content yellobg">
@@ -198,6 +200,7 @@
 <div align="center">
 
 
+
  <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
 
 </div>
@@ -211,6 +214,7 @@
       <div class="span12" align="center" style="width: 95%;">
         <h3 style="font-size: 38px;">Step up Your Learning Curve!
         </h3>
+
 
         <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
 

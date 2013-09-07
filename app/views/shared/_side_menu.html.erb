@@ -1,7 +1,9 @@
+
 <div id="left">
  <ul id="menu" class="unstyled accordion collapse in">
          <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
              <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
+
                         </a>
                                              <ul class="collapse " id="user">
                            <li><%= link_to "Users", users_path %></li> 
@@ -9,7 +11,7 @@
                          <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>
 
                         </ul></li>
-                        <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
+
 
                         </li>
                         <li class="accordion-group ">
@@ -20,6 +22,19 @@
                           <li><%= link_to "Category", topics_path %></li>  
                           <li><%= link_to "Course Library", manage_courses_path %></li>
                         </ul></li>
+
+                        <% if !current_user.has_role? :account_admin %>
+                        
+                          <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
+
+                        </li><% end %>
+                        
+                     
+
+                         <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
+                         
+</li>
+
 
                          <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
                                            </li>
@@ -36,6 +51,8 @@
                           <li><%= link_to "Course Status Search",course_status_search_path %></li>  
                         </ul>
                     </li>
+                     <% if !current_user.has_role? :account_admin %>
+
                         <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme">
                              <i class="icon icon-book" style="paddign:0px 10px;"></i>Themes  
@@ -44,6 +61,7 @@
                           <li><%= link_to "Add new Theme" %></li>  
                           <li><%= link_to " Assign Theme" %></li>
                         </ul></li>
+                        <% end%>
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon">
                            <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon

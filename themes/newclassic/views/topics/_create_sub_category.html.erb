@@ -3,41 +3,41 @@
   <%= render 'shared/side_menu' %>
               
             <div id="content">
-               
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                           
-                            <div class="row-fluid">
+               <div class="container-fluid outer"  >
+                     <div class="row-fluid">
+                        <div class="span12 inner">
+                           <div class="row-fluid">
                                 <div class="span12">
-                                    <div class="box">
-<h3 align = "center">New Category</h3>
-                                                                            <div id="collapse4" class="body">
-                                
-     <%= simple_form_for @topic , url: '/category_details', :html => { :class => 'form-horizontal' } do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-       <table><tr><td></td>
-                        <td>
-                          <% topics_array = Topic.where(:id=>params[:id]).map { |topic| [topic.name, topic.id] } %>
+                                   <div class="box">
+                                    <h3 align = "center"><%= @topic.name%></h3>
+                                 <div id="collapse4" class="body">
+                             <%= simple_form_for @topic , url: '/add_sub_topics', :html => { :class => 'form-horizontal' } do |f| %>
 
-                          <%= f.label(:root_topic_id,options_for_select(topics_array))%>
-        <tr>
+                              <%= render 'shared/error_messages', object: f.object %>
+                              <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                               <table><tr><td></td>
+                                                <td>
+                                                  <% topics_array = Topic.where(:id=>params[:id]).map { |topic| [topic.name, topic.id] } %>
 
-          <td><%= f.label :name, :class => 'control-label' %></td>
-
+                                                  <%= f.label(:root_topic_id,options_for_select(topics_array))%>
+                                           <tr>
           <td><%= f.text_field :name, :class => 'text_field',:maxlength => 30 , :autofocus => true, :value => " "%></td></tr>
           <tr><td><%= f.label :color, :class => 'control-label' %> </td>
             <td> <%= f.input :color, as: :minicolors, :value => " ",label:false %></td>
           </tr>
           <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Create Category", :class => 'btn btn-primary'  %></td></tr>
+                                  <td><%= f.text_field :name, :class => 'text_field',:maxlength => 30 , :autofocus => true,:value => ""%></td></tr>
+                                  <tr><td><%= f.label :color, :class => 'control-label' %> </td>
+                                    <td> <%= f.input :color, as: :minicolors,label:false %></td>
+                                  </tr>
+                                  <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Create Category", :class => 'btn btn-primary'  %></td></tr>
 
-          <% end %>
-        </table>
+                                  <% end %>
+                                </table>
 
 
                      
-</div>
+                                   </div>
                                     </div>
                                 </div>
                             </div> 
