@@ -29,10 +29,11 @@
 
                </div>     </div>  
                <div class="clearfix"></div>
+              <% unless slider.image.nil?  %>
                <div class="span4" align="center" >
-
                 <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
-              </div> 
+              </div>
+                 <% end  %>
               <div class="span5" align="justify">
                 <p><%= slider.body_tag %><p>
                   <%= render 'show_topics' %>
