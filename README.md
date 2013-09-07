@@ -3,13 +3,13 @@
 * 1.git clone -b develop http://github.com/m-narayan/arrivuapps.git
 * 2.bundle install
 * 3.change config/database.yml
-*   development:
-      adapter: postgresql
-      database: portal_development
-      username: portal
-      password: portal
-      host: localhost
-      reconnect: true
+         development:
+            adapter: postgresql
+            database: portal_development
+            username: portal
+            password: portal
+            host: localhost
+            reconnect: true
 * 4.create database
 *    $psql -U postgres
 *    create role portal password portal login createdb;
