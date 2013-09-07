@@ -92,11 +92,9 @@
     <div class="secondary-content yellobg">
     <div class="container" align="center">
       <div class="row testimonial">
-        <!-- <h2 class="ribbon">
-          <span class="title">Our Courses</span>
-        </h2> -->
-        <% @account_settings.each do |account_setting| %>
-        <% if  account_setting.popular_speak == true %>
+        
+       <% if  @domain_root_account.settings[:popular_course_enable] %>
+
         <h2 style="margin-left:30px;"> Popular Courses</h2>
       </div>
     </div>
@@ -178,13 +176,13 @@
     </div> 
   </div>
 
-  <% @account_settings.each do |account_setting| %>
-<% if account_setting.testimonial ==true %>
+ 
 
 <div class="ourcustomers " >
     <div class="secondary-content">
     <div class="container" align="center">
       <div class="row testimonial">
+
        <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
         </div>
     </div>
@@ -192,7 +190,7 @@
          <div class="container" >
       <div class="row">
           <div class="span12">
-            
+            <% if  @domain_root_account.settings[:testimonial_enable] %>
              <% @testimonial.each do |testimonials| %>
                        
                 <div class="span4" style="width: 30%;">
@@ -209,7 +207,7 @@
 
                    </div></div>
                
-    <%end%>
+    <!-- <%end%> -->
     <% end %>
    <% end %>
 

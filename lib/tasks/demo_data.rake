@@ -29,14 +29,6 @@ namespace :db do
 							)
 					end
 
-  Account.create!(
-    knowledge_partners: "TRUE",
-    media_partners: "TRUE",
-    slide_show: "TRUE",
-    popular_speak: "TRUE",
-    testimonial: "TRUE",
-    account_id: 2)
-
                	Footerlink.create!(youtube_url: "https://www.youtube.com",
                		linkedin_url: "https://www.linkedin.com",
                		google_url: "https://www.plus.google.com",

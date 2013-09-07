@@ -26,6 +26,7 @@
                      <tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
 					 <tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
                      <tr> <th>Linkedin Profile URL</th><td><%= f.text_field :linkedin_profile_url%></td></tr>
+                     <tr> <th>Active</th><td><%= f.check_box :is_active,:checked=> true%></td></tr>
 					 <tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
              </table>
          <% end %>
