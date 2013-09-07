@@ -1,6 +1,7 @@
 #Install Arrivuapps Portal app,
 
 * 1.git clone -b develop http://github.com/m-narayan/arrivuapps.git
+* cd arrivuapps
 * 2.bundle install
 * 3.change config/database.yml
          development:
