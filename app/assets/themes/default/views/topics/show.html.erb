@@ -1,12 +1,21 @@
  <% if current_user !=nil %>
 
  <% if current_user.has_role? :admin %>
-  <%= render 'topics/create_sub_category' %>
+ <% if @topic.root_topic_id!=@topic.parent_topic_id %>
+ <%= render 'topics/topics_show' %>
+ <% else %>
 
+  <%= render 'topics/create_sub_category' %>
+<% end %>
 
  
 <% elsif current_user.has_role? :account_admin %>
- <%= render 'topics/create_sub_category' %>
+ <% if @topic.root_topic_id!=@topic.parent_topic_id %>
+ <%= render 'topics/topics_show' %>
+ <% else %>
+
+  <%= render 'topics/create_sub_category' %>
+<% end %>
 
 <% else%>
 <%= render 'topics/topics_show' %>

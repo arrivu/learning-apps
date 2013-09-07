@@ -548,6 +548,7 @@ background-color: #d14836;
 	background: #3498DB ;
 }
 .browseourcoursessmall{
+
 	padding: 10px;
 	margin-top: 10px;
 	font-weight: normal;
@@ -566,7 +567,11 @@ background-color: #d14836;
 	vertical-align: middle;
 	zoom: 1;
 	text-decoration:none;
+
+	
+     
 }
+
 
 .browseourcoursessmall:hover{
 	/*background: #3498DB ;*/
@@ -585,7 +590,7 @@ background-color: #d14836;
 
 .listofkp .kp{
 	float: left;
-	/*margin-left: 10px;*/
+	/*margin-left: 10px;
 	/*border-right: 1px solid #eee;*/
     padding:0px 70px;
 }

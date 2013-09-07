@@ -1,3 +1,33 @@
+<!-- <html>
+<head>
+<script language="javascript" type="text/javascript">
+tinyMCE.init({
+        theme : "advanced",
+        mode : "textareas"
+});
+</script>
+</head>
+<h3 align = "center">About Details</h3>
+<table align="center">
+<%= tinymce_assets %>
+<%= form_for @aboutdetail do |f| %>
+ 
+<tr>
+	<td><%=f.label 'Title'%></td>
+	<td><%=f.text_field :title%></td>
+</tr>
+
+<tr>
+	<td><%=f.label 'Description'%></td>
+	<td><%=f.text_area :desc,:class => "tinymce"%></td>
+</tr>
+<tr >
+   <td><%= f.submit "Update" %> </td>
+</tr>
+<%= tinymce %>
+<% end %>
+</table> -->
+
  <div id="wrap">
   <%= render 'shared/side_menu' %>
   <script language="javascript" type="text/javascript">
@@ -15,8 +45,11 @@ tinyMCE.init({
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                        <div id="collapse4" class="body">
-                                            <div class="icons"><span class="badge badge-info"> About Details </span></div>
+                                        <header>
+                                            <div class="icons"><i class="icon-move"></i></div>
+                                            <h5>About Details </h5>
+                                        </header>
+                                        <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-condensed table-hover">
             
     <tbody>
