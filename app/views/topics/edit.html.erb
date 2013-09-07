@@ -1,95 +1,26 @@
-<!-- <div style="float:left">
-
-</div>
-<br>
-<div class="row">
-  <div class="span8 offset3"  style="min-height:500px;">
-    	<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
 <%- model_class = Topic -%>
-
-  <h3 align = "center">Edit Category</h3>
-
- <%= simple_form_for @topic, :html => { :class => 'form-horizontal' } do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <table class="table table-hover ">
-        <tr>
-          <td><%= f.label :name, :class => 'control-label' %></td>
-
-          <td><%= f.text_field :name, :class => 'text_field',:maxlength => 30 %></td></tr>
-           <tr><td><%= f.label :color, :class => 'control-label' %> </td>
-            <td> <%= f.input :color, as: :minicolors,label:false %></td>
-          </tr>
-          <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Update Category", :class => 'btn btn-primary'  %></td></tr>
-
-          <% end %>
-        </table>
-</div>
-</div>
-</div> -->
-
- <div id="wrap">
-
+<div id="wrap">
   <%= render 'shared/side_menu' %>
-
-            <div id="content">
-
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-                          <div id="collapse4" class="body">
-                                           <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Edit Category</h5>
-                                        </header>
-    <%= simple_form_for @topic, :html => { :class => 'form-horizontal' } do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <table id="dataTable" class="table table-condensed table-hover">
-
-        <% if @topic.root_topic_id!=nil %>
-        <tr><td><%= f.label :topic_id, "Root ID" %></td>
-
-                        <td>
-                          <% topics_array = Topic.where(:id=>@topic.root_topic_id).map { |topic| [topic.name, topic.id] } %>
-
-
-                          <%= f.select(:root_topic_id,options_for_select(topics_array))%>
-        <tr>
-          <% end %>
-         <% if @topic.parent_topic_id!=nil %>
-           <tr><td><%= f.label :topic_id, "Parent ID" %></td>
-                        <td>
-                          <% topics_array = Topic.where(:id=>@topic.parent_topic_id).map { |topic| [topic.name, topic.id] } %>
-
-                          <%= f.select(:root_topic_id,options_for_select(topics_array))%></td>
-        <tr>
-
-    <% end %>
-           <tr>
-          <td><%= f.label :name, :class => 'control-label' %></td>
-
-          <td><%= f.text_field :name, :class => 'text_field',:maxlength => 30 %></td></tr>
-           <tr><td><%= f.label :color, :class => 'control-label' %> </td>
-            <td> <%= f.input :color, as: :minicolors,label:false %></td>
-          </tr>
-          <tr><td colspan="2" style="text-align:center;" ><%= f.submit "Update Category", :class => 'btn btn-primary yellobg'  %></td></tr>
-
-          <% end %>
-        </table>
-
-
-
-</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
+  <div id="content">
+    <div class="container-fluid outer" >
+      <div class="row-fluid">
+        <div class="span12 inner">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="box">
+                <h3 align = "center">Edit Category</h3>
+                <div id="collapse4" class="body">
+                  <%= render @topic.parent if @topic.parent %>
+                  <%= render "form" %>
+                  <p><%= link_to "Back to Categories", topics_path %></p>
+                  </table>
                 </div>
+              </div>
             </div>
-            <div id="push"></div>
+          </div>
         </div>
-<div class="clearfix"></div>
+      </div>
+    </div>
+    <div id="push"></div>
+  </div>
+  <div class="clearfix"></div>

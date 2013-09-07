@@ -48,7 +48,7 @@
                     <tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
                                 <td><%= f.check_box :is_coming_soon %></td></tr>
                     <tr><td><%= f.label :topic_id, "Topics" %></td>
-                    <td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                    <td><%= f.collection_select :topic_id,@domain_root_account.topics.order(:name), :id, :name, {}, {multiple: false} %></td></tr>
                     <tr> <td>        <%= f.label :tag_tokens, "Update Tags" %></td>
                          <td>
                            <div class="field">
