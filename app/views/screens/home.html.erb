@@ -122,9 +122,9 @@
   <div class="ourknowledgepartners" > 
 
    <div class="secondary-content ">
-    <div class="container" align="center">
-      <div class="row testimonial">
+    
  <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
+
 
        <h2 style="margin-left: 30px;">Knowledge Partners</h2>
      </div>
@@ -134,15 +134,16 @@
   <div class="row testimonial">
 
 
+
     <div class="listofkp" >
       <% @partners.each do |partners| %>
       <div class="span4" style="width: 30%;">
         <div class="kp">
           <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
         </div>
-        <!-- <div class="testimonialtext">
-         "Consistently ranked amongst the top ten business schools in the country, Great Lakes is well known for its world class faculty, pedagogy and academic prowess."  
-       </div>  -->
+        <div class="testimonialtext">
+         "<%= partners.comments%>"   
+       </div> 
        <% end %>
        <% end %>
      </div>
@@ -195,6 +196,7 @@
 <div align="center">
 
 
+
  <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
 
 </div>
@@ -208,6 +210,7 @@
       <div class="span12" align="center" style="width: 95%;">
         <h3 style="font-size: 38px;">Step up Your Learning Curve!
         </h3>
+
 
         <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
 

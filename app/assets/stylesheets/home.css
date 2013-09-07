@@ -1,3 +1,4 @@
+.logo a img{height: 55px;}
 .sliders {
   position: relative;
 }
@@ -36,14 +37,14 @@ z-index: 100;
       }
 
 .yellobg
-{background-color: #ffda55;
+{/*background-color: #ffda55;
 background-image: -moz-linear-gradient(top,#ffda55,#ffda55);
 background-image: -webkit-gradient(linear,0 0,0 100%,from(#ffda55),to(#ffda55));
 background-image: -webkit-linear-gradient(top,#ffda55,#ffda55);
 background-image: -o-linear-gradient(top,#ffda55,#ffda55);
 background-image: linear-gradient(to bottom,#ffda55,#ffda55);
 background-repeat: repeat-x;
-color:#000;
+color:#000;*/
 }
 
 .homebanner{
@@ -547,6 +548,7 @@ background-color: #d14836;
 	background: #3498DB ;
 }
 .browseourcoursessmall{
+
 	padding: 10px;
 	margin-top: 10px;
 	font-weight: normal;
@@ -565,7 +567,11 @@ background-color: #d14836;
 	vertical-align: middle;
 	zoom: 1;
 	text-decoration:none;
+
+	
+     
 }
+
 
 .browseourcoursessmall:hover{
 	/*background: #3498DB ;*/
@@ -584,7 +590,7 @@ background-color: #d14836;
 
 .listofkp .kp{
 	float: left;
-	/*margin-left: 10px;*/
+	/*margin-left: 10px;
 	/*border-right: 1px solid #eee;*/
     padding:0px 70px;
 }
@@ -665,9 +671,8 @@ border-width: 1em 1em 1em 0;
 border-color: rgba(0,0,0,0.5) rgba(0,0,0,0) rgba(0,0,0,0.5) rgba(0,0,0,0);
 position: absolute;
 top: 0;
-right: -13px;
+right: -12px;
 display: block;
 width: 0px;
-height: 1px;
-content: '';
+height: 5px;
 }

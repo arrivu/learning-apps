@@ -1,92 +1,19 @@
-<!-- 			<div style="float:left">
-			</div>
-
-			<br>
-			<div class="row">
-				<div class="span8 offset3" style="min-height:500px;">
-					<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-						<h3 align = "center">Edit Teaching Staff </h3>
-
-<%= simple_form_for(@teachingstaff) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-					<%= f.fields_for (@teachingstaff.user) do |user_form| %>
-					
-			    <table class="tableform"> 
-			        <tbody><tr> 
-			        	<th>Name</th>
-			            <td> 
-			            <%= user_form.text_field :name, :autofocus => true %>
-			              </td> 
-			        </tr> 
-			        <tr> <th>Email</th>
-			            <td> 
-			            <%= user_form.text_field :email, :required => true %>
-			              </td> 
-			        </tr>
-
-                    
-
-
-                    <tr><td>  </td><td>
-								<% if @teachingstaff.user.image_blob != nil %>
-			        	<%= image_tag url_for(:controller=>"registrations",:action => 'user_image', :id => @teachingstaff.user.id), :size => "100x100" %>
-								<% end  %>
-			        </td></tr>
-
-			        				<tr><th>Image</td>
-				<td><%= user_form.file_field :attachment %></td></tr>
-
-
-			        
-			        <%end %>
-
-
-			        <tr><th>Description</th><td><%= f.text_area :description ,:cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
-			 		 
-					   <tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
-			        <tr> <th>Linkedin Profile Url</th>
-                      <td>
-                        <%= f.text_field :linkedin_profile_url  %>
-                      </td>
-                    </tr>
-
-
-			  	<tr><td></td><td><%= f.submit "Update", class: "btn btn-primary" %>
-
-			   
-			  
-			<% end %></td></tr></table>
-		</div>
-	</div></div>
- -->
-
- <!-- 
-<div style="float:left">
-
-</div>
-<div style="margin-left:250px">
-
-	
-</div> -->
-
 <div id="wrap">
 
   <%= render 'shared/side_menu' %>
                
             <div id="content">
                 <!-- .outer -->
-                <div class="container-fluid outer" style="background:#fff;">
+                <div class="container-fluid outer"  >
                             <div class="row-fluid">
                                                         <div class="span12 inner">
                             <!--Begin Datatables-->
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                            <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Edit Teaching Staff </h5><%= link_to "Add New Teacher", "teaching_staffs/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %>
-                                        </header>
+                         
                                         <div id="collapse4" class="body">
+                                        	 <div class="icons"><span class="badge badge-info">Edit Teaching Staff </span></div>
                                           <%= simple_form_for(@teachingstaff) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 					<%= f.fields_for (@teachingstaff.user) do |user_form| %>
@@ -131,7 +58,7 @@
                     </tr>
 
 
-			  	<tr><td></td><td><%= f.submit "Update", class: "btn btn-primary yellobg" %>
+			  	<tr><td></td><td><%= f.submit "Update", class: "btn btn-primary " %>
 
 			   
 			  

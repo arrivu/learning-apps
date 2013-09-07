@@ -333,5 +333,12 @@ end
     end
   end
 
- end
+  def tagged_courses
+    @total_course_count =Tag.find(params[:tag]).courses.size
+    @courses = Tag.find(params[:tag]).courses.paginate(page: params[:page], per_page: 6)
+    @countCoursesPerPage = 6
+    @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
+  end
+
+end
 

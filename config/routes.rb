@@ -103,5 +103,7 @@ resources :footerlinks
   match '/add_account_id', :to=>'courses#add_account_id'
   resources :themes
   resources :tags
+  match '/tagged_courses', :to =>'courses#tagged_courses'
+  match 'teaching_staff_signup', :to => 'teaching_staffs#teaching_staff_signup'
   match'update_settings' , :to=> "accounts#update_settings"
 end

@@ -328,6 +328,7 @@ top: 5px;
 background-repeat: no-repeat;
 left: 5px;
 display: block;
+
 margin: 0 0 -12em;
 width: 100%;
 height: 11.8em;
@@ -401,7 +402,7 @@ display: table-cell;
 display: block;
 font-size: 1em;
 margin: 0;
-padding: .25em .5em;
+padding: 5px;
 position: absolute;
 top: 8em;
 background-color: rgba(0,0,0,0);
@@ -413,9 +414,35 @@ background-image: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 70%)
 background-image: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.1) 70%);
 }
 
+.type:after {
+background: rgba(255,0,0,0);
+border: 1em solid rgba(255,0,255,0.3);
+border-width: 1em 1em 1em 0;
+border-color: rgba(0,0,0,0.5) rgba(0,0,0,0) rgba(0,0,0,0.5) rgba(0,0,0,0);
+position: absolute;
+top: 0;
+right: -12px;
+display: block;
+width: 0px;
+height: 2px;
+content: '';
+}
 
 
+.type:before {
+background: transparent;
 
+border: 0em solid rgba(255,0,255,0.3);
+border-width: 0em 0em 0em 0;
+border-color:transparent;
+position: absolute;
+top: 0;
+right: -12px;
+display: none;
+width: 0px;
+height: 0px;
+
+}
 
 .type {
 text-transform: uppercase;

@@ -126,8 +126,7 @@
   <div class="ourknowledgepartners" > 
 
  <div class="secondary-content ">
-    <div class="container" align="center">
-      <div class="row testimonial">
+   <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
            <h2 style="margin-left: 30px;">Knowledge Partners</h2>
       </div>
     </div>
@@ -155,23 +154,7 @@
   <% end %>
 
 
-          
-      <!-- <div class="listofkp" >
-          <div class="firstkp">
-           <a href="<%= knowledge_partners_path %>"> <img src="assets/jigsaw.png" /></a>
-          </div>
-          <div class="kp">
-            <a href="<%= knowledge_partners_path %>"> <img src="assets/GREAT LAKES LOGO.jpg" />   </a>
-          </div>
-          <div class="lastkp">
-            <a href="<%= knowledge_partners_path %>"> <img src="assets/eduPristineLogo.jpg" />  </a>
-          </div>
-        </div>
-        <div align="center">
-         
-              <%= link_to "", knowledge_partners_path, :class => "browselist" %>
-                <h6 style="color:steelblue;margin:0px;"> Know more about out Partners</h6>               
-              </div> -->
+      
       </div>
     </div> 
   </div>

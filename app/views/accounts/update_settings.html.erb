@@ -161,13 +161,13 @@
 			<tr><td><%= f.label :omniauth_google_oauth2_secret %></td>
 			<td><%= f.text_field :omniauth_google_oauth2_secret, :value => @domain_root_account.settings[:omniauth_google_oauth2_secret] %></td></tr>
 
-			<tr><td><%= f.submit  "submit" %></td></tr>
+			
 
 		</table>
   </div>
 
 </div>
-
+<tr><td><%= f.submit  "submit" %></td></tr>
 <script>
   $('#myTab a').click(function (e) {
   e.preventDefault();

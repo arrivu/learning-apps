@@ -83,8 +83,7 @@
   <div class="ourknowledgepartners" > 
 
  <div class="secondary-content ">
-    <div class="container" align="center">
-      <div class="row testimonial">
+   <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
            <h2 style="margin-left: 30px;">Knowledge Partners</h2>
       </div>
     </div>
@@ -148,7 +147,7 @@
 
                    </div></div>
                
-    <!-- <%end%> -->
+    
     <% end %>
    <% end %>
 
