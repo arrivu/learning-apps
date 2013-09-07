@@ -52,8 +52,8 @@ $(document).ready(function(){
 <li>        <% if author.user.image_blob == nil %>
 
         <% if author.user.omni_image_url == nil %>
-                <%= gravatar_for_with_size author, "30x30" %>
-      
+                <%= gravatar_for_with_size author.user, "30x30" %>
+
       
         <% else  %>
        <%= image_tag(author.omni_image_url,size: "30x30", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%> 

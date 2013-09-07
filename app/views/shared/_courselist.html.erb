@@ -1,74 +1,79 @@
 <div class="row evenflow">
-       <div class="resource-row">
-      <% @courses.each do |course|%>
-   <div style="margin:0px auto;">   
-<div class="span3 content-box resource" style="float: left;width: 22%;">
-   
-<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96%% 96%;">
-   <% if course.data!=nil %>
-            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
-            <% else %>
-            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
-            <% end %>
-<div class="type " <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
-</div>
-<div class="details">
-<h2>
-<%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
-</h2>
+   <div class="resource-row">
+     <% @courses.each do |course|%>
+       <div style="margin:0px auto;">
+         <div class="span3 content-box resource" style="float: left;width: 22%;">
+          <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96%% 96%;">
+              <% if course.data!=nil %>
+                  <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
+              <% else %>
+                   <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+              <% end %>
+               <div class="type " <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
+             </div>
+            <div class="details">
+              <h2>
+                <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
+              </h2>
+              <ul>
+                <li class="length time">
+                  <table>
+                    <tr>
+                     <td>
+                       <i class="icon-book"></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
+                     </td>
+                    </tr>
+                  </table>
+                </li>
+                <li class="users">
+                  <table>
+                     <tr>
+                       <td>
+                         <i class="icon-user"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+                       </td>
+                     </tr>
+                  </table>
+                </li>
+                <li class="rating">
+                </li>
+              </ul>
+              Tags:
+              <ul style="border-top:0px;">
+                <%course.tags.each do |tag| %>
+                   <li>
+                     <em class="label-a label-offset" style="background: #ddd;padding: 2px;border-radius: 4px;">
+                       <b>
+                         <%= link_to tag.name, tagged_courses_path(tag:tag) %>
+                       </b>
+                     </em>
+                   </li>
+                <%end  %>
+              </ul>
+              <p class="desc">
+                <%= course.short_desc  %>
+              </p>
+              <ul class="author" style="text-align: center;border-bottom:0px;">
+                 <% course.teaching_staffs.each do |author|%>
+                    <li>
+                      <% if author.user.image_blob == nil %>
+                        <% if author.user.omni_image_url == nil %>
+                            <%= gravatar_for_with_size author.user, "25x20" %></td>
+                        <% else  %>
+                            <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
 
-<ul>
-<li class="length time">
-<table><tr><td><i class="icon-book"></i></td><td style="verticle-align:bottom;">150 pg</td></tr></table>
+                        <% end  %>
+                      <% else  %>
+                           <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
+                      <% end  %>
+                      <br>
+                         <%= author.user.name %>
+                      </li>
+                      <% end %>
+              </ul>
+             </div>
+          </div>
 
-</li>
-<li class="users">
-  <table><tr><td><i class="icon-user"></i></td><td style="verticle-align:bottom;"> 15</td></tr></table>
-</li>
-<li class="rating">
-</li>
-</ul>
-  Tags:
-<ul style="border-top:0px;">
-
-
-<%course.tags.each do |tag| %>
- <li>
-
-   <em class="label-a label-offset" style="background: #ddd;padding: 2px;border-radius: 4px;">
-    <b>
-      <%= link_to tag.name, tagged_courses_path(tag:tag) %>
-    </b>
-   </em>
-
- </li>
-  <%end  %>
-</ul>
-<p class="desc">
-<%= course.short_desc  %></p>
-<ul class="author" style="text-align: center;border-bottom:0px;">
-
- <% course.teaching_staffs.each do |author|%>
-<li>        <% if author.user.image_blob == nil %>
-
-        <% if author.user.omni_image_url == nil %>
-                <%= gravatar_for_with_size author.user, "25x20" %></td>
-      
-      
-        <% else  %>
-       <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%> 
-      
-        <% end  %>
-        <% else  %>
- <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
-              <% end  %>
-
-        
-        <br><%= author.user.name %></li> <% end %>
-</ul>
-</div>
-</div>
-</div>
-<%end%>
-</div>
+        </div>
+     <%end%>
+   </div>
 </div>

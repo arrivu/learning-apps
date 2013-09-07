@@ -67,7 +67,8 @@ resources :footerlinks
   match '/datewise_courses', :to => 'courses#datewise_courses'
   match '/subscribed_courses', :to => 'courses#subscribed_courses'
   match '/course_status_search', :to => 'courses#course_status_search'
-  match '/completed_courses', :to => 'courses#completed_courses'
+  match '/completed_courses', :to => 'courses#comple
+ted_courses'
   match '/updatecompleted_details', :to => 'courses#updatecompleted_details'
   match '/conclude_course', :to =>'courses#conclude_course'
   match '/concluded_course_update', :to=> 'courses#concluded_course_update'
