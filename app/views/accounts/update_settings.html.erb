@@ -52,6 +52,9 @@
 
 	   <tr><td><%= f.label :popular_course %></td>
 	   <td><%= f.check_box :popular_course_enable, :checked => @domain_root_account.settings[:popular_course_enable] %></td></tr>
+
+    <tr><td><%= f.label :account_statistics %></td>
+      <td><%= f.check_box :account_statistics_enable, :checked => @domain_root_account.settings[:account_statistics_enable] %></td></tr>
 	</table>
  </div>
 

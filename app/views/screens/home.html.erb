@@ -55,12 +55,13 @@
   });
   </script>
   <section class="main keynumbers">
+    <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">
       <div class="row-fluid pagination-centered">
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            4,164
+           <%= root_account.courses.count %>
           </h2>
           <p>Courses</p>
         </div>
@@ -86,7 +87,7 @@
           <p>Categories</p>
         </div>
       </div>
-
+    <%end%>
     </div>
   </section>
 
