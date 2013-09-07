@@ -40,10 +40,6 @@ module ApplicationHelper
 
      redirect_to root_url # or whatever
    end
-  
-   
-  		 
-
 end
 
 
@@ -53,9 +49,9 @@ end
       fresh_when instant_variable, public: scope
     end
   end
-  #  def http_cache(instant_variable,scope=true)
-  #    fresh_when instant_variable, public: scope
-  #  end
+      #  def http_cache(instant_variable,scope=true)
+      #    fresh_when instant_variable, public: scope
+      #  end
   def theme_check_account_admin
       authenticate_user!
       if current_user.has_role? :account_admin 
@@ -66,6 +62,9 @@ end
      redirect_to root_url # or whatever
    end
  end
+
+ 
+
  def theme_check_create_admin
       authenticate_user!
       if current_user.has_role? :admin 
@@ -101,13 +100,17 @@ end
      end
    end
    def account_create_restrict
-   	if current_user.has_role? :admin
+   	if current_user.has_role? :admin 
+
    		return
+    elsif current_user.has_role? :account_admin
+      return
+        
    	else
       flash[:error] = "Invalid authenticator"
    		redirect_to users_url
    	end
 
    end
-   
+  
 end

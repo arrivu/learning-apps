@@ -56,7 +56,11 @@
                         <%= f.text_field :linkedin_profile_url  %>
                       </td>
                     </tr>
-
+                    <tr> <th>Active</th>
+                         <td>
+                         <%= f.check_box :is_active %>
+                         </td>
+                    </tr>
 
 			  	<tr><td></td><td><%= f.submit "Update", class: "btn btn-primary " %>
 

@@ -56,6 +56,7 @@
   </script>
   <section class="main keynumbers">
     <div class="container">
+       <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
         <div class="span3">
           <h2>
@@ -89,6 +90,7 @@
 
     </div>
   </section>
+  <% end %>
 
   <div class="homecourse">
     <div class="secondary-content yellobg">
