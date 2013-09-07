@@ -11,6 +11,21 @@
         <div class="coursecount pull-left">
           <span class="badge badge-info">Found <%=pluralize(@total_course_count,"Course")%> </span>
         </div>
+
+         <ul class="nav pull-right" style="margin-left:20px;">
+          <li id="fat-menu" class="dropdown" style="color:black;">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" font-size: 1.2em;
+                    position: relative;color:black; ">Tags&nbsp;<b class="caret" style="border-left: 7px solid transparent;border-right: 7px solid transparent;border-top: 7px solid #34495E;"></b></a>
+            <ul class="dropdown-menu">
+
+              <% @domain_root_account.tags.each do |tag| %>
+                  <li><%= link_to tag.name, tagged_courses_path(tag:tag) %></li>
+              <%end%>
+
+            </ul>
+          </li>
+        </ul>
+
         <ul class="nav pull-right" style="margin-left:20px;">
           <li id="fat-menu" class="dropdown" style="color:black;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" font-size: 1.2em;
@@ -41,7 +56,7 @@
        </li>
      </ul>
 
-     <ul class="nav pull-right">
+     <ul class="nav pull-right" style="margin-left:20px;">
        <li id="fat-menu" class="dropdown" style="color:black;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" font-size: 1.2em;
         position: relative;color:black; ">Categories&nbsp;<b class="caret" style="border-left: 7px solid transparent;border-right: 7px solid transparent;border-top: 7px solid #34495E;"></b></a>

@@ -83,7 +83,7 @@ module LmsHelper
 			lmscourse.set_token(Settings.lms.oauth_token,Settings.lms.api_root_url)
 			course=lmscourse.get_course(course.lms_id)
 			modules=course.modules
-		else
+    else
 			modules
 		end
 	end

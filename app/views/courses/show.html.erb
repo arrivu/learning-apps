@@ -15,9 +15,8 @@ $(document).ready(function(){
 <div class="span3 content-box resource" style="float: left;">
    
 <div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 100%;">
-  
-<div class="type" <%= @course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %>><span class="prefix"> 
-  <%= @course.topic.name%></span></div>
+
+  <div class="type " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
 </div>
 <div class="details" style="margin-top:165px;">
 <h2>
@@ -52,8 +51,8 @@ $(document).ready(function(){
 <li>        <% if author.user.image_blob == nil %>
 
         <% if author.user.omni_image_url == nil %>
-                <%= gravatar_for_with_size author, "30x30" %>
-      
+                <%= gravatar_for_with_size author.user, "30x30" %>
+
       
         <% else  %>
        <%= image_tag(author.omni_image_url,size: "30x30", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%> 

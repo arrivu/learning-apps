@@ -1,32 +1,3 @@
-<!-- <html>
-<head>
-<script language="javascript" type="text/javascript">
-tinyMCE.init({
-        theme : "advanced",
-        mode : "textareas"
-});
-</script>
-<h3 align = "center">Privacy Policies</h3>
-<table align="center">
-<%= tinymce_assets %>
-<%= form_for @privacypolicy do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <tr>
-    <td><%= f.label 'Title' %></td>
-    <td><%= f.text_field :title %></td>
-  </tr>
-  <tr>
-	<td><%=f.label 'Description'%></td>
-	<td><%=f.text_area :desc,:class => "tinymce"%></td>
-</tr>
-<tr>
-   <td><%= f.submit "Save" %> </td>
-</tr>
-<%= tinymce %>
-<% end %>
-</table>
-</html>
- -->
  <div id="wrap">
   <script language="javascript" type="text/javascript">
 tinyMCE.init({
@@ -45,12 +16,8 @@ tinyMCE.init({
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-  <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Privacy Policies</h5>
-                                        </header>
                                                                             <div id="collapse4" class="body">
-                                           
+                                           <div class="icons"><span class="badge badge-info">Add Privacy Policies</span></div> 
         <table id="dataTable" class="table table-condensed table-hover">
 <%= tinymce_assets %>
 <%= form_for @privacypolicy do |f| %>

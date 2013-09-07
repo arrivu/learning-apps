@@ -13,7 +13,14 @@ text-decoration: none;
 background-color: transparent;
 border:0px
 }
+.navbar .nav>li>a {
+float: none;
+padding: 10px 15px 10px;
+color: #fff;
+font-weight: bold;
+text-decoration: none;
 
+}
 .btn-large {
 font-size: 16.5px;
 -webkit-border-radius: 6px;
@@ -32,3 +39,5 @@ vertical-align: middle;
 border: 0;
 -ms-interpolation-mode: bicubic;
 }
+
+.resource .type-tag-positioner img{height:80px;}
