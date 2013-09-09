@@ -1,0 +1,43 @@
+ <div id="teacher_sign_up_Modal" class="modal hide fade">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     <h3>Signup as a Teacher</h3>
+   </div>
+   <div class="modal-body">
+     <p><%= simple_form_for(:teaching_staff, :as => :teaching_staff, :url => url_for(:controller => 'teaching_staffs', :action => 'teaching_staff_signup'),:html => {:class => 'form-vertical' }) do |f| %>
+         <table>
+           <tr><td>
+             <div>
+               <%= f.error_notification %>
+               <%= f.fields_for :teaching_staff_user do |user_form| %>
+                   <%=user_form.label :name%>
+                   <%= user_form.text_field :name, :autofocus => true %>
+                   <%=user_form.label :email%>
+                   <%= user_form.text_field :email, :required => true %>
+                   <%=user_form.label :password%>
+                   <%= user_form.password_field :password, :required => true %>
+                   <%=user_form.label :password_confirmation%>
+                   <%= user_form.password_field :password_confirmation, :required => true %>
+                   <%=user_form.label :attachment,"Attach Profile Picture"%>
+                   <%= user_form.file_field :attachment %>
+               <%end %>
+               <%= display_base_errors User.new %>
+               <%=f.label :description%>
+               <%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %>
+               <%=f.label :qualification %>
+               <%= f.text_field :qualification %>
+               <%=f.label :linkedin_profile_url%>
+               <%= f.text_field :linkedin_profile_url%>
+             </div>
+           </td>
+           </tr>
+         </table>
+
+     </p>
+   </div>
+   <div class="modal-footer">
+     <a href="#" class="btn">Close</a>
+     <%= f.button :submit, 'Create my account', :class => 'btn btn-primary'%>
+     <% end %>
+   </div>
+ </div>

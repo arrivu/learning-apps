@@ -41,8 +41,14 @@ end
   end
 
   def index
+     if current_user.has_role? :account_admin 
+      redirect_to users_path
+     end
+      
   	@account=Account.all
-  end
+
+
+end
 
   def update_settings
    @domain_root_account.settings=params[:update_settings]

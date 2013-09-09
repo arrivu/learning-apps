@@ -19,17 +19,21 @@
 
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a href="#account">Account Settings</a></li>
+  <li><a href="#mail">Mail Settings</a></li>
+  <% if current_user.has_role? :admin %>
   <li><a href="#cas">Cas Settings</a></li>
   <li><a href="#lms">Lms Settings</a></li>
-  <li><a href="#mail">Mail Settings</a></li>
   <li><a href="#payment">Payment Settings</a></li>
   <li><a href="#social">Socialmedia Settings</a></li>
+  <% end %>
 
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="account">
 
+  <div class="tab-pane active" id="account">
+ 
+  	 
   <table>
 	  <tr>
 		<td><%= f.label :knowledge_partners %></td>
@@ -52,8 +56,39 @@
 
 	   <tr><td><%= f.label :popular_course %></td>
 	   <td><%= f.check_box :popular_course_enable, :checked => @domain_root_account.settings[:popular_course_enable] %></td></tr>
+
+	   <tr><td><%= f.label :account_statistics %></td>
+	   <td><%= f.check_box :account_statistics_enable, :checked => @domain_root_account.settings[:account_statistics_enable] %></td></tr>
+
 	</table>
+	  
  </div>
+
+ <div class="tab-pane" id="mail">
+ 
+   
+	<table>
+		<tr><td><%= f.label  :mailserver_address %></td>
+	   <td><%= f.text_field :mailserver_address, :value => @domain_root_account.settings[:mailserver_address] %></td></tr>
+
+	   <tr><td><%= f.label  :mailserver_port %></td>
+	   <td><%= f.text_field :mailserver_port, :value => @domain_root_account.settings[:mailserver_port] %></td></tr>
+
+	   <tr><td><%= f.label  :mailserver_domain %></td>
+	   <td><%= f.text_field :mailserver_domain, :value => @domain_root_account.settings[:mailserver_domain] %></td></tr>
+
+	   <tr><td><%= f.label  :mailserver_user_name %></td>
+	   <td><%= f.text_field :mailserver_user_name, :value => @domain_root_account.settings[:mailserver_user_name] %></td></tr>
+
+	   <tr><td><%= f.label  :mailserver_password %></td>
+	   <td><%= f.text_field :mailserver_password, :value => @domain_root_account.settings[:mailserver_password] %></td></tr>
+
+	   <tr><td><%= f.label  :admin_mail_to %></td>
+	   <td><%= f.text_field :admin_mail_to, :value => @domain_root_account.settings[:admin_mail_to] %></td></tr>
+  </table>
+ </div>
+
+  <% if current_user.has_role? :admin %>
 
   <div class="tab-pane" id="cas">
 		<table>
@@ -99,28 +134,7 @@
 		</table>
   </div>
 
- <div class="tab-pane" id="mail">
-
-	<table>
-		<tr><td><%= f.label  :mailserver_address %></td>
-	   <td><%= f.text_field :mailserver_address, :value => @domain_root_account.settings[:mailserver_address] %></td></tr>
-
-	   <tr><td><%= f.label  :mailserver_port %></td>
-	   <td><%= f.text_field :mailserver_port, :value => @domain_root_account.settings[:mailserver_port] %></td></tr>
-
-	   <tr><td><%= f.label  :mailserver_domain %></td>
-	   <td><%= f.text_field :mailserver_domain, :value => @domain_root_account.settings[:mailserver_domain] %></td></tr>
-
-	   <tr><td><%= f.label  :mailserver_user_name %></td>
-	   <td><%= f.text_field :mailserver_user_name, :value => @domain_root_account.settings[:mailserver_user_name] %></td></tr>
-
-	   <tr><td><%= f.label  :mailserver_password %></td>
-	   <td><%= f.text_field :mailserver_password, :value => @domain_root_account.settings[:mailserver_password] %></td></tr>
-
-	   <tr><td><%= f.label  :admin_mail_to %></td>
-	   <td><%= f.text_field :admin_mail_to, :value => @domain_root_account.settings[:admin_mail_to] %></td></tr>
-  </table>
- </div>
+ 
 
   <div class="tab-pane" id="payment">
   	<table>
@@ -164,10 +178,13 @@
 
 
 		</table>
+
   </div>
+<% end %>
 
 </div> <br>
 <%= f.submit  "Update Settings", :class=>"btn btn-primary btn-large"%>
+
 <script>
   $('#myTab a').click(function (e) {
   e.preventDefault();
@@ -202,4 +219,4 @@
        
 
 
-
+    </div>

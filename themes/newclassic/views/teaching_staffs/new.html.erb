@@ -1,163 +1,42 @@
-<!-- 			<div style="float:left">
-							</div>
 
-			<br>
-			<div class="row">
-				<div class="span8 offset3" style="min-height:550px;">
-					<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-						<h3 align = "center">Teaching Staff </h3>
-						<%= simple_form_for(@teachingstaff) do |f| %>
-						<%= render 'shared/error_messages', object: f.object %>
-
-						<%= f.fields_for :teaching_staff_user do |user_form| %>
-						<table class="tableform"> 
-							<tbody><tr> 
-								<th>Name </th>
-								<td> 
-									<%= user_form.text_field :name, :autofocus => true %>
-								</td> 
-							</tr> 
-							<tr> <th>Email</th>
-								<td> 
-									<%= user_form.text_field :email, :required => true %>
-								</td> 
-							</tr>
-
-							<tr> 
-								<th>Password</th>
-								<td> 
-									<%= user_form.password_field :password, :required => true %>
-								</td> 
-							</tr> 
-							<tr> 
-								<th>Password confirmation</th>
-								<td> 
-									<%= user_form.password_field :password_confirmation, :required => true %>
-								</td> 
-						</tr> 
-
-				<tr><th>Image</td>
-				<td><%= user_form.file_field :attachment %></td></tr>
-
-								
-
-
-							<%end %>
-
-							<tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
-
-							<tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
-                          <tr> <th>Linkedin Profile URL</th>
-                            <td>
-                              <%= f.text_field :linkedin_profile_url%>
-                            </td>
-                          </tr>
-
-
-
-							<tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
-
-
-							<% end %></table>
-						</div>
-					</div>
-				</div>
-
-
- -->
-
- <div id="wrap">
-
-  <%= render 'shared/side_menu' %>
-               
-            <div id="content">
-                <!-- .outer -->
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-               <div class="span12 inner">
-                            <!--Begin Datatables-->
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-                                        <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Teaching Staff</h5>
-                                        </header>
-                                        <div id="collapse4" class="body">
-                                 <%= simple_form_for(@teachingstaff) do |f| %>
-						<%= render 'shared/error_messages', object: f.object %>
-
-						<%= f.fields_for :teaching_staff_user do |user_form| %>
-	<table id="dataTable" class="table table-condensed table-hover">
-							<tbody><tr> 
-								<th>Name </th>
-								<td> 
-									<%= user_form.text_field :name, :autofocus => true %>
-								</td> 
-							</tr> 
-							<tr> <th>Email</th>
-								<td> 
-									<%= user_form.text_field :email, :required => true %>
-								</td> 
-							</tr>
-
-							<tr> 
-								<th>Password</th>
-								<td> 
-									<%= user_form.password_field :password, :required => true %>
-								</td> 
-							</tr> 
-							<tr> 
-								<th>Password confirmation</th>
-								<td> 
-									<%= user_form.password_field :password_confirmation, :required => true %>
-								</td> 
-						</tr> 
-
-				<tr><th>Image</td>
-				<td><%= user_form.file_field :attachment %></td></tr>
-
-								
-
-
-							<%end %>
-
-							<tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
-
-							<tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
-                          <tr> <th>Linkedin Profile URL</th>
-                            <td>
-                              <%= f.text_field :linkedin_profile_url%>
-                            </td>
-                          </tr>
-
-
-
-							<tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
-
-
-							<% end %></table>
-
-<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
-                                    </div>
-                                </div>
-                            </div> 
-                                
-                            
-                        
-                    </div>
-                    <!-- /.row-fluid -->
-                </div>
-                <!-- /.outer -->
-            </div>
-            <!-- END CONTENT -->
-
-
-            <!-- #push do not remove -->
-            <div id="push"></div>
-            <!-- /#push -->
+<div id="wrap">
+<%= render 'shared/side_menu' %>
+ <div id="content">
+  <div class="container-fluid outer" style="background:#fff;">
+   <div class="row-fluid">
+    <div class="span12 inner">
+     <div class="row-fluid">
+      <div class="span12">
+       <div class="box">
+        <header>
+         <div class="icons"><i class="icon-move"></i></div>
+          <h5>Teaching Staff</h5>
+        </header>
+         <div id="collapse4" class="body">
+         <%= simple_form_for(@teachingstaff) do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>
+             <%= f.fields_for :teaching_staff_user do |user_form| %>
+             <table id="dataTable" class="table table-condensed table-hover">
+              <tbody><tr><th>Name </th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
+                     <tr><th>Email</th><td> <%= user_form.text_field :email, :required => true %></td></tr>
+                     <tr><th>Password</th><td><%= user_form.password_field :password, :required => true %></td></tr>
+                     <tr><th>Password confirmation</th><td><%= user_form.password_field :password_confirmation, :required => true %></td></tr>
+                     <tr><th>Image</th><td><%= user_form.file_field :attachment %></td></tr>
+             <%end %>
+                     <tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
+					 <tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
+                     <tr> <th>Linkedin Profile URL</th><td><%= f.text_field :linkedin_profile_url%></td></tr>
+					 <tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
+             </table>
+         <% end %>
+         </div>
         </div>
-        <!-- END WRAP -->
-
-        <div class="clearfix"></div>
-       
+       </div>
+      </div>
+      </div>
+     </div>
+    <div id="push"></div>
+   </div>
+  <div class="clearfix"></div>
+ </div>
+</div>

@@ -54,5 +54,5 @@ Myapp::Application.configure do
   #  :sender_address => "#{Settings.exception_notifer.sender_address}",
   #  :exception_recipients =>  "#{Settings.exception_notifer.exception_recipients}"
   #
-  
+  config.serve_static_assets=true
 end

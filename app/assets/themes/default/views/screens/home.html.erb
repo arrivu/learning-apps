@@ -20,7 +20,8 @@
      
      </div>     </div>  
                <div class="clearfix"></div>
-                      <div class="span6" align="center" >
+
+   <div class="span6" align="center" >
 
 <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
 </div> 
@@ -83,8 +84,7 @@
   <div class="ourknowledgepartners" > 
 
  <div class="secondary-content ">
-    <div class="container" align="center">
-      <div class="row testimonial">
+   <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
            <h2 style="margin-left: 30px;">Knowledge Partners</h2>
       </div>
     </div>

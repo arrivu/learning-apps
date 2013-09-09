@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   include LmsHelper
-
+  helper_method :course_user_count
 
 #before_filter :current_user, only: [:create, :edit,:update,:delete]
 ActiveMerchant::Billing::Integrations
@@ -31,20 +31,29 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
   end
 
   def index
-    if @account_id!=nil
+   if @account_id!=nil
    @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
    @countCoursesPerPage = 6
 
-   if params[:mycourses]=="mycourses"
+       if params[:mycourses]=="mycourses"
      @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
    else
      @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
    end
 
    @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
- else
+
+
+
+
+
+    else
   @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
   @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
+
+
+
+
 end
   
  end
@@ -340,5 +349,17 @@ end
     @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
-end
+
+  def get_modules
+    @courses=Courses.all
+    @courses.each do |c|
+      @module=lms_get_modules(c)
+    end
+
+
+  end
+
+
+  end
+
 

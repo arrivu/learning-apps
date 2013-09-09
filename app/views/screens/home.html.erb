@@ -29,10 +29,11 @@
 
                </div>     </div>  
                <div class="clearfix"></div>
+              <% unless slider.image.nil?  %>
                <div class="span4" align="center" >
-
                 <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
-              </div> 
+              </div>
+                 <% end  %>
               <div class="span5" align="justify">
                 <p><%= slider.body_tag %><p>
                   <%= render 'show_topics' %>
@@ -55,40 +56,43 @@
   });
   </script>
   <section class="main keynumbers">
+    <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">
+       <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            4,164
+             <%= @domain_root_account.courses.count %>
           </h2>
           <p>Courses</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
-            1,107
+          <%= @domain_root_account.account_users.count %>
           </h2>
           <p>Users</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
-            1,261
+            <%=  modules_count=totalmodulescount %>
           </h2>
           <p>Modules</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            1,403
+            <%= @domain_root_account.topics.count %>
           </h2>
           <p>Categories</p>
         </div>
       </div>
-
+    <%end%>
     </div>
   </section>
+  <% end %>
 
   <div class="homecourse">
     <div class="secondary-content yellobg">
@@ -196,6 +200,7 @@
 <div align="center">
 
 
+
  <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
 
 </div>
@@ -209,6 +214,7 @@
       <div class="span12" align="center" style="width: 95%;">
         <h3 style="font-size: 38px;">Step up Your Learning Curve!
         </h3>
+
 
         <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
 
