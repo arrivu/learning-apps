@@ -37,14 +37,14 @@ z-index: 100;
       }
 
 .yellobg
-{/*background-color: #ffda55;
+{background-color: #ffda55;
 background-image: -moz-linear-gradient(top,#ffda55,#ffda55);
 background-image: -webkit-gradient(linear,0 0,0 100%,from(#ffda55),to(#ffda55));
 background-image: -webkit-linear-gradient(top,#ffda55,#ffda55);
 background-image: -o-linear-gradient(top,#ffda55,#ffda55);
 background-image: linear-gradient(to bottom,#ffda55,#ffda55);
 background-repeat: repeat-x;
-color:#000;*/
+color:#000;
 }
 
 .homebanner{
