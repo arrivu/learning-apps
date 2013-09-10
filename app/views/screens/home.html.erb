@@ -107,7 +107,7 @@
       <div class="row">
 
 
-        <%= render 'shared/courselist' %>
+        <%= render 'shared/popular_courselist' %>
 
         <div align="center" style="">
 
@@ -147,11 +147,12 @@ margin: 0px auto;">
       <td>
       <div class="span4" style="width: 30%;">
         <div class="kp">
-          <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
-        </div>
+     <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
+        
         <div class="testimonialtext">
          "<%= partners.comments%>"   
        </div> 
+       </div>
        </div>
 </td>
        <% end %>
@@ -183,9 +184,10 @@ margin: 0px auto;">
  <div class="container" >
   <div class="row">
     <div class="span12">
-
+   <table >
+    <tr>
      <% @testimonial.each do |testimonials| %>
-
+<td>
      <div class="span4" style="width: 30%;">
 
       <div class="verticalcustomerbox testimonial-one" align="center">
@@ -199,8 +201,9 @@ margin: 0px auto;">
 
 
     </div></div>
-
+</td>
     <%end%>
+  </tr></table>
     <% end %>
 
   </div>
