@@ -37,14 +37,14 @@ z-index: 100;
       }
 
 .yellobg
-{/*background-color: #ffda55;
+{background-color: #ffda55;
 background-image: -moz-linear-gradient(top,#ffda55,#ffda55);
 background-image: -webkit-gradient(linear,0 0,0 100%,from(#ffda55),to(#ffda55));
 background-image: -webkit-linear-gradient(top,#ffda55,#ffda55);
 background-image: -o-linear-gradient(top,#ffda55,#ffda55);
 background-image: linear-gradient(to bottom,#ffda55,#ffda55);
 background-repeat: repeat-x;
-color:#000;*/
+color:#000;
 }
 
 .homebanner{
@@ -480,7 +480,7 @@ border: none;
 	font-weight: 100;
 	z-index: 0;
 	text-align: justify;
-    min-height: 150px;
+    min-height: 50px;
 	line-height: 1.5;
 	color: #6f6f6f;
 	border-left: none;

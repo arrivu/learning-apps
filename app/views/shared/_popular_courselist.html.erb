@@ -1,8 +1,9 @@
 <div class="row evenflow">
        <div class="resource-row">
-     <div style="margin: 0px auto;min-width: 400px;
-max-width: 100%;">         <% @courses.each do |course|%>
-  
+         <table style="min-width:200px;margin:0px auto;"><tr>
+         <% @courses.each do |course|%>
+         <% if course.ispopular? %>
+  <td>
 
 <div class="span3 content-box resource" style="float: left;">
    
@@ -77,10 +78,9 @@ max-width: 100%;">         <% @courses.each do |course|%>
              </div>
           </div>
 
-       
-
+       </td>
+<%end%>
      <%end%>
-    
-   </div>
+   </tr></table>
 </div>
 </div>

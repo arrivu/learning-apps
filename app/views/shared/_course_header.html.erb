@@ -11,7 +11,6 @@
         <div class="coursecount pull-left">
           <span class="badge badge-info">Found <%=pluralize(@total_course_count,"Course")%> </span>
         </div>
-
          <ul class="nav pull-right" style="margin-left:20px;">
           <li id="fat-menu" class="dropdown" style="color:black;">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style=" font-size: 1.2em;
@@ -52,7 +51,7 @@
 
 
           <% @topics.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).each do |topic| %>
-          <% @topicStructure = topic.name + " ( #{ topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id).size} )" %>
+          <% @topicStructure = topic.name + " ( #{Course.where(ispublished: 1, :isconcluded=>false,account_id: @account_id).size} )" %>
 
           <li><%= link_to @topicStructure, topic %></li>
           <%end%>    
