@@ -136,6 +136,7 @@ class TeachingStaffsController < ApplicationController
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
       lms_create_user(@teachingstaff.user)
+      UserMailer.teaching_staffs_welcome(@teachingstaff).deliver!
       redirect_to root_path
 
     else

@@ -20,5 +20,11 @@ class UserMailer < ActionMailer::Base
     @teaching_staff =teaching_staff
     mail(:to => teaching_staff.user.email, :subject => "Account Activation")
   end
-  
+
+ def teaching_staffs_welcome(teaching_staff)
+   @teaching_staff =teaching_staff
+   mail(:to => teaching_staff.user.email, :subject => "Account creation confirmation")
+ end
+
+
 end

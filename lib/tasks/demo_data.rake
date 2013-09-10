@@ -35,7 +35,7 @@ namespace :db do
                		facebook_url: "https://www.facebook.com",
                		twitter_url: "https://www.twitter.com",
                		
-               		 copy_write: "© Beacon Learning",account_id: 2 )
+               		 copy_write: "© Arrivu Apps Learning Portal",account_id: 2 )
                      
                	HeaderDetail.create!(
                     logo: "viewlogo.png",
