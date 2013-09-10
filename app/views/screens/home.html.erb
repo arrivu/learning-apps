@@ -62,31 +62,31 @@
       <div class="row-fluid pagination-centered">
         <div class="span3">
           <h2>
-            <img src="assets/PNG/Grey/64/Bookmark.png">
-             <%= @domain_root_account.courses.count %>
+            <img src="assets/PNG/Grey/64/Bookmark.png" >
+
           </h2>
-          <p>Courses</p>
+          <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
-          <%= @domain_root_account.account_users.count %>
+
           </h2>
-          <p>Users</p>
+          <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
-            <%=  modules_count=totalmodulescount %>
+
           </h2>
-          <p>Modules</p>
+          <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
         </div>
         <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            <%= @domain_root_account.topics.count %>
+
           </h2>
-          <p>Categories</p>
+          <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
         </div>
       </div>
     <%end%>
