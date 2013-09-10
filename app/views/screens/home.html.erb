@@ -140,7 +140,11 @@
 
 
     <div class="listofkp" >
+      <table style="min-width: 200px;
+margin: 0px auto;">
+    <tr>
       <% @partners.each do |partners| %>
+      <td>
       <div class="span4" style="width: 30%;">
         <div class="kp">
           <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
@@ -148,9 +152,13 @@
         <div class="testimonialtext">
          "<%= partners.comments%>"   
        </div> 
+       </div>
+</td>
        <% end %>
+</tr>
+</table>
        <% end %>
-     </div>
+     
 
    </div>
  </div>

@@ -1,6 +1,11 @@
 <div class="row evenflow">
        <div class="resource-row">
+        <table style="min-width: 400px;
+margin: 0px auto;">
+    <tr>
       <% @courses.each do |course|%>
+  
+      <td>
    <div style="margin:0px auto;">   
 <div class="span3 content-box resource" style="float: left;">
    
@@ -76,7 +81,10 @@
           </div>
 
         </div>
+     
+     </td>
      <%end%>
-
+     </tr>
+</table>
 </div>
 </div>
