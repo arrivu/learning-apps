@@ -9,9 +9,9 @@ lms:
   account_id: 4
   #oauth_token: 88n7pFHCredVJLG3MiBU2Oidp6D4uYmpsxz8hG33RNhrrVKbJGsluL0tSdV7ydW2
   oauth_token: YM5EZChRgAWP2Sdtb5PeKnaUreueSv2kyMQSx9una2sAfwiPhp1Gd8uBhtrqNcGZ
-  root_url: http://lms.lvh.me:3000
+  root_url: http://lms.lvh.me
   course_url_path: courses/
-  api_root_url: http://lms.lvh.me:3000/api/v1
+  api_root_url: http://lms.lvh.me/api/v1
   logout_path: logout
 mailserver:
   address: smtp.gmail.com

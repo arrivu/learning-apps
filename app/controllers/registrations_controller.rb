@@ -16,25 +16,14 @@ class RegistrationsController < Devise::RegistrationsController
     send_data @user.image_blob, :type => @user.content_type, :disposition => 'inline'
   end
 
-  # POST /resource
   def create
-
     @user=User.new(params[:user])
-
-    # build_resource
-    
-      
-
-    
     if @user.save
-     # @account_user = account.add_user(user,"student")
-
      if @user.active_for_authentication?
        set_flash_message :notice, :signed_up if is_navigational_format?
        sign_up(resource_name, @user)
        #call cas sign to create the cas ticket
        cas_sign_in(current_user) if  cas_enable?
-    
        respond_with @user, :location => after_sign_up_path_for(resource)
      else
        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
@@ -45,8 +34,6 @@ class RegistrationsController < Devise::RegistrationsController
      clean_up_passwords @user
      respond_with @user
     end
-
-    
     # super   
     if current_user  
       student_create     
@@ -59,7 +46,6 @@ class RegistrationsController < Devise::RegistrationsController
     @user = User.find(current_user.id)
     @account=Account.find_by_name(request.subdomain)
       @user.accountid=@account.id
-
     successfully_updated = if needs_password?(@user, params)
       @user.update_with_password(params[:user])
     else
@@ -68,7 +54,6 @@ class RegistrationsController < Devise::RegistrationsController
       params[:user].delete(:current_password)
       @user.update_without_password(params[:user])
     end
-
     if successfully_updated
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
@@ -86,8 +71,8 @@ class RegistrationsController < Devise::RegistrationsController
     #   if (current_user && cas_enable?)
     #     begin
     #       #cookies[:tgt] = tgt
-    #       # Sets a cookie with the domain            
-    #       cookies[:tgt] = { :value => "#{tgt}", :domain => cas_cookie_domain }          
+    #       # Sets a cookie with the domain
+    #       cookies[:tgt] = { :value => "#{tgt}", :domain => cas_cookie_domain }
     #     rescue Exception => e
     #       puts e.inspect
     #       puts "There is some error to sing_in to cas using user : #{current_user.inspect}"
@@ -113,13 +98,9 @@ class RegistrationsController < Devise::RegistrationsController
     end   
 
     def student_create
-      if current_user 
-         # @account=Account.find_by_name(request.subdomain)
-        # current_user.account_id=@account_id
-        Student.create(:user_id=>current_user.id,:account_id=>@account_id) 
-        
+      if current_user
+        Student.create(:user_id=>current_user.id,:account_id=>@account_id)
         current_user.add_role(:student)
-        # current_user.add_accountid()
         AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id)
       end
     end
