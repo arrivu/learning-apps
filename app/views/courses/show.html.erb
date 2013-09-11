@@ -367,6 +367,7 @@ $(".close").click(function(){
 </div>
 </div>
 </div>
+<div class="span3 content-box resource" style="float: left;padding: 10px;">
 
 <div class="span3 content-box resource" style="float: left;padding: 10px;">
    <% if @course.is_coming_soon %>
@@ -400,7 +401,7 @@ $(".close").click(function(){
             <% end %>
 
  <% if (current_user.present? ) %>
-              <% if !(current_user.has_role? :admin) %>
+              <% if !(current_user.has_role? :admin) and !(current_user.has_role? :account_admin) %>
 
                 <% if @course.is_coming_soon %>
                 <% if @status!="follow" %>

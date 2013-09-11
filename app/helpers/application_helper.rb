@@ -30,12 +30,15 @@ module ApplicationHelper
 			html.html_safe
 		end
 
+    
+
 		def check_admin_user
 			authenticate_user!
 			if current_user.has_role? :account_admin 
 			 return
 			elsif current_user.has_role? :admin
 				return
+               
 			else	
 
      redirect_to root_url # or whatever

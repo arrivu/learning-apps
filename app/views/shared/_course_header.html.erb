@@ -66,7 +66,7 @@
 
 
           <% @topics.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).each do |topic| %>
-          <% @topicStructure = topic.name + " ( #{ topic.courses.where(ispublished: 1, :isconcluded=>false,account_id: @account_id).size} )" %>
+          <% @topicStructure = topic.name + " ( #{ Course.where(ispublished: 1, :isconcluded=>false,account_id: @account_id).size} )" %>
 
           <li><%= link_to @topicStructure, topic %></li>
           <%end%>    

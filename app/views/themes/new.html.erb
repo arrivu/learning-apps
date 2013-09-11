@@ -15,12 +15,12 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                                                       <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Themes </h5>
-                                        </header>
-                                        <div id="collapse4" class="body">
-                            <table id="dataTable" class="table  table-condensed table-hover ">
+                                                      
+                                            
+                                            
+                                        <div id="collapse4" class="body" style = "margin-right:500px">
+                                            <div class="icons"><span class="badge badge-info">New Themes </span></div>
+                            <table id="dataTable" >
                             <%= form_for @themes do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 <tr>
@@ -48,6 +48,10 @@
             </div></div>
             <!-- END CONTENT -->
            <!-- #push do not remove -->
+            <div class="left" style="padding: 0px;width: 16%;float: right;">
+             
+    <a href="../account_themes/new" class="btn btn-default btn-large" style="margin:10px; margin-left:-475px"><i class="icon icon-plus-sign"></i>Assign Theme</a> 
+  </div>
             <div id="push"></div>
             <!-- /#push -->
         

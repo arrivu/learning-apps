@@ -149,7 +149,9 @@ class TeachingStaffsController < ApplicationController
     @teachingstaff.is_active = params[:teaching_staff][:is_active]
     if @teachingstaff.save!
       if @teachingstaff.is_active?
-        UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        unless Rails.env.development?
+          UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        end
         redirect_to teaching_staffs_path
         flash[:success] = "User Sucessfully activated and activation mail sent !"
       else

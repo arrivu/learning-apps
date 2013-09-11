@@ -27,7 +27,8 @@ namespace :db do
 							parent_topic_id: array[3],
 							root_topic_id: array[4]
 							)
-					end
+          end
+
 
                	Footerlink.create!(youtube_url: "https://www.youtube.com",
                		linkedin_url: "https://www.linkedin.com",

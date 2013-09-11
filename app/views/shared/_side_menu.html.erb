@@ -1,6 +1,9 @@
 
 <div id="left">
  <ul id="menu" class="unstyled accordion collapse in">
+
+<% if !current_user.has_role? :teacher %>
+  
          <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
              <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
 
@@ -10,34 +13,31 @@
                          <li><%= link_to "Interested Users", interested_users_path %></li>
                          <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>
 
-                        </ul></li>
+                        </ul></li><% end %>
 
 
-                        </li>
-                        <li class="accordion-group ">
+
+                        <!-- </li> -->
+                      <!--   <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                              <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
                         </a>
                          <ul class="collapse " id="form-nav">
                           <li><%= link_to "Category", topics_path %></li>  
                           <li><%= link_to "Course Library", manage_courses_path %></li>
-                        </ul></li>
+                        </ul></li> -->
 
                         <% if !current_user.has_role? :account_admin %>
+                        <% if !current_user.has_role? :teacher %>
                         
                           <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
 
-                        </li><% end %>
-                        
-                     
-
+                        </li><% end %><% end %>
+                          
+                        <% if !current_user.has_role? :teacher %>
+                          
                          <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
-                         
-</li>
-
-
-                         <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
-                                           </li>
+                                           </li><% end %>
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                              <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
@@ -55,11 +55,11 @@
 
                         <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme">
-                             <i class="icon icon-book" style="paddign:0px 10px;"></i>Themes  
+                             <i class="icon icon-eye-open" style="paddign:0px 10px;"></i>Themes  
                         </a>
                          <ul class="collapse " id="theme">
-                          <li><%= link_to "Add new Theme" %></li>  
-                          <li><%= link_to " Assign Theme" %></li>
+                          <li><%= link_to "Add new Theme",new_theme_path%></li>  
+                          <li><%= link_to "Assign Theme",new_account_theme_path %></li>
                         </ul></li>
                         <% end%>
                     <li class="accordion-group ">
@@ -94,7 +94,7 @@
                     </li>
 <li class="accordion-group ">
 <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home">
-                             <i class="icon icon-file" style="paddign:0px 10px;"></i>Home Page Details
+                             <i class="icon icon-th" style="paddign:0px 10px;"></i>Home Page Details
                         </a>
                         <ul class="collapse " id="home">
                           <li><%= link_to "Header", header_details_path %></li>

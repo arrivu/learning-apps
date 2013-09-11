@@ -46,6 +46,10 @@
 
 
             <!-- #push do not remove -->
+            <div class="left" style="padding: 0px;width: 16%;float: right;">
+              <% if SocialStreamComment.find_by_account_id(@account_id) == nil %>
+    <a href="social_stream_comments/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Social Stream Comment</a><% end %>
+  </div>
             <div id="push"></div>
             <!-- /#push -->
         

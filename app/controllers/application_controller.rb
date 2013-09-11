@@ -27,12 +27,14 @@
     
 
   def after_sign_in_path_for(resource_or_scope)
+
     if redirect_back_req?
       redirect_back    
-    elsif current_user.has_role? :admin
+    elsif current_user.has_role? :admin 
      users_path
    elsif current_user.has_role? :account_admin
     users_path
+   
     else      
       student=Student.where(user_id: current_user.id).first
       if student !=nil 
@@ -94,6 +96,7 @@
          redirect_to users_path
        elsif current_user.has_role? :account_admin
         redirect_to users_path
+
         else
           redirect_to courses_path
         end

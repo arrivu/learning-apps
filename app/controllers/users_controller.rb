@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+
   before_filter :check_admin_user, :only => [:show, :destroy,:index,:interested_users]
   before_filter :subdomain_authentication , :only => [:show, :destroy,:index,:interested_users]
   require 'csv'
@@ -88,5 +89,22 @@ class UsersController < ApplicationController
 
     end
     
+   def teacher_courses
+    query = "%#{params[:search]}%"
+    if params[:search]==nil || params[:search]=="All" || params[:search] == ""
+      @users =  StudentCourse.where("status= ?","follow").paginate(page: params[:page], :per_page => 10) 
+        @total_users = @users.count
+         
+    else
+      @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page], :per_page => 10) 
+    @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
     
+    end
+    respond_to do |format|
+    format.html
+        format.xls # { send_data @products.to_csv(col_sep: "\t") }
+  end  
+      
+
+    end 
 end
