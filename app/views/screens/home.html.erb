@@ -55,47 +55,49 @@
           $("#slideshow1").sliders({ interval: 5000 });
       });
   </script>
-  <section class="main keynumbers">
+  <section class="main keynumbers" >
     <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">
        <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
-        <div class="span3">
+        <div class="container" align="center">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png" >
 
           </h2>
           <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
 
           </h2>
           <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
 
           </h2>
           <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
 
           </h2>
           <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
         </div>
-      </div>
-    <%end%>
+       </div>
     </div>
+    <%end%>
+   </div>
   </section>
   <% end %>
 
   <div class="homecourse">
-    <div class="secondary-content yellobg">
+    <div class="secondary-content yellobg" style=" height: 48px;">
       <div class="container" align="center">
         <div class="row testimonial">
           <% if  @domain_root_account.settings[:popular_course_enable] %>
