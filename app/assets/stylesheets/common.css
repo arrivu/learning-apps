@@ -455,7 +455,7 @@ color: #fbfbfb;
 
 .main {
 background-color: #f0f0f2;
-padding: 1em 0;
+/*padding: 1em 0;*/
 }
 .keynumbers {
 overflow: hidden;
@@ -463,7 +463,7 @@ border: 1px solid #e0e0e0;
 border-width: 1px 0;
 }
 .keynumbers h2 {
-font-size: 2.5em;
+font-size: 1.35em;
 }
 .keynumbers p {
 font-size: 1.2em;

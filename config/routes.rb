@@ -75,6 +75,7 @@ ted_courses'
   match '/edit_concluded_course', :to=> 'courses#edit_concluded_course'
   match '/update_un_concluded_course', :to=> 'courses#update_un_concluded_course'
   match '/interested_users', :to=> 'users#interested_users'
+  match '/teacher_courses', :to=> 'users#teacher_courses'
 
   devise_for :users, :controllers => {:registrations => "registrations",:sessions => "sessions"}
 
@@ -108,4 +109,5 @@ ted_courses'
   match 'teaching_staff_signup', :to => 'teaching_staffs#teaching_staff_signup'
   match'update_settings' , :to=> "accounts#update_settings"
   match'activate_teaching_staff', :to=> 'teaching_staffs#activate_teaching_staff'
+  match 'subscribe', :to=> 'accounts#subscribe'
 end

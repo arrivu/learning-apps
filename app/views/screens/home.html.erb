@@ -1,7 +1,7 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
 <div style="width:1349px;margin:0px auto;">
   <% provide(:effectingHeader) %>
-  <div class="student-header">
+  <!-- <div class="student-header">
     <div class="container">
       <div class="row">
         <div class="inner">
@@ -11,220 +11,235 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="homebanner" style="">
     <div class="row">
 
       <div class="row">
-       <div id="slideshow1" class="sliders">
-       <% if @domain_root_account.settings[:slide_show_enable] %> 
-        <% @slider.each do |slider| %> 
+        <div id="slideshow1" class="sliders">
+          <% if @domain_root_account.settings[:slide_show_enable] %>
+              <% @slider.each do |slider| %>
 
-        <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
-          <div class="row">
-            <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 10px 185px;height:300px;">
-              <div class="span12" align="center" >
-                <div class="bannertext">  
-                 <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
+                  <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
+                    <div class="row">
+                      <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 10px 185px;height:300px;">
+                        <div class="span12" align="center" >
+                          <div class="bannertext">
+                            <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
 
-               </div>     </div>  
-               <div class="clearfix"></div>
-              <% unless slider.image.nil?  %>
-               <div class="span4" align="center" >
-                <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
-              </div>
-                 <% end  %>
-              <div class="span5" align="justify">
-                <p><%= slider.body_tag %><p>
-                  <%= render 'show_topics' %>
-                </div>    
-                <div class="clearfix"></div>
-              </div>  
-            </div>
+                          </div>     </div>
+                        <div class="clearfix"></div>
+                        <% unless slider.image.nil?  %>
+                            <div class="span4" align="center" >
+                              <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %>
+                            </div>
+                        <% end  %>
+                        <div class="span5" align="justify">
+                          <p><%= slider.body_tag %><p>
+                          <%= render 'show_topics' %>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
 
-          </div>
-          <%end%>
-          <% end %> 
+                  </div>
+              <%end%>
+          <% end %>
 
         </div>
       </div>
     </div>
   </div>
   <script type="text/javascript">
-  $(document).ready(function () {
-    $("#slideshow1").sliders({ interval: 5000 });
-  });
+      $(document).ready(function () {
+          $("#slideshow1").sliders({ interval: 5000 });
+      });
   </script>
-  <section class="main keynumbers">
+  <section class="main keynumbers" >
     <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">
        <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
-        <div class="span3">
+        <div class="container" align="center">
+        <div class="span2">
           <h2>
-            <img src="assets/PNG/Grey/64/Bookmark.png">
-             <%= @domain_root_account.courses.count %>
+            <img src="assets/PNG/Grey/64/Bookmark.png" >
+
           </h2>
-          <p>Courses</p>
+          <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
-          <%= @domain_root_account.account_users.count %>
+
           </h2>
-          <p>Users</p>
+          <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
-            <%=  modules_count=totalmodulescount %>
+
           </h2>
-          <p>Modules</p>
+          <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
         </div>
-        <div class="span3">
+        <div class="span2">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
-            <%= @domain_root_account.topics.count %>
+
           </h2>
-          <p>Categories</p>
+          <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
         </div>
-      </div>
-    <%end%>
+       </div>
     </div>
+    <%end%>
+   </div>
   </section>
   <% end %>
 
-  <div class="homecourse">
-    <div class="secondary-content yellobg">
-      <div class="container" align="center">
-        <div class="row testimonial">
-          <% if  @domain_root_account.settings[:popular_course_enable] %>
-          <h2 style="margin-left:30px;"> Popular Courses</h2>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
+ 
+
+    <div class="homecourse">
+      <div class="secondary-content yellobg">
+        <div class="container" align="center">
+          <div class="row testimonial">
+            <% if  @domain_root_account.settings[:popular_course_enable] %>
+                <h2 style="margin-left:30px;"> Popular Courses</h2>
+                </div>
+                </div>
+                </div>
+                <div class="container">
+                  <div class="row">
 
 
-        <%= render 'shared/courselist' %>
+                    <%= render 'shared/popular_courselist' %>
 
-        <div align="center" style="">
-
-
-          <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall" , :style=>"color:#000"%>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <% end %>
+                    <div align="center" style="">
 
 
+                      <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall" , :style=>"color:#000"%>
 
-
-  <div class="ourknowledgepartners" > 
-
-   <div class="secondary-content ">
-    
- <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
-
-
-       <h2 style="margin-left: 30px;">Knowledge Partners</h2>
-     </div>
-   </div>
- </div>
- <div class="container" align="center">
-  <div class="row testimonial">
-
-
-
-    <div class="listofkp" >
-      <% @partners.each do |partners| %>
-      <div class="span4" style="width: 30%;">
-        <div class="kp">
-          <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
-        </div>
-        <div class="testimonialtext">
-         "<%= partners.comments%>"   
-       </div> 
-       <% end %>
-       <% end %>
-     </div>
-
-   </div>
- </div>
-</div>
-
-</div>
-</div> 
-</div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            <% end %>
 
 
 
 
-<div class="ourcustomers " >
-  <div class="secondary-content">
-    <div class="container" align="center">
-      <div class="row testimonial">
-         <% if  @domain_root_account.settings[:testimonial_enable] %>
-       <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
-     </div>
-   </div>
- </div>
- <div class="container" >
-  <div class="row">
-    <div class="span12">
+            <div class="ourknowledgepartners" >
 
-     <% @testimonial.each do |testimonials| %>
+              <div class="secondary-content ">
 
-     <div class="span4" style="width: 30%;">
-
-      <div class="verticalcustomerbox testimonial-one" align="center">
-        <div class="testimonialtext">
-          "<%=testimonials.comment%>" 
-        </div> <div class="testimonialauthor" >
-
-        -<%= testimonials.name %>,<br/><%=testimonials.organization%>           
-
-      </div>
+                <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
 
 
-    </div></div>
-
-    <%end%>
-    <% end %>
-
-  </div>
-</div>
-<div align="center">
+                    <h2 style="margin-left: 30px;">Knowledge Partners</h2>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="container" align="center">
+                      <div class="row testimonial">
 
 
 
- <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
+                        <div class="listofkp" >
+                          <table style="min-width: 200px;
+                                  margin: 0px auto;">
+                            <tr>
+                              <% @partners.each do |partners| %>
+                                  <td>
+                                    <div class="span4" style="width: 30%;">
+                                      <div class="kp">
+                                        <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>
 
-</div>
-</div>
-</div>
+                                        <div class="testimonialtext">
+                                          "<%= partners.comments%>"
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                              <% end %>
+                            </tr>
+                          </table>
+                <% end %>
 
-<div class="bottomadsection">
 
-  <div class="container">
-    <div class="row">
-      <div class="span12" align="center" style="width: 95%;">
-        <h3 style="font-size: 38px;">Step up Your Learning Curve!
-        </h3>
+                </div>
+                </div>
+                </div>
+
+                </div>
+                </div>
+                </div>
 
 
-        <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
 
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
-      </div>
 
-    </div>
-  </div>
-</div>
+                <div class="ourcustomers " >
+                  <div class="secondary-content">
+                    <div class="container" align="center">
+                      <div class="row testimonial">
+                        <% if  @domain_root_account.settings[:testimonial_enable] %>
+                            <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="container" >
+                              <div class="row">
+                                <div class="span12">
+                                  <table >
+                                    <tr>
+                                      <% @testimonial.each do |testimonials| %>
+                                          <td>
+                                            <div class="span4" style="width: 30%;">
+
+                                              <div class="verticalcustomerbox testimonial-one" align="center">
+                                                <div class="testimonialtext">
+                                                  "<%=testimonials.comment%>" 
+                                                </div> <div class="testimonialauthor" >
+
+                                                -<%= testimonials.name %>,<br/><%=testimonials.organization%>
+
+                                              </div>
+
+
+                                              </div></div>
+                                          </td>
+                                      <%end%>
+                                    </tr></table>
+                        <% end %>
+
+                        </div>
+                        </div>
+                        <div align="center">
+
+
+
+                          <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
+
+                        </div>
+                        </div>
+                        </div>
+
+                <div class="bottomadsection">
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="span12" align="center" style="width: 95%;">
+                        <h3 style="font-size: 38px;">Step up Your Learning Curve!
+                        </h3>
+
+
+                        <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
 
 
 

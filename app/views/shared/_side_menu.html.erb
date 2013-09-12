@@ -2,7 +2,7 @@
 <div id="left">
  <ul id="menu" class="unstyled accordion collapse in">
 
-<% if !current_user.has_role? :teacher %>
+    <% if !current_user.has_role? :teacher %>
   
          <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
              <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
@@ -17,28 +17,19 @@
 
 
 
-                        <!-- </li> -->
-                      <!--   <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
-                             <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
-                        </a>
-                         <ul class="collapse " id="form-nav">
-                          <li><%= link_to "Category", topics_path %></li>  
-                          <li><%= link_to "Course Library", manage_courses_path %></li>
-                        </ul></li> -->
-
                         <% if !current_user.has_role? :account_admin %>
+                       
                         <% if !current_user.has_role? :teacher %>
                         
-                          <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
+                   <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
+
 
                         </li><% end %><% end %>
-                          
-                        <% if !current_user.has_role? :teacher %>
-                          
-                         <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
+                       
+                         <% if !current_user.has_role? :teacher %> 
+            <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
                                            </li><% end %>
-                    <li class="accordion-group ">
+                 <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
                              <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
                         </a>
@@ -51,7 +42,13 @@
                           <li><%= link_to "Course Status Search",course_status_search_path %></li>  
                         </ul>
                     </li>
+
+                        </li>
+                        
+                     
+
                      <% if !current_user.has_role? :account_admin %>
+                       <% if !current_user.has_role? :teacher %>
 
                         <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme">
@@ -61,7 +58,8 @@
                           <li><%= link_to "Add new Theme",new_theme_path%></li>  
                           <li><%= link_to "Assign Theme",new_account_theme_path %></li>
                         </ul></li>
-                        <% end%>
+                        <% end%><% end%>
+
                     <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon">
                            <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon
@@ -80,6 +78,9 @@
       <li><%= link_to "Manage Taxes",tax_rates_path %></li>  
                         </ul>
                     </li>
+
+<% if !current_user.has_role? :teacher %>
+
                    <li class="accordion-group ">
                         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#page">
                              <i class="icon icon-file" style="paddign:0px 10px;"></i>Static Pages
@@ -105,7 +106,7 @@
       <li><%= link_to "Footer Links", footerlinks_path %></li>
 
                          </ul>
-                    </li>
+                    </li><% end %>
                     
                 </ul>
                 <!-- END MAIN NAVIGATION -->
