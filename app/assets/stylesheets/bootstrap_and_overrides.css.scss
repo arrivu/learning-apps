@@ -41,6 +41,28 @@ border: 0;
 }
 
 .resource .type-tag-positioner img{height:80px;}
+
+[class^="icon-"], [class*=" icon-"] {
+display: inline-block;
+width: 14px;
+height: 14px;
+padding: 0px 2px;
+line-height: 14px;
+vertical-align: text-top;
+background-image: url("/assets/glyphicons-halflings.png");
+
+}
+
+
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
+padding-top: 8px;
+padding-bottom: 8px;
+line-height: 20px;
+border: 1px solid transparent;
+-webkit-border-radius: 4px 4px 0 0;
+-moz-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;
+}
 .accordion-group {
 margin-bottom: 2px;
 border: 0px solid #e5e5e5;
@@ -82,4 +104,5 @@ box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 -webkit-background-clip: padding-box;
 -moz-background-clip: padding;
 background-clip: padding-box;
+
 }
