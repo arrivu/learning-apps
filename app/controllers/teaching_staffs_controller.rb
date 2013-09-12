@@ -1,8 +1,8 @@
 
 class TeachingStaffsController < ApplicationController
   include LmsHelper
-  before_filter :authenticate_user!, :except => :teaching_staff_signup
-  before_filter :check_admin_user, :except => :teaching_staff_signup
+  before_filter :authenticate_user!, :except => :teaching_staff_signup  ,:except => :teaching_staff_profile
+  #before_filter :check_admin_user, :except => :teaching_staff_signup,:except => :teaching_staff_profile
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
@@ -164,5 +164,12 @@ class TeachingStaffsController < ApplicationController
     end
 
   end
-	
+
+  def teaching_staff_profile
+   @teachingstaff=current_user.teaching_staff
+   @userid=@teachingstaff.user_id
+   @user=User.find(@userid)
+   @count=@user.sign_in_count
+  end
+
 end

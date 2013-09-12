@@ -33,7 +33,16 @@
      users_path
    elsif current_user.has_role? :account_admin
     users_path
-    else      
+   elsif current_user.has_role :teacher
+     @teachingstaff=current_user.teaching_staff.user_id
+     @user=User.find(@teachingstaff)
+     @count=@user.sign_in_count
+     if(@count== 0)
+       teaching_staff_profile_path
+     else
+       teaching_staffs_path
+      end
+    else
       student=Student.where(user_id: current_user.id).first
       if student !=nil 
         if student.course_enroll.count == 0

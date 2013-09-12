@@ -1,17 +1,18 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
 <div style="width:1349px;margin:0px auto;">
   <% provide(:effectingHeader) %>
-  <!-- <div class="student-header">
-    <div class="container">
-      <div class="row">
-        <div class="inner">
+  <!--<div class="student-header"
+    <!--<div class="container">
+      <!--<div class="row">
+        <!--<div class="inner">
           <h1><% @header_details.each do |header_details| %>
-            <%= header_details.message %> <%end%>
-          </h1>
-        </div>
-      </div>
-    </div>
-  </div> -->
+            <!--<%= header_details.message %> <%end%>-->
+          <!--</h1>
+        <!--</div>
+      <!--</div>
+    <!--</div>
+  </div>-->
+
   <div class="homebanner" style="">
     <div class="row">
 
@@ -60,29 +61,29 @@
     <div class="container">
        <% if @domain_root_account.settings[:account_statistics_enable] %> 
       <div class="row-fluid pagination-centered">
-        <div class="container" align="center">
-        <div class="span2">
+
+        <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png" >
 
           </h2>
           <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
         </div>
-        <div class="span2">
+        <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/User.png">
 
           </h2>
           <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
         </div>
-        <div class="span2">
+        <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Document Add.png">
 
           </h2>
           <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
         </div>
-        <div class="span2">
+        <div class="span3">
           <h2>
             <img src="assets/PNG/Grey/64/Bookmark.png">
 
@@ -90,23 +91,12 @@
           <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
         </div>
        </div>
-    </div>
     <%end%>
    </div>
   </section>
   <% end %>
 
-  <div class="homecourse">
-    <div class="secondary-content yellobg" style=" height: 48px;">
-      <div class="container" align="center">
-        <div class="row testimonial">
-          <% if  @domain_root_account.settings[:popular_course_enable] %>
-          <h2 style="margin-left:30px;"> Popular Courses</h2>
-        </div>
-        </section>
-    <% end %>
-
-    <div class="homecourse">
+   <div class="homecourse">
       <div class="secondary-content yellobg">
         <div class="container" align="center">
           <div class="row testimonial">
