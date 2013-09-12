@@ -37,14 +37,14 @@ z-index: 100;
       }
 
 .yellobg
-{background-color: #ffda55;
+{/*background-color: #ffda55;
 background-image: -moz-linear-gradient(top,#ffda55,#ffda55);
 background-image: -webkit-gradient(linear,0 0,0 100%,from(#ffda55),to(#ffda55));
 background-image: -webkit-linear-gradient(top,#ffda55,#ffda55);
 background-image: -o-linear-gradient(top,#ffda55,#ffda55);
 background-image: linear-gradient(to bottom,#ffda55,#ffda55);
 background-repeat: repeat-x;
-color:#000;
+color:#000;*/
 }
 
 .homebanner{
@@ -405,12 +405,19 @@ zoom: 1;
 .secondary-content h2 {
 font-size: 26px;
 text-align: center;
+background: url('ribbon.png');
+background-repeat: no-repeat;
+background-size: 100% 100%;
+width: 500px;
+box-shadow: 0px 5px 0px 0px #efefef;
+color: white;
 }
 .secondary-content{
-	
-	height: 100%;
+height: 100%;
 width: 100%;
+padding: 12px 0px;
 background-size: 100% 100%;
+box-shadow: 1px 3px 1px 0px #ddd;
 }
 
 
@@ -567,9 +574,10 @@ background-color: #d14836;
 	padding: 10px;
 	margin-top: 10px;
 	font-weight: normal;
-	background: #ffda55 ;
+	
+	background: #22aae0 ;
 	/*background: url(../img/button_bg.png);*/
-	color: #000 ;
+	color: #fff ;
 	line-height: 1 !important;
 	font-size: 25px !important;
 	font-family: source-sans-pro, sans-serif;
@@ -590,7 +598,8 @@ background-color: #d14836;
 
 .browseourcoursessmall:hover{
 	/*background: #3498DB ;*/
-	background: #ffda55 ;
+	/*background: #ffda55 ;*/
+	background: #22aae0 ;
 }
 
 .listofkp{

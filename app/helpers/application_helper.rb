@@ -30,11 +30,7 @@ module ApplicationHelper
 			html.html_safe
 		end
 
-    def check_teacher
-    if current_user.has_role? :teacher
-    return
-    end
-  end
+    
 
 		def check_admin_user
 			authenticate_user!

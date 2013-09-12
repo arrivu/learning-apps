@@ -96,7 +96,7 @@
   </section>
   <% end %>
 
- 
+
 
     <div class="homecourse">
       <div class="secondary-content yellobg">
@@ -115,8 +115,8 @@
 
                     <div align="center" style="">
 
-
-                      <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall" , :style=>"color:#000"%>
+        <!--   <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> -->
+</div>
 
                     </div>
                   </div>
@@ -129,10 +129,12 @@
 
             <div class="ourknowledgepartners" >
 
+
               <div class="secondary-content ">
 
                 <% if  @domain_root_account.settings[:knowledge_partners_enable] %>
-
+<div class="container" align="center">
+                      <div class="row testimonial">
 
                     <h2 style="margin-left: 30px;">Knowledge Partners</h2>
                     </div>
@@ -174,8 +176,6 @@
                 </div>
 
 
-
-
                 <div class="ourcustomers " >
                   <div class="secondary-content">
                     <div class="container" align="center">
@@ -199,9 +199,18 @@
                                                   "<%=testimonials.comment%>" 
                                                 </div> <div class="testimonialauthor" >
 
+
                                                 -<%= testimonials.name %>,<br/><%=testimonials.organization%>
 
+
+  <div class="container">
+    <div class="row">
+      <div class="span12" align="center" style="width: 95%;">
+        <h3 style="font-size: 38px;">Step up Your Learning Curve!
+        </h3>
+
                                               </div>
+
 
 
                                               </div></div>
@@ -210,9 +219,13 @@
                                     </tr></table>
                         <% end %>
 
+
+      </div>
+
                         </div>
                         </div>
                         <div align="center">
+
 
 
 
