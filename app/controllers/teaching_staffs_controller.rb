@@ -2,7 +2,7 @@
 class TeachingStaffsController < ApplicationController
   include LmsHelper
   before_filter :authenticate_user!, :except => :teaching_staff_signup  ,:except => :teaching_staff_profile
-  #before_filter :check_admin_user, :except => :teaching_staff_signup,:except => :teaching_staff_profile
+  before_filter :check_admin_user, :except => :teaching_staff_signup,:except => :teaching_staff_profile
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
@@ -21,7 +21,7 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.description =  params[:teaching_staff][:description]
 		@teachingstaff.qualification =  params[:teaching_staff][:qualification]
     @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
-    @teachingstaff.params[:teaching_staff][:is_active]
+    @teachingstaff.is_active=params[:teaching_staff][:is_active]
     	
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],
@@ -170,6 +170,7 @@ class TeachingStaffsController < ApplicationController
    @userid=@teachingstaff.user_id
    @user=User.find(@userid)
    @count=@user.sign_in_count
+
   end
 
 end
