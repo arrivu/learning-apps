@@ -1,0 +1,88 @@
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#home">Personal Information</a></li>
+  <li><a href="#terms">Terms and Conditions</a></li>
+  <li><a href="#messages">Messages</a></li>
+  <li><a href="#settings">Paypal Information</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="home">
+   <%= tinymce_assets %>
+    <%= form_for @teachingstaff,:url => url_for(:controller => 'teaching_staffs', :action => 'teaching_staff_profile') do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+        <table>
+          <div id="information" style="font-size:18px; font-family: monaco; text-align: center; ">
+            <%="Since you are Loging IN for the very first time in this application, you  are supposed to enter your full details" %>
+          </div>
+
+
+          <div id="image" >
+
+            <%= image_tag url_for(:controller=>"registrations",:action => 'user_image', :id => @teachingstaff.user.id), :size => "100x100"%>
+          </div>
+          <tr>
+            <td><%= f.label 'First Name' %> </td>
+            <td><%= f.text_field :firstname %> </td>
+
+          </tr>
+          <tr>
+            <td><%= f.label 'Last Name' %></td>
+            <td><%= f.text_field :lastname %></td>
+          </tr>
+          <tr>
+            <td><%= f.label 'Head Line' %></td>
+            <td><%= f.text_area :headline,:cols => "10", :rows => "10" %></div></td>
+        </tr>
+        <br>
+        <br>
+        <tr>
+          <td><%= f.label 'Biography' %></td>
+          <td><div id="TinyMCE" ><%= f.text_area :biography,:class => "tinymce" %></div></td>
+        </tr>
+        <tr>
+
+          <td><%= f.label 'Address' %></td>
+          <td><%= f.text_area :address,:cols => "10", :rows => "10" %></td>
+
+        </tr>
+        <tr>
+          <td><%= f.label 'city' %></td>
+          <td> <%= f.text_field :city %></td>
+        </tr>
+        <tr>
+        <tr>
+          <td><%= f.label 'Zipcode' %></td>
+          <td><%= f.text_field :pincode %></td>
+        </tr>
+        <tr>
+          <td><%= f.label 'Phone Number' %></td>
+          <td><%= f.text_field :phonenumber %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit "Save and Continue" %> </td>
+        </tr>
+        <%= tinymce %>
+        </table>
+    <%end%>
+ </div>
+  <div class="tab-pane" id="terms">
+
+
+
+
+
+
+
+
+  </div>
+  <div class="tab-pane" id="messages">...</div>
+  <div class="tab-pane" id="settings">...</div>
+</div>
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+</script>
+
