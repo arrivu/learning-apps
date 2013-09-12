@@ -48,6 +48,8 @@ class Course < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
   attr_reader :tag_tokens
+  attr_accessible :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   def tag_tokens=(tokens)
     self.tag_ids = Tag.ids_from_tokens(tokens)
   end
@@ -56,6 +58,7 @@ class Course < ActiveRecord::Base
   has_many :invoices
   validates :desc, presence: true, length: { maximum: 1000 }
   validates  :short_desc, presence: true, length:{maximum: 100}
+
   default_scope order: 'courses.created_at ASC'
   def self.course_price(course)
     course.course_pricings.each do |course_price|

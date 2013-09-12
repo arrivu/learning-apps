@@ -1,8 +1,15 @@
-<h3>Teaching staffs activation mail from <%=  @teaching_staff.account.name %></h3>
-<p>Hello <%= @teaching_staff.name %></p>
-<p>Your registration is verified and your account has been activated now!
-<p>Login Details</p>
-<p>Email:<%= @teaching_staff.user.email %></p>
-<p>Password:******</p>
-Cheers,
-Arrivu Apps Learning Portal
+<div id="container"  style="width: 508px;background-color: ghostwhite">
+  <p><%= link_to @teaching_staff.account.name, "http://#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %> </p>
+  <hr>
+  <b><p>Dear <%= @teaching_staff.name %>,</p>  </b>
+  <p>Thanks for your interest in instructing at  <%= "#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %>!
+  <p>Your approval processed for instructors and your account is activated now.</p>
+  <p>Email:<%= @teaching_staff.user.email %></p>
+  <p>Click here to login - <%= link_to @teaching_staff.account.name, "http://#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %> </p>
+  <p>If you have any questions about this process or any other matter, please feel free to <br>
+    contact us at <%= mail_to "support@arrivuapps.com" %> </p>
+  <hr>
+  Sincerely, <br>
+  Arrivu Apps Learning Portal
+
+</div>

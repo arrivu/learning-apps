@@ -133,9 +133,12 @@ class TeachingStaffsController < ApplicationController
     if @teachingstaff.save
       @teachingstaff.user.add_role(:teacher)
       AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+      lms_create_user(@teachingstaff.user)
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
-      lms_create_user(@teachingstaff.user)
+      unless Rails.env.development?
+        UserMailer.teaching_staffs_welcome(@teachingstaff).deliver!
+      end
       redirect_to root_path
 
     else
@@ -149,7 +152,9 @@ class TeachingStaffsController < ApplicationController
     @teachingstaff.is_active = params[:teaching_staff][:is_active]
     if @teachingstaff.save!
       if @teachingstaff.is_active?
-        UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        unless Rails.env.development?
+          UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        end
         redirect_to teaching_staffs_path
         flash[:success] = "User Sucessfully activated and activation mail sent !"
       else
