@@ -14,7 +14,7 @@
                       <%= f.fields_for :teaching_staff_user do |user_form| %>
                           <table id="dataTable" style="margin: 0px auto;text-align: left;">
                             <tbody><tr><th>Name *</th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
-                            <tr><th>Email*</th><td> <%= user_form.text_field :email, :required => true %></td></tr>
+                            <tr><th>Email*</th><td> <%= user_form.text_field :email, :required => true%></td></tr>
                             <tr><th>Password*</th><td><%= user_form.password_field :password, :required => true %></td></tr>
                             <tr><th>Confirm Password*</th><td><%= user_form.password_field :password_confirmation, :required => true %></td></tr>
                       <%end %>

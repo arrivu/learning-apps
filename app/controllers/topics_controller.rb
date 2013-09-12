@@ -9,7 +9,8 @@ class TopicsController < ApplicationController
     end
 
     def show
-      @topic = Topic.find(params[:id])
+      @courses = Topic.find(params[:id]).courses.paginate(page: params[:page], per_page: 6)
+      @topics = @domain_root_account.topics
     end
 
     def edit
