@@ -21,7 +21,7 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.description =  params[:teaching_staff][:description]
 		@teachingstaff.qualification =  params[:teaching_staff][:qualification]
     @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
-    @teachingstaff.params[:teaching_staff][:is_active]
+    @teachingstaff.is_active = params[:teaching_staff][:is_active]
     	
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],

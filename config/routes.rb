@@ -75,7 +75,7 @@ ted_courses'
   match '/edit_concluded_course', :to=> 'courses#edit_concluded_course'
   match '/update_un_concluded_course', :to=> 'courses#update_un_concluded_course'
   match '/interested_users', :to=> 'users#interested_users'
- 
+  match '/teaching_courses', :to=> 'users#teaching_courses'
 
   devise_for :users, :controllers => {:registrations => "registrations",:sessions => "sessions"}
 

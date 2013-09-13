@@ -8,15 +8,13 @@
      <div class="row-fluid">
       <div class="span12">
        <div class="box">
-        <header>
-         <div class="icons"><i class="icon-move"></i></div>
-          <h5>Teaching Staff</h5>
-        </header>
+        
          <div id="collapse4" class="body">
+           <div class="icons"><span class="badge badge-info">Teaching Staff</span></div>
          <%= simple_form_for(@teachingstaff) do |f| %>
          <%= render 'shared/error_messages', object: f.object %>
              <%= f.fields_for :teaching_staff_user do |user_form| %>
-             <table id="dataTable" class="table table-condensed table-hover">
+             <table id="dataTable">
               <tbody><tr><th>Name </th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
                      <tr><th>Email</th><td> <%= user_form.text_field :email, :required => true %></td></tr>
                      <tr><th>Password</th><td><%= user_form.password_field :password, :required => true %></td></tr>
