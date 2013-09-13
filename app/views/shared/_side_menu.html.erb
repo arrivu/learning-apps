@@ -42,8 +42,12 @@
                           <li><%= link_to "Course Status Search",course_status_search_path %></li>  
                         </ul>
                     </li>
+                        <% if !current_user.has_role? :account_admin %>
 
-                        </li>
+                          <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
+
+                        </li><% end %>
+
                         
                      
 

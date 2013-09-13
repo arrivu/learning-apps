@@ -57,7 +57,7 @@ max-width: 100%;">         <% @courses.each do |course|%>
                 <%= course.short_desc  %>
               </p>
               <ul class="author" style="text-align: center;border-bottom:0px;">
-                 <% course.teaching_staffs.each do |author|%>
+                 <% course.teaching_staffs.active.each do |author|%>
                     <li>
                       <% if author.user.image_blob == nil %>
                         <% if author.user.omni_image_url == nil %>

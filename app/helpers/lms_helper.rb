@@ -32,6 +32,10 @@ module LmsHelper
 			lmscourse.set_token(Settings.lms.oauth_token,Settings.lms.api_root_url)
 			c=lmscourse.create_course(Settings.lms.account_id,course.id,course.title,course.desc)
 			@course.update_attributes(:lms_id => c["id"])
+            course.teaching_staffs.each do |teaching_staff|
+              lmscourse.enroll_user(course.lms_id,teaching_staff.user.lms_id,'TeacherEnrollment')
+            end
+
 		end
 	end
 	def lms_enroll_student(course_id,user_id)
@@ -60,13 +64,17 @@ module LmsHelper
 
 	
 
-	def lms_update_course(course)
+	def lms_update_course(course,old_teaching_staff_id=nil)
 		if lms_enable? 
 			lmscourse=CanvasREST::Course.new
 			lmscourse.set_token(Settings.lms.oauth_token,Settings.lms.api_root_url)
 			lmscourse.update_course(course.lms_id,course.title,course.desc)
+        unless params[:course][:teaching_staff_ids].to_i == old_teaching_staff_id[0]
+          lms_update_teacher_enrollment(course,old_teaching_staff_id)
+        end
+      end
 		end
-	end
+
 
 	def lms_delete_course(lms_id)
 		if lms_enable? 
@@ -86,8 +94,12 @@ module LmsHelper
     else
 			modules
 		end
-	end
+  end
 
-
-
+  def lms_update_teacher_enrollment(course,old_teaching_staff_id)
+    lmscourse=CanvasREST::Course.new
+    lmscourse.set_token(Settings.lms.oauth_token,Settings.lms.api_root_url)
+    lms_conclude_enrollment(course.lms_id,TeachingStaff.find(old_teaching_staff_id[0]).user.lms_id)
+    lmscourse.enroll_user(course.lms_id,course.teaching_staffs[0].user.lms_id,"TeacherEnrollment","active")
+  end
 end

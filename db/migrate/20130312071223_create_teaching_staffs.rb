@@ -9,6 +9,14 @@ class CreateTeachingStaffs < ActiveRecord::Migration
       t.text :linkedin_profile_url
       t.boolean :is_active ,:default => true
       t.timestamps
+      t.string :firstname
+      t.string :lastname
+      t.text :headline
+      t.text :biography
+      t.text :address
+      t.string :city
+      t.integer :pincode
+      t.integer :phonenumber
     end
   end
 end
