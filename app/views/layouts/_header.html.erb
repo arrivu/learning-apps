@@ -31,25 +31,31 @@ myWindow.close();
     <li> <%= link_to "Course Library", courses_path %></li>
     <% if user_signed_in?%>
     <% if current_user.has_role? :admin %>
-    <li ><%= link_to 'Admin', users_path %></li>
-              <script>
+         <li ><%= link_to 'Admin', users_path %></li>
+          <script>
           $('.courseslink').css('left',"-100px");
           </script>
-    <% elsif current_user.has_role? :account_admin %>
-    <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-           <li ><%= link_to 'Account_Admin', users_path %></li>
-            <script>
-          $('.courseslink').css('left',"-100px");
-          </script>
+        <% elsif current_user.has_role? :account_admin %>
+            <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+           <li ><%= link_to 'Account Admin', users_path %></li>
+             <script>
+              $('.courseslink').css('left',"-100px");
+             </script>
           <% end %>
-           <% else  %>
+        <% elsif current_user.has_role? :teacher %>
+            <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+                <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+                <script>
+                    $('.courseslink').css('left',"-100px");
+                </script>
+            <% end %>
+
+         <% else  %>
           <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
-     
           <script>
           $('.courseslink').css('left',"-140px");
           </script>
-               <% end  %>      
-
+         <% end  %>
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                <% if current_user.image_blob == nil %>
@@ -147,7 +153,7 @@ myWindow.close();
           <% else %>
           <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
           <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-              <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+          <li><a href="#teacher_sign_up_Modal" role="button" data-toggle="modal" >Signup as a Teacher</a></li>
           <% end %>
 
 

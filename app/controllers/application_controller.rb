@@ -89,38 +89,35 @@
 
     end
     def valid_domain_check
- # get the model name using controller_name.classify.constantize
- 
-  if controller_name== "payments"
-    @modelname="Course"
-  else
-     @modelname=controller_name.classify
-  end
-      @coursedet= @modelname.constantize.find(params[:id])
-    if @account_id!=nil
-      if @coursedet.account_id!=@account_id
-        flash[:error]="Invalid domain"
-        if current_user.has_role? :admin
-         redirect_to users_path
-       elsif current_user.has_role? :account_admin
-        redirect_to users_path
+      # get the model name using controller_name.classify.constantize
 
-        else
-          redirect_to courses_path
+    if controller_name== "payments"
+        @modelname="Course"
+      else
+       @modelname=controller_name.classify
+    end
+    @coursedet= @modelname.constantize.find(params[:id])
+    if @account_id!=nil
+        if @coursedet.account_id!=@account_id
+          flash[:error]="Invalid domain"
+          if current_user.has_role? :admin
+           redirect_to users_path
+         elsif current_user.has_role? :account_admin
+          redirect_to users_path
+
+          else
+            redirect_to courses_path
+          end
         end
-      end
     else
-      
-      if @coursedet.global==true
-        
+
+    if @coursedet.global==true
         return
       else
         flash[:error]="Invalid domain"
         redirect_to courses_path
       end
     end
-
-
     end
 
     def topics
