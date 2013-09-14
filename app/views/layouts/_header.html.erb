@@ -118,7 +118,7 @@
 
               <% elsif current_user.has_role? :teacher %>
                   <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                      <li ><%= link_to 'Teacher', teaching_courses_path %></li>
+                      <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
                       <script>
                           $('.courseslink').css('left',"-100px");
                       </script>

@@ -42,7 +42,7 @@
          <li><%= link_to "About Us", aboutdetails_path %></li>
          <li><%= link_to "Privacy & Policy",privacypolicies_path %></li>
          <li><%= link_to "Terms & Conditions",terms_and_conditions_path %></li></ul></li>
-         <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home"><i class="icon icon-th" style="paddign:0px 10px;"></i>Home Page Details</a>
+         <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home"><i class="icon icon-home" style="paddign:0px 10px;"></i>Home Page Details</a>
         <ul class="collapse " id="home">
         <li><%= link_to "Header", header_details_path %></li>
         <li><%= link_to "Knowledge Partner", partners_path %></li>
@@ -58,13 +58,23 @@
 <% else %>
 <div id="left">
 <ul  id="menu" class="unstyled accordion collapse in">
- <li><%= link_to "Manage Courses", manage_courses_path %></i></li>
- <li><%= link_to "Course Price",course_pricings_path %></li>  
- <li><%= link_to "Course Preview",course_previews_path %></li> 
- <li><%= link_to "Conclude Course", conclude_course_path %></li>
- <li><%= link_to "Course Status Search",course_status_search_path %></li>
- <li><%= link_to "New Coupon", new_coupon_path %></li>
- <li><%= link_to "Manage Coupon", coupons_path %></li>
+  <li><%= link_to(manage_courses_path) do%><i class="icon icon-th"></i>Manage Course</li><% end %>
+
+  <li><%= link_to(course_pricings_path) do%><i class="icon icon-shopping-cart"></i>Course Price</li><% end %>
+
+  <li><%= link_to(course_previews_path) do%><i class="icon icon-eye-open"></i>Course Preview</li><% end %>
+
+  <li><%= link_to(conclude_course_path) do%><i class="icon icon-screenshot"></i>Conclude Course </li><% end %>
+
+  <li><%= link_to(course_status_search_path) do%><i class="icon icon-search"></i>Course Status Search</li><% end %>
+
+  <li><%= link_to(new_coupon_path) do%><i class="icon icon-barcode"></i>New Coupon
+  </li><% end %>
+
+  <li><%= link_to(coupons_path) do%><i class="icon icon-tasks"></i>Manage Coupon</li><% end %>
 </ul>
  </div>
 <% end %>
+
+
+ 

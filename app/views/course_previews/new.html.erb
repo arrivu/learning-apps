@@ -63,10 +63,17 @@
 						<%= form_for @preview do |f| %>
 						<%= render 'shared/error_messages', object: f.object %>
 						<tr><td><%= f.label :course_id, "Courses" %></td>
-							<td>
-							<% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
-							<%= select_tag(:id,options_for_select(courses_array))%>
-							</td></tr>
+
+							<% if current_user.has_role? :teacher %>
+
+							<td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
+							<% else %>
+
+							 <td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
+			         <%= select_tag(:id,options_for_select(courses_array))%></td></tr>
+
+			         <% end %>
+
 							<tr><td><%= f.label :name, "Title" %></td>
 								<td><%= f.text_field :name,:maxlength => 50 %></td></tr>
 								<tr><td><%= f.label :desc, "Description" %></td>
