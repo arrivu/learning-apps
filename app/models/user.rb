@@ -17,9 +17,6 @@
 #
 
 class User < ActiveRecord::Base
-  unless @domain_root_account.nil?
-  default_scope User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id )
-  end
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

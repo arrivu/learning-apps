@@ -1,7 +1,7 @@
 class CoursePricingsController < ApplicationController
   include CoursePricingsHelper
-  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
- before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+  load_and_authorize_resource
+  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
   def new
     @coursepricing=CoursePricing.new
@@ -11,7 +11,6 @@ class CoursePricingsController < ApplicationController
   end
   def create
     @coursepricing=CoursePricing.new(params[:course_pricing])
-    
    @coursepricing.account_id=@account_id
     course_ids=CoursePricing.where("course_id=?",@coursepricing.course_id)
     if nooverlap?(course_ids,@coursepricing.start_date,@coursepricing.end_date)

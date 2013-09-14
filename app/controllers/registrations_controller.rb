@@ -45,7 +45,6 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
     @account=Account.find_by_name(request.subdomain)
-      @user.accountid=@account.id
     successfully_updated = if needs_password?(@user, params)
       @user.update_with_password(params[:user])
     else

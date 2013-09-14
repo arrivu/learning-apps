@@ -1,14 +1,13 @@
 class AboutdetailsController < ApplicationController
-	before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index]
-	 before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
-	  before_filter :valid_domain_check, :only=>[:show,:edit]
-	  before_filter :front_page_registration_restrict, :only=>[:new,:create]
- 		  def new
-	  		@aboutdetail=Aboutdetail.new
-	    end
-	    def create
-	        @aboutdetail = Aboutdetail.new(params[:aboutdetail])
-	        @aboutdetail.account_id=@account_id
+  load_and_authorize_resource
+	before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
+	before_filter :valid_domain_check, :only=>[:show,:edit]
+ 	 def new
+	  	@aboutdetail=Aboutdetail.new
+	 end
+	def create
+	    @aboutdetail = Aboutdetail.new(params[:aboutdetail])
+	    @aboutdetail.account_id=@account_id
 			    if @aboutdetail.save
 			      flash[:success] = "About Detail added successfully!!!!"
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver

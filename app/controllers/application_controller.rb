@@ -35,13 +35,11 @@
    elsif current_user.has_role? :account_admin
     users_path
    elsif current_user.has_role :teacher
-     @teachingstaff=current_user.teaching_staff.user_id
-     @user=User.find(@teachingstaff)
-     @count=@user.sign_in_count
+     @count=current_user.sign_in_count
      if(@count== 1)
        teaching_staff_profile_path
      else
-       teaching_staffs_path
+       my_courses_path
       end
     else
       student=Student.where(user_id: current_user.id).first
@@ -88,8 +86,8 @@
        end
 
     end
-    def valid_domain_check
- # get the model name using controller_name.classify.constantize
+  def valid_domain_check
+    # get the model name using controller_name.classify.constantize
  
   if controller_name== "payments"
     @modelname="Course"
@@ -109,20 +107,17 @@
         else
           redirect_to courses_path
         end
-      end
     else
-      
-      if @coursedet.global==true
-        
+
+    if @coursedet.global==true
         return
       else
         flash[:error]="Invalid domain"
         redirect_to courses_path
       end
     end
-
-
     end
+  end
 
     def topics
         @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)

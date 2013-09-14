@@ -21,13 +21,13 @@
 
 
   <tr><td>Course Name</td><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
-					<%= f.select(:course_id,options_for_select(courses_array))%></td></tr>
+					<%= f.select(:course_id,options_for_select(courses_array),style: "width: 266px;")%></td></tr>
 	<tr><td>Start Date</td><td>
 
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
+						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true ,style: "width: 84px;"%>
 					</td></tr>
 					<tr><td>End Date</td><td>
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
+						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 85px;"%></td></tr>
 						<tr><td>Price</td><td>
 							<%= f.text_field :price %></td></tr>
 							<tr><td></td><td><%= f.submit "Save" ,class: "btn btn-primary " %></td></tr>

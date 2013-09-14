@@ -1,5 +1,5 @@
 class FooterlinksController < ApplicationController
-  before_filter :check_admin_user,  :only=>[:new, :create, :edit, :index]
+  load_and_authorize_resource
    before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
     before_filter :valid_domain_check, :only=>[:show,:edit]
     before_filter :front_page_registration_restrict, :only=>[:new,:create]
