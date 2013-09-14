@@ -1,6 +1,6 @@
 class CoursePricingsController < ApplicationController
   include CoursePricingsHelper
-  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
+  load_and_authorize_resource
  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
   def new

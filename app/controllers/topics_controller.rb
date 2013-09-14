@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-    before_filter :valid_domain_check, :only=>[:show,:edit]
     load_and_authorize_resource
+    before_filter :valid_domain_check, :only=>[:show,:edit]
     before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
 
     def index

@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  
-  before_filter :check_admin_user, :only => [:show, :destroy,:index,:interested_users]
+  load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:show, :destroy,:index,:interested_users]
   require 'csv'
   

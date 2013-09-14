@@ -1,9 +1,9 @@
 class CouponsController < ApplicationController
 	require 'csv'
   require 'errors'
-  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:apply,:redeem,:index]
-     before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:apply,:redeem,:index]
-      before_filter :valid_domain_check, :only=>[:edit]
+  load_and_authorize_resource
+  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:apply,:redeem,:index]
+  before_filter :valid_domain_check, :only=>[:edit]
   def apply
     no_coupon = Coupon.no_coupon(params[:product_bag])
     respond_to do |wants|
