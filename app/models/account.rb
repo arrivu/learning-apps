@@ -20,7 +20,8 @@ class Account < ActiveRecord::Base
   cattr_accessor :account_settings_options
   self.account_settings_options = {}
   has_many :tags
-  has_many  :teaching_staff_courses, :dependent => :destroy
+  has_many  :teaching_staff_courses
+  has_many :course_pricings
   validates :name, presence: true
   validates :organization, presence: true
   

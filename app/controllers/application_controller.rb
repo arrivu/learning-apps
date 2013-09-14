@@ -87,39 +87,22 @@
 
     end
   def valid_domain_check
-    # get the model name using controller_name.classify.constantize
- 
-  if controller_name== "payments"
-    @modelname="Course"
-  else
-     @modelname=controller_name.classify
-  end
-      @coursedet= @modelname.constantize.find(params[:id])
-    if @account_id!=nil
-      if @coursedet.account_id!=@account_id
-        flash[:error]="Invalid domain"
-        if current_user.has_role? :admin
-         redirect_to users_path
-       elsif current_user.has_role? :account_admin
-        redirect_to users_path
-       elsif current_user.has_role? :teacher
-        redirect_to teaching_course_path
-        else
-          redirect_to courses_path
-        end
+    if controller_name== "payments"
+      @modelname="Course"
     else
-
-    if @coursedet.global==true
-        return
-      else
-        flash[:error]="Invalid domain"
-        redirect_to courses_path
+       @modelname=controller_name.classify
+    end
+        @coursedet= @modelname.constantize.find(params[:id])
+    if @account_id!=nil
+        if @coursedet.account_id == @account_id
+          return
+        else
+          flash[:error]="Invalid domain"
+        end
       end
-    end
-    end
   end
 
-    def topics
+      def topics
         @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
         @topics = @topics.sort_by {|x| x.name.length} 
         @footerlinks = Footerlink.where(:account_id=> @domain_root_account.id)
