@@ -30,12 +30,6 @@ module ApplicationHelper
 			html.html_safe
 		end
 
-    def teach_courses
-    if current_user.has_role? :teacher and current_user.teaching_staff.is_active?
-      return
-    end
-  end
-
 		def check_admin_user
 			authenticate_user!
 			if current_user.has_role? :account_admin 
@@ -44,9 +38,7 @@ module ApplicationHelper
 				return
       elsif current_user.has_role? :teacher
         return
-               
-			else	
-
+			else
      redirect_to root_url # or whatever
    end
 end
@@ -89,12 +81,10 @@ end
        :authenticate_user!
        if current_user.has_role? :student
        	  if !@subdomain_id= AccountUser.where(:user_id=>current_user.id , :account_id=>@account_id).empty?
-       	   
         	return
       		else
       			 @subdomain_id= AccountUser.find_by_user_id(current_user.id)
         	redirect_to request.url.sub(current_subdomain, @subdomain_id.account.name)
-        # redirect_to root_path(:subdomain => @subdomain_name)
       		end
       elsif !current_user.has_role?  :admin
        @subdomain_id= AccountUser.find_by_user_id(current_user.id)
