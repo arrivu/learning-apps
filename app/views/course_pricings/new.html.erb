@@ -1,26 +1,19 @@
-
-					<div id="wrap">
-
-  <%= render 'shared/side_menu' %>
-               
-            <div id="content">
-                <!-- .outer -->
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                            <!--Begin Datatables-->
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-                                          
-                                        <div id="collapse4" class="body">
-                                            <div class="icons"><span class="badge badge-info">Course Price</span></div>
-                                        	<%= simple_form_for (@coursepricing) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-                                            <table id="dataTable">
-
-
-  <tr><td>Course Name</td><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
+<div id="wrap">
+ <%= render 'shared/side_menu' %>
+  <div id="content">
+   <div class="container-fluid outer"  >
+    <div class="row-fluid">
+    <div class="span12 inner">
+     <!--Begin Datatables-->
+     <div class="row-fluid">
+     <div class="span12">
+     <div class="box">
+     <div id="collapse4" class="body">
+     <div class="icons"><span class="badge badge-info">Course Price</span></div>
+     <%= simple_form_for (@coursepricing) do |f| %>
+	 <%= render 'shared/error_messages', object: f.object %>
+     <table id="dataTable">
+     <tr><td>Course Name</td><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
 					<%= f.select(:course_id,options_for_select(courses_array))%></td></tr>
 	<tr><td>Start Date</td><td>
 

@@ -25,10 +25,10 @@
      <%= form_tag "/course_pricings/", :method => 'get' do %>
 
 
-<td><%= label_tag(:search,"Course:") %></td>
+<tr><td><%= label_tag(:search,"Course:") %></td>
 
   <td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
-  <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
+  <td><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %></td></tr><% end %></div>
 
 <% else %>
 
@@ -93,14 +93,14 @@
                 </div>
                 <!-- /.outer -->
             </div>
-                 </div>
+                 
             <!-- END CONTENT -->
    <div class="left" style="padding: 0px;width: 16%;float: right;">
-    <a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-380px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
-    <a href= <%= new_course_pricing_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-320px;"><i class="icon icon-plus-sign"></i>Add Price</a>
+    <a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; "><i class="icon icon-plus-sign"></i>Add New Course</a>
+    <a href= <%= new_course_pricing_path%> class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Price</a>
 
     </div>
-
+</div>
 
             <!-- #push do not remove -->
             <div id="push"></div>
