@@ -102,8 +102,7 @@
          redirect_to users_path
        elsif current_user.has_role? :account_admin
         redirect_to users_path
-       elsif current_user.has_role? :teacher
-        redirect_to teaching_course_path
+       
         else
           redirect_to courses_path
         end
