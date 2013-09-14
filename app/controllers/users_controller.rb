@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :teaching_courses, :only => [:teacher_courses]
+  before_filter :teach_courses, :only => [:teaching_courses]
   before_filter :check_admin_user, :only => [:show, :destroy,:index,:interested_users]
   before_filter :subdomain_authentication , :only => [:show, :destroy,:index,:interested_users]
   require 'csv'
@@ -89,30 +89,20 @@ class UsersController < ApplicationController
 
     end
     
-  #    def teacher_courses
-  #   query = "%#{params[:search]}%"
-  #   if params[:search]==nil || params[:search]=="All" || params[:search] == ""
-  #     @users =  StudentCourse.where("status= ?","follow").paginate(page: params[:page], :per_page => 10) 
-        
-  # #       # if current_user.has_role? :teacher 
-           
-
-  #       @total_users = @users.count
-  # #        # end
-  #   else
-  #     @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page], :per_page => 10) 
-  #   @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
-    
-  #   end
-  #   respond_to do |format|
-  #   format.html
-  #       format.xls # { send_data @products.to_csv(col_sep: "\t") }
-  # end  
+     def teaching_courses
+ 
+      if params[:search]==nil || params[:search]=="All" || params[:search] == ""
+       @users =  StudentCourse.where("status= ?","enroll") 
       
+        @total_users = @users.count
 
-  #   end
-  def teacher_courses
-   @teach = current_user.courses
-  end
-   
-end
+      else
+
+        @users = StudentCourse.where("status= ? and course_id=?","enroll",params[:search])
+        @total_users = StudentCourse.where("status= ? and course_id=?","enroll",params[:search]).count
+    
+      end
+          
+    end
+
+ end

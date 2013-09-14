@@ -5,7 +5,7 @@ cas:
   login_path: '/cas/api-login'
   logout_path: '/cas/api-logout'   
 lms:
-  enable: true
+  enable: false
   account_id: 1
   #oauth_token: 88n7pFHCredVJLG3MiBU2Oidp6D4uYmpsxz8hG33RNhrrVKbJGsluL0tSdV7ydW2
   oauth_token: dbMjwgU3oEtVy1irmCT2ZTmqQNK2wGyDebfqZ8ZyiF7n2Mdw4Nd33ZLGxj9WIRVB

@@ -16,13 +16,33 @@
         
             
                                           <div id="collapse4" class="body">
-                                              <div class="icons"><span class="badge badge-info">Manage Course Pricing</span></div>
-                                               <div  align="center" style="margin:0px 0px 0px 0px">
+        <div class="icons"><span class="badge badge-info">Manage Course Pricing</span></div>
+              
              
-                  <%= form_tag "/course_pricings/", :method => 'get' do %>
-                Course: <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id =>@account_id), "id", "title") , {:prompt => 'ALL'} %>
-              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
-                                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+
+<% if current_user.has_role? :teacher %>
+    
+     <%= form_tag "/course_pricings/", :method => 'get' do %>
+
+
+<td><%= label_tag(:search,"Course:") %></td>
+
+  <td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
+  <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
+
+<% else %>
+
+<%= form_tag "/course_pricings/", :method => 'get' do %>
+
+
+<td><%= label_tag(:search,"Course:") %></td>
+
+        <td> <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id =>@account_id), "id", "title") , {:prompt => 'ALL'} %></td>
+       <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
+
+<% end %>
+
+            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                                 <thead>
                                                   
       <tr>
@@ -75,9 +95,9 @@
             </div>
                  </div>
             <!-- END CONTENT -->
-   <div class="left" style="padding: 0px;width: 210px;float: right; margin-top: -6px;">
-    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
-    <a href="course_pricings/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Price</a>
+   <div class="left" style="padding: 0px;width: 16%;float: right;">
+    <a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-380px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
+    <a href= <%= new_course_pricing_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-320px;"><i class="icon icon-plus-sign"></i>Add Price</a>
 
     </div>
 

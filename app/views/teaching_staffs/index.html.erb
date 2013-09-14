@@ -9,12 +9,13 @@
              <div class="box">
                <div id="collapse4" class="body">
                  <div class="icons"><span class="badge badge-info">Manage Teaching Staff Details</span></div>
-                   <table id="dataTable">
+                   <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                      <thead>
                       <tr>
                         <th ></th>
-                        <th >Email</th>
+                        
                         <th >Name</th>
+                        <th >Email</th>
                         <th >Qualification</th>
                         <th >Description</th>
                         <th >Enable</th>
@@ -27,8 +28,9 @@
                         <%= image_tag url_for(:controller=>"registrations",:action => 'user_image', :id => teachingstaff.user.id), :size => "30x30" %>
                         <% end  %>
                         </td>
-                        <td><%= teachingstaff.user.email %></td>
+                        
                         <td><%= teachingstaff.name %></td>
+                        <td><%= teachingstaff.user.email %></td>
                         <td><%= teachingstaff.qualification %></td>
                         <td><%= teachingstaff.description %></td>
                         <%= form_for teachingstaff , :url => url_for(:controller => 'teaching_staffs', :action => 'activate_teaching_staff' ,id: teachingstaff) do |f| %>

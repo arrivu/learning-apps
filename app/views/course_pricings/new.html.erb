@@ -17,7 +17,7 @@
                                             <div class="icons"><span class="badge badge-info">Course Price</span></div>
                                         	<%= simple_form_for (@coursepricing) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-                                            <table id="dataTable" class="table ">
+                                            <table id="dataTable">
 
 
   <tr><td>Course Name</td><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>

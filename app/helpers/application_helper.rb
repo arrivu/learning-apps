@@ -30,7 +30,7 @@ module ApplicationHelper
 			html.html_safe
 		end
 
-    def teaching_courses
+    def teach_courses
     if current_user.has_role? :teacher and current_user.teaching_staff.is_active?
       return
     end
@@ -42,6 +42,8 @@ module ApplicationHelper
 			 return
 			elsif current_user.has_role? :admin
 				return
+      elsif current_user.has_role? :teacher
+        return
                
 			else	
 
