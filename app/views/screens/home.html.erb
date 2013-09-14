@@ -20,9 +20,9 @@
        <% if @domain_root_account.settings[:slide_show_enable] %> 
         <% @slider.each do |slider| %> 
 
-        <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 360px; width: 100%;" class="active-slide slide">
+        <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
           <div class="row">
-            <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 10px 185px;height:300px;">
+            <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
               <div class="span12" align="center" >
                 <div class="bannertext">  
                  <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
@@ -143,13 +143,15 @@ margin: 0px auto;">
     <tr>
       <% @partners.each do |partners| %>
       <td>
-      <div class="span4" style="width: 30%;">
+      <div class="span5" >
         <div class="kp">
+     <table><tr><td>
      <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %> 
-        
+        </td><td>
         <div class="testimonialtext">
          "<%= partners.comments%>"   
        </div> 
+       </td></tr></table>
        </div>
        </div>
 </td>
@@ -163,35 +165,36 @@ margin: 0px auto;">
  </div>
 </div>
 
-</div>
-</div> 
-</div>
-
 
 
 
 <div class="ourcustomers " >
-  <div class="secondary-content">
+   <% if  @domain_root_account.settings[:testimonial_enable] %>
+  <div class="secondary-content ">
     <div class="container" align="center">
       <div class="row testimonial">
-         <% if  @domain_root_account.settings[:testimonial_enable] %>
-       <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
+
+
+
+       <h2 style="margin-left: 30px;">Knowledge Partners</h2>
      </div>
    </div>
  </div>
- <div class="container" >
-  <div class="row">
-    <div class="span12">
-   <table >
-    <tr>
+ <div class="container" align="center">
+  <div class="row testimonial">
+
+   
+   
      <% @testimonial.each do |testimonials| %>
-<td>
-     <div class="span4" style="width: 30%;">
+
+     <div class="span4">
 
       <div class="verticalcustomerbox testimonial-one" align="center">
         <div class="testimonialtext">
-          "<%=testimonials.comment%>" 
-        </div> <div class="testimonialauthor" >
+          <p>"<%=testimonials.comment%>" 
+ </p>       </div> 
+
+        <div class="testimonialauthor" >
 
         -<%= testimonials.name %>,<br/><%=testimonials.organization%>           
 
@@ -199,14 +202,13 @@ margin: 0px auto;">
 
 
     </div></div>
-</td>
-    <%end%>
-  </tr></table>
-    <% end %>
 
-  </div>
+    <%end%>
+
+
 </div>
 </div>
+    <% end %>
 </div>
 
 <div class="bottomadsection">
