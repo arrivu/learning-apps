@@ -3,7 +3,7 @@ class CoursesController < ApplicationController
   helper_method :course_user_count
   ActiveMerchant::Billing::Integrations
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except=>[:index]
+  before_filter :authenticate_user!, :except=>[:index,:show_image,:background_image]
   caches_page :show_image,:background_image
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
@@ -66,7 +66,8 @@ class CoursesController < ApplicationController
  end
 
  def edit
-   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
+   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(
+                                   :course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
      @course= @domain_root_account.courses.find(params[:id])
    else
      flash[:error] = "Not Authorized"

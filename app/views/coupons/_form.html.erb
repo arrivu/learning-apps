@@ -10,16 +10,9 @@
  <div id="collapse4" class="body">
      <table id="dataTable" >
   <tr><th>Course Name</th><td>
-
-    <% if current_user.has_role? :teacher %>
-
-      <%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
-
-      <% else %>
-
   <div id='all_course'>
-  <%= f.input :metadata, :as=>:select, :collection =>Course.where(:account_id=>@account_id).collect{|p| [p.title,p.id]}.push(['All','All']),label:false,:prompt => "Select course" %>
-</div><% end %>
+  <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]},label:false,:prompt => "Select course" %>
+</div>
   
 
 </div></td></tr>

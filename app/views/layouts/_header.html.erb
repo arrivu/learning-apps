@@ -49,6 +49,14 @@
                       <script>
                           $('.courseslink').css('left',"-140px");
                       </script>
+                      <% if current_user.has_role? :teacher %>
+                      <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+                          <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+                          <script>
+                              $('.courseslink').css('left',"-100px");
+                          </script>
+                      <% end %>
+                      <% end %>
                   <% end  %>
 
 
@@ -115,14 +123,7 @@
                           $('.courseslink').css('left',"-100px");
                       </script>
                   <% end %>
-
-              <% elsif current_user.has_role? :teacher %>
-                  <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                      <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
-                      <script>
-                          $('.courseslink').css('left',"-100px");
-                      </script>
-                      <% else  %><% end %>
+                      <% else  %>
                   <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
                   <script>
                       $('.courseslink').css('left',"-140px");

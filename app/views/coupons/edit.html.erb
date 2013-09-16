@@ -1,16 +1,3 @@
-<!-- <div style="float:left">
-</div>
-<div style="margin-left:250px"><%= render :partial => "form" %>
-</div> -->
-<!--
-<div style="float:left">
-
-</div>
-<div style="margin-left:250px">
-
-
-</div> -->
-
 <div id="wrap">
 
   <%= render 'shared/side_menu' %>
@@ -48,7 +35,7 @@
   <tr><th>Course Name</th><td>
 
 <div id='all_course'>
-  <%= f.input :metadata, :as=>:select, :collection =>Course.where(:account_id=>@account_id).collect{|p| [p.title,p.id]}.push(['All','All']),label:false,:prompt => "Select course" %>
+  <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]},label:false,:prompt => "Select course" %>
 </div>
 
 </div></td></tr>
@@ -90,7 +77,7 @@
                     
 
                          <tr><th>Expires</th><td>
-                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
+                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 86px"%></td></tr>
                           <tr><th></th><td> <%= f.button :submit ,class:"btn btn-primary yellobg" %></td></tr></table>
 
 
