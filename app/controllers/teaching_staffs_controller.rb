@@ -173,5 +173,4 @@ class TeachingStaffsController < ApplicationController
    @count=@user.sign_in_count
 
   end
-
 end

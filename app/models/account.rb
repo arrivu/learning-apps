@@ -20,7 +20,8 @@ class Account < ActiveRecord::Base
   cattr_accessor :account_settings_options
   self.account_settings_options = {}
   has_many :tags
-  has_many  :teaching_staff_courses, :dependent => :destroy
+  has_many  :teaching_staff_courses
+  has_many :course_pricings
   validates :name, presence: true
   validates :organization, presence: true
   
@@ -96,7 +97,7 @@ add_setting :popular_speak_enable, :root_only => false, :boolean => true
 add_setting :testimonial_enable, :root_only => false, :boolean => true
 add_setting :popular_course_enable, :root_only => false,:boolean => true, :default => true
 add_setting :account_statistics_enable, :root_only => false,:boolean =>true, :default => true
-
+add_setting :signup_teacher_enable, :root_only => false,:boolean =>true, :default => true
 
   def settings=(hash)
     if hash.is_a?(Hash)

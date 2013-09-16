@@ -4,17 +4,8 @@
   <%= flash[:coupon_error]%>
 </div>
 <% end %>
-
-
-
-
 <%= simple_form_for(@coupon) do |f| %>
-
-
- 
-   <div class="icons"><span class="badge badge-info">New Coupon  </span></div>
-
-
+<div class="icons"><span class="badge badge-info">New Coupon  </span></div>
 <%= render 'shared/error_messages', object: f.object %>
  <div id="collapse4" class="body">
      <table id="dataTable" >
@@ -34,16 +25,11 @@
 </div></td></tr>
   <tr><th>  
     </th><td>
-    
     <%= hidden_field_tag :how_many, 1  %>
-
   </td></tr>
-
-
   <tr><th>
    Coupon Name
   </th><td>
-  
   <%= f.input_field :name  %></td></tr>
   <tr><th>
     Number of times redeemable
@@ -69,7 +55,7 @@
                     
 
                          <tr><th>Expires</th><td>
-                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
+                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 86px" %></td></tr>
                           <tr><th></th><td> <%= f.button :submit ,class:"btn btn-primary yellobg" %></td></tr></table>
 
 

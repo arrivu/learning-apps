@@ -343,6 +343,7 @@ position: relative;
 clear: both;
 }
 .review-stars {
+line-height: 11px;
 color: #545454;
 clear: both;
 position: relative;line-height: 3px;

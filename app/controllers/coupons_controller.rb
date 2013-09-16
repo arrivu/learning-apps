@@ -34,6 +34,10 @@ class CouponsController < ApplicationController
   
   def new
     find_or_generate_coupon
+    @courses=[]
+    current_user.teaching_staff.teaching_staff_courses.each do |c|
+      @courses << c.course
+    end
   end
 
   def edit

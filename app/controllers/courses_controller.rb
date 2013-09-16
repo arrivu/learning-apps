@@ -66,11 +66,16 @@ class CoursesController < ApplicationController
  end
 
  def edit
-   @course= Course.find(params[:id])
+   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
+     @course= @domain_root_account.courses.find(params[:id])
+   else
+     flash[:error] = "Not Authorized"
+     redirect_to manage_courses_path
+   end
  end
 
  def update
-   @course = Course.find(params[:id])
+   @course = @domain_root_account.courses.find(params[:id])
    old_teaching_staff_id=@course.teaching_staff_ids
    tags_token = params[:course][:tag_tokens]
    params[:course].delete :tag_tokens
@@ -85,17 +90,13 @@ class CoursesController < ApplicationController
  end
 
  def show
-   @course = Course.find(params[:id])
+   @course = @domain_root_account.courses.find(params[:id])
    @@course_id=@course
    @price_detail = CoursePricing.find_by_course_id(@course.id)
    if @price_detail!=nil
       @price=@price_detail.price
    end
    @authors= @course.teaching_staffs
-   #@course.teaching_staffs.each do |teaching_staff|
-   #  @authors << User.where(id: teaching_staff.user_id).first
-   #end
-
    if(current_user!=nil)
     student=Student.where(user_id: current_user.id).first
     @status_check = StudentCourse.find_by_student_id_and_course_id(student,@course.id)
