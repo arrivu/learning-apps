@@ -11,15 +11,19 @@ cursor: default;
 .nav>li>a:hover, .nav>li>a:focus {
 text-decoration: none;
 background-color: transparent;
-border:0px
+border:0px;
+
+}
+.navbar .nav>li>a:hover{
+	color:#4183c4;
 }
 .navbar .nav>li>a {
 float: none;
 padding: 10px 15px 10px;
-color: #161515;
+color: #8a8a8a;
 font-weight: bold;
 text-decoration: none;
-
+text-shadow: 0 0px 0 #fff;
 }
 .btn-large {
 font-size: 16.5px;
@@ -105,4 +109,9 @@ box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 -moz-background-clip: padding;
 background-clip: padding-box;
 
+}
+
+.dropdown-menu>li>a
+{
+	text-align:left;
 }

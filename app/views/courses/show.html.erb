@@ -14,9 +14,9 @@ $(document).ready(function(){
   
 <div class="span3 content-box resource" style="float: left;">
    
-<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 100%;">
+<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;">
 
-  <div class="type " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
+  <div class="type ribbon1 " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
 </div>
 <div class="details" style="margin-top:165px;">
 <h2>

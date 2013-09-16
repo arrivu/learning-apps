@@ -111,4 +111,5 @@ resources :footerlinks
   match'activate_teaching_staff', :to=> 'teaching_staffs#activate_teaching_staff'
   match 'subscribe', :to=> 'accounts#subscribe'
   match 'teaching_staff_profile', :to =>'teaching_staffs#teaching_staff_profile'
+
 end
