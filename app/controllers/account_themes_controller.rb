@@ -1,4 +1,5 @@
 class AccountThemesController < ApplicationController
+load_and_authorize_resource
 before_filter :theme_check_create_admin
 before_filter :front_page_registration_restrict, :only  => [:new,:create]
 	def new

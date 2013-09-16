@@ -18,7 +18,7 @@
 class Course < ActiveRecord::Base
   self.per_page = 6
   acts_as_commentable
-  attr_accessible :content, :name, :tag_list
+  attr_accessible :content, :name, :tag_list ,:tag_tokens
   attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
   :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
   :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global

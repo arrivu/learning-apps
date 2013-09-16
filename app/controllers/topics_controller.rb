@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
+    load_and_authorize_resource
     before_filter :valid_domain_check, :only=>[:show,:edit]
-    before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
     before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
 
     def index
@@ -9,7 +9,8 @@ class TopicsController < ApplicationController
     end
 
     def show
-      @topic = Topic.find(params[:id])
+      @courses = Topic.find(params[:id]).courses.paginate(page: params[:page], per_page: 6)
+      @topics = @domain_root_account.topics
     end
 
     def edit
