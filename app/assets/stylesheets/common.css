@@ -396,7 +396,11 @@ font-weight: 400;
 
 float: none;
 display: table-cell;
+
 text-align: left;
+
+margin-top: 35px;
+
    
 }
 

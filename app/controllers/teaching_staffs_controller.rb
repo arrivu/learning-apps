@@ -1,8 +1,8 @@
 
 class TeachingStaffsController < ApplicationController
   include LmsHelper
-  before_filter :authenticate_user!, :except => :teaching_staff_signup  ,:except => :teaching_staff_profile
-  before_filter :check_admin_user, :except => :teaching_staff_signup,:except => :teaching_staff_profile
+  before_filter :authenticate_user!, :except => [:teaching_staff_signup, :teaching_staff_profile]
+  load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
@@ -21,7 +21,9 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.description =  params[:teaching_staff][:description]
 		@teachingstaff.qualification =  params[:teaching_staff][:qualification]
     @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
+
     @teachingstaff.is_active=params[:teaching_staff][:is_active]
+
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],
 								 user_type: 3,
@@ -46,6 +48,7 @@ class TeachingStaffsController < ApplicationController
 
 	def edit
 		@teachingstaff=TeachingStaff.find(params[:id])
+
 	end
 
   def update
@@ -165,11 +168,30 @@ class TeachingStaffsController < ApplicationController
   end
 
   def teaching_staff_profile
-   @teachingstaff=current_user.teaching_staff
-   @userid=@teachingstaff.user_id
-   @user=User.find(@userid)
-   @count=@user.sign_in_count
 
-  end
 
+   @teaching_staff=current_user.teaching_staff
+   #@userid=@teachingstaff.user_id
+   #@user=User.find(@userid)
+   #@count=@user.sign_in_count
+   @account=@domain_root_account
+   @account_id=@account.id
+   #@terms=TermsAndCondition.find(@account_id)
+   unless params[:teaching_staff].nil?
+    if @teaching_staff.update_attributes(:headline=>params[:teaching_staff][:headline],
+                                        :biography=>params[:teaching_staff][:biography],
+                                                          :address=>params[:teaching_staff][:address],
+                                                          :city =>params[:teaching_staff][:city],
+                                                          :pincode =>params[:teaching_staff][:pincode],
+                                                          :phone_number=>params[:teaching_staff][:phone_number],
+                                                          :firstname=>params[:teaching_staff][:firstname],
+                                                        :lastname=> params[:teaching_staff][:lastname])
+
+     flash[:success]="Teaching Staff details updated successfully"
+      redirect_to my_courses_path
+    else
+     render :teaching_staff_profile
+      end
+    end
+    end
 end

@@ -66,8 +66,7 @@ resources :footerlinks
   match '/datewise_courses', :to => 'courses#datewise_courses'
   match '/subscribed_courses', :to => 'courses#subscribed_courses'
   match '/course_status_search', :to => 'courses#course_status_search'
-  match '/completed_courses', :to => 'courses#comple
-ted_courses'
+  match '/completed_courses', :to => 'courses#completed_courses'
   match '/updatecompleted_details', :to => 'courses#updatecompleted_details'
   match '/conclude_course', :to =>'courses#conclude_course'
   match '/concluded_course_update', :to=> 'courses#concluded_course_update'
@@ -75,7 +74,7 @@ ted_courses'
   match '/edit_concluded_course', :to=> 'courses#edit_concluded_course'
   match '/update_un_concluded_course', :to=> 'courses#update_un_concluded_course'
   match '/interested_users', :to=> 'users#interested_users'
- 
+  match '/teaching_courses', :to=> 'users#teaching_courses'
 
   devise_for :users, :controllers => {:registrations => "registrations",:sessions => "sessions"}
 
@@ -112,4 +111,5 @@ ted_courses'
   match'activate_teaching_staff', :to=> 'teaching_staffs#activate_teaching_staff'
   match 'subscribe', :to=> 'accounts#subscribe'
   match 'teaching_staff_profile', :to =>'teaching_staffs#teaching_staff_profile'
+
 end

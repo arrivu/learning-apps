@@ -1,117 +1,80 @@
-
+<% unless current_user.has_role? :teacher %>
 <div id="left">
- <ul id="menu" class="unstyled accordion collapse in">
-
-    <% if !current_user.has_role? :teacher %>
-  
-         <li class="accordion-group ">   <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user">
-             <i class="icon icon-user" style="paddign:0px 10px;"></i>Users
-
-                        </a>
-                                             <ul class="collapse " id="user">
-                           <li><%= link_to "Users", users_path %></li> 
-                         <li><%= link_to "Interested Users", interested_users_path %></li>
-                         <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>
-
-                        </ul></li><% end %>
-
-
-
-                        <% if !current_user.has_role? :account_admin %>
-                       
-                        <% if !current_user.has_role? :teacher %>
-                        
-                   <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
-
-
-                        </li><% end %><% end %>
-                       
-                         <% if !current_user.has_role? :teacher %> 
-            <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %>
-                                           </li><% end %>
-                 <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
-                             <i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library 
-                        </a>
-                        <ul class="collapse " id="form-nav">
-                          <li><%= link_to "Category", topics_path %></li>  
-                          <li><%= link_to "Course Library", manage_courses_path %></li>
-                          <li><%= link_to "Course Price",course_pricings_path %></li>  
-                          <li><%= link_to "Course Preview",course_previews_path %></li> 
-                          <li><%= link_to "Conclude Course", conclude_course_path %></li>
-                          <li><%= link_to "Course Status Search",course_status_search_path %></li>  
-                        </ul>
-                    </li>
-                        <% if !current_user.has_role? :account_admin %>
-
-                          <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %>
-
-                        </li><% end %>
-
-                        
-                     
-
-                     <% if !current_user.has_role? :account_admin %>
-                       <% if !current_user.has_role? :teacher %>
-
-                        <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme">
-                             <i class="icon icon-eye-open" style="paddign:0px 10px;"></i>Themes  
-                        </a>
-                         <ul class="collapse " id="theme">
-                          <li><%= link_to "Add new Theme",new_theme_path%></li>  
-                          <li><%= link_to "Assign Theme",new_account_theme_path %></li>
-                        </ul></li>
-                        <% end%><% end%>
-
-                    <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon">
-                           <i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon
-                        </a>
-                        <ul class="collapse" id="coupon">
-                          <li><%= link_to "New Coupon", new_coupon_path %></li>
-      <li><%= link_to "Manage Coupon", coupons_path %></li>  
-                        </ul>
-                    </li>
+ <ul id="menu" class="unstyled accordion collapse in">  
+    <li class="accordion-group "> 
+      <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#user"><i class="icon icon-user" style="paddign:0px 10px;"></i>Users</a>
+    <ul class="collapse " id="user">
+      <li><%= link_to "Users", users_path %></li> 
+      <li><%= link_to "Interested Users", interested_users_path %></li>
+      <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li></ul></li>
+    <% if !current_user.has_role? :account_admin %>                        
+      <li ><%= link_to(accounts_path) do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %></li>
+    <% end %>
+     <li class="accordion-group "><%= link_to(update_settings_path) do %><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings<% end %></li>
+     <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav"><i class="icon icon-book" style="paddign:0px 10px;"></i>Course Library</a>
+    <ul class="collapse " id="form-nav">
+      <li><%= link_to "Category", topics_path %></li>  
+          <li><%= link_to "Course Library", manage_courses_path %></li>
+          <li><%= link_to "Course Price",course_pricings_path %></li>  
+          <li><%= link_to "Course Preview",course_previews_path %></li> 
+          <li><%= link_to "Conclude Course", conclude_course_path %></li>
+          <li><%= link_to "Course Status Search",course_status_search_path %></li>  
+    </ul>
+    </li>
+    <% if !current_user.has_role? :account_admin %>
+      <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme"><i class="icon icon-eye-open" style="paddign:0px 10px;"></i>Themes  </a>
+      <ul class="collapse " id="theme">
+        <li><%= link_to "Add new Theme",new_theme_path%></li>  
+        <li><%= link_to "Assign Theme",new_account_theme_path %></li>
+      </ul></li>
+    <% end%>
+      <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#coupon"><i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon</a>
+      <ul class="collapse" id="coupon">
+      <li><%= link_to "New Coupon", new_coupon_path %></li>
+      <li><%= link_to "Manage Coupon", coupons_path %></li></ul></li>
+      <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#tax"><i class="icon icon-qrcode" style="paddign:0px 10px;"></i>Tax</a>
+      <ul class="collapse" id="tax">
+        <li><%= link_to "Create Tax", new_tax_rate_path %></li>
+        <li><%= link_to "Manage Taxes",tax_rates_path %></li></ul></li>
         <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#tax">
-         <i class="icon icon-qrcode" style="paddign:0px 10px;"></i>Tax
-                        </a>
-                        <ul class="collapse" id="tax">
-                           <li><%= link_to "Create Tax", new_tax_rate_path %></li>
-      <li><%= link_to "Manage Taxes",tax_rates_path %></li>  
-                        </ul>
-                    </li>
+         <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#page"><i class="icon icon-file" style="paddign:0px 10px;"></i>Static Pages</a>
+        <ul class="collapse " id="page">
+         <li><%= link_to "About Us", aboutdetails_path %></li>
+         <li><%= link_to "Privacy & Policy",privacypolicies_path %></li>
+         <li><%= link_to "Terms & Conditions",terms_and_conditions_path %></li></ul></li>
+         <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home"><i class="icon icon-home" style="paddign:0px 10px;"></i>Home Page Details</a>
+        <ul class="collapse " id="home">
+        <li><%= link_to "Header", header_details_path %></li>
+        <li><%= link_to "Knowledge Partner", partners_path %></li>
+        <li><%= link_to "Testimonial", testimonials_path %></li>
+        <li><%= link_to "Slider", sliders_path %></li>
+        <li><%= link_to "Social Stream Comments", social_stream_comments_path %></li>
+        <li><%= link_to "Footer Links", footerlinks_path %></li>
+      </ul>
+    </li>                 
+  </ul>              <!-- END MAIN NAVIGATION -->
 
-<% if !current_user.has_role? :teacher %>
+ </div>
+<% else %>
+<div id="left">
+<ul  id="menu" class="unstyled accordion collapse in">
+  <li><%= link_to(manage_courses_path) do%><i class="icon icon-th"></i>Manage Course</li><% end %>
 
-                   <li class="accordion-group ">
-                        <a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#page">
-                             <i class="icon icon-file" style="paddign:0px 10px;"></i>Static Pages
-                        </a>
-                        <ul class="collapse " id="page">
-         
+  <li><%= link_to(course_pricings_path) do%><i class="icon icon-shopping-cart"></i>Course Price</li><% end %>
 
-                           <li><%= link_to "About Us", aboutdetails_path %></li>
-                           <li><%= link_to "Privacy & Policy",privacypolicies_path %></li>
-                          <li><%= link_to "Terms & Conditions",terms_and_conditions_path %></li>
-                         </ul>
-                    </li>
-<li class="accordion-group ">
-<a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#home">
-                             <i class="icon icon-th" style="paddign:0px 10px;"></i>Home Page Details
-                        </a>
-                        <ul class="collapse " id="home">
-                          <li><%= link_to "Header", header_details_path %></li>
-      <li><%= link_to "Knowledge Partner", partners_path %></li>
-      <li><%= link_to "Testimonial", testimonials_path %></li>
-      <li><%= link_to "Slider", sliders_path %></li>
-      <li><%= link_to "Social Stream Comments", social_stream_comments_path %></li>
-      <li><%= link_to "Footer Links", footerlinks_path %></li>
+  <li><%= link_to(course_previews_path) do%><i class="icon icon-eye-open"></i>Course Preview</li><% end %>
 
-                         </ul>
-                    </li><% end %>
-                    
-                </ul>
-                <!-- END MAIN NAVIGATION -->
-              </div>
+  <li><%= link_to(conclude_course_path) do%><i class="icon icon-screenshot"></i>Conclude Course </li><% end %>
+
+  <li><%= link_to(course_status_search_path) do%><i class="icon icon-search"></i>Course Status Search</li><% end %>
+
+  <li><%= link_to(new_coupon_path) do%><i class="icon icon-barcode"></i>New Coupon
+  </li><% end %>
+
+  <li><%= link_to(coupons_path) do%><i class="icon icon-tasks"></i>Manage Coupon</li><% end %>
+</ul>
+ </div>
+<% end %>
+
+
+ 

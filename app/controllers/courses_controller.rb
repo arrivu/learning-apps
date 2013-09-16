@@ -1,14 +1,9 @@
 class CoursesController < ApplicationController
   include LmsHelper
   helper_method :course_user_count
-
-#before_filter :current_user, only: [:create, :edit,:update,:delete]
-ActiveMerchant::Billing::Integrations
-#before_filter :initialize, :only => [:create, :edit,:update,:delete]
-before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
-   :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
-  before_filter :signed_in_user, :only=>[:my_courses]
-  before_filter :no_admin_user_allow, :only=>[:my_courses]
+  ActiveMerchant::Billing::Integrations
+  load_and_authorize_resource
+  before_filter :authenticate_user!, :except=>[:index]
   caches_page :show_image,:background_image
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
@@ -71,11 +66,16 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
  end
 
  def edit
-   @course= Course.find(params[:id])
+   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
+     @course= @domain_root_account.courses.find(params[:id])
+   else
+     flash[:error] = "Not Authorized"
+     redirect_to manage_courses_path
+   end
  end
 
  def update
-   @course = Course.find(params[:id])
+   @course = @domain_root_account.courses.find(params[:id])
    old_teaching_staff_id=@course.teaching_staff_ids
    tags_token = params[:course][:tag_tokens]
    params[:course].delete :tag_tokens
@@ -83,24 +83,20 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
      tag_list(tags_token,@course)
      lms_update_course(@course,old_teaching_staff_id)
      flash[:success] ="Successfully Updated Course."  
-     redirect_to manage_courses_url
+     redirect_to manage_courses_path
    else
      render :edit
    end
  end
 
  def show
-   @course = Course.find(params[:id])
+   @course = @domain_root_account.courses.find(params[:id])
    @@course_id=@course
    @price_detail = CoursePricing.find_by_course_id(@course.id)
    if @price_detail!=nil
       @price=@price_detail.price
    end
    @authors= @course.teaching_staffs
-   #@course.teaching_staffs.each do |teaching_staff|
-   #  @authors << User.where(id: teaching_staff.user_id).first
-   #end
-
    if(current_user!=nil)
     student=Student.where(user_id: current_user.id).first
     @status_check = StudentCourse.find_by_student_id_and_course_id(student,@course.id)
@@ -163,8 +159,16 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
     end
 
     def manage_courses
-      @courses = Course.where(account_id: @account_id).paginate(page: params[:page], :per_page => 10).order(:id)
-      @topic = Topic.where("parent_topic_id!=root_topic_id")
+      @courses=[]
+      if current_user.has_role? :teacher
+        current_user.teaching_staff.teaching_staff_courses.each do |c|
+        @courses << c.course
+        end
+        @courses=@courses.paginate(page: params[:page], :per_page => 30)
+      else
+        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 10).order(:id)
+      end
+      @topic = @domain_root_account.topics
     end
 
     def course_status_search

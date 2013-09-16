@@ -1,17 +1,16 @@
 class CoursePricingsController < ApplicationController
   include CoursePricingsHelper
-  before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:index]
- before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
+  load_and_authorize_resource
+  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
   def new
-    @coursepricing=CoursePricing.new
+    @coursepricing=@domain_root_account.course_pricing.new
   end
 
   def show
   end
   def create
-    @coursepricing=CoursePricing.new(params[:course_pricing])
-    
+    @coursepricing=@domain_root_account.course_pricing.new(params[:course_pricing])
    @coursepricing.account_id=@account_id
     course_ids=CoursePricing.where("course_id=?",@coursepricing.course_id)
     if nooverlap?(course_ids,@coursepricing.start_date,@coursepricing.end_date)
@@ -39,15 +38,15 @@ class CoursePricingsController < ApplicationController
 
   def index
     if(params[:search] != nil && params[:search] != "")
-      @coursepricing = CoursePricing.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 15)
+      @coursepricing = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 15)
     else
-     @coursepricing = CoursePricing.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 15)
+     @coursepricing = @domain_root_account.course_pricings.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 15)
    end
-   @course = Course.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 15)
+   @course = @domain_root_account.courses.paginate(page: params[:page], :per_page => 15)
  end
 
  def destroy
-  @coursepricing=CoursePricing.find(params[:id])
+  @coursepricing=@domain_root_account.course_pricings.find(params[:id])
 
   @coursepricing.destroy
 
@@ -56,8 +55,14 @@ class CoursePricingsController < ApplicationController
 end
 
 def edit
- @coursepricing=CoursePricing.find(params[:id])
- @course = Course.all
+  if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
+    @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+    @course = @domain_root_account.courses
+  else
+    flash[:error] = "Not Authorized"
+    redirect_to course_pricings_path
+  end
+
 end
 
 
@@ -65,10 +70,10 @@ end
 
 def update
 
-  @coursepricing=CoursePricing.find(params[:id])
-  @coursepricing_params=CoursePricing.new(params[:course_pricing])
-  @coursepricing.account_id=@account_id
-   
+  @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+  @coursepricing_params=@domain_root_account.course_pricing.new(params[:course_pricing])
+  @coursepricing.account_id=@domain_root_account.id
+
   course_ids=CoursePricing.where("course_id=? AND id!=?",@coursepricing_params.course_id,@coursepricing.id)
   if nooverlap?(course_ids,@coursepricing_params.start_date,@coursepricing_params.end_date)
    

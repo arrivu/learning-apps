@@ -7,5 +7,7 @@ class CreateTeachingStaffCourses < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :teaching_staff_courses, [:course_id, :teaching_staff_id], :unique => true
   end
 end

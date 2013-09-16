@@ -1,91 +1,63 @@
-
-
  <div id="wrap">
-
   <%= render 'shared/side_menu' %>
-               
-            <div id="content">
-                <!-- .outer -->
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                            <!--Begin Datatables-->
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-        
-            
-                                          <div id="collapse4" class="body">
-                                              <div class="icons"><span class="badge badge-info">Manage Course Pricing</span></div>
-                                               <div  align="center" style="margin:0px 0px 0px 0px">
-             
-                  <%= form_tag "/course_pricings/", :method => 'get' do %>
-                Course: <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id =>@account_id), "id", "title") , {:prompt => 'ALL'} %>
-              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
-                                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                                                <thead>
-                                                  
-      <tr>
-       <th >Course Name</th>
-       <th > Start Date </th>
-       <th >End Date</th>
-       <th >Price</th>
-       
-       <th >Created At</th>
-   <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
-<!-- 
-       <th style="background:#2A488E;color:white;text-align:center"><%=t '.actions', :default => t("helpers.actions") %></th> -->
-       <!-- </th> -->
-       <!-- <th></th> -->
-     </tr>
-</thead>
-     <% @coursepricing.each do |coursepricing| %>
-     <tr> <td><%= coursepricing.course.title%></td>
-      <td><%= coursepricing.start_date %></td>
-      <td><%= coursepricing.end_date %></td>
-      <td><%= coursepricing.price %></td>
 
-      <td><%=l coursepricing.created_at, :format=>'%d %b. %Y %I:%M' %></td>
-
-
-<td> <%= link_to(edit_course_pricing_path(coursepricing)) do%><i class="icon icon-edit"></i><% end%>
-
-    </td>
-    <td>
-    <%= link_to(course_pricing_path(coursepricing),
+   <div id="content">
+     <div class="container-fluid outer"  >
+      <div class="row-fluid">
+       <div class="span12 inner">
+        <div class="row-fluid">
+         <div class="span12">
+          <div class="box">
+           <div id="collapse4" class="body">
+            <div class="icons"><span class="badge badge-info">Manage Course Pricing</span></div>
+             <% if current_user.has_role? :teacher %>
+              <%= form_tag "/course_pricings/", :method => 'get' do %>
+              <td><%= label_tag(:search,"Course:") %></td>
+              <td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td>
+               <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
+             <% else %>
+               <%= form_tag "/course_pricings/", :method => 'get' do %>
+               <td><%= label_tag(:search,"Course:") %></td>
+               <td> <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id =>@account_id), "id", "title") , {:prompt => 'ALL'} %></td>
+               <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
+             <% end %>
+        <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+             <thead>
+              <tr>
+               <th >Course Name</th>
+               <th > Start Date </th>
+               <th >End Date</th>
+               <th >Price</th>
+               <th >Created At</th>
+               <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+              </tr>
+            </thead>
+         <% @coursepricing.each do |coursepricing| %>
+         <tr> <td><%= coursepricing.course.title%></td>
+          <td><%= coursepricing.start_date %></td>
+          <td><%= coursepricing.end_date %></td>
+          <td><%= coursepricing.price %></td>
+          <td><%=l coursepricing.created_at, :format=>'%d %b. %Y %I:%M' %></td>
+          <td> <%= link_to(edit_course_pricing_path(coursepricing)) do%><i class="icon icon-edit"></i><% end%></td>
+          <td>
+          <%= link_to(course_pricing_path(coursepricing),
                                    :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
-           <i class="icon icon-trash"></i>
-          <% end %>
-        </td>
-</tr>
-      <% end %>
-    </table>
-<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
-                                    </div>
-                                </div>
-                            </div> 
-                                
-                            
-                        
-                    </div>
-                    <!-- /.row-fluid -->
-                </div>
-                <!-- /.outer -->
-            </div>
-                 </div>
-            <!-- END CONTENT -->
-   <div class="left" style="padding: 0px;width: 210px;float: right; margin-top: -6px;">
-    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
-    <a href="course_pricings/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Price</a>
-
+           <i class="icon icon-trash"></i><% end %></td></tr>
+         <% end %>
+        </table>
+      </div>
+     </div>
     </div>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+<div class="left" style="padding: 0px;width: 16%;float: right;">
+<a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-380px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
+<a href= <%= new_course_pricing_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-320px;"><i class="icon icon-plus-sign"></i>Add Price</a>
+</div>
+<div id="push"></div>
+<div class="clearfix"></div>
 
-
-            <!-- #push do not remove -->
-            <div id="push"></div>
-            <!-- /#push -->
-        
-        <!-- END WRAP -->
-
-        <div class="clearfix"></div>
