@@ -1,24 +1,37 @@
-
-  <div id="home" align="center">
-   <%= tinymce_assets %>
+<div id="wrap" style="background:#fff;">
+  <div id="content" style="margin: 0px 15% 45px;box-shadow: -2px -1px 10px #333;">
+    <div class="container-fluid outer" >
+      <div class="row-fluid">
+        <div class="span12 inner">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="box">
+                <div id="collapse4" >
+<div id="home" align="center">
+  <div class="alert alert-block" style="width: 70%;font-size:15px;font:bold ">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 style="color: #f27428">Teacher Profile </h4>
+    Since you are Loging IN for the very first time in this application, you  are supposed to enter your full details
+  </div>
+    <%= tinymce_assets %>
     <%= simple_form_for(@teaching_staff,:url => url_for(:controller => 'teaching_staffs',:action => 'teaching_staff_profile')) do |f| %>
-       <%= render 'shared/error_messages', object: f.object %>
         <table>
-          <div id="information" style="font-size:18px; font-family: monaco; text-align: center; ">
-            <%="Since you are Loging IN for the very first time in this application, you  are supposed to enter your full details" %>
-          </div>
-          <tr>
+
+       <%= render 'shared/error_messages', object: f.object %>
+          <div style="margin-left: 27px;">
+         <tr>
             <td><%= f.label 'First Name' %> </td>
             <td><%= current_user.name %> </td>
 
           </tr>
+          </div>
           <tr>
             <td><%= f.label 'Last Name' %></td>
-            <td><%= f.text_field :lastname %></td>
+            <td><%= f.text_field :lastname, placeholder:"Last Name" %></td>
           </tr>
           <tr>
             <td><%= f.label 'Head Line' %></td>
-            <td><%= f.text_area :headline,:cols => "10", :rows => "5" %></td>
+            <td><%= f.text_area :headline,:cols => "10", :rows => "5",placeholder:"Headline" %></td>
            </tr>
         <tr>
           <td><%= f.label 'Email' %></td>
@@ -36,36 +49,50 @@
         <tr>
 
           <td><%= f.label 'Address' %></td>
-          <td><%= f.text_area :address,:cols => "5", :rows => "5" %></td>
+          <td><%= f.text_area :address,:cols => "5", :rows => "5", placeholder:"Address" %></td>
 
         </tr>
         <tr>
           <td><%= f.label 'city' %></td>
-          <td> <%= f.text_field :city %></td>
+          <td> <%= f.text_field :city, placeholder:"City" %></td>
         </tr>
         <tr>
         <tr>
           <td><%= f.label 'Zipcode' %></td>
-          <td><%= f.text_field :pincode %></td>
+          <td><%= f.text_field :pincode, placeholder:"ZipCode" %></td>
         </tr>
         <tr>
           <td><%= f.label 'Phone Number'%></td>
-          <td><%= f.text_field :phone_number, :maxlength => 15  %></td>
+          <td><%= f.text_field :phone_number, :maxlength => 15, placeholder:"Phone Number"  %></td>
         </tr>
-          <tr>
-            <td>  <%= link_to()%></td>
 
-          </tr>
-        <div id="button" align="center">
           <tr>
-            <td><%= f.submit "Save and Continue" %> </td>
+            <td colspan="2" style="text-align:center; ">
+              <input id="subscription_agree" name="subscription[agree]" style="vertical-align:top;" type="checkbox" value="1">
+
+              I accept the
+             <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms  %>
+            </td>
           </tr>
-        </div>
+
+
+               <tr>
+                 <td colspan="2" style="text-align:center;">
+                 <%= f.submit "Update Profile",class: "btn btn-primary", style:"margin-left: 27px;" %>
+                 </td>
+               </tr>
+
         <%= tinymce %>
         </table>
     <%end%>
+
  </div>
-
-
-
-
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

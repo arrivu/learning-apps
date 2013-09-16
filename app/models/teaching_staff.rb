@@ -1,12 +1,7 @@
 
 class TeachingStaff  < ActiveRecord::Base
-<<<<<<< HEAD
-  attr_accessible :description, :name, :qualification,:user_attributes, :user_id, :linkedin_profile_url,:account_id ,:is_active,
-:firstname,:lastname,:headline,:biography,:address,:city,:pincode,:phone_number
-=======
   scope :active, -> { where("is_active IS true") }
   attr_accessible :description, :name, :qualification,:user_attributes, :user_id, :linkedin_profile_url,:account_id ,:is_active,:firstname,:lastname,:headline,:biography,:address,:city,:pincode,:phonenumber
->>>>>>> e95d31456b93dedd84ddce67240fdd152d6f99af
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
   scope :teacher_assistants, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher_assitant")
   scope :teacher

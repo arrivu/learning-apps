@@ -193,5 +193,18 @@ class TeachingStaffsController < ApplicationController
      render :teaching_staff_profile
       end
     end
+  end
+
+  def terms
+    @account=@domain_root_account
+    @account_id=@account.id
+    @terms=TermsAndCondition.find(@account_id)
+    if @terms==nil
+          redirect_to  :terms
+    else
+      @terms
     end
+
+  end
+
 end
