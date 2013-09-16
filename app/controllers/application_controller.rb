@@ -39,9 +39,12 @@
      @user=User.find(@teachingstaff)
      @count=@user.sign_in_count
      if(@count== 1)
+       #render "teaching_staffs/teaching_staff_profile.html.erb"
+
        teaching_staff_profile_path
      else
-       teaching_staffs_path
+
+       my_courses_path
       end
     else
       student=Student.where(user_id: current_user.id).first
