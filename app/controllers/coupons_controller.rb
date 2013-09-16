@@ -34,14 +34,12 @@ class CouponsController < ApplicationController
   
   def new
     find_or_generate_coupon
-    @courses=[]
-    current_user.teaching_staff.teaching_staff_courses.each do |c|
-      @courses << c.course
-    end
+    populate_combo_courses
   end
 
   def edit
      @coupon = Coupon.find(params[:id])
+     populate_combo_courses
   end
 
   def update
@@ -62,9 +60,9 @@ class CouponsController < ApplicationController
     find_or_generate_coupon
     
     if params[:after]
-      @coupons = Coupon.where(["id >= ? and account_id=?", params[:after],@account_id]).paginate(page: params[:page], per_page: 10)
+      @coupons = Coupon.where(["id >= ? and account_id=?", params[:after],@domain_root_account.id]).paginate(page: params[:page], per_page: 10)
     else
-      @coupons = Coupon.where(:account_id=>@account_id).paginate(page: params[:page], per_page: 10)
+      @coupons = @domain_root_account.coupons.paginate(page: params[:page], per_page: 10)
     end
     respond_to do |format|
       format.html
@@ -85,7 +83,8 @@ class CouponsController < ApplicationController
   def create
     respond_to do |format|
       format.html do
-        params[:coupon][:account_id]=@account_id
+        populate_combo_courses
+        params[:coupon][:account_id]=@domain_root_account.id
         @coupon = Coupon.new(params[:coupon])
         how_many = params[:how_many] || 1
         unless Coupon.enough_space?(@coupon.alpha_mask, @coupon.digit_mask, Integer(how_many))
@@ -131,5 +130,17 @@ class CouponsController < ApplicationController
   def find_or_generate_coupon
       @coupon ||= Coupon.new
   end
-  
+
+  def populate_combo_courses
+    if current_user.has_role? :teacher
+      @courses=[]
+      current_user.teaching_staff.teaching_staff_courses.each do |c|
+        @courses << c.course
+      end
+
+      else
+        @courses = @domain_root_account.courses
+    end
+  end
+
 end

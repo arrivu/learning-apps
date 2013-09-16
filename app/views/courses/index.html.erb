@@ -6,161 +6,70 @@
 <div class="span12" style="width:100%;"><div class="span2" style="width: 200px;margin-left:0px;">
   <div class="menu" style="margin-top: 60px;box-shadow: 1px 1px 1px 1px #ddd;">
   	<h4 style="padding:5px;">Categories</h4>
-  <div class="accordion">
-    
-    <!-- Áreas -->
-    <div class="accordion-group">
-      
-      <!-- Área -->
-      
-      <div class="accordion-heading area">
-        
-        <a class="accordion-toggle" data-toggle="collapse" href="#area1">
-Category1                                    </a>
-            </div>
-      
-      <!-- /Área -->
-      
-      <div id="area1" class="accordion-body collapse">
-        <div class="accordion-inner">
-          
-          
-          <div class="accordion" id="equipamento1">
-            
-            <!-- Equipamentos -->
-            
-            <div class="accordion-group">
-              
-<div class="accordion-heading equipamento">
-           <a class="accordion-toggle" data-toggle="collapse" data-parent="#equipamento1-1" href="#ponto1-1">
-          Equipamento #1-1  </a>
-                
-              </div>
-              
-              <!-- Pontos -->
-              
-              <div id="ponto1-1" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  
-                  
-                  <div class="accordion" id="servico1">
-                    
-                    <div class="accordion-group">
-                      
-                      <div class="accordion-heading ponto">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#servico1-1-1" href="#servico1-1-1">
-                          Ponto #1-1-1                                                                                        </a>
-                      
-                      </div>
-                      
-                      <!-- Serviços -->
-                      
-                      <div id="servico1-1-1" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <ul class="nav nav-list">
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-1</a></li>
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-2</a></li>
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-3</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      
-                      <!-- /Serviços -->
-                      
-                    </div>
-                    
-                  </div>
-                  
-                </div>
-              </div>
-              
-              <!-- /Pontos -->
-              
-            </div>
-            
-            <!-- /Equipamentos -->
-            
-          </div>
-          
-          
-        </div>
-      </div>
-      <div class="accordion-heading area">
-        
-        <a class="accordion-toggle" data-toggle="collapse" href="#area2">
-          Área #1                                        </a>
-            </div>
-      
-      <!-- /Área -->
-      
-      <div id="area2" class="accordion-body collapse">
-        <div class="accordion-inner">
-          
-          
-          <div class="accordion" id="equipamento2">
-            
-            <!-- Equipamentos -->
-            
-            <div class="accordion-group">
-              
-              <div class="accordion-heading equipamento">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#equipamento2-1" href="#ponto2-1">
-                  Equipamento #1-1                                                                </a>
-                
-              </div>
-              
-              <!-- Pontos -->
-              
-              <div id="ponto2-1" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  
-                  
-                  <div class="accordion" id="servico2">
-                    
-                    <div class="accordion-group">
-                      
-                      <div class="accordion-heading ponto">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#servico2-1-1" href="#servico2-1-1">
-                          Ponto #1-1-1                                                                                        </a>
-                      
-                      </div>
-                      
-                      <!-- Serviços -->
-                      
-                      <div id="servico2-1-1" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <ul class="nav nav-list">
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-1</a></li>
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-2</a></li>
-                            <li><a href="#"><i class="icon-chevron-right"></i> Serviço #1-1-1-3</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                      
-                      <!-- /Serviços -->
-                      
-                    </div>
-                    
-                  </div>
-                  
-                </div>
-              </div>
-              
-              <!-- /Pontos -->
-              
-            </div>
-            
-            <!-- /Equipamentos -->
-            
-          </div>
-          
-          
-        </div>
-      </div>
-      
+ <script>
+    $(document).ready(function () {
+        $('label.tree-toggler').click(function () {
+            $(this).parent().children('ul.tree').toggle(300);
+        });
+    });
+</script>
+<div class="well" style="width:100%; padding: 8px 0;">
+    <div style="">
+     
+        <ul class="nav nav-list">
+            <li><label class="tree-toggler nav-header">Header 1</label>
+                <ul class="nav nav-list tree">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><label class="tree-toggler nav-header">Header 1.1</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><label class="tree-toggler nav-header">Header 1.1.1</label>
+                                <ul class="nav nav-list tree">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="divider"></li>
+            <li><label class="tree-toggler nav-header">Header 2</label>
+                <ul class="nav nav-list tree">
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><label class="tree-toggler nav-header">Header 2.1</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><label class="tree-toggler nav-header">Header 2.1.1</label>
+                                <ul class="nav nav-list tree">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><label class="tree-toggler nav-header">Header 2.2</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><label class="tree-toggler nav-header">Header 2.2.1</label>
+                                <ul class="nav nav-list tree">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    
-  </div><!-- /accordion -->
+</div>
+
 </div>
 
 </div><div class="span10" style="margin-left:0px;">
