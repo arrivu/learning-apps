@@ -27,7 +27,8 @@ namespace :db do
 							parent_topic_id: array[3],
 							root_topic_id: array[4]
 							)
-					end
+          end
+
 
                	Footerlink.create!(youtube_url: "https://www.youtube.com",
                		linkedin_url: "https://www.linkedin.com",
@@ -35,7 +36,7 @@ namespace :db do
                		facebook_url: "https://www.facebook.com",
                		twitter_url: "https://www.twitter.com",
                		
-               		 copy_write: "© Beacon Learning",account_id: 2 )
+               		 copy_write: "© Arrivu Apps Learning Portal",account_id: 2 )
                      
                	HeaderDetail.create!(
                     logo: "viewlogo.png",

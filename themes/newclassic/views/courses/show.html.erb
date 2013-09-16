@@ -42,7 +42,7 @@ $(document).ready(function(){
 </ul>
 <ul class="author" style="text-align: center;border-bottom:0px;border-top:0px;">
 
- <% @course.teaching_staffs.each do |author|%>
+ <% @course.teaching_staffs.active.each do |author|%>
 <li>        <% if author.user.image_blob == nil %>
 
         <% if author.user.omni_image_url == nil %>
@@ -76,7 +76,7 @@ background-size: 100% 100%%;height:250px;margin-top:0px;padding:10px;">
 
 </h1>
 <h2 class="author_names" style="color:#fff;">
-with  <% @course.teaching_staffs.each do |author|%><%= author.name%><%end%>
+with  <% @course.teaching_staffs.active.each do |author|%><%= author.name%><%end%>
 </h2>
 <p class="resource-tagline" style="color:#fff;">
 <%= @course.short_desc  %>

@@ -73,12 +73,13 @@
                 <!-- /.outer -->
             </div></div>
             <!-- END CONTENT -->
-<div class="left" style="padding: 0px;width: 210px;float: right;">
-    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Account</a>
-    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
-    </div>
+
 
             <!-- #push do not remove -->
+             <div class="left" style="padding: 0px;width: 16%;float: right;">
+              <% if TermsAndCondition.find_by_account_id(@account_id) == nil %>
+ <a href="../terms_and_conditions/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Terms and Condition </a> <% end %>
+  </div>
             <div id="push"></div>
             <!-- /#push -->
         

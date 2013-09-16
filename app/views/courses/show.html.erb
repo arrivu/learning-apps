@@ -14,9 +14,9 @@ $(document).ready(function(){
   
 <div class="span3 content-box resource" style="float: left;">
    
-<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 100%;">
+<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;">
 
-  <div class="type " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
+  <div class="type ribbon1 " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
 </div>
 <div class="details" style="margin-top:165px;">
 <h2>
@@ -368,6 +368,7 @@ $(".close").click(function(){
 </div>
 </div>
 
+
 <div class="span3 content-box resource" style="float: left;padding: 10px;">
    <% if @course.is_coming_soon %>
             <h4>Date to be announced</h4>
@@ -400,7 +401,7 @@ $(".close").click(function(){
             <% end %>
 
  <% if (current_user.present? ) %>
-              <% if !(current_user.has_role? :admin) %>
+              <% if !(current_user.has_role? :admin) and !(current_user.has_role? :account_admin) and !(current_user.has_role? :teacher)%>
 
                 <% if @course.is_coming_soon %>
                 <% if @status!="follow" %>
@@ -413,6 +414,7 @@ $(".close").click(function(){
                 <% elsif @status=="completed" %>
                 
                 <% else %>
+                
                  <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user.id).empty? %>
 
                      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
@@ -422,6 +424,7 @@ $(".close").click(function(){
                 <% end %> 
 
               <% end %> 
+
 
             <% else %>
               <% if @course.is_coming_soon %>
@@ -444,7 +447,7 @@ $(".close").click(function(){
             <% end %> 
             <% end%>
 
-</div></div></div>
+</div></div></div></div>
 <script>
 $('#myTab a').click(function (e) {
   e.preventDefault();

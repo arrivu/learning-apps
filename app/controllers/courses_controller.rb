@@ -32,29 +32,18 @@ before_filter :check_admin_user, :only => [:new,:create, :edit, :destroy,:manage
 
   def index
    if @account_id!=nil
-   @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
-   @countCoursesPerPage = 6
-
-       if params[:mycourses]=="mycourses"
-     @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
-   else
-     @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
-   end
-
-   @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
-
-
-
-
-
-    else
-  @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
-  @topics = Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @account_id)
-
-
-
-
-end
+     @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
+     @countCoursesPerPage = 6
+         if params[:mycourses]=="mycourses"
+       @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
+     else
+       @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
+     end
+     @topics = @domain_root_account.topics
+      else
+     @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
+     @topics = @domain_root_account.topics
+  end
   
  end
 
@@ -68,7 +57,7 @@ end
    tags_token = params[:course][:tag_tokens]
    params[:course].delete :tag_tokens
    @course = Course.new(params[:course])
-   @course.account_id=@account_id
+   @course.account_id=@domain_root_account.id
    @course.isconcluded="f"
    if @course.save
      tag_list(tags_token,@course)
@@ -87,11 +76,12 @@ end
 
  def update
    @course = Course.find(params[:id])
+   old_teaching_staff_id=@course.teaching_staff_ids
    tags_token = params[:course][:tag_tokens]
    params[:course].delete :tag_tokens
    if @course.update_attributes(params[:course])
      tag_list(tags_token,@course)
-     lms_update_course(@course)
+     lms_update_course(@course,old_teaching_staff_id)
      flash[:success] ="Successfully Updated Course."  
      redirect_to manage_courses_url
    else

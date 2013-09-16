@@ -8,20 +8,21 @@
              <div class="span12">
                <div class="box">
                  <div id="collapse4" class="body">
+                  <div class="icons"><span class="badge badge-info">Edit Course</span></div>
                   <table id="dataTable" >
                    <%= simple_form_for(@course) do |f| %>
                     <%= render 'shared/error_messages', object: f.object %>
                     <tr><td><%= f.label :title, "Title" %></td>
                         <td><%= f.text_field :title %></td></tr>
                     <tr><td><%= f.label :start_date, "Start Date" %></td><td>
-                            <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
+                            <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
                         </td></tr>
                     <tr><td><%= f.label :end_date, "End Date" %></td><td>
-                            <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
+                            <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
                         </td></tr>
                     <tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
                             <td>
-                            <%= f.collection_select :teaching_staff_ids, TeachingStaff.where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %>
+                            <%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.order(:name), :id, :name, {}, {multiple: false} %>
                             </td></tr>
                     <tr><td><%= f.label :short_desc, "Short Description" %></td>
                             <td><%= f.text_field :short_desc %></td></tr>

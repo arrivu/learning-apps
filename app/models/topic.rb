@@ -12,7 +12,7 @@
 class Topic < ActiveRecord::Base
   attr_accessible :name, :desc,:id,:color,:account_id,:parent_topic_id,:root_topic_id ,:parent_id
   has_ancestry
-  has_one :course
+  has_many :courses
   belongs_to :account
   validates :name, presence: true, length: { maximum: 100 }
 end

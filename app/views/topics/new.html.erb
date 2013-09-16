@@ -8,8 +8,8 @@
      <div class="row-fluid">
       <div class="span12">
        <div class="box">
-        <h3 align = "center">New Category</h3>
           <div id="collapse4" class="body">
+            <div class="icons"><span class="badge badge-info"> New Category  </span></div>
             <%= render @topic.parent if @topic.parent %>
             <%= render "form" %>
             <p><%= link_to "Back to Categories", topics_path %></p>

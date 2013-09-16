@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
     else
       render "new"
   	end
-end
+  end
   def edit
   	@account=Account.find(params[:id])
   end
@@ -53,6 +53,18 @@ end
   def update_settings
    @domain_root_account.settings=params[:update_settings]
    @domain_root_account.save!
-      render :update_settings
+   render :update_settings
   end
+
+    def subscribe
+      @account=Account.new(params[:account])
+      params[:account][:name]=@account.name.downcase
+      if @account.save
+        flash[:success]="Account details created Successfully"
+        redirect_to accounts_path
+      else
+        render "new"
+      end
+    end
 end
+

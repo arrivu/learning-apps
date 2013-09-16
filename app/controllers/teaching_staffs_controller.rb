@@ -1,8 +1,8 @@
 
 class TeachingStaffsController < ApplicationController
   include LmsHelper
-  before_filter :authenticate_user!, :except => :teaching_staff_signup
-  before_filter :check_admin_user, :except => :teaching_staff_signup
+  before_filter :authenticate_user!, :except => :teaching_staff_signup  ,:except => :teaching_staff_profile
+  before_filter :check_admin_user, :except => :teaching_staff_signup,:except => :teaching_staff_profile
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
 	protect_from_forgery :except => :create
@@ -21,8 +21,7 @@ class TeachingStaffsController < ApplicationController
 		@teachingstaff.description =  params[:teaching_staff][:description]
 		@teachingstaff.qualification =  params[:teaching_staff][:qualification]
     @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
-    @teachingstaff.params[:teaching_staff][:is_active]
-    	
+    @teachingstaff.is_active=params[:teaching_staff][:is_active]
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],
 								 user_type: 3,
@@ -133,9 +132,12 @@ class TeachingStaffsController < ApplicationController
     if @teachingstaff.save
       @teachingstaff.user.add_role(:teacher)
       AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+      lms_create_user(@teachingstaff.user)
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
-      lms_create_user(@teachingstaff.user)
+      unless Rails.env.development?
+        UserMailer.teaching_staffs_welcome(@teachingstaff).deliver!
+      end
       redirect_to root_path
 
     else
@@ -149,7 +151,9 @@ class TeachingStaffsController < ApplicationController
     @teachingstaff.is_active = params[:teaching_staff][:is_active]
     if @teachingstaff.save!
       if @teachingstaff.is_active?
-        UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        unless Rails.env.development?
+          UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+        end
         redirect_to teaching_staffs_path
         flash[:success] = "User Sucessfully activated and activation mail sent !"
       else
@@ -159,5 +163,13 @@ class TeachingStaffsController < ApplicationController
     end
 
   end
-	
+
+  def teaching_staff_profile
+   @teachingstaff=current_user.teaching_staff
+   @userid=@teachingstaff.user_id
+   @user=User.find(@userid)
+   @count=@user.sign_in_count
+
+  end
+
 end

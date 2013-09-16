@@ -448,11 +448,13 @@ width: 520px;
 	color:#E74C3C;*/
 	/*border-top: 5px solid #333;*/
 	color:#333;
+	/*align:center;*/
+	/*background-position: center;*/
 }
 
 .testimonial-two{
 	/*border-top: 5px solid #8E44AD;
-	color: #8E44AD;*/
+	color: #8E44AD;
 	/*border-top: 5px solid #333;*/
 	color: #333;
 }
@@ -481,11 +483,12 @@ border: none;
 }
 
 .testimonialtext{
-	margin-top: 5px;
-	margin-bottom: 5px;
+	/*margin-top: 5px;*/
+	/*margin-bottom: 5px;*/
 	font-size: 15px;
 	font-weight: 100;
 	z-index: 0;
+	vertical-align: middle;
 	text-align: justify;
     min-height: 50px;
 	line-height: 1.5;
@@ -493,11 +496,15 @@ border: none;
 	border-left: none;
 	color: rgba(0,0,0,0.6);
 	font-size: 14px;
-	margin-bottom: 13px;
+	/*margin-bottom: 13px;*/
 
-	margin: 0 0 17px;
+	/*margin: 0 0 17px;*/
 	padding: 20px 0px 0px 0px;
-	
+
+	 width:200px;
+    margin:0 0 0 0;
+    /*display: inline;*/
+    /*text-align: center;*/
 }
 
 .testimonialauthor{
@@ -508,6 +515,14 @@ font-size: 15px;
 */	text-align: center;
 	color:#333;
 	font-weight: 600;
+	 /*margin-left: auto;
+    margin-right: auto;
+    width: 10em*/
+     width:1020px;
+    margin:0 0 0 0;
+   display: inline;
+	
+
 }
 
 .bottomadsection{
@@ -591,7 +606,7 @@ background-color: #d14836;
 	min-height: 100px;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	
+
 	position: relative;
 	margin-top: 20px;
     padding:10px 100px;
@@ -599,16 +614,22 @@ background-color: #d14836;
 
 .listofkp .kp{
 	float: left;
-	width:100%;
 	/*margin-left: 10px;
 	/*border-right: 1px solid #eee;*/
+
 	box-shadow: 0px 0px 5px 4px #ddd;
-padding: 10px 10px;
+
+    padding:0px 70px;
+    position: center;
+    margin:0 0 15px 15px;
+    /*display: table-cell;*/
+
 }
 
 .listofkp .lastkp{
 	float: left;
     padding:0px 70px;
+
 }
 
 .listofkp .firstkp{
@@ -617,6 +638,8 @@ padding: 10px 10px;
 	/*margin-left: 10px;*/
 	/*border-right: 1px solid #eee;*/
 	padding:0px 70px;
+  width: 250px;
+  margin:0 0 15px 15px;
 }
 
 .listofkp .firstkp img{width:165px;height:85px;}
@@ -675,7 +698,7 @@ color:white;
 	min-height:50px;
 	font-weight: bold;
 }
-.type:before {
+/*.type:before {
 background: rgba(255,0,0,0);
 border: 1em solid rgba(255,0,255,0.3);
 border-width: 1em 1em 1em 0;
@@ -687,3 +710,4 @@ display: block;
 width: 0px;
 height: 5px;
 }
+*/
