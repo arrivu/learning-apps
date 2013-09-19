@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:terms
 
   include CasHelper
   include LmsHelper
@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
   has_one  :teaching_staff , dependent: :destroy
 
   accepts_nested_attributes_for :teaching_staff
+  validates :terms, :acceptance => {:accept => true}
+  has_one :account
+  accepts_nested_attributes_for :account
+  validates_associated :account
+
   def teachingdetails
    self.teaching_staff_courses.where(:teaching_staff_type => "teacher_assitant")
   end

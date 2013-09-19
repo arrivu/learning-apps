@@ -16,11 +16,13 @@ class Ability
         can :manage, CoursePricing
         can :manage ,CoursePreview
         can :manage ,Coupon
+        can :manage,TeachingStaff
     else
-
       can [:show_image,:background_image,:index,:show],Course
       can [:show_image_detail,:theme_image_detail,:show_image_show,:theme_image_show],HeaderDetail
       can [:teaching_staff_signup] ,TeachingStaff
+      can [:account_subscription] ,Account
+
     end
 
   end

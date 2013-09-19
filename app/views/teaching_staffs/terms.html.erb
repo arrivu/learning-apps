@@ -1,0 +1,16 @@
+<h3 align = "center">Terms and Conditions</h3>
+<table align="center">
+  <%= simple_form_for(@terms,:url => url_for(:controller => 'teaching_staffs',:action => 'terms')) do |f| %>
+  <tr>
+    <td>
+      <%= @terms.title%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @terms.desc.html_safe %>
+    </td>
+  </tr>
+      <%end %>
+
+</table>
