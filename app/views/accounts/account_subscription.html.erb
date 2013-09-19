@@ -24,7 +24,7 @@
                        <%=account.text_field :organization %>
                     </td>
                 </tr>
-         <%end %>
+
               <tr>
                 <td>
                    <%= f.label 'User Name' %>
@@ -58,7 +58,7 @@
               </tr>
               <tr>
                  <td colspan="2" style="text-align:center; ">
-                    <%= f.check_box :terms_of_service,:checked=>false %> I accept
+                    <%= account.check_box :terms_of_service %> I accept
                     <%=link_to "Terms and Service", terms_path %>
                  </td>
               </tr>
@@ -71,5 +71,6 @@
       </table>
 
  <%end  %>
+   <%end %>
  </div>
  </div>

@@ -73,7 +73,8 @@ end
      unless params[:user][:account].nil?
          @account.name=params[:user][:account][:name]
          @account.organization=params[:user][:account][:organization]
-         @user=User.create(name: params[:user][:name],
+         @account.terms_of_service=params[:user][:account][:terms_of_service]
+         @user=User.new(name: params[:user][:name],
                               email: params[:user][:email],
                               user_type: 2,
                               content_type: params[:user][:content_type],
@@ -84,6 +85,7 @@ end
             @user.add_role(:account_admin)
             AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
             flash[:success]="Accounts created Successfully"
+
             redirect_to root_path
            else
              @user.errors.messages.merge!(@account.errors) unless @user.valid?

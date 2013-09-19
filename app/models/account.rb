@@ -25,7 +25,7 @@ class Account < ActiveRecord::Base
   has_many :coupons
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
-  validates :terms_of_service, acceptance: true,presence: true
+  validates_acceptance_of :terms_of_service,:allow_nil =>false
   def self.default
     Account.first
   end

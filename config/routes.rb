@@ -116,3 +116,4 @@ resources :footerlinks
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
 
+end
