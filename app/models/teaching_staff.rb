@@ -13,6 +13,7 @@ class TeachingStaff  < ActiveRecord::Base
   has_many :courses, :through => :teaching_staff_courses 
   belongs_to :user, dependent: :destroy
   belongs_to :account
+  has_many :coupons
   accepts_nested_attributes_for :user
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 300}

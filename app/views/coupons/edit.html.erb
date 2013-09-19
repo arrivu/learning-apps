@@ -35,7 +35,11 @@
   <tr><th>Course Name</th><td>
 
 <div id='all_course'>
-  <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]},label:false,:prompt => "Select course" %>
+  <% if current_user.has_role? :admin or  current_user.has_role? :account_admin  %>
+      <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]}.push(['All','All']),label:false,:prompt => "Select course" %>
+  <% else  %>
+      <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]},label:false,:prompt => "Select course" %>
+  <% end  %>
 </div>
 
 </div></td></tr>

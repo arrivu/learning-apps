@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "how_many",                       :default => 1
     t.integer  "redemptions_count",              :default => 0
     t.integer  "integer",                        :default => 0
+    t.integer  "course_id",         :limit => 8
     t.datetime "created_at",                                      :null => false
     t.datetime "updated_at",                                      :null => false
     t.integer  "account_id",        :limit => 8
@@ -442,6 +443,8 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",                       :null => false
     t.integer  "account_id",          :limit => 8
   end
+
+  add_index "teaching_staff_courses", ["course_id", "teaching_staff_id"], :name => "index_teaching_staff_courses_on_course_id_and_teaching_staff_id", :unique => true
 
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"

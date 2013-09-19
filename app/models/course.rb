@@ -56,7 +56,6 @@ class Course < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 100 }
   has_many :course_previews
   has_many :invoices
-  has_many :coupons
   validates :desc, presence: true, length: { maximum: 1000 }
   validates  :short_desc, presence: true, length:{maximum: 100}
 
