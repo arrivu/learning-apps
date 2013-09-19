@@ -111,6 +111,9 @@ resources :footerlinks
   match'activate_teaching_staff', :to=> 'teaching_staffs#activate_teaching_staff'
   match 'subscribe', :to=> 'accounts#subscribe'
   match 'teaching_staff_profile', :to =>'teaching_staffs#teaching_staff_profile'
-  match 'terms', :to => 'teaching_staffs#terms'
   match 'account_subscription', :to =>'accounts#account_subscription'
+  match 'terms', :to =>'terms_and_conditions#terms'
+  match 'review', :to => 'courses#review' 
+  match 'account_subscription', :to =>'accounts#account_subscription'
+
 end

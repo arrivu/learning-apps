@@ -2,7 +2,6 @@ class TermsAndConditionsController < ApplicationController
   load_and_authorize_resource
 	 before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	  before_filter :valid_domain_check, :only=>[:show,:edit]
-	  before_filter :front_page_registration_restrict, :only=>[:new,:create]
  		 def new
 	  		@terms_and_condition=TermsAndCondition.new
 	    end
@@ -44,6 +43,11 @@ class TermsAndConditionsController < ApplicationController
 			@terms_and_condition.destroy
 			flash[:success] = "Terms Deleted"
 			redirect_to terms_and_conditions_path
-		end 
-		
+    end
+
+    def terms
+
+      @terms_and_conditions = TermsAndCondition.find_by_account_id(@domain_root_account.id)
+    end
+
 end

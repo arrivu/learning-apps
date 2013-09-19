@@ -6,52 +6,45 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
     @account=Account.find_by_name(current_subdomain)
-    
 
-    if !current_user.has_role?  :account_admin
-
-
-     if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
-      #set_flash_message(:notice, :signed_in) if is_navigational_format?
-      #
-      #sign_in(resource_name, resource)
-      # redirect_to "ibm.lvh.me:3000"
-    
-
-     super
-         if !current_user.has_role?  :admin
-        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
+     if current_user.has_role?  :teacher
+       unless current_user.teaching_staff.is_active?
+         reset_session
+         flash[:error] = "Your Account Not yet activated, Please contact admin "
+         redirect_to root_path
         end
+     else
+        manage_courses_path
+     end
 
-     # redirect_to :users_path
-
-    #call cas sign to create the cas ticket
-    if current_user 
-      user_cas_sign_in( current_user)
-    end
-    else
-       super
-        if current_user 
-      user_cas_sign_in( current_user)
-    end
-
-  end
-    else
-       @subdomain_id= AccountUser.find_by_user_id(current_user.id)
-      if  @account_id==@subdomain_id.account_id
-          super
-          if current_user 
-          user_cas_sign_in( current_user)
+     if !current_user.has_role?  :account_admin
+       if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
+        super
+           if !current_user.has_role?  :admin
+            AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
+           end
+          if current_user
+              user_cas_sign_in( current_user)
           end
         else
-        domain_restrict
-      end
-  #redirect_to root_url
-  end
+          @subdomain_id= AccountUser.find_by_user_id(current_user.id)
+            if  @account_id==@subdomain_id.account_id
+              super
+               if current_user
+                user_cas_sign_in( current_user)
+               end
+            else
+              domain_restrict
+             end
+
+          end
+
+     end
 
 
 
 end
+
 
   # DELETE /resource/sign_out
   def destroy
@@ -69,7 +62,7 @@ end
     cas_sign_out
     lms_logout
     
-  end
+    end
 
   private 
 
@@ -118,6 +111,4 @@ end
     lms_logout
     
   end
-
-
 end

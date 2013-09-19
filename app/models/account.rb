@@ -25,8 +25,7 @@ class Account < ActiveRecord::Base
   has_many :coupons
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
-  belongs_to :user
-
+  validates_acceptance_of :terms_of_service,:allow_nil =>false
   def self.default
     Account.first
   end
@@ -99,7 +98,7 @@ add_setting :popular_speak_enable, :root_only => false, :boolean => true
 add_setting :testimonial_enable, :root_only => false, :boolean => true
 add_setting :popular_course_enable, :root_only => false,:boolean => true, :default => true
 add_setting :account_statistics_enable, :root_only => false,:boolean =>true, :default => true
-
+add_setting :signup_teacher_enable, :root_only => false,:boolean =>true, :default => true
 
   def settings=(hash)
     if hash.is_a?(Hash)
