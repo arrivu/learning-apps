@@ -4,13 +4,16 @@ class CoursePricingsController < ApplicationController
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
   def new
-    @coursepricing=@domain_root_account.course_pricing.new
+    populate_combo_courses
+    @coursepricing=@domain_root_account.course_pricings.new
+
   end
 
   def show
   end
   def create
-    @coursepricing=@domain_root_account.course_pricing.new(params[:course_pricing])
+    populate_combo_courses
+    @coursepricing=CoursePricing.new(params[:course_pricing])
    @coursepricing.account_id=@account_id
     course_ids=CoursePricing.where("course_id=?",@coursepricing.course_id)
     if nooverlap?(course_ids,@coursepricing.start_date,@coursepricing.end_date)
@@ -37,6 +40,7 @@ class CoursePricingsController < ApplicationController
   end
 
   def index
+    populate_combo_courses
     if(params[:search] != nil && params[:search] != "")
       @coursepricing = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 15)
     else
@@ -55,6 +59,7 @@ class CoursePricingsController < ApplicationController
 end
 
 def edit
+  populate_combo_courses
   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
     @coursepricing=@domain_root_account.course_pricings.find(params[:id])
     @course = @domain_root_account.courses
@@ -96,5 +101,6 @@ def update
   end
 
 end
+
 
 end

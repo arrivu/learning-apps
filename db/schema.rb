@@ -444,8 +444,6 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "account_id",          :limit => 8
   end
 
-  add_index "teaching_staff_courses", ["course_id", "teaching_staff_id"], :name => "index_teaching_staff_courses_on_course_id_and_teaching_staff_id", :unique => true
-
   create_table "teaching_staffs", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -454,6 +452,8 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "account_id",           :limit => 8
     t.text     "linkedin_profile_url"
     t.boolean  "is_active",                         :default => true
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.text     "headline"
@@ -461,9 +461,7 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.text     "address"
     t.string   "city"
     t.integer  "pincode"
-    t.decimal  "phone_number"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.integer  "phonenumber"
   end
 
   create_table "terms_and_conditions", :force => true do |t|

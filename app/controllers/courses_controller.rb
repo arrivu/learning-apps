@@ -336,6 +336,9 @@ class CoursesController < ApplicationController
     end
   end
 
+  
+
+
   def tagged_courses
     @total_course_count =Tag.find(params[:tag]).courses.size
     @courses = Tag.find(params[:tag]).courses.paginate(page: params[:page], per_page: 6)
@@ -351,6 +354,10 @@ class CoursesController < ApplicationController
     end
 
 
+  end
+  def review
+   @course =Course.find(params[:id])
+   @comments= @course.comments
   end
 
 

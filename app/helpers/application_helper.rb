@@ -118,4 +118,17 @@ end
 
       end
 
+
+    def populate_combo_courses
+      if current_user.has_role? :teacher
+        @courses=[]
+        current_user.teaching_staff.teaching_staff_courses.each do |c|
+          @courses << c.course
+        end
+
+      else
+        @courses = @domain_root_account.courses
+      end
+    end
+
 end

@@ -1,5 +1,5 @@
-
-
+<div class="row" >
+ <div class="span6 offset3">
  <%= simple_form_for(@user,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
      <%= render 'shared/error_messages', object: f.object %>
          <%= f.fields_for @account do |account| %>
@@ -11,7 +11,7 @@
                   </td>
                   <td>
                     <div class="input-append">
-                      <%= account.text_field :name %>
+                      <%= account.text_field :name ,style:"width: 192px;" %>
                         <span class="add-on">.lvh.me</span>
                      </div>
                   </td>
@@ -24,7 +24,7 @@
                        <%=account.text_field :organization %>
                     </td>
                 </tr>
-         <%end %>
+
               <tr>
                 <td>
                    <%= f.label 'User Name' %>
@@ -58,8 +58,8 @@
               </tr>
               <tr>
                  <td colspan="2" style="text-align:center; ">
-                    <%= f.check_box :terms,:checked=>false %> I accept
-                    <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms %>
+                    <%= account.check_box :terms_of_service %> I accept
+                    <%=link_to "Terms and Service", terms_path %>
                  </td>
               </tr>
               <tr>
@@ -71,3 +71,6 @@
       </table>
 
  <%end  %>
+   <%end %>
+ </div>
+ </div>

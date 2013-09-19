@@ -44,4 +44,15 @@ class CommentsController < ApplicationController
 		@commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
 		@comments = @commentable.comments.recent.limit(10).all
 	end
+	
+# 	def user_review
+#    if current_user.present?
+#       obj = eval "#{params[:klass]}.find(#{params[:id]})"     
+#       if params[:dimension].present?
+#         obj.rate params[:score].to_i, current_user.id, "#{params[:dimension]}"       
+#       else
+#         obj.rate params[:score].to_i, current_user.id 
+#       end
+# 	end
+# end
 end
