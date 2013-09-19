@@ -112,7 +112,7 @@
         @header_details = HeaderDetail.where(:account_id=>@domain_root_account.id)
     end
 
-    def front_page_registration_restrict 
+    def front_page_registration_restrict
         return
     end
 

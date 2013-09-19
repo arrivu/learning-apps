@@ -71,10 +71,6 @@ end
       @user=User.new
    unless params[:user].nil?
      unless params[:user][:account].nil?
-       #if params[:user][:terms] == "0"
-       #     @user.errors.add(:terms, "and conditions should be accepted")
-       #     render :account_subscription
-       #else
          @account.name=params[:user][:account][:name]
          @account.organization=params[:user][:account][:organization]
          @user=User.create(name: params[:user][:name],
@@ -90,6 +86,7 @@ end
             flash[:success]="Accounts created Successfully"
             redirect_to root_path
            else
+             @user.errors.messages.merge!(@account.errors) unless @user.valid?
              render :account_subscription
            end
        end

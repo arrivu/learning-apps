@@ -38,13 +38,7 @@ class User < ActiveRecord::Base
   has_many :invoices
   has_many :account_users
   has_one  :teaching_staff , dependent: :destroy
-
   accepts_nested_attributes_for :teaching_staff
-  validates :terms, :acceptance => {:accept => true}
-  has_one :account
-  accepts_nested_attributes_for :account
-  validates_associated :account
-
   def teachingdetails
    self.teaching_staff_courses.where(:teaching_staff_type => "teacher_assitant")
   end
