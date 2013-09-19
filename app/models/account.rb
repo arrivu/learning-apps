@@ -23,9 +23,10 @@ class Account < ActiveRecord::Base
   has_many  :teaching_staff_courses
   has_many :course_pricings
   has_many :coupons
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
-  
+  belongs_to :user
+
   def self.default
     Account.first
   end

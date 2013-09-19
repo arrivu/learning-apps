@@ -1,3 +1,5 @@
+
+
 <div id="wrap" style="background:#fff;">
   <div id="content" style="margin: 0px 15% 45px;box-shadow: -2px -1px 10px #333;">
     <div class="container-fluid outer" >
@@ -68,14 +70,10 @@
 
           <tr>
             <td colspan="2" style="text-align:center; ">
-              <input id="subscription_agree" name="subscription[agree]" style="vertical-align:top;" type="checkbox" value="1">
-
-              I accept the
-             <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms  %>
+              <%= f.check_box :terms,:checked=>true,:unchecked=>false %> I accept %>
+              <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms  %>
             </td>
           </tr>
-
-
                <tr>
                  <td colspan="2" style="text-align:center;">
                  <%= f.submit "Update Profile",class: "btn btn-primary", style:"margin-left: 27px;" %>
