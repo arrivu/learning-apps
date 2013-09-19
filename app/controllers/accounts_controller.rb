@@ -1,10 +1,11 @@
 class AccountsController < ApplicationController
 load_and_authorize_resource
 before_filter :subdomain_authentication, :only  => [:new,:create,:edit,:show,:update,:destroy,:index]
-before_filter :account_create_restrict
+
 
   def new
   	@account=Account.new
+
   end
 
 
@@ -64,5 +65,37 @@ end
         render "new"
       end
     end
-end
+
+ def account_subscription
+      @account=Account.new
+      @user=User.new
+   unless params[:user].nil?
+     unless params[:user][:account].nil?
+       #if params[:user][:terms] == "0"
+       #     @user.errors.add(:terms, "and conditions should be accepted")
+       #     render :account_subscription
+       #else
+         @account.name=params[:user][:account][:name]
+         @account.organization=params[:user][:account][:organization]
+         @user=User.create(name: params[:user][:name],
+                              email: params[:user][:email],
+                              user_type: 2,
+                              content_type: params[:user][:content_type],
+                              attachment: params[:user][:attachment],
+                              password: params[:user][:password],
+                              password_confirmation: params[:user][:password_confirmation])
+           if @account.save  && @user.save
+            @user.add_role(:account_admin)
+            AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
+            flash[:success]="Accounts created Successfully"
+            redirect_to root_path
+           else
+             render :account_subscription
+           end
+       end
+
+     end
+  end
+ end
+#end
 

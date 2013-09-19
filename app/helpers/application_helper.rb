@@ -98,19 +98,7 @@ end
 
      end
    end
-   def account_create_restrict
-   	if current_user.has_role? :admin 
 
-   		return
-    elsif current_user.has_role? :account_admin
-      return
-        
-   	else
-      flash[:error] = "Invalid authenticator"
-   		redirect_to users_url
-   	end
-
-   end
 
 
       def totalmodulescount

@@ -1,7 +1,7 @@
 
 class TeachingStaffsController < ApplicationController
   include LmsHelper
-  before_filter :authenticate_user!, :except => [:teaching_staff_signup, :teaching_staff_profile]
+  before_filter :authenticate_user!, :except => [:teaching_staff_signup, :teaching_staff_profile,:terms]
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
@@ -192,6 +192,20 @@ class TeachingStaffsController < ApplicationController
      render :teaching_staff_profile
       end
     end
+  end
+
+  def terms
+    @account=@domain_root_account
+    @account_id=@account.id
+    @terms=TermsAndCondition.find(@account_id)
+    if @terms==nil
+          redirect_to  :terms
+    else
+      @terms
     end
+
+
+  end
+
 
 end
