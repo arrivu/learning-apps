@@ -5,6 +5,7 @@ class Coupon < ActiveRecord::Base
   
 
   belongs_to :course
+  belongs_to :account
   has_many :redemptions
   validates :metadata,:presence=>true
   validates :name, :presence => true

@@ -12,7 +12,7 @@
          <div id="collapse4" class="body">
            <div class="icons"><span class="badge badge-info">Teaching Staff</span></div>
          <%= simple_form_for(@teachingstaff) do |f| %>
-         <%= render 'shared/error_messages', object: f.object %>
+         <%= render 'shared/error_messages', object: f.object  %>
              <%= f.fields_for :teaching_staff_user do |user_form| %>
              <table id="dataTable">
               <tbody><tr><th>Name </th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>

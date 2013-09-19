@@ -8,7 +8,6 @@ class CreateTeachingStaffs < ActiveRecord::Migration
       t.integer :account_id, :limit=>8
       t.text :linkedin_profile_url
       t.boolean :is_active ,:default => true
-      t.timestamps
       t.string :firstname
       t.string :lastname
       t.text :headline
@@ -16,7 +15,8 @@ class CreateTeachingStaffs < ActiveRecord::Migration
       t.text :address
       t.string :city
       t.integer :pincode
-      t.integer :phonenumber
+      t.decimal :phone_number , precison: 15
+      t.timestamps
     end
   end
 end

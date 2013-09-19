@@ -34,9 +34,12 @@
      users_path
    elsif current_user.has_role? :account_admin
     users_path
+
    elsif current_user.has_role :teacher
      @count=current_user.sign_in_count
      if(@count== 1)
+       #render "teaching_staffs/teaching_staff_profile.html.erb"
+
        teaching_staff_profile_path
      else
        my_courses_path

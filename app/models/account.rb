@@ -22,6 +22,7 @@ class Account < ActiveRecord::Base
   has_many :tags
   has_many  :teaching_staff_courses
   has_many :course_pricings
+  has_many :coupons
   validates :name, presence: true
   validates :organization, presence: true
   

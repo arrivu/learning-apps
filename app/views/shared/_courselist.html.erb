@@ -6,13 +6,13 @@ max-width: 100%;">         <% @courses.each do |course|%>
 
 <div class="span3 content-box resource" style="float: left;">
    
-<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96%% 96%;">
+<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96% 96%;">
    <% if course.data!=nil %>
             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
             <% else %>
-            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 0px solid #ffda55;" %>
             <% end %>
-<div class="type " <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
+<div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix "> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
 </div>
 <div class="details">
 <h2>
@@ -67,7 +67,7 @@ max-width: 100%;">         <% @courses.each do |course|%>
 
                         <% end  %>
                       <% else  %>
-                           <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
+                   <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
                       <% end  %>
                       <br>
                          <%= author.user.name %>

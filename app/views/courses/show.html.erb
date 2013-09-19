@@ -14,9 +14,9 @@ $(document).ready(function(){
   
 <div class="span3 content-box resource" style="float: left;">
    
-<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 100%;">
+<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;">
 
-  <div class="type " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
+  <div class="type ribbon1 " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
 </div>
 <div class="details" style="margin-top:165px;">
 <h2>
@@ -345,17 +345,17 @@ $(".close").click(function(){
   <div class="">
     <div class="">
       <div align="center">
-        <h3><%=@course.comments.size%> Reviews</h3>
+        <h4><%=@course.comments.size%> Reviews</h4>
         <br/>
       </div>
     </div>
     <%= render "comments" %>
-    <div class="container clearfix"></div>
+    <div class=" clearfix"></div>
   </div>
   <div class='apple_pagination' >
    <%= will_paginate @comments, :container => false %>
  </div>
- <div class="container clearfix"></div>
+ <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
     <div >
@@ -371,7 +371,7 @@ $(".close").click(function(){
 </div>
 
 
-<div class="span3 content-box resource" style="float: left;padding: 10px;">
+<div class="span3 content-box resource" style="float: left;padding: 40px;">
    <% if @course.is_coming_soon %>
             <h4>Date to be announced</h4>
             <% else %>
@@ -451,7 +451,7 @@ $(".close").click(function(){
 
 </div>
 
-<div class="span3 content-box resource" style="float: left;padding: 10px; margin-top: 50px;">
+<div class="span3 content-box resource" style="float: left;padding: 40px; margin-top: 50px;">
    <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
 <div class="underlinetext">
    
@@ -459,31 +459,32 @@ $(".close").click(function(){
   <div class="">
     <div class="">
       <div align="center">
-        <h3><%=@course.comments.size%> Reviews</h3>
+        <h4><%=@course.comments.size%> Reviews</h4>
         <br/>
       </div>
     </div>
     <%= render "comments" %>
-    <div class="container clearfix"></div>
+    <div class=" clearfix"></div>
   </div>
-  <div class='apple_pagination' >
+    <!--  <div class='apple_pagination' >
    <%= will_paginate @comments, :container => false %>
- </div>
- <div class="container clearfix"></div>
+ </div>  -->
+ <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
     <div >
       <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
-  </div> </div>
+  </div> 
+</div>
+
+<%= link_to "View All",review_path(:id => @course.id)%>
+
 </div>
 </div></div>
 </div>
 </div>
 </div>
 </div>
-
-
-
 
 
 </div>
