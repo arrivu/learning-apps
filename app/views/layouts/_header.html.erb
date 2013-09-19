@@ -49,14 +49,8 @@
                       <script>
                           $('.courseslink').css('left',"-140px");
                       </script>
-                      <% if current_user.has_role? :teacher %>
-                      <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                          <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
-                          <script>
-                              $('.courseslink').css('left',"-100px");
-                          </script>
-                      <% end %>
-                      <% end %>
+
+          
                   <% end  %>
 
 
@@ -86,7 +80,16 @@
               <% else %>
                   <li><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
                   <li><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-                  <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+
+
+       
+
+         <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+
+            
+
+      <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+
 
               <% end %>
             </ul>
@@ -132,6 +135,17 @@
               <% end  %>
 
 
+              <% if current_user.has_role? :teacher %>
+                    <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+                        <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+                      
+                          <script>
+                              $('.courseslink').css('left',"-100px");
+                          </script>
+                     <% end %>
+             <% end %>
+
+
 
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -159,8 +173,15 @@
           <% else %>
               <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
               <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+
+        <% if @domain_root_account.signup_teacher_enable? %>
+               
               <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+<<<<<<< HEAD
+        <% end %>      
+=======
               <li><%= link_to "Subscribe Now", account_subscription_path%></li>
+>>>>>>> 633f271f097885a5578c6227cc338eed489ae31e
           <% end %>
 
 

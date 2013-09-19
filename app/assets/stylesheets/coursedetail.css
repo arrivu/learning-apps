@@ -410,12 +410,12 @@ padding: 10px;
 .bubble-content {
    position:relative;
    float:left;
-   padding: 10px;
+   padding: 9px;
    margin-left: 12px;
    border-radius:10px;
    background-color:#fff;
    color: #333;
-   width:350px;
+   width:200px;
    box-shadow:1px 1px 5px rgba(0,0,0,.2);
    text-align: justify;
    }
@@ -425,7 +425,7 @@ padding: 10px;
 .point {
    border-top:10px solid transparent;
    border-bottom:10px solid transparent;
-   border-right: 12px solid #fff;
+   /*border-right: 12px solid #fff;*/
    position:absolute;
    left:-10px;
    top:12px;

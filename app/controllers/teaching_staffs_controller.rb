@@ -169,7 +169,6 @@ class TeachingStaffsController < ApplicationController
 
   def teaching_staff_profile
 
-
    @teaching_staff=current_user.teaching_staff
    #@userid=@teachingstaff.user_id
    #@user=User.find(@userid)
@@ -205,6 +204,8 @@ class TeachingStaffsController < ApplicationController
       @terms
     end
 
+
   end
+
 
 end

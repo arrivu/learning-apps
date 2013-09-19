@@ -113,4 +113,6 @@ resources :footerlinks
   match 'teaching_staff_profile', :to =>'teaching_staffs#teaching_staff_profile'
   match 'account_subscription', :to =>'accounts#account_subscription'
   match 'terms', :to =>'terms_and_conditions#terms'
-end
+  match 'review', :to => 'courses#review' 
+  match 'account_subscription', :to =>'accounts#account_subscription'
+

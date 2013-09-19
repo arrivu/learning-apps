@@ -34,6 +34,7 @@
      users_path
    elsif current_user.has_role? :account_admin
     users_path
+
    elsif current_user.has_role :teacher
      @count=current_user.sign_in_count
      if(@count== 1)
@@ -96,8 +97,10 @@
     end
         @coursedet= @modelname.constantize.find(params[:id])
     if @account_id!=nil
+
         if @coursedet.account_id == @account_id
           return
+
         else
           flash[:error]="Invalid domain"
         end
