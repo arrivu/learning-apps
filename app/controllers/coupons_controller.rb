@@ -86,6 +86,7 @@ class CouponsController < ApplicationController
         populate_combo_courses
         params[:coupon][:account_id]=@domain_root_account.id
         @coupon = Coupon.new(params[:coupon])
+        @coupon.teaching_staff_id =current_user.teaching_staff.id
         how_many = params[:how_many] || 1
         unless Coupon.enough_space?(@coupon.alpha_mask, @coupon.digit_mask, Integer(how_many))
           @coupon.errors.add(:alpha_mask, " Alpha/digit mask is not long enough")
@@ -131,16 +132,5 @@ class CouponsController < ApplicationController
       @coupon ||= Coupon.new
   end
 
-  def populate_combo_courses
-    if current_user.has_role? :teacher
-      @courses=[]
-      current_user.teaching_staff.teaching_staff_courses.each do |c|
-        @courses << c.course
-      end
-
-      else
-        @courses = @domain_root_account.courses
-    end
-  end
 
 end
