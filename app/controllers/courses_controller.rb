@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   helper_method :course_user_count
   ActiveMerchant::Billing::Integrations
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except=>[:index,:show_image,:background_image]
   caches_page :show_image,:background_image
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
