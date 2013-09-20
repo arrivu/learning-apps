@@ -1,21 +1,22 @@
 <% if !@comments.blank?%>
-        <% @comments.each do |comment| %>
+        <% @comments.each do |comment|  %>
    
         <div class="span3" style="margin-bottom:10px;float:left;margin-left: -20px;">
           <div class="reviewer">
 
         <% if comment.user.image_blob == nil %>
                 <% if comment.user.omni_image_url == nil %>
-          <%= gravatar_for_with_size comment.user, "40x40" %>               
+          <%= gravatar_for_with_size comment.user, "48x48" %>               
                  <% else  %>
-                <%= image_tag(comment.user.omni_image_url,size: "40x40", alt: "", :class=>"img-circle")%> 
+                <%= image_tag(comment.user.omni_image_url,size: "48x48", alt: "", :class=>"img-circle")%> 
                 <% end  %>
                 <% else  %>
-                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :class=>"img-circle", :id => comment.user.id), :size => "40x40" %>
+                
+                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :class=>"img-circle", :id => comment.user.id), :size => "48x48" %>
                 <% end  %>
           </div>
           <h6><%= comment.user.name  %> </h6>
-             
+            
 
     <ul>
 

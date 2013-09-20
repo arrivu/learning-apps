@@ -109,7 +109,7 @@ class CoursesController < ApplicationController
 
   @modules=lms_get_modules(@course)
     #@countCommentsPerPage = 6
-    @comments = @course.comments.paginate(page: params[:page], per_page: 6)
+    @comments = @course.comments.paginate(page: params[:page], per_page: 4)
     #@count = @course.comments.count
     if signed_in?
       unless RatingCache.find_by_cacheable_id(@course.id) == nil
@@ -359,9 +359,9 @@ class CoursesController < ApplicationController
   def review
    @course =Course.find(params[:id])
    @comments= @course.comments
+   @comment=Comment.new
+
   end
-
-
   end
 
 

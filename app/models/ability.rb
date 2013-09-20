@@ -22,8 +22,7 @@ class Ability
       can [:show_image,:background_image,:index,:show,:review],Course
 
         can :manage,TeachingStaff
-    else
-      can [:show_image,:background_image,:index,:show],Course
+
 
       can [:show_image_detail,:theme_image_detail,:show_image_show,:theme_image_show],HeaderDetail
       can [:teaching_staff_signup] ,TeachingStaff
