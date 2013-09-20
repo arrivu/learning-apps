@@ -355,6 +355,7 @@ class CoursesController < ApplicationController
 
   end
   def review
+
    @course =Course.find(params[:id])
    @comments= @course.comments
   end

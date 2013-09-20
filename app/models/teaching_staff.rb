@@ -18,7 +18,7 @@ class TeachingStaff  < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 300}
   validates :qualification, presence: true
-
+  validates_acceptance_of :terms_of_service
   def teacher
      self.teaching_staff_courses.where(:teaching_staff_type => "teacher")
   end
