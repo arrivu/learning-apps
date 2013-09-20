@@ -9,7 +9,7 @@
          <div id="collapse4" >
            <h3 style="margin-left: 288px; color: #f27428;">Apply to be a Teaching Expert</h3>
             <hr>
-             <%= simple_form_for(@teachingstaff, :url => url_for(:controller => 'teaching_staffs', :action => 'teaching_staff_signup')) do |f| %>
+             <%= form_for(@teachingstaff, :validate=>true,:url => url_for(:controller => 'teaching_staffs', :action => 'teaching_staff_signup')) do |f| %>
              <%= render 'shared/error_messages', object: f.object %>
              <%= f.fields_for :teaching_staff_user do |user_form| %>
              <table id="dataTable" style="margin: 0px auto;text-align: left;">

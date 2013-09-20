@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
+  <%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
   <%= theme_stylesheet_link_tag "application" , :media => "all" %>
   <%= theme_javascript_include_tag "application" %>
   <%= csrf_meta_tags unless response.cache_control[:public] %>

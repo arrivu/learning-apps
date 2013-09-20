@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   has_many :account_users
   has_one  :teaching_staff , dependent: :destroy
   accepts_nested_attributes_for :teaching_staff
+  validates :email, presence: true
+  validates :password, presence: true
+  validates_confirmation_of :password
+  validates :name,presence:true
   def teachingdetails
    self.teaching_staff_courses.where(:teaching_staff_type => "teacher_assitant")
   end
