@@ -13,6 +13,7 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/bootstrap-tooltip
 //= require bootstrap
 //= require_tree .
 //= require jquery.purr
@@ -23,6 +24,7 @@
 //= require jquery.tokeninput
 //= require rails.validations
 //= require rails.validations.simple_form
+
 
 $(function() {
   $(".pagination").on("click", function() {
@@ -38,3 +40,9 @@ $(".alert-notice").alert();
 window.setTimeout(function() { $(".alert-notice").alert('close'); }, 5000);
 $(".alert-info").alert();
 window.setTimeout(function() { $(".alert-info").alert('close'); }, 5000);
+
+$(function(){
+  $(".collapse li a").tooltip();
+
+  
+})

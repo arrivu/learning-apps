@@ -69,4 +69,5 @@ gem 'tinymce-rails','4.0.2'
 gem 'ancestry'
 gem "themes_for_rails", "~> 0.5.1"
 gem "paperclip", "~> 3.0"
+gem 'bootstrap-tooltip-rails'
 
