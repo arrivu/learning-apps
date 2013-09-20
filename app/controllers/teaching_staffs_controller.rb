@@ -11,7 +11,7 @@ class TeachingStaffsController < ApplicationController
 	def new
 		@teachingstaff = TeachingStaff.new
 		@teachingstaff.build_user
-		render 'new' 
+		render 'new'
 	end
 
 
@@ -117,19 +117,20 @@ class TeachingStaffsController < ApplicationController
 
   def teaching_staff_signup
     @teachingstaff = TeachingStaff.new
+    @teaching_staff_user=  @teachingstaff.build_user
     unless params[:teaching_staff].nil?
-    @teachingstaff.name =  params[:teaching_staff][:teaching_staff_user][:name]
+    @teachingstaff.name =  params[:teaching_staff][:user][:name]
     @teachingstaff.description =  params[:teaching_staff][:description]
     @teachingstaff.qualification =  params[:teaching_staff][:qualification]
     @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
     @teachingstaff.is_active =false
-    @teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
-                              email: params[:teaching_staff][:teaching_staff_user][:email],
+    @teachingstaff.build_user(name: params[:teaching_staff][:user][:name],
+                              email: params[:teaching_staff][:user][:email],
                               user_type: 3,
-                              content_type: params[:teaching_staff][:teaching_staff_user][:content_type],
-                              attachment: params[:teaching_staff][:teaching_staff_user][:attachment],
-                              password: params[:teaching_staff][:teaching_staff_user][:password],
-                              password_confirmation: params[:teaching_staff][:teaching_staff_user][:password_confirmation])
+                              content_type: params[:teaching_staff][:user][:content_type],
+                              attachment: params[:teaching_staff][:user][:attachment],
+                              password: params[:teaching_staff][:user][:password],
+                              password_confirmation: params[:teaching_staff][:user][:password_confirmation])
 
     @teachingstaff.account_id=@account_id
     if @teachingstaff.save
@@ -144,6 +145,7 @@ class TeachingStaffsController < ApplicationController
       redirect_to root_path
 
     else
+      @teachingstaff.errors.messages.merge!(:teaching_staff_user.errors) unless @teachingstaff.valid?
      render :teaching_staff_signup
     end
    end
