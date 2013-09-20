@@ -11,7 +11,21 @@ module CoursePricingsHelper
 		end
 		end
 	end
-	
+
+  def populate_course_pricing
+    if current_user.has_role? :teacher
+      @coursepricings=[]
+      current_user.teaching_staff.teaching_staff_courses.each do |c|
+        c.course.course_pricings.each do |course_pricing|
+          @coursepricings << course_pricing
+          end
+      end
+
+    elsif current_user.has_role? :admin or current_user.has_role? :account_admin
+      @coursepricings = @domain_root_account.course_pricings.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 30)
+    end
+  end
+
 end
 
 

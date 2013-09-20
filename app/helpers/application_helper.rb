@@ -118,4 +118,30 @@ end
 
       end
 
+
+    def populate_combo_courses
+      if current_user.has_role? :teacher
+        @courses=[]
+        current_user.teaching_staff.teaching_staff_courses.each do |c|
+          @courses << c.course
+        end
+
+      elsif current_user.has_role? :admin or current_user.has_role? :account_admin
+        @courses = @domain_root_account.courses
+      end
+    end
+
+  def user_can_do?(context)
+    if context.class == Course
+    current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id =>
+                                          context.id,:teaching_staff_id =>current_user.teaching_staff.id).blank?
+    elsif context.class == Coupon
+      current_user.has_role? :admin or current_user.has_role? :account_admin or
+           context.teaching_staff_id==current_user.teaching_staff.id
+    else
+    current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id =>
+                                        context.course.id,:teaching_staff_id =>current_user.teaching_staff.id).blank?
+    end
+  end
+
 end

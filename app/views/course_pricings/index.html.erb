@@ -10,17 +10,10 @@
           <div class="box">
            <div id="collapse4" class="body">
             <div class="icons"><span class="badge badge-info">Manage Course Pricing</span></div>
-             <% if current_user.has_role? :teacher %>
-              <%= form_tag "/course_pricings/", :method => 'get' do %>
-              <td><%= label_tag(:search,"Course:") %></td>
-              <td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td>
-               <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
-             <% else %>
                <%= form_tag "/course_pricings/", :method => 'get' do %>
                <td><%= label_tag(:search,"Course:") %></td>
-               <td> <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id =>@account_id), "id", "title") , {:prompt => 'ALL'} %></td>
+               <td> <%= select_tag :search, options_from_collection_for_select(@courses, "id", "title") , {:prompt => 'ALL'} %></td>
                <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary",:style=> "margin-top: -11px"  %><% end %></div>
-             <% end %>
         <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
              <thead>
               <tr>
@@ -32,7 +25,7 @@
                <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
               </tr>
             </thead>
-         <% @coursepricing.each do |coursepricing| %>
+         <% @coursepricings.each do |coursepricing| %>
          <tr> <td><%= coursepricing.course.title%></td>
           <td><%= coursepricing.start_date %></td>
           <td><%= coursepricing.end_date %></td>

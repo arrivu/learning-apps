@@ -17,7 +17,7 @@ Role.create([
 	], :without_protection => true)
 puts 'creating account for admin'
 
-account =Account.create! :active => true, :name=>"portal", :no_of_courses=>"0", :no_of_users=>"0", :organization=>"learning Portal"
+account =Account.create! :active => true, :name=>"portal", :no_of_courses=>"0", :no_of_users=>"0", :organization=>"learning Portal", :terms_of_service=>"1"
 
 puts 'SETTING UP DEFAULT USER LOGIN'
 

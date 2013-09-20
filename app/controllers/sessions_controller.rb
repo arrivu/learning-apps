@@ -7,16 +7,11 @@ class SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     @account=Account.find_by_name(current_subdomain)
 
-     if current_user.has_role?  :teacher
-       unless current_user.teaching_staff.is_active?
+     if current_user.has_role?  :teacher and !current_user.teaching_staff.is_active?
          reset_session
          flash[:error] = "Your Account Not yet activated, Please contact admin "
          redirect_to root_path
-        end
      else
-        manage_courses_path
-     end
-
      if !current_user.has_role?  :account_admin
        if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
         super
@@ -41,7 +36,7 @@ class SessionsController < Devise::SessionsController
 
      end
 
-
+     end
 
 end
 
