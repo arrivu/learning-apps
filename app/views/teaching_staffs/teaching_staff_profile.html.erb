@@ -70,8 +70,8 @@
 
           <tr>
             <td colspan="2" style="text-align:center; ">
-              <%= f.check_box :terms,:unchecked=>false %> I accept %>
-              <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms  %>
+              <%= f.check_box :terms_of_service %> I accept
+              <%=link_to "Terms and Service", terms_path %>
             </td>
           </tr>
                <tr>
