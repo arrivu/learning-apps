@@ -2,7 +2,9 @@
 class TeachingStaff  < ActiveRecord::Base
 
   scope :active, -> { where("is_active IS true") }
-  attr_accessible :description, :name, :qualification,:user_attributes, :user_id, :linkedin_profile_url,:account_id ,:is_active,:firstname,:lastname,:headline,:biography,:address,:city,:pincode,:phone_number
+  attr_accessible :description, :name, :qualification,:user_attributes, :user_id, :linkedin_profile_url,:account_id ,
+                  :is_active,:firstname,:lastname,:headline,:biography,:address,:city,:pincode,:phone_number,:teaching_staff_user
+  cattr_accessor :teaching_staff_user
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
   scope :teacher_assistants, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher_assitant")
   scope :teacher
@@ -11,6 +13,7 @@ class TeachingStaff  < ActiveRecord::Base
   has_many :courses, :through => :teaching_staff_courses 
   belongs_to :user, dependent: :destroy
   belongs_to :account
+  has_many :coupons
   accepts_nested_attributes_for :user
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 300}

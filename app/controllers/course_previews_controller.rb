@@ -1,16 +1,17 @@
 class CoursePreviewsController < ApplicationController
+  include CoursePreviewsHelper
   load_and_authorize_resource
  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
 	def new
-		@preview = CoursePreview.new	
-		#@course = Course.all
+		@preview = CoursePreview.new
+    populate_combo_courses
 	end
 
 	def create
-		
+    populate_combo_courses
 		@course=Course.find(params[:id])
-		params[:course_preview][:account_id]=@account_id
+		params[:course_preview][:account_id]=@domain_root_account.id
 		@preview =@course.course_previews.build(params[:course_preview])
 		# @preview.account_id=
 		if @preview.save
@@ -24,35 +25,49 @@ class CoursePreviewsController < ApplicationController
 	end
 
 	def index
-		@previews = CoursePreview.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
-		@course = Course.where(:account_id=>@account_id)
-		
-		
+    populate_course_previews
+    populate_combo_courses
 	end
 
 	def edit
 		@preview= CoursePreview.find(params[:id])
-		@course = Course.all
+    if user_can_do?(@preview)
+      populate_combo_courses
+      @preview
+    else
+      flash[:error] = "Not Authorized"
+      redirect_to course_previews_path
+    end
+
 	end
 
 	def update
 		@preview = CoursePreview.find(params[:id])
+    if user_can_do?(@preview)
 	   		@preview.account_id=@account_id
 		if @preview.update_attributes(params[:course_preview])
 			flash[:success] = "Successfully Updated Preview."
 			redirect_to course_previews_path
 		else
 			render :edit
-		end
+    end
+    else
+      flash[:error] = "Not Authorized"
+      redirect_to course_previews_path
+    end
 	end
 
 	def destroy
 		@preview = CoursePreview.find(params[:id])
-
+    if user_can_do?(@preview)
 		@preview.destroy
 
 		flash[:success] = "Successfully Destroyed Preview."
 		redirect_to course_previews_path
+    else
+      flash[:error] = "Not Authorized"
+      redirect_to course_previews_path
+    end
 	end
 
 
