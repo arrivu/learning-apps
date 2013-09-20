@@ -65,9 +65,8 @@ class CoursesController < ApplicationController
  end
 
  def edit
-   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(
-                                   :course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
      @course= @domain_root_account.courses.find(params[:id])
+     if user_can_do?(@course)
    else
      flash[:error] = "Not Authorized"
      redirect_to manage_courses_path
@@ -227,10 +226,10 @@ class CoursesController < ApplicationController
     end
 #dont remove this method, this is for the page conclude_courses.html.erbs
   def conclude_course
+    populate_combo_courses
   end
 
   def concluded_course_update
-    #@course_id=params[:id]
     if params[:search]==""
       flash[:notice] = "Please choose a course"
       render :conclude_course

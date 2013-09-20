@@ -42,26 +42,29 @@ class CoursePricingsController < ApplicationController
   def index
     populate_combo_courses
     if(params[:search] != nil && params[:search] != "")
-      @coursepricing = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 15)
+      @coursepricing = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 30)
     else
-     @coursepricing = @domain_root_account.course_pricings.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 15)
+      populate_course_pricing
    end
-   @course = @domain_root_account.courses.paginate(page: params[:page], :per_page => 15)
- end
+
+  end
 
  def destroy
   @coursepricing=@domain_root_account.course_pricings.find(params[:id])
-
+  if user_can_do?(@coursepricing)
   @coursepricing.destroy
-
   flash[:success] = "Successfully Destroyed Course Price."
   redirect_to course_pricings_path
+  else
+    flash[:error] = "Not Authorized"
+    redirect_to course_pricings_path
+  end
 end
 
 def edit
   populate_combo_courses
-  if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
-    @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+  @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+  if user_can_do?(@coursepricing)
     @course = @domain_root_account.courses
   else
     flash[:error] = "Not Authorized"
@@ -70,15 +73,11 @@ def edit
 
 end
 
-
-
-
 def update
-
   @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+  if user_can_do?(@coursepricing)
   @coursepricing_params=@domain_root_account.course_pricing.new(params[:course_pricing])
   @coursepricing.account_id=@domain_root_account.id
-
   course_ids=CoursePricing.where("course_id=? AND id!=?",@coursepricing_params.course_id,@coursepricing.id)
   if nooverlap?(course_ids,@coursepricing_params.start_date,@coursepricing_params.end_date)
    
@@ -98,6 +97,10 @@ def update
   else
     flash[:notice] = "Price Details already defined for the date range"
     render :edit
+  end
+  else
+    flash[:error] = "Not Authorized"
+    redirect_to course_pricings_path
   end
 
 end
