@@ -179,6 +179,7 @@ class TeachingStaffsController < ApplicationController
    @account_id=@account.id
    #@terms=TermsAndCondition.find(@account_id)
    unless params[:teaching_staff].nil?
+   @teaching_staff.terms_of_service=params[:teaching_staff][:terms_of_service]
     if @teaching_staff.update_attributes(:headline=>params[:teaching_staff][:headline],
                                         :biography=>params[:teaching_staff][:biography],
                                                           :address=>params[:teaching_staff][:address],
