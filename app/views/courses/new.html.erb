@@ -22,8 +22,12 @@
 						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30,
                                           :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %></td></tr>
 				<tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
-					<td><%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.where(:account_id=>@account_id)
-                                                           .order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                  <td> <% if current_user.has_role? :teacher %>
+                        <%= f.label :teaching_staff_ids, current_user.teaching_staff.name ,:value=>current_user.teaching_staff.id%>
+                        <% else  %>
+					<%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.where(:account_id=>@account_id)
+                                                           .order(:name), :id, :name, {}, {multiple: false} %>
+                     <%end  %></td></tr>
 				<tr><td><%= f.label :short_desc, "Short Description" %></td>
 					<td><%= f.text_field :short_desc,:maxlength => 50 %></td></tr>
 				<tr><td><%= f.label :desc, "Course Description" %></td>

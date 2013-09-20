@@ -51,7 +51,7 @@ end
 
   def update_settings
    @domain_root_account.settings=params[:update_settings]
-   @domain_root_account.save!
+   @domain_root_account.save
    render :update_settings
   end
 
