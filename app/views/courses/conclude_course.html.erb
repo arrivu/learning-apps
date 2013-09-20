@@ -1,140 +1,57 @@
-<!-- <div style="float:left">
-</div>
-
-<div class="row">
-	<div class="span8 offset3" style="min-height:600px">
-		
-		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;margin:20px;padding:10px;">
-
-			<%= form_tag "/concluded_course_update", :method=>'put' do %>
-			<div class="divrow">
-				<div>
-					<h3 align="center">Courses Conclude</h3>
-				</div>
-				<div class="divleft">
-					<label>Course Name</label>
-				</div>
-				<div class="divright">
-
-					<%= select_tag :search, options_from_collection_for_select(Course.where("isconcluded!=? and account_id=?","t",@account_id), "id", "title") , {:prompt => 'ALL'} %>
-				</div>
-			</div>
-			<div class="divrow">
-				<div class="divleft">
-					<label>Concluded</label>
-
-				</div>
-				
-				<div class="divright">
-					<%= check_box_tag :isconcluded %>
-				</div>
-			</div>
-
-			<div class="divrow">
-				<div class="divleft">
-					<label>Concluded Review </label>
-				</div>
-				<div class="divright">
-					<%= text_area_tag :concluded_review %>
-				</div>
-<%= hidden_field_tag :id %>
-			</div>
-			<div class="divrow">
-				<div class="divleft">
-					&nbsp;
-				</div>
-				<div class="divright">
-					<%= submit_tag "Save",class:"btn btn-primary",:data => { :confirm => "Are you sure?" } %>
-				</div>
-			</div>
-
-			<br>
-
-			<% end %>
-		</div>
-	</div>
-
-</div> -->
-
  <div id="wrap">
-
-  <%= render 'shared/side_menu' %>
-              
-            <div id="content">
-               
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                           
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-
-    <div id="collapse4" class="body">
-                                           
-      <%= form_tag "/concluded_course_update", :method=>'put' do %>
-			<div class="divrow">
-					<div class="icons"><span class="badge badge-info"> Conclude Courses</span></div>
-				<div class="divleft">
-					<label>Course Name</label>
-				</div>
-				<div class="divright">
-
-					<%= select_tag :search, options_from_collection_for_select(Course.where("isconcluded!=? and account_id=?","t",@account_id), "id", "title") , {:prompt => 'ALL'} %>
-				</div>
-			</div>
-			<div class="divrow">
-				<div class="divleft">
-					<label>Concluded</label>
-
-				</div>
-				
-				<div class="divright">
-					<%= check_box_tag :isconcluded %>
-				</div>
-			</div>
-
-			<div class="divrow">
-				<div class="divleft">
-					<label>Concluded Review </label>
-				</div>
-				<div class="divright">
-					<%= text_area_tag :concluded_review %>
-				</div>
-<%= hidden_field_tag :id %>
-			</div>
-			<div class="divrow">
-				<div class="divleft">
-					&nbsp;
-				</div>
-				<div class="divright">
-					<%= submit_tag "Save",class:"btn btn-primary yellobg",:data => { :confirm => "Are you sure?" } %>
-				</div>
-			</div>
-
-			<br>
-
-			<% end %>
-
-
-                     
-</div>
-                                    </div>
-                                </div>
-                            </div> 
-
-                    </div>
-                </div>
-            </div>
-                        </div>
-            <!-- END CONTENT -->
-
-
-
-            <!-- #push do not remove -->
-            <div id="push"></div>
-            <!-- /#push -->
-        
-        <!-- END WRAP -->
-
-        <div class="clearfix"></div>
+   <%= render 'shared/side_menu' %>
+   <div id="content">
+     <div class="container-fluid outer"  >
+       <div class="row-fluid">
+         <div class="span12 inner">
+           <div class="row-fluid">
+             <div class="span12">
+               <div class="box">
+                 <div id="collapse4" class="body">
+                   <%= form_tag "/concluded_course_update", :method=>'put' do %>
+                       <div class="divrow">
+                         <div class="icons"><span class="badge badge-info"> Conclude Courses</span></div>
+                         <div class="divleft">
+                           <label>Course Name</label>
+                         </div>
+                         <div class="divright">
+                           <%= select_tag :search, options_from_collection_for_select(@courses, "id", "title") , {:prompt => 'ALL'} %>
+                         </div>
+                       </div>
+                       <div class="divrow">
+                         <div class="divleft">
+                           <label>Concluded</label>
+                         </div>
+                         <div class="divright">
+                           <%= check_box_tag :isconcluded %>
+                         </div>
+                       </div>
+                       <div class="divrow">
+                         <div class="divleft">
+                           <label>Concluded Review </label>
+                         </div>
+                         <div class="divright">
+                           <%= text_area_tag :concluded_review %>
+                         </div>
+                         <%= hidden_field_tag :id %>
+                       </div>
+                       <div class="divrow">
+                         <div class="divleft">
+                           &nbsp;
+                         </div>
+                         <div class="divright">
+                           <%= submit_tag "Save",class:"btn btn-primary yellobg",:data => { :confirm => "Are you sure?" } %>
+                         </div>
+                       </div>
+                       <br>
+                   <% end %>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div id="push"></div>
+   <div class="clearfix"></div>

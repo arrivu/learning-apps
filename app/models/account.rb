@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script, :settings
+  attr_accessible :active, :name, :no_of_courses, :no_of_users, :organization,:support_script, :google_analytics_script, :settings,:terms_of_service
   RESERVED_SUBDOMAINS = %w(
   admin api assets blog calendar  developer developers docs files ftp git lab mail manage pages sites ssl staging status support www
   )
@@ -25,8 +25,7 @@ class Account < ActiveRecord::Base
   has_many :coupons
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
-  belongs_to :user
-
+  validates_acceptance_of :terms_of_service
   def self.default
     Account.first
   end

@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   helper_method :course_user_count
   ActiveMerchant::Billing::Integrations
   load_and_authorize_resource
-  before_filter :authenticate_user!, :except=>[:index,:show_image,:background_image]
   caches_page :show_image,:background_image
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
@@ -66,9 +65,8 @@ class CoursesController < ApplicationController
  end
 
  def edit
-   if current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(
-                                   :course_id => params[:id],:teaching_staff_id =>current_user.teaching_staff.id).blank?
      @course= @domain_root_account.courses.find(params[:id])
+     if user_can_do?(@course)
    else
      flash[:error] = "Not Authorized"
      redirect_to manage_courses_path
@@ -228,10 +226,10 @@ class CoursesController < ApplicationController
     end
 #dont remove this method, this is for the page conclude_courses.html.erbs
   def conclude_course
+    populate_combo_courses
   end
 
   def concluded_course_update
-    #@course_id=params[:id]
     if params[:search]==""
       flash[:notice] = "Please choose a course"
       render :conclude_course
@@ -357,6 +355,7 @@ class CoursesController < ApplicationController
 
   end
   def review
+
    @course =Course.find(params[:id])
    @comments= @course.comments
    @comment=Comment.new

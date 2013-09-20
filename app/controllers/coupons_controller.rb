@@ -1,6 +1,7 @@
 class CouponsController < ApplicationController
 	require 'csv'
   require 'errors'
+  include CouponsHelper
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:apply,:redeem,:index]
   before_filter :valid_domain_check, :only=>[:edit]
@@ -39,20 +40,26 @@ class CouponsController < ApplicationController
 
   def edit
      @coupon = Coupon.find(params[:id])
-     populate_combo_courses
+     if user_can_do?(@coupon)
+      populate_combo_courses
+     else
+       flash[:error] = "Not Authorized"
+       redirect_to coupons_path
+     end
   end
 
   def update
-     
         @coupon = Coupon.find(params[:id])
-        if  @coupon.update_attributes(params[:coupon])
-          
-          flash[:notice] = "update coupons"
-          #flash[:coupon_notice] = "Created #{create_count} coupons"
-          redirect_to coupons_path
+        if user_can_do?(@coupon)
+          if  @coupon.update_attributes(params[:coupon])
+            flash[:notice] = "coupons updated "
+            redirect_to coupons_path
+          else
+            render :action => "edit"
+          end
         else
-          #flash[:notice] ||= 'Please fix the errors below'
-          render :action => "edit"
+          flash[:error] = "Not Authorized"
+          redirect_to coupons_path
         end
   end
   
@@ -62,7 +69,7 @@ class CouponsController < ApplicationController
     if params[:after]
       @coupons = Coupon.where(["id >= ? and account_id=?", params[:after],@domain_root_account.id]).paginate(page: params[:page], per_page: 10)
     else
-      @coupons = @domain_root_account.coupons.paginate(page: params[:page], per_page: 10)
+      populate_coupons
     end
     respond_to do |format|
       format.html
@@ -85,6 +92,7 @@ class CouponsController < ApplicationController
       format.html do
         populate_combo_courses
         params[:coupon][:account_id]=@domain_root_account.id
+        params[:coupon][:teaching_staff_id]=current_user.teaching_staff.id
         @coupon = Coupon.new(params[:coupon])
         how_many = params[:how_many] || 1
         unless Coupon.enough_space?(@coupon.alpha_mask, @coupon.digit_mask, Integer(how_many))
@@ -100,7 +108,7 @@ class CouponsController < ApplicationController
           Integer(how_many).times do |i|
              params[:coupon][:account_id]=@account_id
             coupon = Coupon.new(params[:coupon])
-            if coupon.save
+            if coupon.save!
               @first_coupon ||= coupon.id
               create_count += 1
             end
@@ -120,8 +128,13 @@ class CouponsController < ApplicationController
 
   def destroy
     @coupon = Coupon.find(params[:id])
-    @coupon.destroy
-    redirect_to coupons_path
+    if user_can_do?(@coupon)
+       @coupon.destroy
+       redirect_to coupons_path
+    else
+      flash[:error] = "Not Authorized"
+      redirect_to coupons_path
+    end
   end
   
   private
@@ -131,16 +144,5 @@ class CouponsController < ApplicationController
       @coupon ||= Coupon.new
   end
 
-  def populate_combo_courses
-    if current_user.has_role? :teacher
-      @courses=[]
-      current_user.teaching_staff.teaching_staff_courses.each do |c|
-        @courses << c.course
-      end
-
-      else
-        @courses = @domain_root_account.courses
-    end
-  end
 
 end

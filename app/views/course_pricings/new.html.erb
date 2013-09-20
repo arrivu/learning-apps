@@ -14,18 +14,8 @@
      <%= simple_form_for (@coursepricing) do |f| %>
 	 <%= render 'shared/error_messages', object: f.object %>
      <table id="dataTable">
-
-
      <tr><td>Course Name</td>
-        <% if current_user.has_role? :teacher %>
-
-           <td><%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
-         
-   <% else %>
-          <td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
-	      <%= f.select(:course_id,options_for_select(courses_array),style: "width: 266px;")%></td></tr>
-     <% end %>
-
+       <td><%= f.collection_select :course_id, @courses, :id, :title, {}, {multiple: false} %></td>
       <tr><td>Start Date</td><td>
 
 	  <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true ,style: "width: 84px;"%>

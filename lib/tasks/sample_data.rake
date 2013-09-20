@@ -62,7 +62,7 @@ namespace :db do
 					price:array[1],
 					start_date:array[2],
 					end_date:array[3],
-					account_id:  array[2],
+					account_id:  array[1],
 					
 					)
 			end

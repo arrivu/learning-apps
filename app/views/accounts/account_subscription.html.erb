@@ -1,73 +1,93 @@
-
-
- <%= simple_form_for(@user,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
-     <%= render 'shared/error_messages', object: f.object %>
-         <%= f.fields_for @account do |account| %>
-
-             <table align="center">
-                <tr>
-                  <td>
-                    <%= account.label 'Domain Name' %>
-                  </td>
-                  <td>
-                    <div class="input-append">
-                      <%= account.text_field :name %>
-                        <span class="add-on">.lvh.me</span>
-                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                      <%= account.label 'Organization' %>
-                  </td>
-                   <td>
-                       <%=account.text_field :organization %>
-                    </td>
-                </tr>
-         <%end %>
-              <tr>
-                <td>
-                   <%= f.label 'User Name' %>
-                </td>
-                <td>
-                    <%=f.text_field :name %>
-                </td>
-              </tr>
-                <td>
-                   <%= f.label 'Email' %>
-                </td>
-                 <td>
-                    <%=f.text_field :email %>
-                 </td>
-              </tr>
-              <tr>
-                 <td>
-                    <%= f.label 'Password' %>
-                 </td>
-                 <td>
-                     <%=f.password_field :password %>
-                 </td>
-              </tr>
-              <tr>
-                <td>
-                     <%= f.label 'Confirm Password' %>
-                </td>
-                 <td>
-                     <%=f.password_field :password_confirmation %>
-                 </td>
-              </tr>
-              <tr>
-                 <td colspan="2" style="text-align:center; ">
-                    <%= f.check_box :terms,:checked=>false %> I accept
-                    <%=link_to "Terms and Service", :controller => :teaching_staffs, :action => :terms %>
-                 </td>
-              </tr>
-              <tr>
-                 <td colspan="2" style="text-align:center;">
-                     <%= f.submit "Subscribe",class: "btn btn-primary", style:"margin-left: 27px;" %>
-                 </td>
-              </tr>
-
-      </table>
-
- <%end  %>
+<div id="wrap" style="background:#fff;">
+  <div id="content" style="margin: 0px 15% 45px;box-shadow: -2px -1px 10px #333;">
+    <div class="container-fluid outer" >
+      <div class="row-fluid">
+        <div class="span12 inner">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="box">
+                <div id="collapse4" >
+                  <h3 style="margin-left: 288px; color: #2879F2; text-align: left">Subscribe Now!</h3>
+                    <div class="row">
+                      <div class="span8 offset3">
+                         <%= form_for(@user,:validate => true,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
+                            <%= f.error_messages %>
+                                <%= f.fields_for @account,:validate => true do |account| %>
+                                    <%= account.error_messages %>
+                                       <table align="left">
+                                          <tr>
+                                             <td>
+                                                  <%= account.label 'Domain Name',:style=> "width: 124px;" %>
+                                             </td>
+                                             <td>
+                                                 <div class="input-append">
+                                                    <%= account.text_field :name ,:style=>"width: 192px" %>
+                                                     <span class="add-on">.lvh.me</span>
+                                                 </div>
+                                             </td>
+                                          </tr>
+                                           <tr>
+                                             <td >
+                                                   <%= account.label 'Organization',:style=>"width: 124px;" %>
+                                             </td>
+                                             <td>
+                                                    <%=account.text_field :organization %>
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>
+                                                    <%= f.label 'User Name',:style=>"width: 124px;" %>
+                                             </td>
+                                             <td>
+                                                   <%=f.text_field :name %>
+                                             </td>
+                                           </tr>
+                                           <tr>
+                                             <td>
+                                                  <%= f.label 'Email',:style=>"width: 124px;" %>
+                                             </td>
+                                             <td>
+                                                  <%=f.text_field :email %>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>
+                                                  <%= f.label 'Password' %>
+                                              </td>
+                                              <td>
+                                                  <%=f.password_field :password %>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td>
+                                                  <%= f.label 'Confirm Password' %>
+                                              </td>
+                                              <td>
+                                                  <%=f.password_field :password_confirmation%>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td colspan="2" style="text-align:center; ">
+                                                 <%= account.check_box :terms_of_service %> I accept
+                                                 <%=link_to "Terms and Service", terms_path %>
+                                              </td>
+                                           </tr>
+                                           <tr>
+                                              <td colspan="2" style="text-align:center;">
+                                                 <%= f.submit "Subscribe",class: "btn btn-primary", style:"margin-left: -83PX" %>
+                                              </td>
+                                           </tr>
+                                       </table>
+                            <%end  %>
+                        <%end %>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

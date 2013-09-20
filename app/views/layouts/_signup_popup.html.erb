@@ -16,7 +16,7 @@
     <tr>
         <td> <h3 align="center" style="margin:0px;font-size:19px;">Create New Account</h3>
            <div style="margin-top:20px;">
-                        <%= f.error_notification %>
+                       <%= f.error_notification %>
         <%= display_base_errors User.new %>
         <%= f.input :name, :autofocus => true %>
         <%= f.input :email, :required => true %>
