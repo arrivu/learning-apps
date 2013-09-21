@@ -4,4 +4,5 @@ class Rate < ActiveRecord::Base
   
   attr_accessible :rate, :dimension
   
+
 end

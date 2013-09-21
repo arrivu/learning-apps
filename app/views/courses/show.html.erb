@@ -22,6 +22,7 @@ $(document).ready(function(){
 <h2>
 <%= @course.title %>
 </h2>
+
 <ul>
 
 <li class="review-stars"  >
@@ -63,10 +64,12 @@ $(document).ready(function(){
  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "30x30",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
               <% end  %>
 
-        
         <%= author.name%>
+        
+           
         <p style="font-size: 17px;padding-top: 5px;"><%= truncate(author.description, :length => 300)%></p>
       </li> <% end %>
+
 </ul>
 
 </div>
@@ -455,7 +458,7 @@ $(".close").click(function(){
    <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
 <div class="underlinetext">
    
-<div class="coursereviews">
+<div class="coursereviews" >
   <div class="">
     <div class="">
       <div align="center">

@@ -1,11 +1,12 @@
 <div id="wite_review">
 <% if user_signed_in?%>
+
 <%= form_for(@comment , :url => comments_path(:commentable_type =>@commentable_type, :commentable_id =>@commentable_id )) do |f| %>
 <%= render 'shared/error_messages', object: @comment %>
 <%= f.label :title, 'Add Review' %>
 <%= f.text_field :title ,placeholder: "Review title"%><br />
 <br>
-<%= f.text_area :comment , :rows => 5, :cols => 40 ,placeholder: "comment" %><br />
+<%= f.text_area :comment ,:maxlength => 250, :rows => 5, :cols => 40 ,placeholder: "comment" %><br />
 <div class=" clearfix"></div>
     <div >
       <a>
