@@ -145,7 +145,7 @@ class TeachingStaffsController < ApplicationController
       redirect_to root_path
 
     else
-      @teachingstaff.errors.messages.merge!(:teaching_staff_user.errors) unless @teachingstaff.valid?
+      #@teachingstaff.errors.messages.merge!(:teaching_staff_user.errors) unless @teachingstaff.valid?
      render :teaching_staff_signup
     end
    end

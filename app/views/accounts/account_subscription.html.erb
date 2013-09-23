@@ -10,9 +10,9 @@
                   <h3 style="margin-left: 288px; color: #2879F2; text-align: left">Subscribe Now!</h3>
                     <div class="row">
                       <div class="span8 offset3">
-                         <%= form_for(@user,:validate => true,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
+                         <%= form_for(@user,:validate=>true,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
                             <%= f.error_messages %>
-                                <%= f.fields_for @account,:validate => true do |account| %>
+                                <%= f.fields_for @account,:validate=>true do |account| %>
                                     <%= account.error_messages %>
                                        <table align="left">
                                           <tr>
@@ -72,6 +72,14 @@
                                                  <%=link_to "Terms and Service", terms_path %>
                                               </td>
                                            </tr>
+                                         <tr>
+                                           <td>
+
+                                           </td>
+                                           <td>
+
+                                           </td>
+                                         </tr>
                                            <tr>
                                               <td colspan="2" style="text-align:center;">
                                                  <%= f.submit "Subscribe",class: "btn btn-primary", style:"margin-left: -83PX" %>
