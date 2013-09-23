@@ -1,86 +1,156 @@
-<div class="row evenflow">
-       <div class="resource-row">
-     <div style="margin: 0px auto;min-width: 400px;
-max-width: 100%;">         <% @courses.each do |course|%>
-  
-
+  <div class="row evenflow">
+<div class="resource-row">
+<div style="margin: 0px auto;min-width: 400px;max-width: 100%;">        
+<% @courses.each do |course|%>
 <div class="span3 content-box resource" style="float: left;">
-   
 <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96% 96%;">
-   <% if course.data!=nil %>
-            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
-            <% else %>
-            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 0px solid #ffda55;" %>
-            <% end %>
-<div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix "> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
+<% if course.data!=nil %>
+<%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
+<% else %>
+<%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+<% end %>
+<div class="type " <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
 </div>
 <div class="details">
 <h2>
 <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
 </h2>
-              <ul>
-                <li class="length time">
-                  <table>
-                    <tr>
-                     <td>
-                       <i class="icon-book"></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
-                     </td>
-                    </tr>
-                  </table>
-                </li>
-                <li class="users">
-                  <table>
-                     <tr>
-                       <td>
-                         <i class="icon-user"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
-                       </td>
-                     </tr>
-                  </table>
-                </li>
-                <li class="rating">
-                </li>
-              </ul>
-            
-              <ul style="border-top:0px;">
-                  <div class="icons"><i class="icon icon-tag"> </i>Tags:</span></div>
-                <%course.tags.each do |tag| %>
-                   <li>
-                     <em class="badge badge-tag" >
-                       <b>
-                         <%= link_to tag.name, tagged_courses_path(tag:tag) %>
-                       </b>
-                     </em>
-                   </li>
-                <%end  %>
-              </ul>
-              <p class="desc">
-                <%= course.short_desc  %>
-              </p>
-              <ul class="author" style="text-align: center;border-bottom:0px;">
-                 <% course.teaching_staffs.active.each do |author|%>
-                    <li>
-                      <% if author.user.image_blob == nil %>
-                        <% if author.user.omni_image_url == nil %>
-                            <%= gravatar_for_with_size author.user, "25x20" %></td>
-                        <% else  %>
-                            <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
+<ul style="border-bottom:0px;">
+<li class="length time">
+<table>
+  <tr>
+  <td>
+  <i class="icon-book" rel="tooltip" title="number of courses "></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
+  </td>
+  </tr>
+  </table>
+  </li>
+  <li class="users">
+  <table>
+  <tr>
+  <td>
+  <i class="icon-user" rel="tooltip" title=" number of users"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+  </td>
+  </tr>
+  </table>
+  </li>
+  <li class="tags">
+    <table>
+      <tr>
+        <td>
+          <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
+          </tr></table></li>
+  </ul>
+  <p >
+ <div class="tag" style="padding:0px 10px;">Tags:<%course.tags.each do |tag| %>
+<%=link_to tag.name ,tagged_courses_path(:tag=>tag),:class=>"label label-default"%>
+ <%end  %></div>
+</p>
 
-                        <% end  %>
-                      <% else  %>
-                   <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
-                      <% end  %>
-                      <br>
-                         <%= author.user.name %>
-                      </li>
-                      <% end %>
-              </ul>
-             </div>
-          </div>
+  <p class="desc">
+  <%= course.short_desc  %>
+  </p>
 
-       
+  <ul class="author" style="text-align: center;border-bottom:0px;">
+  <% course.teaching_staffs.active.each do |author|%>
+  <li>
+  <% if author.user.image_blob == nil %>
+  <% if author.user.omni_image_url == nil %>
+  <%= gravatar_for_with_size author.user, "25x20" %></td>
+  <% else  %>
+  <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
 
-     <%end%>
-    
+  <% end  %>
+  <% else  %>
+  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
+  <% end  %>
+  <br>
+  <%= author.user.name %>
+  </li>
+  <% end %>
+  </ul>
+  </div>
+  </div>
+  <%end%>
+  </div>
+  </div>
+  
+  </div>   
+ 
+
+ <!-- <div class="task" > 
+<div class="row evenflow">
+<div class="resource-row">  
+<div class="span3" style="background-color:whitesmoke;float: left;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
+  
+  <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
+<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
+<img src="assets/analytics.png" style="width:100%;height:100%;margin-top: -87px;"></div>
+<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Analytics Using Sas</h4></div>
+
+<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
+
+<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
+<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg" ></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
+Program Coordinator - M.S. in Management</div></div>
+<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
+  <div class="details" style="display:inline">
+  <i class="icon-book"></i>Books
+  <i class="icon-user"></i>Users
+  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
    </div>
-</div>
-</div>
+   <button>Learn More</button>
+   </div></div>
+    
+     
+   
+    <div class="span3" style="float: left;background-color:whitesmoke;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
+      <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
+<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
+<img src="assets/image.jpg" style="width:100%;height:100%;margin-top: -87px;"></div>
+<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Social Media Marketing</h4></div>
+
+<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
+
+<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
+<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg"></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
+Program Coordinator - M.S. in Management</div></div>
+<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
+  <div class="details" style="display:inline">
+  <i class="icon-book"></i>Books
+  <i class="icon-user"></i>Users
+  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
+   </div>
+   <button>Learn More</button> 
+ </div> </div>
+
+<div class="span3" style="background-color:whitesmoke;float: left;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
+  <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
+<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
+<img src="assets/finance.png" style="width:100%;height:100%;margin-top: -87px;"></div>
+<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Financial Marketing</h4></div>
+
+
+<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
+
+<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
+<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg" ></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
+Program Coordinator - M.S. in Management</div></div>
+<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
+  <div class="details" style="display:inline">
+  <i class="icon-book"></i>Books
+  <i class="icon-user"></i>Users
+  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
+   </div>
+   <button>Learn More</button>
+   <h2>Heading</h2>
+   </div></div>
+</div></div>
+
+ 
+
+  -->
+  <script type="text/javascript">
+
+$('i').tooltip()
+  </script>
