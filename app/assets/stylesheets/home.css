@@ -699,6 +699,7 @@ color:white;
 {
 	min-height:50px;
 	font-weight: bold;
+	border-top: 1px solid hsl(0, 0%, 87%);
 }
 /*.type:before {
 background: rgba(255,0,0,0);
