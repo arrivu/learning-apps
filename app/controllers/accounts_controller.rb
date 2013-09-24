@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  include AccountsHelper
 load_and_authorize_resource
 before_filter :subdomain_authentication, :only  => [:new,:create,:edit,:show,:update,:destroy,:index]
 
@@ -81,12 +82,22 @@ end
                               attachment: params[:user][:attachment],
                               password: params[:user][:password],
                               password_confirmation: params[:user][:password_confirmation])
-           if @account.save  && @user.save
+           if @account.save  and @user.save
             @user.add_role(:account_admin)
             AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
+            cross_domain_login_token = generate_random(nil, 150)
+            #create_subscription_authentication(@account.name,params[:user][:email],params[:user][:password],
+                                              # cross_domain_login_token)
+            authenticate_subscription=AuthenticateSubscription.new
+            authenticate_subscription.account_name = @account.name
+            authenticate_subscription.email = params[:user][:email]
+            authenticate_subscription.password = params[:user][:password]
+            authenticate_subscription.token =cross_domain_login_token
+            authenticate_subscription.save!
             flash[:success]="Accounts created Successfully"
+            redirect_to root_path(subdomain: @account.name) and return
 
-            redirect_to root_path
+
            else
              @user.errors.messages.merge!(@account.errors) unless @user.valid?
              render :account_subscription
@@ -94,7 +105,28 @@ end
        end
 
      end
+ end
+
+  def create_subscription_authentication(account_name,email,password,token)
+    authenticate_subscription=AuthenticateSubscription.new
+    authenticate_subscription.account_name = account_name
+    authenticate_subscription.email = email
+    authenticate_subscription.password = password
+    authenticate_subscription.token =token
+    authenticate_subscription.save!
   end
+
+  def  authenticate
+    unless params[:cross_domain_login_token].nil?
+      if authenticate_subscription = AuthenticateSubscription.find_by_token(params[:cross_domain_login_token]) && AuthenticateSubscription.find_by_account_name(current_subdomain)
+        reset_session
+        sign_in User.find_by_email(authenticate_subscription.email)
+        authenticate_subscription.destroy
+        redirect_to users_path
+      end
+    end
+  end
+
  end
 #end
 
