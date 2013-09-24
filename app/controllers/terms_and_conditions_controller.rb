@@ -3,11 +3,16 @@ class TermsAndConditionsController < ApplicationController
 	 before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	  before_filter :valid_domain_check, :only=>[:show,:edit]
  		 def new
-	  		@terms_and_condition=TermsAndCondition.new
+        tid=@account_id
+        tid=TermsAndCondition.find_by_account_id(tid)
+        if tid == nil
+         @terms_and_condition=TermsAndCondition.new
+        else
+          redirect_to terms_and_conditions_path
+        end
 	    end
 	    def create
 	        @terms_and_condition = TermsAndCondition.new(params[:terms_and_condition])
-
 	        @terms_and_condition.account_id=@account_id
 			    if @terms_and_condition.save
 			      flash[:success] = "Terms added successfully!!!!"

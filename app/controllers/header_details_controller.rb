@@ -30,7 +30,15 @@ class HeaderDetailsController < ApplicationController
   end
  
   def new
-  	@header_detail = HeaderDetail.new
+    hid=@account_id
+    @header=HeaderDetail.find_by_account_id(hid)
+    if @header == nil
+      @header_detail = HeaderDetail.new
+    else
+      redirect_to header_details_path
+    end
+
+
   end
 
   def create

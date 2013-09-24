@@ -94,10 +94,8 @@ end
             authenticate_subscription.password = params[:user][:password]
             authenticate_subscription.token =cross_domain_login_token
             authenticate_subscription.save!
-            flash[:success]="Accounts created Successfully"
-            redirect_to root_path(subdomain: @account.name) and return
-
-
+            host_with_subdomain = "#{@account.name }"+"."+ "#{request.domain}"
+            redirect_to url_for(:controller => 'accounts', :action => 'authenticate', :host => host_with_subdomain,:cross_domain_login_token=>cross_domain_login_token)
            else
              @user.errors.messages.merge!(@account.errors) unless @user.valid?
              render :account_subscription
@@ -122,6 +120,7 @@ end
         reset_session
         sign_in User.find_by_email(authenticate_subscription.email)
         authenticate_subscription.destroy
+        flash[:success]="You are subscribed Successfully"
         redirect_to users_path
       end
     end
