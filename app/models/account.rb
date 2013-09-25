@@ -23,6 +23,7 @@ class Account < ActiveRecord::Base
   has_many  :teaching_staff_courses
   has_many :course_pricings
   has_many :coupons
+  has_many :student_courses
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
   validates_acceptance_of :terms_of_service

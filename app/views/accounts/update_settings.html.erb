@@ -63,7 +63,7 @@
 	   <tr><td><%= f.label :account_statistics %></td>
 	   <td><%= f.check_box :account_statistics_enable, :checked => @domain_root_account.settings[:account_statistics_enable] %></td></tr>
 
-    <tr><td><%= f.label :signup_teacher %></td>
+    <tr><td><%= f.label :signup_teacher ,text="Open teacher registration" %></td>
 	   <td><%= f.check_box :signup_teacher_enable, :checked => @domain_root_account.settings[:signup_teacher_enable] %></td></tr>
 	</table>
 	  

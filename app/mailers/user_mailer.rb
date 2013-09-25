@@ -26,5 +26,11 @@ class UserMailer < ActionMailer::Base
    mail(:to => teaching_staff.user.email, :subject => "Account creation confirmation")
  end
 
+ def account_subscription_welcome(account_name,user)
+   @account= account_name
+   @user=user
+   mail(:to => user.email, :subject => "Account subscription confirmation")
+ end
+
 
 end
