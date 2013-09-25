@@ -99,6 +99,7 @@ add_setting :testimonial_enable, :root_only => false, :boolean => true
 add_setting :popular_course_enable, :root_only => false,:boolean => true, :default => true
 add_setting :account_statistics_enable, :root_only => false,:boolean =>true, :default => true
 add_setting :signup_teacher_enable, :root_only => false,:boolean =>true, :default => true
+add_setting :mailsignature ,:root_only => false
 
   def settings=(hash)
     if hash.is_a?(Hash)
