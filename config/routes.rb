@@ -117,4 +117,5 @@ resources :footerlinks
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
   match 'authenticate', :to=> 'accounts#authenticate'
+  match "/jobs" => DelayedJobWeb, :anchor => false
 end

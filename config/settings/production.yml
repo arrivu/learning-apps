@@ -40,3 +40,6 @@ omniauth:
   google_oauth2_secret: "D6mLnz02jOX6kpT-cbo9p2MM"
 domain:
   url: "arrivuapps.com"
+delayed_job:
+  user_name: "admin123$"
+  password: "admin"

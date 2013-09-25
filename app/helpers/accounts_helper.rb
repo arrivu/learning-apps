@@ -29,7 +29,7 @@ module AccountsHelper
         sign_in @user
         account_name=authenticate_subscription.account_name
         authenticate_subscription.destroy
-        UserMailer.account_subscription_welcome(account_name,@user).deliver!
+        UserMailer.delay.account_subscription_welcome(account_name,@user)
         flash[:info]="You are subscribed Successfully. You can customize the basic pages like upload your own logo and all static pages"
         redirect_to users_path
       end

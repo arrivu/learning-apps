@@ -4,6 +4,7 @@
     before_filter :topics
    # before_filter :theme_create
    # before_filter :set_mailer_settings
+    before_filter :test_job
     include ApplicationHelper
     include CoursesHelper
     include SessionsHelper
@@ -134,4 +135,11 @@
 
     end
 
-end
+    def test_job
+      @domain_root_account.delay.testing(@domain_root_account)
+    end
+
+    def testing
+      testing(@domain_root_account)
+    end
+  end
