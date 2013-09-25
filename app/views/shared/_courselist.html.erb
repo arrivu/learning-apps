@@ -2,6 +2,7 @@
 <div class="resource-row">
 <div style="margin: 0px auto;min-width: 400px;max-width: 100%;">        
 <% @courses.each do |course|%>
+<% module_count =lms_get_modules(course).count %>
 <div class="span3 content-box resource" style="float: left;">
 <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96% 96%;">
 <% if course.data!=nil %>
@@ -20,7 +21,8 @@
 <table>
   <tr>
   <td>
-  <i class="icon-book" rel="tooltip" title="number of courses "></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
+  <i class="icon-book" rel="tooltip" title="<%="Course has " +"#{pluralize(module_count,"Module")}"%> "></i></td>
+    <td style="verticle-align:bottom;"><%=module_count%>
   </td>
   </tr>
   </table>
@@ -29,7 +31,8 @@
   <table>
   <tr>
   <td>
-  <i class="icon-user" rel="tooltip" title=" number of users"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+  <i class="icon-user" rel="tooltip" title="<%="#{pluralize(course.students.count,"user")+
+          " Enrolled on this course " }"%>" ></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
   </td>
   </tr>
   </table>
@@ -38,7 +41,8 @@
     <table>
       <tr>
         <td>
-          <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
+          <i class="icon icon-tag" rel="tooltip" title="<%="Course has " "#{pluralize(course.tags.count,"Tag")}"%> ">
+  </li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
           </tr></table></li>
   </ul>
   <p >
