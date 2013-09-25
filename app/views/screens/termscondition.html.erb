@@ -1,8 +1,12 @@
 <% provide(:title, 'Terms and Conitions') %>
 <div class="row">
 <h3 align = "center">Terms and Conditions</h3>
+  <div class="row">
+    <div class="container privacy">
+      <div class="span12">
 <table align="center">
-  <% @terms_and_condition.each do |termsandconditions| %>
+
+  <% @termscondition.each do |termsandconditions| %>
     <tr>
      <td>
        <%= termsandconditions.title%>
@@ -15,6 +19,9 @@
     </tr>
     <% end %>
   </table >
+      </div>
+    </div>
+  </div>
 	<!-- <div class="container terms">
 		<div class="span12">
 		

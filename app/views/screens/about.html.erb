@@ -2,7 +2,11 @@
 <% provide(:effectingHeader) %>
 <br/><br/>
 <h3 align = "center">About Details</h3>
-<table align="center">
+<div class="row">
+  <div class="container privacy">
+    <div class="span12">
+
+<table align="justify">
   <% @aboutdetail.each do |aboutdetails| %>
     <tr>
      <td>
@@ -14,6 +18,9 @@
       <%= aboutdetails.desc.html_safe %>
      </td>
     </tr><% end %></table >
+      </div>
+    </div>
+  </div>
 <!-- <div class="container movedown">
   <div class="row"  align="center">
     <div class="span5" align="left">
@@ -72,4 +79,4 @@
         </p>
     </div>
   </div>
-</div> --> -->
+</div> -->
