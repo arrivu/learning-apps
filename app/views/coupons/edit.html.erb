@@ -16,7 +16,7 @@
                     <div class="icons"><span class="badge badge-info">Edit Coupon  </span></div>
                     <%= render 'shared/error_messages', object: f.object %>
                     <div id="collapse4" class="body">
-                      <table id="dataTable" >
+                      <table id="dataTable" style="text-align: left;" >
                         <tr><th>Course Name</th><td>
                         <div id='all_course'>
                           <% if current_user.has_role? :admin or  current_user.has_role? :account_admin  %>

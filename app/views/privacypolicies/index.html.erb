@@ -15,7 +15,7 @@
                                     <div class="box">
 
                                         <div id="collapse4" class="body">
-                                          <div class="icons"><span class="badge badge-info">Privacy Polices</span></div> 
+                                          <div class="icons" style="text-align: center"><span class="badge badge-info" style="text-align: center;width=100px;height=19px ">Privacy Polices</span></div>
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                                 <thead>
                                                   
@@ -74,7 +74,7 @@
             <!-- #push do not remove -->
             <div class="left" style="padding: 0px;width: 16%;float: right;">
               <% if Privacypolicy.find_by_account_id(@account_id) == nil %>
- <a href="../terms_and_conditions/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add  Privacy and Policy </a> <% end %>
+ <a href="../privacypolicies/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add  Privacy and Policy </a> <% end %>
   </div>
             <div id="push"></div>
             <!-- /#push -->

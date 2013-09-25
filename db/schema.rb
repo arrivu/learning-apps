@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.datetime "updated_at",              :null => false
   end
 
+  create_table "authenticate_subscriptions", :force => true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.string   "account_name"
+    t.text     "token"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"

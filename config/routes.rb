@@ -114,5 +114,7 @@ resources :footerlinks
   match 'terms', :to =>'terms_and_conditions#terms'
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
- 
+
+  match 'authenticate', :to=> 'accounts#authenticate'
+
 end
