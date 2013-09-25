@@ -28,7 +28,7 @@ class ScreensController < ApplicationController
   end
 
   def termscondition
-    @terms_and_condition = TermsAndCondition.where(:account_id=>@account_id)
+    @termscondition = TermsAndCondition.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
      @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
