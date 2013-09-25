@@ -6,18 +6,17 @@
 
         <% if comment.user.image_blob == nil %>
                 <% if comment.user.omni_image_url == nil %>
-          <%= gravatar_for_with_size comment.user, "48x48" %>               
+          <%= gravatar_for_with_size comment.user, "40x40" %>               
                  <% else  %>
-                <%= image_tag(comment.user.omni_image_url,size: "48x48", alt: "", :class=>"img-circle")%> 
+                <%= image_tag(comment.user.omni_image_url,size: "40x40", alt: "", :class=>"img-circle")%> 
                 <% end  %>
                 <% else  %>
                 
-                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :class=>"img-circle", :id => comment.user.id), :size => "48x48" %>
+                  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :class=>"img-circle", :id => comment.user.id), :size => "40x40" %>
                 <% end  %>
           </div>
           <h6><%= comment.user.name  %> </h6>
-            
-
+           <div style = "color: rgb(128, 123, 123);"> reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago </div>
     <ul>
 
 <li class="review-stars"  >
@@ -26,7 +25,7 @@
             <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
             <br align = "center">
             <% end %>
-            <%= rating_for @course, "rate"  %>
+            <%= rating_for_user @course, comment.user, "rate"  %> 
 
           
             <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
@@ -39,11 +38,12 @@
 
           <div class="bubble-content">
             <div class="point"></div> 
-  <p><%= comment.comment  %></p>
+           <%= comment.comment  %></p>
           </div>
           <div class="clearfix"></div>
         </div>
      
        <%end%> 
-
+<div class="icons"></div>
+    
   <%end%>

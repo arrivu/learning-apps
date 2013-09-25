@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	
 	before_filter :signed_in_user
-	before_filter :load_commentable,:except=>[:new]
+	before_filter :load_commentable,:except=>[:new,:destroy]
 
 	# def index
 	# 	@comments =comments.recent.limit(10).all
@@ -37,6 +37,14 @@ class CommentsController < ApplicationController
 			end
 		end
 	end
+	
+	
+	def destroy
+    @comments = Comment.find(params[:id])
+    @comments.destroy
+    flash[:success] = "Successfully Destroyed Category."
+    redirect_to :back
+  end
 
 	protected
 
@@ -44,7 +52,7 @@ class CommentsController < ApplicationController
 		@commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
 		@comments = @commentable.comments.recent.limit(10).all
 	end
-
+   
   
 
 end

@@ -29,7 +29,7 @@ class Ability
       can [:teaching_staff_signup] ,TeachingStaff
       can [:account_subscription] ,Account
       can :terms ,TermsAndCondition
-
+      can :my_courses,Course
     end
 
   end

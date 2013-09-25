@@ -15,7 +15,6 @@ resources :footerlinks
   resources :header_details
   resources :account_themes
   resources :footerlinks
-
   resources :accounts
   match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   resources :course_pricings
@@ -115,5 +114,5 @@ resources :footerlinks
   match 'terms', :to =>'terms_and_conditions#terms'
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
-
+ 
 end
