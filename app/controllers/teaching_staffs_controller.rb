@@ -140,7 +140,7 @@ class TeachingStaffsController < ApplicationController
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
       unless Rails.env.development?
-        UserMailer.teaching_staffs_welcome(@teachingstaff).deliver!
+        UserMailer.delay.teaching_staffs_welcome(@teachingstaff)
       end
       redirect_to root_path
 
@@ -157,7 +157,7 @@ class TeachingStaffsController < ApplicationController
     if @teachingstaff.save!
       if @teachingstaff.is_active?
         unless Rails.env.development?
-          UserMailer.teaching_staffs_activation(@teachingstaff).deliver!
+          UserMailer.delay.teaching_staffs_activation(@teachingstaff)
         end
         redirect_to teaching_staffs_path
         flash[:success] = "User Sucessfully activated and activation mail sent !"
