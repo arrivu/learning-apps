@@ -22,6 +22,7 @@ class Course < ActiveRecord::Base
   attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
   :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
   :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global
+  cattr_accessor :tag_tokens
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
   scope :teacher_assistants, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher_assitant")
   scope :enrolled_students, joins(:student_courses).where('student_courses.status = ?', "enroll") 
@@ -50,9 +51,9 @@ class Course < ActiveRecord::Base
   attr_reader :tag_tokens
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  def tag_tokens=(tokens)
-    self.tag_ids = Tag.ids_from_tokens(tokens)
-  end
+  #def tag_tokens=(tokens)
+  #  self.tag_ids = Tag.ids_from_tokens(tokens)
+  #end
   validates :title, presence: true, length: { maximum: 100 }
   has_many :course_previews
   has_many :invoices
