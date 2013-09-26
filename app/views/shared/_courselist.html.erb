@@ -1,7 +1,8 @@
   <div class="row evenflow">
 <div class="resource-row">
 <div style="margin: 0px auto;min-width: 400px;max-width: 100%;">        
-<% @courses.each do |course|%> 
+<% @courses.each do |course|%>
+<% module_count =lms_get_modules(course).count %>
 <div class="span3 content-box resource" style="float: left;">
 <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100% 96%;">
 <% if course.data!=nil %>
