@@ -101,8 +101,6 @@ End of Zopim Live Chat Script -->
           <li>
             <a href="<%= footerlink.linkedin_url %>" target="_blank" title="LinkedIn"> <%= image_tag "linkedin.png" %> </a>
           </li>
-
-
         </ul>
 
         <p class="copyright">
@@ -123,11 +121,17 @@ End of Zopim Live Chat Script -->
       <div class="two columns">
        
         <ul class="link-list library-nav right">
-         <li class="heading">Browse full library</li>            
-              <% @topics.each do |topic| %>
-             <li> <%= link_to topic.name, topic_path(topic) %></li>
-              <% end %>                               
-       </ul>
+         <li class="heading">Browse full library</li>
+                  <% @domain_root_account.topics.limit(4).each do |topic| %>
+                 <li> <%= link_to topic.name, topic_path(topic) %></li>
+
+                  <% end %>
+                <%if @domain_root_account.topics.count > 4   %>
+                     <div>
+                        <%=  link_to "viewAll",courses_path,:style => "margin-left: 23px;" %><i class="icon-arrow-right" style="margin-top: -26px; margin-left: 75px;"></i>
+                     </div>
+                <%end  %>
+           </ul>
       </div>
       <div class="two columns">
          <ul class="link-list library-nav right">
