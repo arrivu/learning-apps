@@ -1,21 +1,21 @@
   <div class="row evenflow">
 <div class="resource-row">
 <div style="margin: 0px auto;min-width: 400px;max-width: 100%;">        
-<% @courses.each do |course|%>
+<% @courses.each do |course|%> 
 <div class="span3 content-box resource" style="float: left;">
-<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96% 96%;">
+<div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100% 96%;">
 <% if course.data!=nil %>
 <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
 <% else %>
 <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
 <% end %>
-<div class="type " <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
+ <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:darkblue" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
 </div>
 <div class="details">
 <h2>
 <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
 </h2>
-<ul style="border-bottom:0px;">
+<ul style="border-top:0px;">
 <li class="length time">
 <table>
   <tr>
@@ -41,11 +41,18 @@
           <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
           </tr></table></li>
   </ul>
-  <p >
- <div class="tag" style="padding:0px 10px;">Tags:<%course.tags.each do |tag| %>
-<%=link_to tag.name ,tagged_courses_path(:tag=>tag),:class=>"label label-default"%>
- <%end  %></div>
-</p>
+  
+
+ <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
+  <% course.tags.each do |tag| %> 
+      <li><a href=<%=tagged_courses_path(tag: tag)%> >
+       <b> <%= tag.name%> </b>
+       <span><%= tag.courses.count%></span></a></li>
+     <%end  %>
+    </ul>
+    
+   </div>
+
 
   <p class="desc">
   <%= course.short_desc  %>
@@ -56,7 +63,7 @@
   <li>
   <% if author.user.image_blob == nil %>
   <% if author.user.omni_image_url == nil %>
-  <%= gravatar_for_with_size author.user, "25x20" %></td>
+  <%= gravatar_for_with_size author.user, "25x20"%></td>
   <% else  %>
   <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
 
@@ -69,16 +76,16 @@
   </li>
   <% end %>
   </ul>
+
   </div>
   </div>
   <%end%>
   </div>
   </div>
-  
-  </div>   
+  </div>    
  
 
- <!-- <div class="task" > 
+  <!--<div class="task" > 
 <div class="row evenflow">
 <div class="resource-row">  
 <div class="span3" style="background-color:whitesmoke;float: left;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
@@ -145,12 +152,15 @@ Program Coordinator - M.S. in Management</div></div>
    <button>Learn More</button>
    <h2>Heading</h2>
    </div></div>
-</div></div>
+</div></div>-->
 
  
 
-  -->
+
   <script type="text/javascript">
 
 $('i').tooltip()
   </script>
+  <style type="text/css">
+  <
+  </style> 
