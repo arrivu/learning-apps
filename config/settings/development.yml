@@ -5,13 +5,13 @@ cas:
   login_path: '/cas/api-login'
   logout_path: '/cas/api-logout'   
 lms:
-  enable: false
+  enable: true
   account_id: 1
   #oauth_token: 88n7pFHCredVJLG3MiBU2Oidp6D4uYmpsxz8hG33RNhrrVKbJGsluL0tSdV7ydW2
-  oauth_token: QIJizPBl2U4DBMhgTlA8tln5mY8zrTdvEFZpptnBzT2lDxegC0Ao0Ae2eHGjp9Gg
-  root_url: http://lms.lvh.me
+  oauth_token: TqrRMtMr2NmQSFZ4ZxkbsuNa9xsZVX6edglF2p39DPb8XO9cchniW4TXrd06md2c
+  root_url: http://lms.lvh.me:4000
   course_url_path: courses/
-  api_root_url: http://lms.lvh.me/api/v1
+  api_root_url: http://lms.lvh.me:4000/api/v1
   logout_path: logout
 mailserver:
   address: smtp.gmail.com

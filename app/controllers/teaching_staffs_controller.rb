@@ -136,7 +136,7 @@ class TeachingStaffsController < ApplicationController
     if @teachingstaff.save
       @teachingstaff.user.add_role(:teacher)
       AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-      lms_create_user(@teachingstaff.user)
+      lms_create_user(@teachingstaff.user).delay
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
       unless Rails.env.development?
@@ -198,10 +198,8 @@ class TeachingStaffsController < ApplicationController
   end
 
   def terms
-    @account=@domain_root_account
-    @account_id=@account.id
-    @terms=TermsAndCondition.find(@account_id)
-    if @terms==nil
+    @terms=TermsAndCondition.find(@domain_root_account.id)
+    if @terms.nil?
           redirect_to  :terms
     else
       @terms

@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
    if @course.save
      tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
-     lms_create_course(@course)
+     lms_create_course.delay(@course)
      redirect_to manage_courses_path
    else
      render 'new'
@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
    params[:course].delete :tag_tokens
    if @course.update_attributes(params[:course])
      tag_list(tags_token,@course)
-     lms_update_course(@course,old_teaching_staff_id)
+     lms_update_course(@course,old_teaching_staff_id).delay
      flash[:success] ="Successfully Updated Course."  
      redirect_to manage_courses_path
    else
@@ -152,7 +152,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
       lms_id=@course.lms_id
       @course.destroy
-      lms_delete_course(lms_id)
+      lms_delete_course(lms_id).delay
       flash[:success] = "Successfully destroyed course."
       redirect_to manage_courses_url
     end
@@ -165,24 +165,24 @@ class CoursesController < ApplicationController
         end
         @courses=@courses.paginate(page: params[:page], :per_page => 30)
       else
-        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 10).order(:id)
+        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 30).order(:id)
       end
       @topic = @domain_root_account.topics
     end
 
     def course_status_search
       if(params[:search] == nil || params[:search] == "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All' )
-        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 30)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
 
       elsif(params[:search] == nil || params[:search] == "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
 
       else
-        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
       end
     end
 
@@ -219,7 +219,7 @@ class CoursesController < ApplicationController
       @coursesstauts=StudentCourse.find(params[:id])
       if @coursesstauts.update_attributes(status:params[:status])
         flash[:notice] = "Successfully Updated"
-        lms_conclude_enrollment(@coursesstauts.course.lms_id,@coursesstauts.student.user.lms_id)
+        lms_conclude_enrollment(@coursesstauts.course.lms_id,@coursesstauts.student.user.lms_id).delay
         redirect_to course_status_search_path
       else
         render course_status_search
@@ -247,7 +247,7 @@ class CoursesController < ApplicationController
         else
           if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
             flash[:notice] = "Course Successfully Concluded..."
-            lms_conclude_course(@course_id.lms_id)
+            lms_conclude_course(@course_id.lms_id).delay
             redirect_to conclude_course_path
           else
             render :conclude_course
@@ -256,7 +256,7 @@ class CoursesController < ApplicationController
       else
         if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
           flash[:notice] = "Course Successfully Concluded..."
-          lms_conclude_course(@course_id.lms_id)
+          lms_conclude_course(@course_id.lms_id).delay
           redirect_to conclude_course_path
         else
           render :conclude_course
@@ -280,7 +280,7 @@ class CoursesController < ApplicationController
     end
     if @course.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
       flash[:notice] = "Course Successfully Concluded..."
-      lms_conclude_course(@course.lms_id)
+      lms_conclude_course(@course.lms_id).delay
 
       redirect_to concluded_courses_path
     else

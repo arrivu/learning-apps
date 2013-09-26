@@ -33,7 +33,7 @@ module LmsHelper
 			c=lmscourse.create_course(Settings.lms.account_id,course.id,course.title,course.desc)
 			@course.update_attributes(:lms_id => c["id"])
             course.teaching_staffs.each do |teaching_staff|
-              lmscourse.enroll_user(course.lms_id,teaching_staff.user.lms_id,'TeacherEnrollment')
+              lmscourse.delay.enroll_user(course.lms_id,teaching_staff.user.lms_id,'TeacherEnrollment')
             end
 
 		end
