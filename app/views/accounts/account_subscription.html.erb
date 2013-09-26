@@ -10,10 +10,9 @@
                   <h3 style="margin-left: 288px; color: #2879F2; text-align: left">Subscribe Now!</h3>
                     <div class="row">
                       <div class="span8 offset3">
-                         <%= form_for(@user,:validate=>true,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
-                            <%= f.error_messages %>
-                                <%= f.fields_for @account,:validate=>true do |account| %>
-                                    <%= account.error_messages %>
+                         <%= simple_form_for(@user,:url => url_for(:controller => 'accounts',:action => 'account_subscription')) do |f| %>
+                            <tr><%= render 'shared/error_messages', object: f.object %></tr>
+                                <%= f.fields_for @account do |account| %>
                                        <table align="left">
                                           <tr>
                                              <td>
@@ -36,7 +35,7 @@
                                            </tr>
                                            <tr>
                                              <td>
-                                                    <%= f.label 'User Name',:style=>"width: 124px;" %>
+                                                    <%= f.label 'Name',:style=>"width: 124px;" %>
                                              </td>
                                              <td>
                                                    <%=f.text_field :name %>

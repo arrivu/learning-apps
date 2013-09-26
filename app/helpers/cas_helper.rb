@@ -28,7 +28,7 @@ module CasHelper
     end
 
     def cas_enable?
-      parse_boolean "#{Settings.cas.enable}"
+      parse_boolean Account.default.settings[:cas_enable]
     end
 
     def cas_cookie_domain
@@ -38,11 +38,11 @@ module CasHelper
     private
 
         def login_url
-          "#{Settings.cas.url}#{Settings.cas.login_path}"
+          "#{@domain_root_account.settings[:cas_url]}#{@domain_root_account.settings[:cas_login_path]}"
         end
 
         def logout_url
-          "#{Settings.cas.url}#{Settings.cas.logout_path}"
+          "#{@domain_root_account.settings[:cas_url]}#{@domain_root_account.settings[:cas_logout_path]}"
         end     
 
         def login(username, password)

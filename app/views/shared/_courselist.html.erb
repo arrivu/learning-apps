@@ -20,7 +20,8 @@
 <table>
   <tr>
   <td>
-  <i class="icon-book" rel="tooltip" title="number of courses "></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
+  <i class="icon-book" rel="tooltip" title="<%="Course has " +"#{pluralize(module_count,"Module")}"%> "></i></td>
+    <td style="verticle-align:bottom;"><%=module_count%>
   </td>
   </tr>
   </table>
@@ -29,7 +30,8 @@
   <table>
   <tr>
   <td>
-  <i class="icon-user" rel="tooltip" title=" number of users"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+  <i class="icon-user" rel="tooltip" title="<%="#{pluralize(course.students.count,"user")+
+          " Enrolled on this course " }"%>" ></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
   </td>
   </tr>
   </table>
@@ -38,7 +40,8 @@
     <table>
       <tr>
         <td>
-          <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
+          <i class="icon icon-tag" rel="tooltip" title="<%="Course has " "#{pluralize(course.tags.count,"Tag")}"%> ">
+  </li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
           </tr></table></li>
   </ul>
   
@@ -76,7 +79,6 @@
   </li>
   <% end %>
   </ul>
-
   </div>
   </div>
   <%end%>
@@ -85,82 +87,8 @@
   </div>    
  
 
-  <!--<div class="task" > 
-<div class="row evenflow">
-<div class="resource-row">  
-<div class="span3" style="background-color:whitesmoke;float: left;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
-  
-  <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
-<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
-<img src="assets/analytics.png" style="width:100%;height:100%;margin-top: -87px;"></div>
-<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Analytics Using Sas</h4></div>
-
-<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
-
-<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
-<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg" ></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
-Program Coordinator - M.S. in Management</div></div>
-<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
-  <div class="details" style="display:inline">
-  <i class="icon-book"></i>Books
-  <i class="icon-user"></i>Users
-  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
-   </div>
-   <button>Learn More</button>
-   </div></div>
-    
-     
-   
-    <div class="span3" style="float: left;background-color:whitesmoke;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
-      <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
-<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
-<img src="assets/image.jpg" style="width:100%;height:100%;margin-top: -87px;"></div>
-<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Social Media Marketing</h4></div>
-
-<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
-
-<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
-<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg"></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
-Program Coordinator - M.S. in Management</div></div>
-<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
-  <div class="details" style="display:inline">
-  <i class="icon-book"></i>Books
-  <i class="icon-user"></i>Users
-  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
-   </div>
-   <button>Learn More</button> 
- </div> </div>
-
-<div class="span3" style="background-color:whitesmoke;float: left;height:540px;margin:0px 25px;box-shadow:0px 1px 2px;">
-  <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
-<div class="img" style="border: 2px solid darkblue;width:100%;height:30%;">
-<img src="assets/finance.png" style="width:100%;height:100%;margin-top: -87px;"></div>
-<div class="mez" style="border-bottom:1px solid grey;"><h4 style="color:blue;margin: 5px 0;">Financial Marketing</h4></div>
-
-
-<div class="para" style="color:hsl(281, 69%, 22%); border-bottom:1px solid grey;"><a href=""><h6>Innovation is change that adds value – value to the customer and to the organization. Our goal for the course is to assist individuals and organizations in gaining and attaining competitive advantage by understanding and utilizing strategic advantage, innovation processes, and change management.</a></h6></div>
-
-<div class="container1" style="background-color:Wheat;box-shadow:0px 1px 5px ;height:100px;">
-<div class="image" style="margin:10px;width:15%;border:2px solid grey;"><img src="assets/learner.jpg" ></div><div class="para" style="margin:-60px 80px;"><b>Jama Bradley, Ph.D.</b>
-Program Coordinator - M.S. in Management</div></div>
-<div class="footer" style="background-color:Whitesmoke;height:33px;margin:3px 1px;">
-  <div class="details" style="display:inline">
-  <i class="icon-book"></i>Books
-  <i class="icon-user"></i>Users
-  <div class="icons" style="display:inline"><i class="icon icon-tag"> </i>Tags</div>
-   </div>
-   <button>Learn More</button>
-   <h2>Heading</h2>
-   </div></div>
-</div></div>-->
-
- 
-
-
-  <script type="text/javascript">
-
-$('i').tooltip()
+ <script type="text/javascript">
+  $('i').tooltip()
   </script>
   <style type="text/css">
-  <
   </style> 

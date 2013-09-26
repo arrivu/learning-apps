@@ -5,10 +5,8 @@ class UsersController < ApplicationController
   
   def index
       @topics= Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
-      @topics = @topics.sort_by {|x| x.name.length} 
-    # authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    
-    query = "%#{params[:query]}%"
+      @topics = @topics.sort_by {|x| x.name.length}
+      query = "%#{params[:query]}%"
       if params[:provider]==nil
         @users = User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
 
