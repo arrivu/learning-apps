@@ -1,10 +1,10 @@
 <div id="container"  style="width: 508px;background-color: ghostwhite">
-  <p><%= link_to @teaching_staff.account.name, "http://#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %> </p>
+  <p><%= link_to @teaching_staff.account.name, "http://#{@teaching_staff.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %> </p>
   <hr>
   <b><p>Dear <%= @teaching_staff.name %>,</p>  </b>
-  <p>Thanks for your interest in instructing at  <%= "#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %>!</p>
-   <p>Thanks for your interest in instructing at <%= "#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %>! We're excited to help you get started.
-     <%= "#{@teaching_staff.account.name}."+"#{Settings.domain.url}" %> has an approval process for instructors. To ensure a quality and authentic learning experience across
+  <p>Thanks for your interest in instructing at  <%= "#{@teaching_staff.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %>!</p>
+   <p>Thanks for your interest in instructing at <%= "#{@teaching_staff.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %>! We're excited to help you get started.
+     <%= "#{@teaching_staff.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %> has an approval process for instructors. To ensure a quality and authentic learning experience across
      the site, we perform a basic expertise review process. You will receive another email once that process is
      complete detailing the next steps. </p>
   <p>If you have any questions about this process or any other matter, please feel free to <br>
