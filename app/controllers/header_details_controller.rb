@@ -30,8 +30,7 @@ class HeaderDetailsController < ApplicationController
   end
  
   def new
-    hid=@account_id
-    @header=HeaderDetail.find_by_account_id(hid)
+    @header=HeaderDetail.find_by_account_id(@account_id)
     if @header == nil
       @header_detail = HeaderDetail.new
     else

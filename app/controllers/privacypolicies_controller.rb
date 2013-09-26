@@ -4,8 +4,7 @@ class PrivacypoliciesController < ApplicationController
     before_filter :valid_domain_check, :only=>[:show,:edit]
     before_filter :front_page_registration_restrict, :only=>[:new,:create]
   def new
-    pid=@account_id
-    @privacy = Privacypolicy.find_by_account_id(pid)
+    @privacy = Privacypolicy.find_by_account_id(@account_id)
     if @privacy == nil
       @privacypolicy=Privacypolicy.new
     else
