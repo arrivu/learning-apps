@@ -1,19 +1,15 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
-<div style="width:1349px;margin:0px auto;">
+
   <% provide(:effectingHeader) %>
 
 
   <div class="homebanner" style="">
     <div class="row">
-
       <div class="row">
-
-
-       <div id="slideshow1" class="sliders">
-       <% if @domain_root_account.settings[:slide_show_enable] %> 
-        <% @slider.each do |slider| %> 
-
-        <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
+        <div id="slideshow1" class="sliders" style="height: 485px;">
+        <% if @domain_root_account.settings[:slide_show_enable] %>
+            <% @slider.each do |slider| %>
+         <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
           <div class="row">
             <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
               <div class="span12" align="center" >
@@ -34,15 +30,53 @@
                 <div class="clearfix"></div>
               </div>  
             </div>
-
           </div>
           <%end%>
-          <% end %> 
+          <% else %>
 
+              <div style="background-image: url('class.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                    <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                        <div class="span12" align="center" >
+                            <div class="bannertext">
+                               <h3 style="color:white;margin-left: 50px;"> </h3>
+                            </div>
+                        </div>
+                           <div class="clearfix"></div>
+                              <div class="span4" align="center" >
 
-        </div>
-      </div>
-    </div>
+                              </div>
+                                 <div class="span5" align="justify">
+                                     <%= render 'show_topics' %>
+                                 </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                               </div>
+                          </div>
+              <div style="background-image: url('ems-banner.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                  <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                    <div class="span12" align="center" >
+                      <div class="bannertext">
+                        <h3 style="color:white;margin-left: 50px;"> </h3>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="span4" align="center" >
+
+                    </div>
+                    <div class="span5" align="justify">
+                      <%= render 'show_topics' %>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+
+          <%end %>
+            </div>
+         </div>
+  </div>
   </div>
   <script type="text/javascript">
       $(document).ready(function () {
@@ -113,7 +147,7 @@
                     </div>
                   </div>
                 </div>
-                </div>
+
             <% end %>
 
 
@@ -167,6 +201,7 @@
                     <div class="container" align="center">
                       <div class="row testimonial">
                         <% if  @domain_root_account.settings[:testimonial_enable] %>
+
                             <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
                             </div>
                             </div>
