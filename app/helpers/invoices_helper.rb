@@ -19,7 +19,7 @@ module InvoicesHelper
     invoice.account_id=@account_id
     #invoice.invoice_details = 
     #invoice.invoice_number = 
-    invoice.notes = "#{Settings.invoices.notes}"
+    invoice.notes = @domain_root_account.settings[:invoices_notes]
     invoice.line_items << LineItem.new(:price => price , :quantity => 1, :description =>  course.title,:item_type=>"Course")
     if session[:coupon_rate].to_i != 0
         invoice.line_items << LineItem.new(:price => -(session[:coupon_price].to_f), :quantity => 1, :description =>session[:coupon_des],:item_type=>"Coupon")
@@ -45,7 +45,7 @@ module InvoicesHelper
     Payday::Config.default.company_details = "Gurgaon, Haryana - 122016"
     invoice.currency = Payday::Config.default.currency 
     # @headerdetails=HeaderDetail.where(:account_id=>@account_id)
-    invoice.notes = "#{Settings.invoices.notes}"
+    invoice.notes = @domain_root_account.settings[:invoices_notes]
      if @header_detail.nil?
         Payday::Config.default.invoice_logo = "#{Rails.root}/public/images/arrivu_logo.png"
 

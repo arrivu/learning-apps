@@ -697,9 +697,11 @@ color:white;
 }
 .resource .details .desc
 {
-	min-height:50px;
-	font-weight: bold;
-	border-top: 1px solid hsl(0, 0%, 87%);
+	min-height: 50px;
+float: left;
+font-weight: bold;
+border-top: 1px solid hsl(0, 0%, 87%);
+
 }
 /*.type:before {
 background: rgba(255,0,0,0);

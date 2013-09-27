@@ -1,7 +1,7 @@
 <%= javascript_tag do %>
     function logout_lms()
 
-    { myWindow =window.open('<%= "#{Settings.lms.root_url}#{Settings.lms.logout_path}" %>',"_blank")
+    { myWindow =window.open('<%= "#{@domain_root_account.settings[:lms_root_url]}#{@domain_root_account.settings[:lms_logout_path]}" %>',"_blank")
 
     $.ajax({
     url: '<%= destroy_user_session_path %>',

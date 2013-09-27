@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
   
   def mail_contact(name,email,message)
   	message="Name: #{name}\nEmail: #{email}\nMessage:\n#{message}" 
-  	mail(:to => Settings.admin_mail.to, :subject => "Contact Us",:body => message)
+  	mail(:to =>  @domain_root_account.settings[:admin_mail_to], :subject => "Contact Us",:body => message)
   end
 
   def teaching_staffs_activation(teaching_staff)

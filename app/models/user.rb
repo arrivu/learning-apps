@@ -75,15 +75,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  before_destroy :delete_in_lms
-  def delete_in_lms
-    if lms_enable? 
-      lmsuser=CanvasREST::User.new
-      lmsuser.set_token(Settings.lms.oauth_token,Settings.lms.api_root_url)
-      lmsuser.delete_user(Settings.lms.account_id,self.lms_id)
-    end
-  end
-
   def self.insert_user_role(user_id,role_id)
     find_by_sql("insert into users_roles(user_id,role_id) values(#{user_id},#{role_id})")  
   end
