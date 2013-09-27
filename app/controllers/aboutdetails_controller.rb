@@ -4,6 +4,7 @@ class AboutdetailsController < ApplicationController
 	before_filter :valid_domain_check, :only=>[:show,:edit]
  	 def new
 	  	@aboutdetail=Aboutdetail.new
+	  	add_breadcrumb "Add About Details", new_aboutdetail
 	 end
 	def create
 	    @aboutdetail = Aboutdetail.new(params[:aboutdetail])

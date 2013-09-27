@@ -19,7 +19,7 @@ a {
 color: #4183c4;
 text-decoration: none;
 }
-
+.nav li, .nav-list li{list-style: none;}
 a:hover{
 	text-decoration: none;
 }
@@ -271,9 +271,9 @@ margin-top: 45px;
 position: relative;
 top: 0em;
 display: table;
-margin: 0 -1.25em 0 -1.25em;
+margin: 0px;
 width: 104%;
-border-spacing: 1.35em;
+
 border-collapse: separate;
 }
 
@@ -400,7 +400,7 @@ display: table-cell;
 
 text-align: left;
 
-margin-top: 35px;
+margin-top: 5px;
 
    
 }
@@ -867,4 +867,15 @@ margin: 0px auto 30px auto;
 .ribbon2 .ribbon2-content:after {
  right: 0;
  border-width: 1em 1em 0 0;
+}
+
+
+.content-box {
+background-color: #fff;
+outline: 1px #DBDBDB solid;
+margin-bottom: 1em;
+}
+.content-box>.inner {
+margin: 0;
+padding: 1em;
 }

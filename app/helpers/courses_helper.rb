@@ -17,7 +17,7 @@ module CoursesHelper
   def nested_topics_for_course(topics_lists)
     topics_lists.map do |topics_list, sub_topic_lists|
       @topics_list=topics_list
-      render("topics_list") + content_tag(:li, nested_topics_for_course(sub_topic_lists))
+   render("topics_list") + content_tag(:label, nested_topics_for_course(sub_topic_lists),class: "tree-toggler nav-header")
     end.join.html_safe
   end
 

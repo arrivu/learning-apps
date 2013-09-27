@@ -10,6 +10,7 @@
       <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
     </head>
     <body>
+   
         <% if check_null(yield(:effectingHeader)) %>
          <%= render 'layouts/header' %>
           <% else %>
@@ -22,6 +23,10 @@
                 </div>
             <% end %>
         <% end %>
+        <ol class="breadcrumb">
+  <li><%= render_breadcrumbs :separator => ' / ' %></li>
+</ol>
+            
         <%= yield %>
         <%= render 'layouts/login_popup' %>
         <%= render 'layouts/signup_popup' %>
