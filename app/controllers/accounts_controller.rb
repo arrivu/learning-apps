@@ -121,8 +121,8 @@ end
          host_with_subdomain = "#{@account.name }"+"."+ "#{request.domain}"
          redirect_to url_for(:controller => 'accounts', :action => 'authenticate', :host => host_with_subdomain,:cross_domain_login_token=>cross_domain_login_token)
        else
-         @user.errors.messages.merge!(@account.errors) unless @user.valid?
-         render :account_subscription
+          @user.errors.messages.merge!(@account.errors) unless @user.valid?
+          render :account_subscription
          end
      end
 
