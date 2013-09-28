@@ -33,7 +33,7 @@
                         <td><%= teachingstaff.user.email %></td>
                         <td><%= teachingstaff.qualification %></td>
                         <td><%= teachingstaff.description %></td>
-                        <%= form_for teachingstaff , :url => url_for(:controller => 'teaching_staffs', :action => 'activate_teaching_staff' ,id: teachingstaff) do |f| %>
+               <%= form_for teachingstaff , :url => url_for(:controller => 'teaching_staffs', :action => 'activate_teaching_staff' ,id: teachingstaff) do |f| %>
                         <td><%= f.check_box :is_active %></td>
                         <td><%=l teachingstaff.created_at, :format=>'%d %b. %Y %I:%M' %></td>
                         <td><%= f.submit "Enable/Update user", class: "btn btn-mini btn-info" %></td>

@@ -116,5 +116,6 @@ resources :footerlinks
   match 'account_subscription', :to =>'accounts#account_subscription'
 
   match 'authenticate', :to=> 'accounts#authenticate'
+  match 'activate_comments',:to => 'courses#activate_comments'
 
 end

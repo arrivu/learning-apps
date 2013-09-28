@@ -357,6 +357,11 @@ padding: 10px;
 	float: left;
 }
 
+.coursereviews .reviewtime{
+	position: relative;
+	float: left;
+}
+
 .coursereviews .reviewcomment1{
 	position: relative;
 	float: left;

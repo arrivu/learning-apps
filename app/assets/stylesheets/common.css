@@ -870,3 +870,162 @@ margin: 0px auto 30px auto;
  border-width: 1em 1em 0 0;
 }
 
+
+.multicol-column {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+-ms-word-break: break-all;
+display: inline-block;
+padding: 12px 20px 0 0;
+text-align: justify;
+vertical-align: top;
+white-space: normal;
+word-break: break-all;
+word-break: break-word;
+}
+.author-image {
+-moz-border-radius: 24px;
+-webkit-border-radius: 24px;
+border-radius: 24px;
+-moz-box-shadow: 0 1px 2px #8d8d8d;
+-ms-box-shadow: 0 1px 2px #8d8d8d;
+-webkit-box-shadow: 0 1px 2px #8d8d8d;
+box-shadow: 0 1px 2px #8d8d8d;
+height: 48px;
+width: 48px
+}
+
+.quoted-review .review-text {
+font-size: 16px;
+line-height: 22px;
+text-align: left;
+white-space: normal;
+}
+.paragraph-end.details-light {
+background-image: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(245,245,245,0)),color-stop(100%,rgba(245,245,245,1)));
+background-image: -webkit-linear-gradient(left,rgba(245,245,245,0),rgba(245,245,245,1));
+background-image: -moz-linear-gradient(left,rgba(245,245,245,0),rgba(245,245,245,1));
+background-image: -ms-linear-gradient(left,rgba(245,245,245,0),rgba(245,245,245,1));
+background-image: -o-linear-gradient(left,rgba(245,245,245,0),rgba(245,245,245,1));
+background: linear-gradient(to right,rgba(245,245,245,0),rgba(245,245,245,1));
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00f5f5f5',EndColorStr='#f5f5f5');
+}
+.featured-review .author-name {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+box-sizing: border-box;
+color: #333;
+display: inline-block;
+font-size: 13px;
+margin-top: 2px;
+max-height: 17px;
+max-width: 100%;
+overflow: hidden;
+margin-right: 45px;
+text-align: left;
+}
+.featured-review-star-rating {
+display: inline-block;
+margin-left: -5px;
+position: relative;
+top: 0px;
+float:left;
+}
+.tiny-star.star-rating-non-editable-container {
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAcklEQ…YWTVoEA4cSjTDFalAM5uPVCFTABY0/ASSDBKBiXNRNcqRiADBao1Bj6dJdAAAAAElFTkSuQmCC);
+height: 14px;
+width: 69px;
+}
+.star-rating-non-editable-container {
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAcklEQ…YWTVoEA4cSjTDFalAM5uPVCFTABY0/ASSDBKBiXNRNcqRiADBao1Bj6dJdAAAAAElFTkSuQmCC) top left repeat-x;
+left: -1px;
+list-style: none;
+margin: 0px;
+padding: 0px;
+position: relative;
+top: 1px;
+}
+.tiny-star .current-rating {
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAdElEQ…ouEAwcSjTCFB+AYjAfr0agAgNo/AUgGRQAFTOgbpIjFQMAtcfKBD81ItYAAAAASUVORK5CYII=) left bottom;
+height: 14px;
+}
+.current-rating {
+background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAdElEQ…ouEAwcSjTCFB+AYjAfr0agAgNo/AUgGRQAFTOgbpIjFQMAtcfKBD81ItYAAAAASUVORK5CYII=) left bottom repeat-x;
+display: block;
+position: absolute;
+}
+.reviews .rating-box, .reviews .featured-review {
+margin-top: 6px;
+vertical-align: top;
+}
+.featured-review {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+margin-bottom: 20px;
+max-width: 375px;
+min-height: 85px;
+padding: 0 5px 0 78px;
+position: relative;
+white-space: nowrap;
+}
+.featured-review .author {
+left: 0;
+padding-left: 10px;
+position: absolute;
+text-align: center;
+width: 60px;
+}
+.featured-review .author, .featured-review .review-text {
+display: inline-block;
+vertical-align: top;
+}
+.author-image {
+-moz-border-radius: 24px;
+-webkit-border-radius: 24px;
+border-radius: 24px;
+-moz-box-shadow: 0 1px 2px #8d8d8d;
+-ms-box-shadow: 0 1px 2px #8d8d8d;
+-webkit-box-shadow: 0 1px 2px #8d8d8d;
+box-shadow: 0 1px 2px #8d8d8d;
+height: 48px;
+width: 48px;
+}
+.featured-review .quoted-review {
+color: #8d8d8d;
+font: italic 300 16px "Roboto","Georgia",serif;
+overflow: hidden;
+position: relative;
+white-space: nowrap;
+max-width: 90%;
+margin-top: 25px;
+}
+.quoted-review .review-text {
+display: inline-block;
+font-size: 16px;
+line-height: 22px;
+max-height: 100%;
+overflow: hidden;
+text-align: justify;
+vertical-align: top;
+white-space: normal;
+}
+.review-title {
+color: #555;
+font-weight: 500;
+}
+.review-text
+.quoted-review .review-text {
+font-size: 16px;
+line-height: 22px;
+text-align: left;
+white-space: normal;
+}
+.review-body {
+margin: 4px 0 20px 57px;
+max-height: 308px;
+overflow: hidden;
+}
+

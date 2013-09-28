@@ -68,6 +68,9 @@ end
     end
 
  def account_subscription
+
+  if Account.default.id  == @domain_root_account.id
+
       @account=Account.new
       @user=User.new
    unless params[:user].nil?
@@ -101,8 +104,11 @@ end
              render :account_subscription
            end
        end
-
-     end
+      end
+   else 
+     redirect_to root_path
+      flash[:notice] = "You are not authorized to access this page"   
+   end
  end
 
   def create_subscription_authentication(account_name,email,password,token)

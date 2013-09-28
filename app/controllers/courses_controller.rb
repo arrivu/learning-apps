@@ -355,13 +355,12 @@ class CoursesController < ApplicationController
 
   end
   def review
-   @course =Course.find(params[:id])
-   @comments= @course.comments
-   @comment=Comment.new
+    @course =Course.find(params[:id])
+    @comments= @course.comments
+    @comment=Comment.new
 
   end
  
-
   end
 
 

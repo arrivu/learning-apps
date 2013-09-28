@@ -27,7 +27,7 @@ class Account < ActiveRecord::Base
   validates :organization, presence: true
   validates_acceptance_of :terms_of_service
   def self.default
-    Account.first
+    Account.find(1)
   end
 
   def add_user(user, membership_type = nil)
