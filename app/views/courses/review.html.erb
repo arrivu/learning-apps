@@ -39,7 +39,9 @@
 
            <div class="paragraph-end details-light"></div> 
            <% if current_user.has_role? :admin or current_user.has_role? :account_admin %>
-           <%= render 'comment_enable' %> 
+               <% @comment=comment  %>
+
+           <%= render 'comment_enable' %>
            <% end %>
          </div> 
         </div>

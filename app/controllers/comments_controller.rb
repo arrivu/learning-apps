@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
 		@course = Course.find(params[:commentable_id])
 		@commentable_type = params[:commentable_type]
 		@commentable_id = params[:commentable_id]
+
 		#@course = Course.find(params[:commentable])
 		respond_to do |format|
 			if @comment.save
@@ -55,21 +56,8 @@ class CommentsController < ApplicationController
 		@commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
 		@comments = @commentable.comments.recent.limit(10).all
 	end
-   def activate_comments
-    @comments=Comment.find(params[:id])
-    @comments.is_active = params[:comment][:is_active]
-    if @comments.save!
-      if @comments.is_active?
-        
-        redirect_to review_path
-        flash[:success] = ""
-      else
-        redirect_to review_path
-        
-      end
-    end
 
-  end
+   
   
 
 end

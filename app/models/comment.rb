@@ -28,7 +28,8 @@
 
 class Comment < ActiveRecord::Base
 include ActsAsCommentable::Comment
-  attr_accessible :title, :comment
+  scope :active, -> { where("is_active IS true") }
+  attr_accessible :title, :comment ,:is_active
   belongs_to :commentable, :polymorphic => true
   default_scope :order => 'created_at DESC'
 

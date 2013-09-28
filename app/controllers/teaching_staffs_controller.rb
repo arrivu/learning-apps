@@ -184,6 +184,10 @@ class TeachingStaffsController < ApplicationController
       redirect_to root_path
       flash[:notice] = "You are not authorized to access this page"
     end 
+    end
+      end
+
+   end
   end
 
   def activate_teaching_staff
@@ -245,5 +249,8 @@ class TeachingStaffsController < ApplicationController
 
   end
 
+  end
 
-end
+
+
+

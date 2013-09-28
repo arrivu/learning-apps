@@ -1,4 +1,5 @@
- <%= form_for :comment , :url=> {:controller => 'comments', :action => 'activate_comments' ,:id=> @course.id} do |update_comment| %>
-   <td><%= update_comment.check_box :is_active %></td>
-   <td><%= update_comment.submit "Enable/Update comments"  %></td>
-      <% end  %> </form>
+<%= form_for :comment , :url=> {:controller => 'courses', :action => 'activate_comments' ,
+                                :review_id=> @comment.id,:id=>@course.id} do |update_comment| %>
+    <td><%= update_comment.check_box :is_active %></td>
+    <td><%= update_comment.submit "show/disable comments"  %></td>
+<% end  %>

@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.text :comment
       t.references :commentable, :polymorphic => true
       t.references :user
-      t.boolean :is_active
+      t.boolean :is_active ,:default=> true
       t.timestamps
     end
 
