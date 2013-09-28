@@ -14,14 +14,11 @@ $(document).ready(function(){
   
 <div class="span3 content-box resource" style="float: left;">
    
-<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;">
-
-  <div class="type ribbon1 " <%= @course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{@course.topic.color}" unless @course.topic.nil? %>><span class="prefix"> <%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></span></div>
-</div>
+<div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;"></div>
 <div class="details" style="margin-top:165px;">
-<h2>
+<div class="we" style="margin:4px 50px;"><h2>
 <%= @course.title %>
-</h2>
+</h2></div>
 
 <ul>
 
@@ -66,11 +63,12 @@ $(document).ready(function(){
 
         <%= author.name%>
         
-           
-        <p style="font-size: 17px;padding-top: 5px;"><%= truncate(author.description, :length => 300)%></p>
-      </li> <% end %>
-
+          </li> 
 </ul>
+        <p style="font-size: 15px;padding-top: 5px;margin: 5px 14px;">
+          <%= truncate(author.description, :length => 300)%></p>
+       <% end %>
+
 
 </div>
 </div>

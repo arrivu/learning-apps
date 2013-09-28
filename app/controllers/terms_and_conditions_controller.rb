@@ -3,8 +3,7 @@ class TermsAndConditionsController < ApplicationController
 	 before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	  before_filter :valid_domain_check, :only=>[:show,:edit]
  		 def new
-        tid=@account_id
-        tid=TermsAndCondition.find_by_account_id(tid)
+        tid=TermsAndCondition.find_by_account_id(@account_id)
         if tid == nil
          @terms_and_condition=TermsAndCondition.new
         else

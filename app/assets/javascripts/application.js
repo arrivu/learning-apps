@@ -38,8 +38,6 @@ $(".alert-success").alert();
 window.setTimeout(function() { $(".alert-success").alert('close'); }, 5000);
 $(".alert-notice").alert();
 window.setTimeout(function() { $(".alert-notice").alert('close'); }, 5000);
-$(".alert-info").alert();
-window.setTimeout(function() { $(".alert-info").alert('close'); }, 5000);
 
 $(function(){
   $(".collapse li a").tooltip();

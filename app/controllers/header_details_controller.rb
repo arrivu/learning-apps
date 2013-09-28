@@ -30,8 +30,7 @@ class HeaderDetailsController < ApplicationController
   end
  
   def new
-    hid=@account_id
-    @header=HeaderDetail.find_by_account_id(hid)
+    @header=HeaderDetail.find_by_account_id(@account_id)
     if @header == nil
       @header_detail = HeaderDetail.new
     else
@@ -43,8 +42,6 @@ class HeaderDetailsController < ApplicationController
 
   def create
   	@header_detail = HeaderDetail.new(params[:header_detail])
-
-
     if(params[:header_detail][:logo_name]!=nil)
      params[:header_detail][:logo_name].original_filename= params[:header_detail][:logo_name].original_filename + "#{(Time.now.to_i.to_s + Time.now.usec.to_s).ljust(16, '0')}#{File.extname(params[:header_detail][:logo_name].original_filename)}"
       file_name=params[:header_detail][:logo_name].original_filename

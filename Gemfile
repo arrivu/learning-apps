@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'jquery-rails','2.2.1'
@@ -16,7 +16,7 @@ gem 'omniauth-facebook','1.4.1'
 gem 'omniauth-linkedin','0.1.0'
 #This is needed to fix rupee symbol
 gem 'money',:git => 'git://github.com/m-narayan/money', :branch => 'beacon-deploy'
-gem 'delayed_job_active_record','0.4.4'
+gem 'delayed_job_active_record','4.0.0'
 gem "payday",'1.1.0'
 gem 'omniauth-google-oauth2','0.1.17'
 gem 'oauth2','0.8.1'
@@ -70,4 +70,5 @@ gem 'ancestry'
 gem "themes_for_rails", "~> 0.5.1"
 gem "paperclip", "~> 3.0"
 gem 'bootstrap-tooltip-rails'
+gem "delayed_job_web"
 
