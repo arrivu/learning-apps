@@ -40,7 +40,7 @@ class AuthenticationController < ApplicationController
         if user.save(:validate => false)          
           Student.create(:user_id=>user.id,:name => user.name,:contact_no => user.phone)
           AccountUser.create(:user_id=>user.id,:account_id=>@account_id,:membership_type => "student")
-       
+
           lms_create_user(user).delay if lms_enable?
           flash.now[:notice] = "Account created and signed in successfully."
           user.add_role(:student)
