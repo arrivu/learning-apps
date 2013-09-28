@@ -13,7 +13,7 @@
              <%= f.error_messages %>
              <%= f.fields_for @teaching_staff_user,:validate=> true do |user_form| %>
                   <%= user_form.error_messages %>
-             <table id="dataTable" style="margin: 0px auto;text-align: left;">
+             <table id="dataTable" style="margin: 0px auto;text-align: left">
              <tbody><tr><th>Name *</th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
              <tr><th>Email*</th><td> <%= user_form.text_field :email%></td></tr>
              <tr><th>Password*</th><td><%= user_form.password_field :password %></td></tr>
