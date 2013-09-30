@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   require 'csv'
 
   def index
+    add_breadcrumb "Users", users_path
       @topics= Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
       @topics = @topics.sort_by {|x| x.name.length}
       query = "%#{params[:query]}%"
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    add_breadcrumb @user.name, user_path
     @user = User.find(params[:id])
     if @user.has_role? :student
       @student=Student.where(user_id: @user.id).first
@@ -68,6 +70,7 @@ class UsersController < ApplicationController
     end
   end
   def interested_users
+    add_breadcrumb "Interested Users", interested_users_path
     query = "%#{params[:search]}%"
     if params[:search]==nil || params[:search]=="All" || params[:search] == ""
       @users =  StudentCourse.where("status= ?","follow").paginate(page: params[:page], :per_page => 10) 

@@ -28,6 +28,8 @@
           </div>
           <nav style="padding:0px;">
             <ul class="nav pull-right">
+
+          
               <li> <%= link_to "Course Library", courses_path %></li>
               <% if user_signed_in?%>
                   <% if current_user.has_role? :admin %>
@@ -49,9 +51,17 @@
                       <script>
                           $('.courseslink').css('left',"-140px");
                       </script>
-
-          
                   <% end  %>
+
+      <% if current_user.has_role? :teacher %>
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+             <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+                      
+             <script>
+              $('.courseslink').css('left',"-100px");
+             </script>
+           <% end %>
+      <% end %>
 
 
                   <li id="fat-menu" class="dropdown">
@@ -80,9 +90,8 @@
               <% else %>
                   <li><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
                   <li><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-                  <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
-                  <li><%= link_to "Subscribe Now", account_subscription_path%></li>
-              <% end %>
+   <% end %>
+               
             </ul>
           </nav>
           </div>
@@ -125,20 +134,17 @@
                   </script>
               <% end  %>
 
-
               <% if current_user.has_role? :teacher %>
-                    <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                        <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+          <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
+             <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
                       
-                          <script>
-                              $('.courseslink').css('left',"-100px");
-                          </script>
-                     <% end %>
-             <% end %>
+             <script>
+              $('.courseslink').css('left',"-100px");
+             </script>
+           <% end %>
+      <% end %>
 
-
-
-              <li id="fat-menu" class="dropdown">
+         <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <% if current_user.image_blob == nil %>
                       <% if current_user.omni_image_url == nil %>
@@ -165,17 +171,15 @@
               <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
               <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
 
-        <% if @domain_root_account.signup_teacher_enable? %>
+         <% if @domain_root_account.settings[:signup_teacher_enable] == true %>
                
               <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
+        <% end %>
 
-
-        <% end %>      
-              <li><%= link_to "Subscribe Now", account_subscription_path%></li>
-
-
-    
-          <% end %>
+        <% if Account.default.name == @domain_root_account.name %>
+          <li><%= link_to "Subscribe Now", account_subscription_path%></li>
+        <% end %>
+   <% end %>
 
 
         </ul>

@@ -1,19 +1,12 @@
 <% provide(:title, 'A Smarter Way to Learn') %>
-<div style="width:1349px;margin:0px auto;">
   <% provide(:effectingHeader) %>
-
-
-  <div class="homebanner" style="">
+   <div class="homebanner" style="">
     <div class="row">
-
       <div class="row">
-
-
-       <div id="slideshow1" class="sliders">
-       <% if @domain_root_account.settings[:slide_show_enable] %> 
-        <% @slider.each do |slider| %> 
-
-        <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
+        <div id="slideshow1" class="sliders" style="height: 485px;">
+        <% if @domain_root_account.settings[:slide_show_enable] %>
+            <% @slider.each do |slider| %>
+         <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
           <div class="row">
             <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
               <div class="span12" align="center" >
@@ -34,15 +27,52 @@
                 <div class="clearfix"></div>
               </div>  
             </div>
-
           </div>
           <%end%>
-          <% end %> 
+          <% else %>
+<div style="background-image: url('class.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                    <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                        <div class="span12" align="center" >
+                            <div class="bannertext">
+                               <h3 style="color:white;margin-left: 50px;"> </h3>
+                            </div>
+                        </div>
+                           <div class="clearfix"></div>
+                              <div class="span4" align="center" >
 
+                              </div>
+                                 <div class="span5" align="justify">
+                                     <%= render 'show_topics' %>
+                                 </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                               </div>
+                          </div>
+              <div style="background-image: url('ems-banner.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                  <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                    <div class="span12" align="center" >
+                      <div class="bannertext">
+                        <h3 style="color:white;margin-left: 50px;"> </h3>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="span4" align="center" >
 
-        </div>
-      </div>
-    </div>
+                    </div>
+                    <div class="span5" align="justify">
+                      <%= render 'show_topics' %>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+
+          <%end %>
+            </div>
+         </div>
+  </div>
   </div>
   <script type="text/javascript">
       $(document).ready(function () {
@@ -89,19 +119,17 @@
   </section>
   <% end %>
 
-
+   <% if  @domain_root_account.settings[:popular_course_enable] %>
     <div class="homecourse">
       <div class="secondary-content yellobg">
         <div class="container" align="center">
           <div class="row testimonial">
-            <% if  @domain_root_account.settings[:popular_course_enable] %>
-                <h2 style="margin-left:30px;"> Popular Courses</h2>
+                         <h2 style="margin-left:30px;"> Popular Courses</h2>
                 </div>
                 </div>
                 </div>
                 <div class="container">
                   <div class="row">
-
 
                     <%= render 'shared/popular_courselist' %>
 
@@ -110,15 +138,10 @@
         <!--   <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> -->
 </div>
 
-                    </div>
-                  </div>
-                </div>
-                </div>
-            <% end %>
-
-
-
-
+           
+</div>
+</div>
+ <% end %></div>
 
 
 
@@ -159,14 +182,14 @@
                 </div>
 
                 </div>
-                </div>
-                </div>
+
 
                 <div class="ourcustomers " >
                   <div class="secondary-content">
                     <div class="container" align="center">
                       <div class="row testimonial">
                         <% if  @domain_root_account.settings[:testimonial_enable] %>
+
                             <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
                             </div>
                             </div>
@@ -200,7 +223,8 @@
 
 
 
-                                              </div></div>
+                                              </div>
+                                              ></div>
                                           </td>
                                       <%end%>
                                     </tr></table>
@@ -212,30 +236,25 @@
                         </div>
                         </div>
                         <div align="center">
-
-
-
-
-          <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
-
+                            <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
                         </div>
                         </div>
-                        </div>
+
 
                 <div class="bottomadsection">
 
                   <div class="container">
                     <div class="row">
-                  <!--     <div class="span12" align="center" style="width: 95%;">
-                        <h3 style="font-size: 38px;">Step up Your Learning Curve!
-                        </h3>
+                  <!--&lt;!&ndash;     <div class="span12" align="center" style="width: 95%;">-->
+                        <!--<h3 style="font-size: 38px;">Step up Your Learning Curve!-->
+                        <!--</h3>-->
 
 
-                        <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
+                        <!--<a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>-->
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
-                      </div> -->
+                        <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>-->
+                      <!--</div> &ndash;&gt;-->
 
                     </div>
                   </div>

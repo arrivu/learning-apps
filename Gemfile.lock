@@ -87,6 +87,7 @@ GEM
       thor
     bootstrap-will_paginate (0.0.6)
       will_paginate
+    breadcrumbs_on_rails (2.3.0)
     builder (3.0.4)
     cancan (1.6.9)
     capybara (2.1.0)
@@ -175,7 +176,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     mini_portile (0.5.1)
-    multi_json (1.7.9)
+    multi_json (1.8.0)
     multipart-post (1.2.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
@@ -336,6 +337,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-tooltip-rails
   bootstrap-will_paginate (= 0.0.6)
+  breadcrumbs_on_rails
   cancan (= 1.6.9)
   canvas!
   capybara (= 2.1.0)

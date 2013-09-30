@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+  	
 		@total_course_count = Course.where(ispublished: 1).all.count
 		@countCoursesPerPage = 4
 		if params[:mycourses]=="mycourses"

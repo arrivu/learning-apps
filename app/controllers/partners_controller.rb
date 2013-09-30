@@ -13,7 +13,7 @@ class PartnersController < ApplicationController
 		@partner = Partner.new(params[:partner])
 
 	   @partner.account_id=@account_id
-			if @partner.save
+			if @partner.save!
 			  flash[:success] = "Details added "
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
 			  redirect_to partners_path

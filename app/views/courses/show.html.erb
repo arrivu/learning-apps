@@ -9,18 +9,20 @@ $(document).ready(function(){
 });
 </script>
 <div class="row">
-  <div class="container" style="width:100%;background: #F7F7F7;">
+  <div class="" style="width:100%;background: #F7F7F7;">
 <div class="span12" style="width:100%;margin-top:20px;">
   
 <div class="span3 content-box resource" style="float: left;">
    
 <div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 96% 96%;"></div>
 <div class="details" style="margin-top:165px;">
-<div class="we" style="margin:4px 50px;"><h2>
+<div class="we" style="margin:0px 5px;"><h2>
 <%= @course.title %>
 </h2></div>
 
-<ul>
+<ul style="border-bottom:1px hsl(0, 0%, 86%) solid">
+  <li>
+ <div id="rating" ><%=pluralize(@qty,"rate")if !!@qty %></div></li>
 
 <li class="review-stars"  >
   <a>
@@ -28,29 +30,34 @@ $(document).ready(function(){
             <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
             <br align = "center">
             <% end %>
+           
             <%= rating_for @course, "rate"  %>
-
-            <div id="rating"><%= pluralize(@qty,"Rate") if !!@qty%></div>
+           
+             
             <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
            </a>
           
            <% end %>
           </a>
 </li>
+
 </ul>
-<ul style="border-top:0px;">
-<li>
-  Tags:<a href="">
-  <em class="label-a label-offset" style="background: #ddd;padding: 2px;border-radius: 4px;"> <b><%=@course.topic.name.split(' ').map(&:capitalize).join(' ') if !@course.topic.nil? %></b></em></a>
-  </li>
+
+<div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
+ <% @course.tags.each do |tag| %> 
+      <li><a href=<%=tagged_courses_path(tag: tag)%> >
+       <b> <%= tag.name%> </b>
+       <span><%= tag.courses.count%></span></a></li>
+     <%end  %>
 </ul>
+</div>
 <ul class="author" style="text-align: center;border-bottom:0px;border-top:0px;">
 
  <% @course.teaching_staffs.each do |author|%>
 <li>        <% if author.user.image_blob == nil %>
 
         <% if author.user.omni_image_url == nil %>
-                <%= gravatar_for_with_size author.user, "30x30" %>
+                <%= gravatar_for_with_size_course_box author.user, "30x30" %>
 
       
         <% else  %>
@@ -60,13 +67,14 @@ $(document).ready(function(){
         <% else  %>
  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "30x30",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
               <% end  %>
+        <div class="user" style="margin: -72px 0px;">
 
         <%= author.name%>
-        
+        </div>
           </li> 
 </ul>
-        <p style="font-size: 15px;padding-top: 5px;margin: 5px 14px;">
-          <%= truncate(author.description, :length => 300)%></p>
+        <p style="font-size: 10px;padding-top: 5px;margin: -37px 0px 0px 60px;">
+          <%= author.description%></p>
        <% end %>
 
 
@@ -339,40 +347,13 @@ $(".close").click(function(){
  </div>
   </div></div>
 
- <div class="tab-pane" id="messages" style="padding:20px;">
-<div class="underlinetext">
-   
-<div class="coursereviews">
-  <div class="">
-    <div class="">
-      <div align="center">
-        <h4><%=@course.comments.size%> Reviews</h4>
-        <br/>
-      </div>
-    </div>
-    <%= render "comments" %>
-    <div class=" clearfix"></div>
   </div>
-  <div class='apple_pagination' >
-   <%= will_paginate @comments, :container => false %>
- </div>
- <div class=" clearfix"></div>
- <div class="row">
-  <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
-    </div>
-  </div> </div>
-</div>
-</div>
-</div>
-</div> 
 </div>
 </div>
 </div>
 
 
-<div class="span3 content-box resource" style="float: left;padding: 40px;">
+<div class="span3 content-box resource" style="float: left;padding: 47px;">
    <% if @course.is_coming_soon %>
             <h4>Date to be announced</h4>
             <% else %>
@@ -452,7 +433,7 @@ $(".close").click(function(){
 
 </div>
 
-<div class="span3 content-box resource" style="float: left;padding: 40px; margin-top: 50px;">
+<div class="span3 content-box resource" style="float: left; margin-top: 50px; padding: 40px 85px 0px 10px;">
    <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
 <div class="underlinetext">
    
@@ -466,26 +447,27 @@ $(".close").click(function(){
     </div>
     <%= render "comments" %>
     <div class=" clearfix"></div>
-  </div>
-    <!--  <div class='apple_pagination' >
-   <%= will_paginate @comments, :container => false %>
- </div>  -->
+ 
+    
  <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
+    <div>
+     
+      <%= link_to "Add Reveiw",review_path(:id => @course.id),class: "browseourcoursessmall"%>
   </div> 
 </div>
 
-<%= link_to "View All",review_path(:id => @course.id)%>
-
+ <% if @course.comments.size != 0 %>
+<%= link_to "View All",review_path(:id => @course.id),:style => "margin-left: 22px;"%>
+<% end %>
 </div>
 </div></div>
+ </div>
+<!-- </div> -->
+<!-- </div>
 </div>
-</div>
-</div>
-</div>
+</div> -->
 
 
 </div>

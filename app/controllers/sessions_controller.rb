@@ -32,7 +32,9 @@ class SessionsController < Devise::SessionsController
               domain_restrict
              end
 
-          end
+        end
+     else
+       redirect_to users_path
 
      end
 

@@ -43,6 +43,7 @@
 <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
 </tr></table></li>
 </ul>
+
 <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
  <% course.tags.each do |tag| %> 
       <li><a href=<%=tagged_courses_path(tag: tag)%> >
@@ -50,9 +51,8 @@
        <span><%= tag.courses.count%></span></a></li>
      <%end  %>
 </ul>
-<%course.tags.each do |tag| %>
-    <%end  %></div>
- <p class="desc">
+</div>
+ <p class="desc" style="min-height: 35px;">
 <%= course.short_desc  %>
 </p>
 
@@ -61,27 +61,32 @@
  <li>
  <% if author.user.image_blob == nil %>
   <% if author.user.omni_image_url == nil %>
-  <%= gravatar_for_with_size author.user, "25x20" %></td>
+  <%= gravatar_for_with_size_course_box author.user, "25x20" %>
    <% else  %>
   <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
+
  <% end  %>
  <% else  %>
-  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
+  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
 <% end  %>
-<br>
+<div class="user" style="margin: -72px 0px;">
 <%= author.user.name %>
- </li>
- <% end %>
- </ul>
- </div>
- </div>
-</td>
-<%end%>
-<%end%>
 </div>
-</div>
-</div>
+      
 
+       </li>
+ </ul>
+  <p style="font-size: 10px;padding-top: 7px;margin: -42px 55px 0px 60px;">
+          <%= truncate(author.description, :length => 100)%></p> <% end %>
+ </div>
+ </div>
+<%end%>
+</tr>
+</table>
+</div>
+</div>
+<%end%>
+</td></tr></table>
 
 
   <script type="text/javascript">
