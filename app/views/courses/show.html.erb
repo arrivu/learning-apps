@@ -468,7 +468,7 @@ $(".close").click(function(){
         <br/>
       </div>
     </div>
-    <%= render "comments" %>
+    <%= render "comments/comments" %>
     <div class=" clearfix"></div>
   </div>
     <!--  <div class='apple_pagination' >
@@ -477,12 +477,15 @@ $(".close").click(function(){
  <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
+ <div>
+     
+      <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall"%>
   </div> 
 </div>
 
-<%= link_to "View All",review_path(:id => @course.id)%>
+ <% if @course.comments.size != 0 %>
+<%= link_to "View All",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),:style => "margin-left: 22px;"%>
+<% end %>
 
 </div>
 </div></div>
