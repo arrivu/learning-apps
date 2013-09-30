@@ -1,4 +1,4 @@
-<div id="wite_review" style = "margin-left: 30px; margin-top: 300px;">
+<div id="wite_review" style = "margin-left: 30px; margin-top: 100px;">
     <% if user_signed_in?%>
 
         <%= form_for(@comment , :url => comments_path(:commentable_type =>"course", :commentable_id =>@course.id)) do |f| %>

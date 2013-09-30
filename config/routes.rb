@@ -16,7 +16,6 @@ resources :footerlinks
   resources :header_details
   resources :account_themes
   resources :footerlinks
-
   resources :accounts
   match 'teaching_staffs/new',:to=>'teaching_staffs#new'
   resources :course_pricings
@@ -117,5 +116,6 @@ resources :footerlinks
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
   match 'authenticate', :to=> 'accounts#authenticate'
+  match 'activate_comments',:to => 'courses#activate_comments'
   match "/jobs" => DelayedJobWeb, :anchor => false
 end

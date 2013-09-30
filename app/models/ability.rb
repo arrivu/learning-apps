@@ -21,8 +21,11 @@ class Ability
            :upcomming_courses,:subscribed_courses,:my_courses],Course
       can :manage,TeachingStaff
       can [:show_image_detail,:theme_image_detail,:show_image_show,:theme_image_show],HeaderDetail
-      can [:teaching_staff_signup] ,TeachingStaff
+      cannot [:teaching_staff_signup] ,TeachingStaff
       can :terms ,TermsAndCondition
+
+      can :my_courses,Course
+
       can :show ,Topic
 
     elsif
