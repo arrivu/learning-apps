@@ -14,7 +14,7 @@
 
 
  <div class="multicol-column" style="width: auto;">
-  <%= simple_form_for(@comments,:url => url_for(:controller => 'courses',:action => 'review')) do |f| %>
+  <%= simple_form_for(@comment,:url => url_for(:controller => 'courses',:action => 'review')) do |f| %>
     <% @comments.each do |comment| %>
 
   <div class="featured-review clickable" data-reviewid="gp:AOqpTOHk10gYOpEiGszfJDn-uKb--cDKKdND_zhPPKt7fNgXMnzRHfbPMkvyzn9ECSUXLDX6U3ORwXqNU1LwB7M" data-expand-to="my-review"> <div class="author"> <a class="no-nav g-hovercard" > <% if comment.user.image_blob == nil %>
