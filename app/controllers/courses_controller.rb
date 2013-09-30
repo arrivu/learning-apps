@@ -355,35 +355,7 @@ class CoursesController < ApplicationController
 
 
   end
-  def review
-    unless params[:id].nil?
-      @course =@domain_root_account.courses.find(params[:id])
-      @comment=Comment.new
-      if user_can_do?(@course)
-        @comments= @course.comments
-      else
-        @comments=[]
-        @comment_list= @course.comments.active
-        @comment_list.each do |comment|
-         @comments << comment
-          end
-      end
-    end
-
-  end
-
-  def activate_comments
-    @comment=Comment.find(params[:review_id])
-    if @comment.update_attributes(params[:comment])
-      if @comment.is_active?
-        redirect_to :back
-        flash[:success] = "Review is enabled"
-      else
-        flash[:info] = "Review is disabled"
-        redirect_to :back
-      end
-    end
-  end
+  
 
 end
 

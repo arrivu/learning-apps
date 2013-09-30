@@ -181,7 +181,7 @@ class TeachingStaffsController < ApplicationController
 
       end
     else
-      redirect_to root_path
+       root_path
       flash[:notice] = "You are not authorized to access this page"
     end 
     end

@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 	
 	before_filter :signed_in_user
-	before_filter :load_commentable,:except=>[:new,:destroy]
+	before_filter :load_commentable,:except=>[:new,:destroy,:activate_comments]
 
 	# def index
 	# 	@comments =comments.recent.limit(10).all
@@ -49,15 +49,44 @@ class CommentsController < ApplicationController
   end
 
   
+def review
+      @course =@commentable 
+      @comment=Comment.new
+      if user_can_do?(@course)
+        @comments= @course.comments
+      else
+        @comments=[]
+        @comment_list= @course.comments.active
+        @comment_list.each do |comment|
+         @comments << comment
+          end
+      end
 
+  end
+
+   def activate_comments
+    @comment=Comment.find(params[:comment][:comment_id])
+    params[:comment].delete :comment_id
+    if @comment.update_attributes(params[:comment])
+      if @comment.is_active?
+        redirect_to :back
+        flash[:success] = "Review is enabled"
+      else
+        flash[:info] = "Review is disabled"
+        redirect_to :back
+      end
+    end
+  end
 	protected
 
 	def load_commentable
-		@commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
-		@comments = @commentable.comments.recent.limit(10).all
+    if  params[:commentable_type].nil?  and params[:commentable_id].nil?
+        redirect_to activate_comments_path(params)
+      else
+		    @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
+	  	  @comments = @commentable.comments.recent.limit(10).all
+      end
 	end
 
-   
-  
 
 end

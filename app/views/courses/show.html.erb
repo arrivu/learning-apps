@@ -437,7 +437,7 @@ $(".close").click(function(){
         <br/>
       </div>
     </div>
-    <%= render "comments" %>
+    <%= render "comments/comments" %>
     <div class=" clearfix"></div>
  
     
@@ -446,12 +446,12 @@ $(".close").click(function(){
   <div align="center">
     <div>
      
-      <%= link_to "Add Reveiw",review_path(:id => @course.id),class: "browseourcoursessmall"%>
+      <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall"%>
   </div> 
 </div>
 
  <% if @course.comments.size != 0 %>
-<%= link_to "View All",review_path(:id => @course.id),:style => "margin-left: 22px;"%>
+<%= link_to "View All",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),:style => "margin-left: 22px;"%>
 <% end %>
 </div>
 </div></div>
