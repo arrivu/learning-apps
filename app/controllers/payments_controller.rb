@@ -189,7 +189,7 @@ end
     student_course.student_id= user.student.id
     student_course.account_id=@account_id
     student_course.save
-    lms_enroll_student(course.lms_id, user.lms_id)
+    lms_enroll_student(course.lms_id, user.lms_id).delay
   end
   
 end

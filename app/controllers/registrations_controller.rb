@@ -106,7 +106,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     def lms_create
       if (current_user && lms_enable?)
-        lms_create_user(current_user)
+        lms_create_user(current_user).delay
       end
     end
    

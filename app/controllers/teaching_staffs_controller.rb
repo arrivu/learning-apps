@@ -1,10 +1,10 @@
-
-class TeachingStaffsController < ApplicationController
+  class TeachingStaffsController < ApplicationController
   include LmsHelper
   before_filter :authenticate_user!, :except => [:teaching_staff_signup, :teaching_staff_profile,:terms]
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
+  before_filter :delete_in_lms ,:only=> [:destroy]
 	protect_from_forgery :except => :create
 
 
@@ -237,10 +237,8 @@ class TeachingStaffsController < ApplicationController
   end
 
   def terms
-    @account=@domain_root_account
-    @account_id=@account.id
-    @terms=TermsAndCondition.find(@account_id)
-    if @terms==nil
+    @terms=TermsAndCondition.find(@domain_root_account.id)
+    if @terms.nil?
           redirect_to  :terms
     else
       @terms
