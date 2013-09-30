@@ -13,9 +13,7 @@
   z-index:8;
 }
 header {
--webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
--moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+
 background: white;
 margin: 0;
 padding: 10px 0px;
@@ -606,12 +604,9 @@ background-color: #d14836;
 
 .listofkp{
 	min-height: 100px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
 	position: relative;
 	margin-top: 20px;
-    padding:10px 100px;
+    padding:10px 0px;
 }
 
 .listofkp .kp{

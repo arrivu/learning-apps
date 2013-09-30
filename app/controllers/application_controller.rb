@@ -1,4 +1,5 @@
   class ApplicationController < ActionController::Base
+    add_breadcrumb "home", :root_path
     protect_from_forgery
     before_filter :load_account
     before_filter :topics
@@ -98,7 +99,7 @@
         @coursedet= @modelname.constantize.find(params[:id])
     if @account_id!=nil
 
-        if @coursedet.account_id == @account_id
+        if @coursedet.account_id == @domain_root_account.id
           return
 
         else

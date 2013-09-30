@@ -3,8 +3,9 @@ class AboutdetailsController < ApplicationController
 	before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	before_filter :valid_domain_check, :only=>[:show,:edit]
  	 def new
-       id=@account_id
-      @about = Aboutdetail.find_by_account_id(id)
+       add_breadcrumb "Add About Details", new_aboutdetail_path
+	  	@aboutdetail=Aboutdetail.new
+	  	  @about = Aboutdetail.find_by_account_id(@account_id)
      if @about == nil
            @aboutdetail=Aboutdetail.new
         else

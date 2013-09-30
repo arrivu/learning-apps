@@ -26,6 +26,7 @@
 //= require rails.validations.simple_form
 
 
+
 $(function() {
   $(".pagination").on("click", function() {
     $(".pagination").html("Page is loading...");
@@ -41,6 +42,5 @@ window.setTimeout(function() { $(".alert-notice").alert('close'); }, 5000);
 
 $(function(){
   $(".collapse li a").tooltip();
-
   
 })

@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 </script>
 <div class="row">
-  <div class="container" style="width:100%;background: #F7F7F7;">
+  <div class="" style="width:100%;background: #F7F7F7;">
 <div class="span12" style="width:100%;margin-top:20px;">
   
 <div class="span3 content-box resource" style="float: left;">
@@ -347,40 +347,13 @@ $(".close").click(function(){
  </div>
   </div></div>
 
- <div class="tab-pane" id="messages" style="padding:20px;">
-<div class="underlinetext">
-   
-<div class="coursereviews">
-  <div class="">
-    <div class="">
-      <div align="center">
-        <h4><%=@course.comments.size%> Reviews</h4>
-        <br/>
-      </div>
-    </div>
-    <%= render "comments" %>
-    <div class=" clearfix"></div>
   </div>
-  <div class='apple_pagination' >
-   <%= will_paginate @comments, :container => false %>
- </div>
- <div class=" clearfix"></div>
- <div class="row">
-  <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
-    </div>
-  </div> </div>
-</div>
-</div>
-</div>
-</div> 
 </div>
 </div>
 </div>
 
 
-<div class="span3 content-box resource" style="float: left;padding: 40px;">
+<div class="span3 content-box resource" style="float: left;padding: 47px;">
    <% if @course.is_coming_soon %>
             <h4>Date to be announced</h4>
             <% else %>
@@ -460,7 +433,7 @@ $(".close").click(function(){
 
 </div>
 
-<div class="span3 content-box resource" style="float: left;padding: 40px; margin-top: 50px;">
+<div class="span3 content-box resource" style="float: left; margin-top: 50px; padding: 40px 85px 0px 10px;">
    <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
 <div class="underlinetext">
    
@@ -474,26 +447,27 @@ $(".close").click(function(){
     </div>
     <%= render "comments" %>
     <div class=" clearfix"></div>
-  </div>
-    <!--  <div class='apple_pagination' >
-   <%= will_paginate @comments, :container => false %>
- </div>  -->
+ 
+    
  <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
+    <div>
+     
+      <%= link_to "Add Reveiw",review_path(:id => @course.id),class: "browseourcoursessmall"%>
   </div> 
 </div>
 
-<%= link_to "View All",review_path(:id => @course.id)%>
-
+ <% if @course.comments.size != 0 %>
+<%= link_to "View All",review_path(:id => @course.id),:style => "margin-left: 22px;"%>
+<% end %>
 </div>
 </div></div>
+ </div>
+<!-- </div> -->
+<!-- </div>
 </div>
-</div>
-</div>
-</div>
+</div> -->
 
 
 </div>

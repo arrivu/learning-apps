@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
   end
 
   def index
+    add_breadcrumb "Courses", courses_path
    if @account_id!=nil
      @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
      @countCoursesPerPage = 6
@@ -42,6 +43,7 @@ class CoursesController < ApplicationController
  end
 
  def new
+  add_breadcrumb "Add Course", new_course_path
    @course = Course.new
    @topic = Topic.all
  end
@@ -65,6 +67,7 @@ class CoursesController < ApplicationController
  end
 
  def edit
+  add_breadcrumb "Add Course", edit_course_path
      @course= @domain_root_account.courses.find(params[:id])
      if user_can_do?(@course)
    else
@@ -89,6 +92,7 @@ class CoursesController < ApplicationController
  end
 
  def show
+  add_breadcrumb @course.title, course_path
    @course = @domain_root_account.courses.find(params[:id])
    @@course_id=@course
    @price_detail = CoursePricing.find_by_course_id(@course.id)
@@ -356,12 +360,35 @@ class CoursesController < ApplicationController
 
   end
   def review
-
-   @course =Course.find(params[:id])
-   @comments= @course.comments
-   @comment=Comment.new
+    unless params[:id].nil?
+      @course =@domain_root_account.courses.find(params[:id])
+      @comment=Comment.new
+      if user_can_do?(@course)
+        @comments= @course.comments
+      else
+        @comments=[]
+        @comment_list= @course.comments.active
+        @comment_list.each do |comment|
+         @comments << comment
+          end
+      end
+    end
 
   end
+
+  def activate_comments
+    @comment=Comment.find(params[:review_id])
+    if @comment.update_attributes(params[:comment])
+      if @comment.is_active?
+        redirect_to :back
+        flash[:success] = "Review is enabled"
+      else
+        flash[:info] = "Review is disabled"
+        redirect_to :back
+      end
+    end
   end
+
+end
 
 

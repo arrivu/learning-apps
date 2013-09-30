@@ -90,12 +90,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.integer  "user_id"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.boolean  "is_active",                      :default => true
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["is_active"], :name => "index_comments_on_is_active"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "companynames", :force => true do |t|
