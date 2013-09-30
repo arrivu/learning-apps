@@ -59,7 +59,7 @@ gem 'json','1.7.7'
 gem 'rails_config', '0.3.3'
 gem 'acts_as_commentable', '3.0.1'
 gem 'letsrate', '1.0.8'
-gem 'canvas',:git => 'git://github.com/m-narayan/canvas', :branch => 'beacon-deploy' 
+gem 'canvas',:git => 'git://github.com/m-narayan/canvas', :branch => 'arrivuapps'
 gem 'annotate', '2.4.1.beta1'
 #gem 'couponsgem',:git => 'git://github.com/m-narayan/couponsgem'
 gem 'jquery-minicolors-rails', '0.0.3'
@@ -71,4 +71,5 @@ gem "themes_for_rails", "~> 0.5.1"
 gem "paperclip", "~> 3.0"
 gem 'bootstrap-tooltip-rails'
 gem "delayed_job_web"
+gem 'daemons'
 

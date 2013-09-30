@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
    if @course.save
      tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
-     lms_create_course.delay(@course)
+     lms_create_course(@course)
      redirect_to manage_courses_path
    else
      render 'new'
@@ -152,7 +152,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
       lms_id=@course.lms_id
       @course.destroy
-      lms_delete_course(lms_id).delay
+      lms_delete_course(lms_id)
       flash[:success] = "Successfully destroyed course."
       redirect_to manage_courses_url
     end
@@ -219,7 +219,7 @@ class CoursesController < ApplicationController
       @coursesstauts=StudentCourse.find(params[:id])
       if @coursesstauts.update_attributes(status:params[:status])
         flash[:notice] = "Successfully Updated"
-        lms_conclude_enrollment(@coursesstauts.course.lms_id,@coursesstauts.student.user.lms_id).delay
+        lms_conclude_enrollment(@coursesstauts.course.lms_id,@coursesstauts.student.user.lms_id)
         redirect_to course_status_search_path
       else
         render course_status_search
@@ -247,7 +247,7 @@ class CoursesController < ApplicationController
         else
           if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
             flash[:notice] = "Course Successfully Concluded..."
-            lms_conclude_course(@course_id.lms_id).delay
+            lms_conclude_course(@course_id.lms_id)
             redirect_to conclude_course_path
           else
             render :conclude_course
@@ -256,7 +256,7 @@ class CoursesController < ApplicationController
       else
         if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
           flash[:notice] = "Course Successfully Concluded..."
-          lms_conclude_course(@course_id.lms_id).delay
+          lms_conclude_course(@course_id.lms_id)
           redirect_to conclude_course_path
         else
           render :conclude_course
@@ -280,7 +280,7 @@ class CoursesController < ApplicationController
     end
     if @course.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
       flash[:notice] = "Course Successfully Concluded..."
-      lms_conclude_course(@course.lms_id).delay
+      lms_conclude_course(@course.lms_id)
 
       redirect_to concluded_courses_path
     else

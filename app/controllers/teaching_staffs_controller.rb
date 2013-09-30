@@ -136,7 +136,7 @@
     if @teachingstaff.save
       @teachingstaff.user.add_role(:teacher)
       AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-      lms_create_user(@teachingstaff.user).delay
+      lms_create_user(@teachingstaff.user)
       flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
                         will contact you ! "
       unless Rails.env.development?
