@@ -3,21 +3,28 @@ class AboutdetailsController < ApplicationController
 	before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	before_filter :valid_domain_check, :only=>[:show,:edit]
  	 def new
+       add_breadcrumb "Add About Details", new_aboutdetail_path
 	  	@aboutdetail=Aboutdetail.new
-	  	add_breadcrumb "Add About Details", new_aboutdetail
+	  	  @about = Aboutdetail.find_by_account_id(@account_id)
+     if @about == nil
+           @aboutdetail=Aboutdetail.new
+        else
+           redirect_to aboutdetails_path
+         end
+
 	 end
 	def create
 	    @aboutdetail = Aboutdetail.new(params[:aboutdetail])
 	    @aboutdetail.account_id=@account_id
-			    if @aboutdetail.save
+         if @aboutdetail.save
 			      flash[:success] = "About Detail added successfully!!!!"
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
 			      redirect_to aboutdetails_path
 
 			    else
 			      render :action => 'new'
-			    end
-      end 
+          end
+  end
 
       def edit
     		@aboutdetail=Aboutdetail.find(params[:id])

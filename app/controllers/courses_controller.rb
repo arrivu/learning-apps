@@ -192,10 +192,11 @@ class CoursesController < ApplicationController
 
 
     def subscribed_courses
-      @total_course_count =StudentCourse.where(:status =>"enroll").map(&:course_id).uniq.size
-      @courses = Course.where(id: StudentCourse.where(:status =>"enroll").map(&:course_id).uniq).paginate(page: params[:page], per_page: 6)
+      @total_course_count =@domain_root_account.student_courses.where(:status =>"enroll").map(&:course_id).uniq.size
+      @courses = @domain_root_account.courses.where(id: @domain_root_account.student_courses.where(:status =>"enroll").
+          map(&:course_id).uniq).paginate(page: params[:page], per_page: 6)
       @countCoursesPerPage = 6
-      @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
+      @topics = @domain_root_account.topics.where("parent_topic_id!=root_topic_id").order(:name)
     end
 
     def my_courses

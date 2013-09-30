@@ -134,5 +134,4 @@
           :password => @domain_root_account.settings[:mailserver_password] }
 
     end
-
-end
+  end

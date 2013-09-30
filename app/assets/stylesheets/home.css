@@ -606,12 +606,9 @@ background-color: #d14836;
 
 .listofkp{
 	min-height: 100px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-
 	position: relative;
 	margin-top: 20px;
-    padding:10px 100px;
+    padding:10px 0px;
 }
 
 .listofkp .kp{
@@ -697,8 +694,11 @@ color:white;
 }
 .resource .details .desc
 {
-	min-height:50px;
-	font-weight: bold;
+	min-height: 50px;
+float: left;
+font-weight: bold;
+border-top: 1px solid hsl(0, 0%, 87%);
+
 }
 /*.type:before {
 background: rgba(255,0,0,0);

@@ -2,7 +2,7 @@
 module PaymentGatewayHelper
 
 def gateway_enable?
-	true_boolean "#{Settings.payment_gateway.enable}"
+	true_boolean "#{@domain_root_account.settings[:payment_gateway_enable]}"
 end
 
 

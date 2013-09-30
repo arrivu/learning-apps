@@ -1,3 +1,4 @@
+
 Myapp::Application.routes.draw do
 
 
@@ -115,5 +116,6 @@ resources :footerlinks
   match 'terms', :to =>'terms_and_conditions#terms'
   match 'review', :to => 'courses#review' 
   match 'account_subscription', :to =>'accounts#account_subscription'
-
+  match 'authenticate', :to=> 'accounts#authenticate'
+  match "/jobs" => DelayedJobWeb, :anchor => false
 end

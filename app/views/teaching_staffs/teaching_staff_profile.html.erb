@@ -1,20 +1,16 @@
-
-
-<div id="wrap" style="background:#fff;">
-  <div id="content" style="margin: 0px 15% 45px;box-shadow: -2px -1px 10px #333;">
-    <div class="container-fluid outer" >
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+  <div id="content">
+    <div class="container-fluid outer" style="background:#fff;">
       <div class="row-fluid">
         <div class="span12 inner">
           <div class="row-fluid">
             <div class="span12">
               <div class="box">
-                <div id="collapse4" >
+                <div id="collapse4" class="body">
+                  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
 <div id="home" align="center">
-  <div class="alert alert-block" style="width: 70%;font-size:15px;font:bold ">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 style="color: #f27428">Teacher Profile </h4>
-    Since you are Loging IN for the very first time in this application, you  are supposed to enter your full details
-  </div>
+    <div class="icons"><span class="badge badge-info" style="width: 240px;height: 15px;font-size: 15px;">Teaching Staff Profile Updation</span></div>
     <%= tinymce_assets %>
     <%= simple_form_for(@teaching_staff,:url => url_for(:controller => 'teaching_staffs',:action => 'teaching_staff_profile')) do |f| %>
         <table>
@@ -36,18 +32,17 @@
             <td><%= f.text_area :headline,:cols => "10", :rows => "5",placeholder:"Headline" %></td>
            </tr>
         <tr>
-          <td><%= f.label 'Email' %></td>
-                <td><%=  current_user.email %></td>
+                <td><%= f.label 'Email' %></td>
+                <td rowspan="1"><%=  current_user.email %></td>
         </tr>
-        <br>
-        <br>
+
 
         <tr>
           <td><%= f.label 'Biography' %></td>
-          <td><div id="TinyMCE" ><%= f.text_area :biography,:class => "tinymce",:cols => "6", :rows => "10" %></div></td>
+          <td rowspan="1"><div id="TinyMCE" ><%= f.text_area :biography,:class => "tinymce",:cols => "6", :rows => "10" %></div></td>
+
         </tr>
-          <br>
-          <br>
+
         <tr>
 
           <td><%= f.label 'Address' %></td>
@@ -82,15 +77,16 @@
 
         <%= tinymce %>
         </table>
+
     <%end%>
 
  </div>
+</table>
+ </div>
+</div>
+ </div>
  </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+ </div>
 </div>

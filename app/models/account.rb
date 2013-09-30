@@ -23,6 +23,7 @@ class Account < ActiveRecord::Base
   has_many  :teaching_staff_courses
   has_many :course_pricings
   has_many :coupons
+  has_many :student_courses
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
   validates_acceptance_of :terms_of_service
@@ -71,6 +72,7 @@ add_setting :mailserver_password, :root_only => false
 
 
 add_setting :admin_mail_to, :root_only => false
+add_setting :mailserver_signature ,:root_only => false
 
 add_setting :payment_gateway_enable, :root_only => false,:boolean => true
 add_setting :payment_gateway_merchant_id, :root_only => false
@@ -99,6 +101,7 @@ add_setting :testimonial_enable, :root_only => false, :boolean => true
 add_setting :popular_course_enable, :root_only => false,:boolean => true, :default => true
 add_setting :account_statistics_enable, :root_only => false,:boolean =>true, :default => true
 add_setting :signup_teacher_enable, :root_only => false,:boolean =>true, :default => true
+add_setting :domain_url,:root_only => false
 
   def settings=(hash)
     if hash.is_a?(Hash)

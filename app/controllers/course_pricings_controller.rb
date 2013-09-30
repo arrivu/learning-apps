@@ -42,7 +42,8 @@ class CoursePricingsController < ApplicationController
   def index
     populate_combo_courses
     if(params[:search] != nil && params[:search] != "")
-      @coursepricing = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 30)
+      @coursepricings =[]
+      @coursepricings = @domain_root_account.course_pricings.where("course_id=#{params[:search]}").paginate(page: params[:page], :per_page => 30)
     else
       populate_course_pricing
    end
