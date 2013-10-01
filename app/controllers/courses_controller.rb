@@ -83,7 +83,7 @@ class CoursesController < ApplicationController
    params[:course].delete :tag_tokens
    if @course.update_attributes(params[:course])
      tag_list(tags_token,@course)
-     lms_update_course(@course,old_teaching_staff_id)
+     lms_update_course(@course,old_teaching_staff_id).delay
      flash[:success] ="Successfully Updated Course."  
      redirect_to manage_courses_path
    else
@@ -169,24 +169,24 @@ class CoursesController < ApplicationController
         end
         @courses=@courses.paginate(page: params[:page], :per_page => 30)
       else
-        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 10).order(:id)
+        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 30).order(:id)
       end
       @topic = @domain_root_account.topics
     end
 
     def course_status_search
       if(params[:search] == nil || params[:search] == "" && params[:searchstatus]=='All')
-        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]=='All' )
-        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' AND account_id=?",@account_id ).paginate(page: params[:page], :per_page => 30)
       elsif(params[:search] != nil && params[:search] != "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("course_id='#{params[:search]}' and status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
 
       elsif(params[:search] == nil || params[:search] == "" && params[:searchstatus]!=nil && params[:searchstatus]!="")
-        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status='#{params[:searchstatus]}' AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
 
       else
-        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 15)
+        @coursesstauts = StudentCourse.where("status!='shortlisted'AND account_id=?",@account_id).paginate(page: params[:page], :per_page => 30)
       end
     end
 
@@ -359,35 +359,7 @@ class CoursesController < ApplicationController
 
 
   end
-  def review
-    unless params[:id].nil?
-      @course =@domain_root_account.courses.find(params[:id])
-      @comment=Comment.new
-      if user_can_do?(@course)
-        @comments= @course.comments
-      else
-        @comments=[]
-        @comment_list= @course.comments.active
-        @comment_list.each do |comment|
-         @comments << comment
-          end
-      end
-    end
-
-  end
-
-  def activate_comments
-    @comment=Comment.find(params[:review_id])
-    if @comment.update_attributes(params[:comment])
-      if @comment.is_active?
-        redirect_to :back
-        flash[:success] = "Review is enabled"
-      else
-        flash[:info] = "Review is disabled"
-        redirect_to :back
-      end
-    end
-  end
+  
 
 end
 

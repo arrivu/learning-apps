@@ -134,4 +134,12 @@
           :password => @domain_root_account.settings[:mailserver_password] }
 
     end
+    def delete_in_lms
+      if lms_enable?
+        lmsuser=CanvasREST::User.new
+        lmsuser.set_token(@domain_root_account.settings[:lms_oauth_token],@domain_root_account.settings[:lms_api_root_url])
+        lmsuser.delete_user(@domain_root_account.settings[:lms_account_id],current_user.lms_id)
+      end
+    end
+
   end

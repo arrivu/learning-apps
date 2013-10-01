@@ -16,7 +16,7 @@
          <%  @course_id = request.url%>
          <% @a = @course_id.gsub('/courses', "").to_i%>
          <%= hidden_field_tag "course_id",@a %>
-         <%= f.button :submit, "Sign in", :class => 'btn-primary' %> 
+         <%= f.button :submit, "Sign in", :class => 'btn-primary' %>
           <br/>
          <div>
            <u> <%= link_to "Forgot Password?", new_password_path(:user) %></u>

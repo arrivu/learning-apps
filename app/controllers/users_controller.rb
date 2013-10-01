@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:show, :destroy,:index,:interested_users]
+  before_filter :delete_in_lms ,:only=> [:destroy]
   require 'csv'
-  
+
   def index
     add_breadcrumb "Users", users_path
       @topics= Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
@@ -102,6 +103,7 @@ class UsersController < ApplicationController
     
       end
           
-    end
+     end
+
 
  end
