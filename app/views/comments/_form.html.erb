@@ -16,7 +16,7 @@
         <% end %>
         <%= rating_for @course, "rate" if !@course.blank?%> 
         <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
-         <div class = "rated" %>
+         <div class = "rated">
         <% if @rated == nil  %>
         Rate This Course
         <% else  %>

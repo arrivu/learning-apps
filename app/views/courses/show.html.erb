@@ -351,7 +351,7 @@ $(".close").click(function(){
 </div>
 </div>
 </div>
-<div class="span3 content-box resource" style="float: left;padding: 40px;">
+<div class="span3 content-box resource" style="float: left;padding: 40px 45px 0px 45px;">
    <% if @course.is_coming_soon %>
             <h4>Date to be announced</h4>
             <% else %>
@@ -431,7 +431,7 @@ $(".close").click(function(){
 
 </div>
 
-<div class="span3 content-box resource" style="float: left;padding: 40px; margin-top: 50px;">
+<div class="span3 content-box resource" style="float: left;padding: 40px 85px 0px 3px; margin-top: 50px;">
    <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
 <div class="underlinetext">
    
@@ -457,7 +457,7 @@ $(".close").click(function(){
 </div>
 
  <% if @course.comments.size != 0 %>
-<%= link_to "View All",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),:style => "margin-left: 22px;"%>
+<%= link_to "View All",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),:style => "margin-left: 28px;"%>
 <% end %>
 </div>
 </div>
