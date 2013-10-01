@@ -342,11 +342,12 @@ position: relative;
 clear: both;
 }
 .review-stars {
-line-height: 11px;
 color: #545454;
 clear: both;
-position: relative;line-height: 3px;
-text-align: center;}
+position: relative;
+min-height: 70px;
+text-align: center;
+border-bottom:1px solid #ddd;}
 .resource h2 {
 margin: 0 ;
 padding: 0;
@@ -368,10 +369,10 @@ border: 1px #dbdbdb solid;
 border-width: 1px 0px;
 color: #aaaaaa;
 height: 3em;
-margin: 10px 15px;
+margin: 0px 15px;
 font-size: 13px;
 font-weight: 600;
-padding-top: 1em;
+padding-top: 2em;
 }
 
 .resource .details li {
@@ -586,7 +587,7 @@ margin: 0px auto 30px auto;
 zoom: 1;
 height: 100%;
 float: left;
-margin: 0px 0px;
+margin: 0px 20px;
 }
 .resource .tag ul{margin: -7px;}
 .tags:before, .tags:after {
@@ -688,5 +689,5 @@ margin: 0px 0px;
   margin-left: -51px;
 }
 .star{
-  margin: 0 130px;
+ float: right;
 }
