@@ -27,26 +27,26 @@
 
           </div>
           <nav style="padding:0px;">
-            <ul class="nav pull-right">
+            <ul class="nav pull-right" >
 
           
-              <li> <%= link_to "Course Library", courses_path %></li>
+              <li style="color:#fff;"> <%= link_to "Course Library", courses_path, :style=>"color:#fff;" %></li>
               <% if user_signed_in?%>
                   <% if current_user.has_role? :admin %>
-                      <li ><%= link_to 'Admin', users_path %></li>
+                      <li ><%= link_to 'Admin', users_path, :style=>"color:#fff;" %></li>
                       <script>
                           $('.courseslink').css('left',"-100px");
                       </script>
                   <% elsif current_user.has_role? :account_admin %>
                       <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                          <li ><%= link_to 'Account Admin', users_path %></li>
+                          <li ><%= link_to 'Account Admin', users_path, :style=>"color:#fff;" %></li>
 
                           <script>
                               $('.courseslink').css('left',"-100px");
                           </script>
                       <% end %>
                   <% else  %>
-                      <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
+                      <li class="courseslink"><%= link_to "My Courses", my_courses_path , :style=>"color:#fff;"%></li>
 
                       <script>
                           $('.courseslink').css('left',"-140px");
@@ -55,7 +55,7 @@
 
       <% if current_user.has_role? :teacher %>
           <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-             <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
+             <li ><%= link_to 'Manage Courses', manage_courses_path, :style=>"color:#fff;" %></li>
                       
              <script>
               $('.courseslink').css('left',"-100px");
@@ -64,8 +64,8 @@
       <% end %>
 
 
-                  <li id="fat-menu" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <li id="fat-menu" class="dropdown" >
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#fff;">
                       <% if current_user.image_blob == nil %>
                           <% if current_user.omni_image_url == nil %>
                               <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
@@ -88,10 +88,18 @@
                   </li>
 
               <% else %>
-                  <li><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
-                  <li><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
-   <% end %>
+                  <li><a href="#loginmodal" role="button" data-toggle="modal", style="color:#fff;">Log In</a></li>
+                  <li><a href="#sign_up_Modal" role="button" data-toggle="modal", style="color:#fff;" >Create Account</a></li>
+  
+                <% if @domain_root_account.settings[:signup_teacher_enable] == true %>
                
+              <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path ,:style=>"color:#fff;"%></li>
+        <% end %>
+
+        <% if Account.default.name == @domain_root_account.name %>
+          <li><%= link_to "Subscribe Now", account_subscription_path,:style=>"color:#fff;"%></li>
+        <% end %>
+         <% end %>
             </ul>
           </nav>
           </div>
