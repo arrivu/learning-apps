@@ -43,7 +43,7 @@
 							Valid From
 						</div>
 						<div class="divright">
-							<%= f.input_field :valid_from, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date", :order=>[:day,:month,:year] %>
+							<%= f.input_field :valid_from, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date", :order=>[:day,:month,:year],:style=>"width: 86px;" %>
 
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="divright">
 
-							<%= f.input_field :valid_until, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date", :order=>[:day,:month,:year] %>
+							<%= f.input_field :valid_until, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date", :order=>[:day,:month,:year],:style=>"width: 86px;" %>
 						</div>
 
 					</div>

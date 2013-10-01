@@ -1,10 +1,10 @@
-
-class TeachingStaffsController < ApplicationController
+  class TeachingStaffsController < ApplicationController
   include LmsHelper
   before_filter :authenticate_user!, :except => [:teaching_staff_signup, :teaching_staff_profile,:terms]
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
+  before_filter :delete_in_lms ,:only=> [:destroy]
 	protect_from_forgery :except => :create
 
 
@@ -80,7 +80,7 @@ class TeachingStaffsController < ApplicationController
         render 'edit'
       end
     else
-      @teachingstaff.account_id=@account_id
+      @teachingstaff.account_id=@domain_root_account.id
       if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
                                                password: params[:teaching_staff][:user][:password],
                                                password_confirmation: params[:teaching_staff][:user][:password_confirmation],
@@ -116,6 +116,43 @@ class TeachingStaffsController < ApplicationController
   end
 
   def teaching_staff_signup
+
+  
+   if @domain_root_account.settings[:signup_teacher_enable] == true
+    
+      @teachingstaff = TeachingStaff.new
+      @teaching_staff_user=  @teachingstaff.build_user
+      unless params[:teaching_staff].nil?
+        @teachingstaff.name =  params[:teaching_staff][:user][:name]
+        @teachingstaff.description =  params[:teaching_staff][:description]
+        @teachingstaff.qualification =  params[:teaching_staff][:qualification]
+        @teachingstaff.linkedin_profile_url =  params[:teaching_staff][:linkedin_profile_url]
+        @teachingstaff.is_active =false
+        @teachingstaff.build_user(name: params[:teaching_staff][:user][:name],
+                                  email: params[:teaching_staff][:user][:email],
+                                  user_type: 3,
+                                  content_type: params[:teaching_staff][:user][:content_type],
+                                  attachment: params[:teaching_staff][:user][:attachment],
+                                  password: params[:teaching_staff][:user][:password],
+                                  password_confirmation: params[:teaching_staff][:user][:password_confirmation])
+
+          @teachingstaff.account_id=@account_id
+          if @teachingstaff.save
+             @teachingstaff.user.add_role(:teacher)
+            AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
+            lms_create_user(@teachingstaff.user)
+            flash[:notice] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
+                              will contact you ! "
+            unless Rails.env.development?
+              UserMailer.teaching_staffs_welcome(@teachingstaff).deliver!
+            end
+            redirect_to root_path
+
+          else
+              #@teachingstaff.errors.messages.merge!(:teaching_staff_user.errors) unless @teachingstaff.valid?
+            render :teaching_staff_signup
+          end
+
     @teachingstaff = TeachingStaff.new
     @teaching_staff_user=  @teachingstaff.build_user
     unless params[:teaching_staff].nil?
@@ -141,13 +178,15 @@ class TeachingStaffsController < ApplicationController
                         will contact you ! "
       unless Rails.env.development?
         UserMailer.delay.teaching_staffs_welcome(@teachingstaff)
-      end
-      redirect_to root_path
 
+      end
     else
-      #@teachingstaff.errors.messages.merge!(:teaching_staff_user.errors) unless @teachingstaff.valid?
-     render :teaching_staff_signup
+       root_path
+      flash[:notice] = "You are not authorized to access this page"
+    end 
     end
+      end
+
    end
   end
 
@@ -198,10 +237,8 @@ class TeachingStaffsController < ApplicationController
   end
 
   def terms
-    @account=@domain_root_account
-    @account_id=@account.id
-    @terms=TermsAndCondition.find(@account_id)
-    if @terms==nil
+    @terms=TermsAndCondition.find(@domain_root_account.id)
+    if @terms.nil?
           redirect_to  :terms
     else
       @terms
@@ -210,5 +247,8 @@ class TeachingStaffsController < ApplicationController
 
   end
 
+  end
 
-end
+
+
+

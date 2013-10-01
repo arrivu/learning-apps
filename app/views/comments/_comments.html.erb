@@ -1,0 +1,47 @@
+   
+ <div class="multicol-column" style="width: auto;">
+  
+    <% @comments.each do |comment| %>
+
+      <% if comment.is_active? %>
+
+  <div class="featured-review clickable" data-reviewid="gp:AOqpTOHk10gYOpEiGszfJDn-uKb--cDKKdND_zhPPKt7fNgXMnzRHfbPMkvyzn9ECSUXLDX6U3ORwXqNU1LwB7M" data-expand-to="my-review"> <div class="author"> <a class="no-nav g-hovercard" > <% if comment.user.image_blob == nil %>
+        <% if comment.user.omni_image_url == nil %>
+        <%= gravatar_for_with_size comment.user, "50x50" %>               
+        <% else  %>
+        <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: "", :class=>"img-circle")%> 
+        <% end  %>
+      <% else  %>
+         <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :class=>"img-circle", :id => comment.user.id), :size => "50x50" %>
+         <% end  %> </a>   </div> <div> 
+
+         
+          
+
+          <span class="author-name"> <%= comment.user.name  %> 
+             <a class="no-nav g-hovercard" </a>reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago  </span>
+              <div class="featured-review-star-rating">  
+               <div class="tiny-star star-rating-non-editable-container">
+                <%= rating_for_user @course,comment.user, "rate"  %></div>  
+                  </div> </div> 
+         <div class="quoted-review"> 
+          <div class="review-text"> <span class="review-title"> <%= comment.title  %></span> <%= comment.comment  %></div> 
+
+          
+
+           <div class="paragraph-end details-light"></div> 
+           
+         </div> 
+        </div>
+               <% end %> <%end%></div> 
+           
+                    <div class="clearfix"></div>
+
+           
+
+ </div>
+     
+
+</div>
+
+</div>

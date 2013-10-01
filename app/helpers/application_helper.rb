@@ -181,7 +181,7 @@ end
           # english it would read better as about 80 years.
           minutes_with_offset = distance_in_minutes - minute_offset_for_leap_year
         else
-          minutes_with_offset = distance_in_minutes
+          minutes_with_offset = distance_in_minutes 
         end
         remainder                   = (minutes_with_offset % 525600)
         distance_in_years           = (minutes_with_offset.div 525600)
@@ -223,6 +223,28 @@ end
     current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id =>
                                         context.course.id,:teaching_staff_id =>current_user.teaching_staff.id).blank?
     end
+  end
+
+
+def rating_for_user(rateable_obj, rating_user, dimension = nil, options = {})
+    @object = rateable_obj
+    @user = rating_user
+    @rating = Rate.find_by_rater_id_and_rateable_id_and_dimension(@user.id, @object.id, dimension)
+    stars = @rating ? @rating.stars : 0
+
+
+    disable_after_rate = options[:disable_after_rate] || false
+    
+    readonly=false
+    if disable_after_rate
+      readonly = current_user.present? ? !rateable_obj.can_rate?(current_user.id, dimension) : true
+    end
+ 
+    content_tag :div, '', "data-dimension" => dimension, :class => "star", "data-rating" => stars,
+                "data-id" => rateable_obj.id, "data-classname" => rateable_obj.class.name,
+                "data-disable-after-rate" => disable_after_rate,
+                "data-readonly" => readonly,
+                "data-star-count" => stars
   end
 
 

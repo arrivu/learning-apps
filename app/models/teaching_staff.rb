@@ -16,9 +16,9 @@ class TeachingStaff  < ActiveRecord::Base
   has_many :coupons
   accepts_nested_attributes_for :user
   validates :name, presence: true
-  validates :description, presence: true, length: { maximum: 300}
-  validates :qualification, presence: true
-  validates_acceptance_of :terms_of_service
+  validates :description, :presence => {:message => "Enter Your Description"}, length: { maximum: 300}
+  validates :qualification, :presence => {:message => "Enter Your Qualification"}
+  validates_acceptance_of :terms_of_service,:presence => {:message => "Terms must be Accepted"}
   def teacher
      self.teaching_staff_courses.where(:teaching_staff_type => "teacher")
   end

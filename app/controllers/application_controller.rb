@@ -99,7 +99,7 @@
         @coursedet= @modelname.constantize.find(params[:id])
     if @account_id!=nil
 
-        if @coursedet.account_id == @account_id
+        if @coursedet.account_id == @domain_root_account.id
           return
 
         else
@@ -134,4 +134,12 @@
           :password => @domain_root_account.settings[:mailserver_password] }
 
     end
+    def delete_in_lms
+      if lms_enable?
+        lmsuser=CanvasREST::User.new
+        lmsuser.set_token(@domain_root_account.settings[:lms_oauth_token],@domain_root_account.settings[:lms_api_root_url])
+        lmsuser.delete_user(@domain_root_account.settings[:lms_account_id],current_user.lms_id)
+      end
+    end
+
   end

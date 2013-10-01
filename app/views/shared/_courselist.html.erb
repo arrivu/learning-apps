@@ -67,16 +67,20 @@
   <li>
   <% if author.user.image_blob == nil %>
   <% if author.user.omni_image_url == nil %>
-  <%= gravatar_for_with_size author.user, "25x20"%></td>
+  <%= gravatar_for_with_size author.user, "25x20"%>
+   <br>
+  <%= author.user.name %>
   <% else  %>
   <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
-
+ <br>
+  <%= author.user.name %>
   <% end  %>
   <% else  %>
-  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %></td>
-  <% end  %>
-  <br>
+  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
+   <br>
   <%= author.user.name %>
+  <% end  %>
+ 
   </li>
   <% end %>
   </ul>

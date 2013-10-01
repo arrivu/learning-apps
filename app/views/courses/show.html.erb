@@ -342,34 +342,14 @@ $(".close").click(function(){
  <div class="tab-pane" id="messages" style="padding:20px;">
 <div class="underlinetext">
    
-<div class="coursereviews">
-  <div class="">
-    <div class="">
-      <div align="center">
-        <h4><%=@course.comments.size%> Reviews</h4>
-        <br/>
-      </div>
-    </div>
-    <%= render "comments" %>
-    <div class=" clearfix"></div>
-  </div>
-  <div class='apple_pagination' >
-   <%= will_paginate @comments, :container => false %>
- </div>
- <div class=" clearfix"></div>
- <div class="row">
-  <div align="center">
-    <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
-    </div>
-  </div> </div>
+
 </div>
 </div>
 </div>
 </div> 
 </div>
 </div>
-</div>
+
 
 
 <div class="span3 content-box resource" style="float: left;padding: 40px;">
@@ -464,7 +444,7 @@ $(".close").click(function(){
         <br/>
       </div>
     </div>
-    <%= render "comments" %>
+    <%= render "comments/comments"%>
     <div class=" clearfix"></div>
   </div>
     <!--  <div class='apple_pagination' >
@@ -490,7 +470,7 @@ $(".close").click(function(){
 
 </div>
 </div>
-
+</div>
 </div>
 
 <script>
