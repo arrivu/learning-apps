@@ -165,11 +165,11 @@
                             <tr>
                               <% @partners.each do |partners| %>
                                   <td>
-                                    <div class="span4" style="width: 30%;">
-                                      <div class="kp">
+                                    <div class="span4" >
+                                      <div class="kp" >
                                         <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>
 
-                                        <div class="testimonialtext">
+                                        <div class="testimonialtext" style="width:270px;">
                                           "<%= partners.comments%>"
                                         </div>
                                       </div>
@@ -198,14 +198,14 @@
                             <div class="container" >
                               <div class="row">
                                 <div class="span12">
-                                  <table >
+                                  <table style="width: 70%;margin: 0px auto;">
                                     <tr>
                                       <% @testimonial.each do |testimonials| %>
                                           <td>
-                                            <div class="span4" style="width: 30%;">
+                                            <div class="span3" style="background: url('assets/testinomial-bg.jpg');background-size: 100% 100%;" >
 
                                               <div class="verticalcustomerbox testimonial-one" align="center">
-                                                <div class="testimonialtext">
+                                                <div class="testimonialtext" >
                                                   "<%=testimonials.comment%>" 
                                                 </div> <div class="testimonialauthor" >
 
@@ -214,17 +214,7 @@
 
 
 
-  <div class="container">
-    <div class="row">
-      <div class="span12" align="center" style="width: 95%;">
-        <h3 style="font-size: 38px;">Step up Your Learning Curve!
-        </h3>
-
-                                              </div>
-
-
-
-                                              </div></div>
+  
                                           </td>
                                       <%end%>
                                     </tr></table>
@@ -250,7 +240,7 @@
 
                   <div class="container">
                     <div class="row">
-                  <!--     <div class="span12" align="center" style="width: 95%;">
+                     <div class="span12" align="center" style="width: 95%;">
                         <h3 style="font-size: 38px;">Step up Your Learning Curve!
                         </h3>
 
@@ -259,7 +249,7 @@
 
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
-                      </div> -->
+                      </div> 
 
                     </div>
                   </div>

@@ -617,8 +617,8 @@ background-color: #d14836;
 	/*border-right: 1px solid #eee;*/
 
 	box-shadow: 0px 0px 5px 4px #ddd;
-
-    padding:0px 70px;
+	text-align: center;
+    padding:0px 10px;
     position: center;
     margin:0 0 15px 15px;
     /*display: table-cell;*/
