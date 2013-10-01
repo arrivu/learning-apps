@@ -501,7 +501,7 @@ border: none;
 	/*margin: 0 0 17px;*/
 	padding: 20px 0px 0px 0px;
 
-	 width:200px;
+	 width:270px;
     margin:0 0 0 0;
     /*display: inline;*/
     /*text-align: center;*/
@@ -616,7 +616,8 @@ background-color: #d14836;
 
 	box-shadow: 0px 0px 5px 4px #ddd;
 
-    padding:0px 70px;
+    padding:0px 10px;
+    text-align: center;
     position: center;
     margin:0 0 15px 15px;
     /*display: table-cell;*/

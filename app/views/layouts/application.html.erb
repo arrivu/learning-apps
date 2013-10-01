@@ -28,12 +28,12 @@
   <li><%= render_breadcrumbs :separator => ' / ' %></li>
 </ol>
             
-        <%= yield %>
-        <%= render 'layouts/login_popup' %>
-        <%= render 'layouts/signup_popup' %>
-        <%= render 'layouts/teacher_sign_up_popup' %>
-        <%= render 'layouts/forgot_password' %>
-        <%= render 'layouts/footer' %>
+    <%= yield %>
+    <%= render 'layouts/login_popup' %>
+    <%= render 'layouts/signup_popup' %>
+    <%= render 'layouts/teacher_sign_up_popup' %>
+    <%= render 'layouts/forgot_password' %>
+    <%= render 'layouts/footer' %>
     <%= debug(params)  if Rails.env.development?%>
     </body>
 </html>
