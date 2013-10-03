@@ -24,11 +24,9 @@
                 </div>
             <% end %>
         <% end %>
-      <% if @current_page == "root_path" %>
-             <ol class="breadcrumb">
-  <li><%= render_breadcrumbs :separator => ' / ' %></li>
-</ol>
-<% end %>
+
+
+
             
     <%= yield %>
     <%= render 'layouts/login_popup' %>

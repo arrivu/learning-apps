@@ -9,7 +9,7 @@
   <% if course.data!=nil %>
   <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
   <% else %>
-  <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+  <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 0px solid #ffda55;padding:5px;" %>
   <% end %>
  <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>><span class="prefix"> <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span></div>
 </div>
@@ -80,13 +80,14 @@
           <%= truncate(author.description, :length => 100)%></p> <% end %>
  </div>
  </div>
+ </td>
+<%end%>
 <%end%>
 </tr>
 </table>
 </div>
 </div>
-<%end%>
-</td></tr></table>
+
 
 
   <script type="text/javascript">

@@ -271,9 +271,8 @@ margin-top: 45px;
 position: relative;
 top: 0em;
 display: table;
-margin: 0 -1.25em 0 -1.25em;
-width: 104%;
-border-spacing: 1.35em;
+margin: 0px;
+width: 100%;
 border-collapse: separate;
 }
 
@@ -308,11 +307,12 @@ font-size: .95em;
 outline: 1px solid #dbdbdb;
 float: none;
 display: table-cell;
-box-shadow: 0px 0px 15px 0px #ddd;
+box-shadow: 0px 0px 5px 0px #ddd;
 background:#fff;
 }
-
-
+.resource:hover{
+box-shadow: 0px 0px 15px 0px #ddd;
+}
 .resource .type-tag-positioner {
 
 margin: 0;
@@ -400,7 +400,8 @@ display: table-cell;
 
 text-align: left;
 
-margin-top: 35px;
+margin-top: 65px;
+margin-bottom: 45px;
 
    
 }
@@ -457,8 +458,8 @@ color: #fbfbfb;
 }
 
 .main {
-background-color: #f0f0f2;
-padding: 1em 0;
+background-color: #fff;
+padding: 1.5em 0;
 }
 .keynumbers {
 overflow: hidden;
@@ -689,4 +690,34 @@ margin: 0px 0px;
 }
 .star{
   margin: 0 130px;
+}
+.content-box {
+background-color: #fff;
+outline: 1px #DBDBDB solid;
+margin-bottom: 1em;
+}
+.content-box:hover {
+-webkit-transition: all 0.25s;
+-moz-transition: all 0.25s;
+-ms-transition: all 0.25s;
+-o-transition: all 0.25s;
+transition: all 0.25s;
+}
+.content-box>.inner {
+margin: 0;
+padding: 1em;
+}
+.tags1 {
+line-height: 3.3em;
+}
+.tags1 a{
+  background-color: #aaaaaa;
+
+display: inline-block;;
+width: auto;
+font-size: 0.9em;
+font-weight: normal;
+margin: 0 8px 0 0;
+/*padding: 14px 10px 12px;
+*/text-shadow: none;
 }

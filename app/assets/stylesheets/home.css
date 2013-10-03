@@ -47,7 +47,7 @@ color:#000;*/
 
 .homebanner{
 
-	height: 485px;
+	height: 455px;
 
 	/*background-color: #2C3E50;
 	color:#fff;*/
@@ -158,7 +158,7 @@ color:#000;*/
 
 .homecourse{
 	padding-bottom: 30px;
-/*	background-color:#f1f1f1;*/
+	background-image:url('../assets/pattern-bg.png');
 	color:#333;
 	/*background-image: -webkit-linear-gradient(top, #fff, #f1f1f1);
 background-image: -moz-linear-gradient(top, #fff, #f1f1f1);
@@ -403,21 +403,22 @@ zoom: 1;
 	border-bottom: 0px solid #eee;
 }
 .secondary-content h2 {
-font-size: 26px;
 text-align: center;
-background: url('ribbon.png');
+/*background: url('ribbon.png');*/
 background-repeat: no-repeat;
 background-size: 100% 100%;
 width: 500px;
-box-shadow: 0px 5px 0px 0px #efefef;
-color: white;
+/*box-shadow: 0px 5px 0px 0px #efefef;*/
+/*color: white;*/
+font-weight:400;
 }
 .secondary-content{
 height: 100%;
 width: 100%;
-padding: 12px 0px;
+padding: 0px 0px;
 background-size: 100% 100%;
 box-shadow: 1px 3px 1px 0px #ddd;
+background:#F7DB6C;
 }
 
 
@@ -501,7 +502,7 @@ border: none;
 	/*margin: 0 0 17px;*/
 	padding: 20px 0px 0px 0px;
 
-	 width:270px;
+	 width:200px;
     margin:0 0 0 0;
     /*display: inline;*/
     /*text-align: center;*/
@@ -528,10 +529,10 @@ font-size: 15px;
 .bottomadsection{
 	/*border-top: 2px solid #4090ba ; 
 	border-bottom: 2px solid #4090ba ;*/
-	margin-top: 10px;
-padding: 10px 0px;
+/*	margin-top: 10px;*/
+padding: 30px 0px;
 color: #000;
-min-height: 100px;
+min-height: 160px;
 
 /*background-image: url(../img/bgblack.png);*/
 
@@ -615,12 +616,13 @@ background-color: #d14836;
 	/*border-right: 1px solid #eee;*/
 
 	box-shadow: 0px 0px 5px 4px #ddd;
-    padding:0px 10px;
+    min-height: 220px;
+	padding: 10px 10px;
     text-align: center;
     position: center;
     margin:0 0 15px 15px;
     /*display: table-cell;*/
-
+border-radius: 10px;
 }
 
 .listofkp .lastkp{

@@ -445,22 +445,17 @@ $(".close").click(function(){
       </div>
     </div>
     <%= render "comments/comments"%>
-    <div class=" clearfix"></div>
-  </div>
-    <!--  <div class='apple_pagination' >
+    <div class=" clearfix"></div>    <!--  <div class='apple_pagination' >
    <%= will_paginate @comments, :container => false %>
  </div>  -->
- <div class=" clearfix"></div>
- <div class="row">
-  <div align="center">
+   <div align="center">
     <div >
       <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browseourcoursessmall" %>
   </div> 
+  <%= link_to "View All",review_path(:id => @course.id)%>
 </div>
+ <div class=" clearfix"></div>
 
-<%= link_to "View All",review_path(:id => @course.id)%>
-
-</div>
 </div></div>
 </div>
 </div>

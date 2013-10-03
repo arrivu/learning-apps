@@ -124,7 +124,7 @@
       <div class="secondary-content yellobg">
         <div class="container" align="center">
           <div class="row testimonial">
-                         <h2 style="margin-left:30px;"> Popular Courses</h2>
+                         <h2 style="margin-left:30px;">Popular Courses</h2>
                 </div>
                 </div>
                 </div>
@@ -133,14 +133,16 @@
 
                     <%= render 'shared/popular_courselist' %>
 
-                    <div align="center" style="">
-
-        <!--   <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> -->
-</div>
 
            
 </div>
+
+                    <div align="center" style="">
+
+         <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> 
 </div>
+</div>
+
  <% end %></div>
 
 
@@ -158,7 +160,7 @@
   <div class="row testimonial">
  <div class="listofkp" >
                           <table style="min-width: 200px;
-                                  margin: 0px auto;">
+                                  margin: 35px auto;">
                             <tr>
                               <% @partners.each do |partners| %>
                                   <td>
@@ -184,56 +186,6 @@
                 </div>
 
 
-                <div class="ourcustomers " >
-                  <div class="secondary-content">
-                    <div class="container" align="center">
-                      <div class="row testimonial">
-                        <% if  @domain_root_account.settings[:testimonial_enable] %>
-
-                            <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="container" >
-                              <div class="row">
-                                <div class="span12">
-                                  <table style="width: 70%;margin: 0px auto;">
-                                    <tr>
-                                      <% @testimonial.each do |testimonials| %>
-                                          <td>
-
-                                            <div class="span3" style="background: url('assets/testinomial-bg.jpg');background-size: 100% 100%;" >
-
-                                            <div class="span4" >
-
-
-                                              <div class="verticalcustomerbox testimonial-one" align="center">
-                                                <div class="testimonialtext" >
-                                                  "<%=testimonials.comment%>" 
-                                                </div> <div class="testimonialauthor" >
-
-
-                                                -<%= testimonials.name %>,<br/><%=testimonials.organization%>
-
-
-
-
-                                          </td>
-                                      <%end%>
-                                    </tr></table>
-                        <% end %>
-
-
-      </div>
-
-                        </div>
-                        </div>
-                        <div align="center">
-                            <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
-                        </div>
-                        </div>
-
-
                 <div class="bottomadsection">
 
                   <div class="container">
@@ -254,6 +206,58 @@
                     </div>
                   </div>
                 </div>
+
+
+
+                <div class="ourcustomers " >
+                  <div class="secondary-content">
+                    <div class="container" align="center">
+                      <div class="row testimonial">
+                        <% if  @domain_root_account.settings[:testimonial_enable] %>
+
+                            <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="container" >
+                              <div class="row">
+                                <div class="span12">
+                                  <table style="width: 70%;margin: 25px auto;">
+                                    <tr>
+                                      <% @testimonial.each do |testimonials| %>
+                                          <td>
+
+                                            <div class="span3" style="background: url('assets/Post-It-Note-with-Push-Pin.png');background-size: 140% 100%;
+background-position: -50px;" >
+
+                                           
+
+
+                                              <div class="verticalcustomerbox testimonial-one" align="center">
+                                                <div class="testimonialtext" >
+                                                  "<%=testimonials.comment%>" 
+                                                </div> <div class="testimonialauthor" >
+
+
+                                                -<%= testimonials.name %>,<br/><%=testimonials.organization%>
+
+
+
+
+                                          </td>
+                                      <%end%>
+                                    </tr></table>
+                        <% end %>
+
+
+     
+
+                        </div>
+                        </div>
+                       
+                        </div>
+
+
 
 
 
