@@ -122,13 +122,13 @@ End of Zopim Live Chat Script -->
        
         <ul class="link-list library-nav right">
          <li class="heading">Browse full library</li>
-                  <% @domain_root_account.topics.limit(4).each do |topic| %>
+                  <% @domain_root_account.topics.limit(3).each do |topic| %>
                  <li> <%= link_to topic.name, topic_path(topic) %></li>
 
                   <% end %>
-                <%if @domain_root_account.topics.count > 4   %>
+                <%if @domain_root_account.topics.count > 3   %>
                      <div>
-                        <%=  link_to "viewAll ->",courses_path,:style => "margin-left: 23px;font-size: 13px;font-weight: bolder;font-style: italic;" %>
+                        <%=  link_to "ViewAll ->",courses_path,:style => "margin-left: 23px;font-size: 13px;font-weight: bolder;font-style: italic;" %>
                      </div>
                 <%end  %>
            </ul>
