@@ -3,7 +3,7 @@
     <table style="min-width:200px;margin:0px auto;">
       <tr>
         <% @courses.each do |course|%><% if course.ispopular? %>
-      <td>
+        <td>
         <div class="span3 content-box resource" style="float: left;">
           <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100%% 96%;">
             <% if course.data!=nil %>
@@ -64,26 +64,27 @@
                     <%= gravatar_for_with_size_course_box author.user, "25x20" %>
                     <% else  %>
                     <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
-
-<% end  %>
-<% else  %>
-<%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
-<% end  %>
-<div class="user" style="margin: -72px 0px;">
-<%= author.user.name %>
-</div>
-</li>
-</ul>
-<p style="font-size: 10px;padding-top: 7px;margin: -42px 55px 0px 60px;">
-  <%= truncate(author.description, :length => 100)%></p> <% end %>
-</div>
-</div>
-<%end%>
-</div>
-</div>
-</div>
-<%end%>
-</td></tr></table>
+                    <% end  %>
+                    <% else  %>
+                    <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
+                    <% end  %>
+                    <div class="user" style="margin: -72px 0px;">
+                      <%= author.user.name %>
+                    </div>
+                  </li>
+                </ul>
+                <p style="font-size: 10px;padding-top: 7px;margin: -42px 55px 0px 60px;">
+                  <%= truncate(author.description, :length => 100)%></p> <% end %>
+                </div>
+              </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <%end%>
+      </td>
+    </tr>
+  </table>
 
 
 <script type="text/javascript">
