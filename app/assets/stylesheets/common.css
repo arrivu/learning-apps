@@ -343,13 +343,15 @@ img {
     clear: both;
 }
 .review-stars {
-    line-height: 11px;
-    color: #545454;
-    clear: both;
-    position: relative;line-height: 3px;
-    text-align: center;}
+color: #545454;
+clear: both;
+position: relative;
+min-height: 100px;
+text-align: center;
+border-bottom:1px solid #ddd;
+}
 .resource h2 {
-    margin: 0 ;
+   
     padding: 0;
     font-size: 1.35em;
     line-height: 1.35em;
@@ -365,6 +367,16 @@ img {
      clear: both;
  }
 .resource .details ul {
+/*<<<<<<< HEAD*/
+/*border: 1px #dbdbdb solid;
+border-width: 1px 0px;
+color: #aaaaaa;
+height: 3em;
+margin: 0px 15px;
+font-size: 13px;
+font-weight: 600;
+padding-top: 2em;*/
+/*=======*/
     border: 1px #dbdbdb solid;
     border-width: 1px 0px;
     color: #aaaaaa;
@@ -373,6 +385,7 @@ img {
     font-size: 0.85em;
     font-weight: 600;
     padding-top: 1em;
+/*>>>>>>> fd2c740238340250645c7a49ad0634f0f87d83a4*/
 }
 
 .resource .details li {
@@ -1031,10 +1044,17 @@ padding: 0px 5px 0px 15px;
 
 
 .resource .tag {
+/*<<<<<<< HEAD*/
+zoom: 1;
+height: 100%;
+float: left;
+margin: 0px 20px;
+/*=======
     zoom: 1;
     height: 100%;
     float: left;
     margin: 0px 0px;
+>>>>>>> fd2c740238340250645c7a49ad0634f0f87d83a4*/
 }
 .resource .tag ul{margin: -10px;}
 .tags:before, .tags:after {
@@ -1133,6 +1153,10 @@ padding: 0px 5px 0px 15px;
 }
 
 .author_image{
-    margin-left: -51px;
+  margin-left: -51px;
+}
+.star{
+ float: right;
+    margin: 10px 0;
 }
 
