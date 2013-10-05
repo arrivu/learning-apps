@@ -346,7 +346,7 @@ body.fixed .pattern-switcher {
 /* Wrapper styles ------------------------------------*/
 #wrap {
   background: url("bg.jpg") repeat #444444;
-  padding-top:20px;
+  padding-top:0px;
   *zoom: 1;
 }
 #wrap:before,
@@ -545,6 +545,11 @@ margin: 5px
     right: 2px;
     top: 2px;
   }
+}
+.box1 {
+  margin-bottom: 0px;
+  position: relative;
+   width: 73%;
 }
 .box {
   margin-bottom: 0px;

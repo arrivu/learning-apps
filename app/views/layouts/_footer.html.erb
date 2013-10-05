@@ -1,161 +1,65 @@
-<!-- 
-
-
-
-
-
-
-<div class="footer">
-  <div class="container">
-
-    <div class="row">
-      <div class="four columns mission">
-        <p class="headinglike" style="font-size: 20px; font-weight:300;">Arrivu Apps Learning Portal</p>
-          <% @footerlinks.each do |footerlink| %>
-       <table width="100%">
-    
-     <tr><td>
-      <a href="<%= footerlink.facebook_url %>" target="_blank" title="facebook"> <%= image_tag "assets/facebook.png" %> </a>
-            <a href="<%= footerlink.google_url %>" target="_blank" title="google"> <%= image_tag "assets/googleplus.png" %></a>
-            <a href="<%= footerlink.linkedin_url %>" target="_blank" title="linkedin"> <%= image_tag "assets/linkedin.png" %></a>
-            <a href="<%= footerlink.youtube_url %>" target="_blank" title="Twitter"> <%= image_tag "assets/youtube.png" %> </a>
-            <a href="<%= footerlink.twitter_url %>" target="_blank" title="Twitter"> <%= image_tag "assets/twitter.png" %></a></td></tr><br/>
-     
-   
-        
-         </table>
-       
-        
-        <p class="copyright">
-          <%= footerlink.copy_write %>
-        </p>
-        <% end %>
-      </div>
-    
-      <div class="two columns">
-        <ul class="link-list site-nav right">
-          <li class="heading">Our Company </li>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Contact Us", new_contact_path %></li>
-          <li><%= link_to "Privacy Policy", privacy_path %></li>
-          <li><%= link_to "Terms & Conditions ", termscondition_path %></li>
-        </ul> 
-      </div>
-      
-      <div class="two columns">
-        <ul class="link-list library-nav right">
-          <li class="heading">Browse full library</li>            
-
-              <% @topics.each do |topic| %>
-             <li> <%= link_to topic.name, topic_path(topic) %></li>
-              <% end %>
-                                
-
-       </ul>
-      </div>
-
-      
-   <div class="two columns end">
-        <ul class="link-list contact-nav right">
-          <li class="heading">
-            Get in touch →
-          </li>
-          <li><%= link_to "Write Us", new_contact_path %></li>
-          <li><a href="mailto:support@beaconlearning.in">Email Us</a></li>
-        </ul>
-      </div> 
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//cdn.zopim.com/?1JPULCVdUq4EPLVvAt0SZ9QtnrtEk7O3';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-End of Zopim Live Chat Script -->
-
-<div class="footer">
-  <div class="container">
-
-    <div class="row">
-      <div class="four columns mission">
-
-        <p class="headinglike" style="font-size: 20px; font-weight:300;"><%= @domain_root_account.organization %></p>
-        <% @footerlinks.each do |footerlink| %>
-        <ul class="social">
-     <li>
-           <a href="<%= footerlink.facebook_url %>" target="_blank" title="Facebook"> <%= image_tag "facebook.png" %> </a>
-          </li>
-
-          <li>
-            <a href="<%= footerlink.twitter_url %>" target="_blank" title="Twitter"> <%= image_tag "twitter.png" %> </a>
-          </li>
-          <li>
-            <a href="<%= footerlink.youtube_url %>" target="_blank" title="Youtube"> <%= image_tag "youtube.png" %> </a>
-          </li>
-          <li>
-            <a href="<%= footerlink.google_url%>" target="_blank" title="Google Plus"> <%= image_tag "googleplus.png" %> </a>
-          </li>
-          <li>
-            <a href="<%= footerlink.linkedin_url %>" target="_blank" title="LinkedIn"> <%= image_tag "linkedin.png" %> </a>
-          </li>
-        </ul>
-
-        <p class="copyright">
-         <%= footerlink.copy_write %>
-        </p>
-        <% end %>
-
-         </div>
-      <div class="two columns">
-        <ul class="link-list site-nav right">
-          <li class="heading">Our Company </li>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Contact Us", new_contact_path %></li>
-          <li><%= link_to "Privacy Policy", privacy_path %></li>
-          <li><%= link_to "Terms & Conditions ", termscondition_path %></li>
-        </ul> 
-      </div>
-      <div class="two columns">
-       
-        <ul class="link-list library-nav right">
-         <li class="heading">Browse full library</li>
-                  <% @domain_root_account.topics.limit(4).each do |topic| %>
+  <div class="content_footer"> 
+   <div class="footer">
+  <div class="inner_footer">
+    <div class="flinksparent">
+    <ul>
+          <% @domain_root_account.topics.limit(4).each do |topic| %>
                  <li> <%= link_to topic.name, topic_path(topic) %></li>
+           <% end %>      
 
-                  <% end %>
-                <%if @domain_root_account.topics.count > 4   %>
-                     <div>
-                        <%=  link_to "viewAll ->",courses_path,:style => "margin-left: 23px;font-size: 13px;font-weight: bolder;font-style: italic;" %>
-                     </div>
-                <%end  %>
-           </ul>
-      </div>
-      <div class="two columns">
-         <ul class="link-list library-nav right">
-        <% @social_stream_comments.each do |social_stream_comment| %>
+      <!-- <li><a href="http://www.jigsawacademy.com/">HOME</a></li>
+      <li><a href="http://www.jigsawacademy.com/learn-analytics">LEARN ANALYTICS</a></li>
+      <li><a href="http://analyticstraining.com" target="_blank">BLOG</a></li>
+      <li><a href="http://www.jigsawacademy.com/faculty">INSTRUCTORS</a></li>
+      <li><a href="http://www.jigsawacademy.com/management">MANAGEMENT TEAM</a></li>
+      <li><a href="http://www.jigsawacademy.com/course-schedule">SCHEDULE</a></li>
+    
+   
+    </ul>
+    <ul>
+
+      <li><a href="http://www.jigsawacademy.com/jigsaw/courses/foundation-analytics">FOUNDATION COURSE</a></li>
+      <li><a href="http://www.jigsawacademy.com/jigsaw/courses/retail-analytics-3">RETAIL ANALYTICS</a></li>
+      <li><a href="http://www.jigsawacademy.com/analytics-courses/financial-analytics">FINANCIAL ANALYTICS</a></li>
+      <li><a href="http://www.jigsawacademy.com/analytics-courses/r-analytics">ANALYTICS WITH R</a></li>
+      <li><a href="http://www.jigsawacademy.com/corporate-training-analytics">CORPORATES</a></li>
+      <li><a href="http://www.jigsawacademy.com/college-training-analytics">COLLEGES</a></li>
+   
+   
+    </ul>
+    
+    <ul>
+
+     <li><a href="http://analyticstraining.com/2012/3-degrees-that-will-prepare-you-for-a-career-in-analytics/" target="_blank">BUSINESS ANALYTICS</a></li>
+      <li><a href="http://www.jigsawacademy.com/college/data-science-training/">DATA SCIENCE</a></li>
+      <li><a href="http://www.jigsawacademy.com/career-in-analytics">CAREER IN ANALYTICS</a></li>
+      <li><a href="http://www.jigsawacademy.com/">SAS TRAINING</a></li>
+        <li><a href="http://www.jigsawacademy.com/analytics-courses/data-science-big-data" target="_blank">BIG DATA TRAINING</a></li>
+       <li><a href="http://jigsawacademy.net/Beginners-guide-to-analytics/" target="_blank">ANALYTICS FOR BEGINNERS</a></li>
+    </ul>
+    
+    <ul>
+
+     <li><a href="http://www.jigsawacademy.com/testimonials">STUDENT TESTIMONIALS</a></li>
+      <li><a href="http://www.jigsawacademy.com/faqs">FAQs</a></li>
+      <li><a href="http://www.jigsawacademy.com/contact">CONTACT US</a></li>
+      <li><a href="http://www.jigsawacademy.com/sas-virtual-lab">VIRTUAL LAB</a></li>
+        <li><a href="http://www.jigsawacademy.com/analytics-placement">PLACEMENT SUPPORT</a></li>
+           <li><a href="http://www.jigsawacademy.com/jigsaw-alumni">JIGSAW ALUMNI</a></li> -->
+    </ul>
+    </div>
+    <div class="copyright">
+    <span>
+      <a href="http://www.jigsawacademy.com/terms-2">Terms and Conditions</a>
+        <a href="http://www.jigsawacademy.com/legal">Legal</a>
+        <a href="http://www.jigsawacademy.com/disclaimer-and-privacy">Disclamer and Privacy</a>
+        <a href="http://www.jigsawacademy.com/refund-and-cancellation">Cancellation and Refund</a>
         
-            
-             <li> <%= social_stream_comment.twitter_comment_script.html_safe %></li>
-
-             <li><%= social_stream_comment.facebook_comment_script.html_safe %></iframe> </li>
-              <% end %> 
-                                 
-       </ul>
-      </div> 
-
-      
-   <!--    <div class="two columns end">
-        <ul class="link-list contact-nav right">
-          <li class="heading">
-            Get in touch →
-          </li>
-          <li><%= link_to "Write Us", new_contact_path %></li>
-          <li><a href="mailto:support@beaconlearning.in">Email Us</a></li>
-        </ul>
-      </div> -->
+    </span>
+    <p style = "color: #699BB3;">
+    © Copyright 2012 Jigsaw Academy Education Pvt. Ltd.</p></div>
+    
     </div>
   </div>
+  
 </div>
