@@ -11,7 +11,8 @@
       <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
     </head>
     <body>
-   
+      <div class="container-fluid">
+  <div class="row">
         <% if check_null(yield(:effectingHeader)) %>
          <%= render 'layouts/header' %>
           <% else %>
@@ -34,6 +35,8 @@
     <%= render 'layouts/teacher_sign_up_popup' %>
     <%= render 'layouts/forgot_password' %>
     <%= render 'layouts/footer' %>
- <%= debug(params)  if Rails.env.development?%> 
+<!--  <%= debug(params)  if Rails.env.development?%>  -->
+</div>
+<!-- </div> -->
     </body>
 </html>

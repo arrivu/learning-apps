@@ -12,7 +12,7 @@
               Status:
               <%= select_tag(:searchstatus, options_for_select(['All','enroll','completed'],:selected => params[:searchstatus])) %>
 
-              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %><% end %>
+              <%= submit_tag "Search", :name => nil,class:"btn btn-primary"  %><% end %>
               <hr>
             </div>
             <table class="table table-condensed table-hover table table-striped">
