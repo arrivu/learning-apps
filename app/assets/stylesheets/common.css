@@ -1181,7 +1181,7 @@ transition: all 0.25s;
 }
 .content-box>.inner {
 margin: 0;
-padding: 1em;
+padding: 5px 35px 5px 0px;
 }
 .tags1 {
 line-height: 3.3em;
