@@ -131,10 +131,7 @@
                 <div class="container">
                   <div class="row">
 
-                    <%= render 'shared/popular_courselist' %>
-
-
-           
+  <%= render 'shared/popular_courselist' %>
 </div>
 
                     <div align="center" style="">
@@ -143,10 +140,8 @@
 </div>
 </div>
 
- <% end %></div>
-
-
-
+ <% end %></div></div>
+</div>
 <div class="ourcustomers " >
    <% if  @domain_root_account.settings[:testimonial_enable] %>
   <div class="secondary-content ">
@@ -157,16 +152,15 @@
    </div>
  </div>
  <div class="container" align="center">
-  <div class="row testimonial">
+ <div class="row testimonial">
  <div class="listofkp" >
-                          <table style="min-width: 200px;
-                                  margin: 35px auto;">
+  <table style="min-width: 200px;margin: 35px auto;">
                             <tr>
                               <% @partners.each do |partners| %>
                                   <td>
                                     <div class="span4" >
                                       <div class="kp" >
-                                        <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>
+    <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>
 
                                         <div class="testimonialtext" style="width:270px;">
                                           "<%= partners.comments%>"
@@ -178,14 +172,10 @@
                             </tr>
                           </table>
                 <% end %>
-
                 </div>
                 </div>
                 </div>
-
                 </div>
-
-
                 <div class="bottomadsection">
 
                   <div class="container">
@@ -250,7 +240,9 @@ background-position: -50px;" >
                         <% end %>
 
 
-     
+
+                       </div>
+
 
                         </div>
                         </div>
