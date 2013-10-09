@@ -89,10 +89,10 @@
 
               <% else %>
                   <li><a href="#loginmodal" role="button" data-toggle="modal", style="color:#fff;">Log In</a></li>
-                  <li><a href="#sign_up_Modal" role="button" data-toggle="modal", style="color:#fff;" >Create Account</a></li>
-  
-                <% if @domain_root_account.settings[:signup_teacher_enable] == true %>
-               
+                  <li><%= link_to "Sign up" ,new_user_registration_path%></li>
+
+                <% if @domain_root_account.signup_teacher_enable? %>
+
               <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path ,:style=>"color:#fff;"%></li>
         <% end %>
 
@@ -177,10 +177,11 @@
 
           <% else %>
               <li ><a href="#loginmodal" role="button" data-toggle="modal" >Log In</a></li>
-              <li ><a href="#sign_up_Modal" role="button" data-toggle="modal" >Create Account</a></li>
+              <li><%= link_to "Sign up" ,new_user_registration_path%></li>
 
-         <% if @domain_root_account.settings[:signup_teacher_enable] == true %>
-               
+
+         <% if @domain_root_account.signup_teacher_enable? %>
+
               <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
         <% end %>
 

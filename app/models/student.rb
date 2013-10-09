@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :contact_no, :description, :name,:user_id,:account_id
+  attr_accessible :contact_no, :description, :name,:user_id,:account_id,:is_active
 
   scope :enroll_courses, joins(:student_courses).where('student_courses.status = ?', "enroll") 
   scope :completed_courses, joins(:student_courses).where('student_courses.status = ?', "completed") 
@@ -8,6 +8,7 @@ class Student < ActiveRecord::Base
   scope :course_complete
   scope :course_shortlist
   has_many :student_courses
+  belongs_to :account
 
   has_many :courses, :through => :student_courses
   belongs_to :user

@@ -105,7 +105,7 @@
   end
 
 	def index
-		@teachingstaff=TeachingStaff.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 10)
+		@teachingstaff=TeachingStaff.where(:account_id=>@account_id).paginate(page: params[:page], :per_page => 30)
 	end
 
 	def destroy

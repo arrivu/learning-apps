@@ -1,65 +1,42 @@
 class SessionsController < Devise::SessionsController
   include CasHelper
   include LmsHelper
+  include ApplicationHelper
   
 # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
-    @account=Account.find_by_name(current_subdomain)
-
-     if current_user.has_role?  :teacher and !current_user.teaching_staff.is_active?
-         reset_session
-         flash[:error] = "Your Account Not yet activated, Please contact admin "
-         redirect_to root_path
-     else
-     if !current_user.has_role?  :account_admin
-       if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
-        super
-           if !current_user.has_role?  :admin
-            AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id,:membership_type => "student")
-           end
+    verify_user_status("sign_in")
+      if !current_user.has_role?  :account_admin
+        if  @domain_root_account.account_users.where(:user_id=>resource.id).empty?
+          super
+          if !current_user.has_role?  :admin
+            AccountUser.create(:user_id=>current_user.id,:account_id=>@domain_root_account.id,:membership_type => "student")
+          end
           if current_user
-              user_cas_sign_in( current_user)
+            user_cas_sign_in( current_user)
           end
         else
-          @subdomain_id= AccountUser.find_by_user_id(current_user.id)
-            if  @account_id==@subdomain_id.account_id
-              super
-               if current_user
-                user_cas_sign_in( current_user)
-               end
-            else
-              domain_restrict
-             end
-
-        end
-     else
-       redirect_to users_path
-
-     end
-
-     end
-
-end
-
+          if  @domain_root_account.id==AccountUser.find_by_user_id(current_user.id).account_id
+            super
+            if current_user
+              user_cas_sign_in( current_user)
+            end
+          else
+            domain_restrict
+          end
+          end
+      else
+        redirect_to users_path
+      end
+  end
 
   # DELETE /resource/sign_out
   def destroy
-    #redirect_path = after_sign_out_path_for(resource_name)
-    #signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    #set_flash_message :notice, :signed_out if signed_out && is_navigational_format?
-    ## We actually need to hardcode this as Rails default responder doesn't
-    ## support returning empty response on GET request
-    #respond_to do |format|
-    #  format.all { head :no_content }
-    #  format.any(*navigational_formats) { redirect_to redirect_path }
-    #end
-
     super
     cas_sign_out
     lms_logout
-    
-    end
+  end
 
   private 
 
@@ -94,7 +71,7 @@ end
     def domain_restrict
      redirect_path = after_sign_out_path_for(resource_name)
      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-     set_flash_message :notice, "invalid domain check your domain" if signed_out && is_navigational_format?
+     set_flash_message :notice, "Invalid domain check your domain" if signed_out && is_navigational_format?
     ## We actually need to hardcode this as Rails default responder doesn't
     ## support returning empty response on GET request
     respond_to do |format|

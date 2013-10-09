@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
   has_one  :teaching_staff , dependent: :destroy
   accepts_nested_attributes_for :teaching_staff
   validates :email, :presence => {:message => "Enter Your Email"}
-  validates :password, :presence =>{:message => "Enter Password"}
-  validates_confirmation_of :password
+  validates :password, :presence =>{:on => :create,:message => "Enter Password"}
+  validates_confirmation_of :password, :on => :create
   validates :name,:presence =>{:message => "Enter Your Name"}
   validates :password_confirmation, :presence =>true
   def teachingdetails

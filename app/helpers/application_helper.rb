@@ -248,6 +248,22 @@ def rating_for_user(rateable_obj, rating_user, dimension = nil, options = {})
   end
 
 
+    def verify_user_status(action=nil)
+      if current_user.has_role?  :student and !current_user.student.is_active?
+        clear_user_session(action)
+      elsif current_user.has_role?  :teacher and !current_user.student.is_active?
+        clear_user_session(action)
+      end
+    end
 
+    def clear_user_session(action=nil)
+      reset_session
+      if action=="sign-in"
+      flash[:error] = "Your Account Not yet activated, Please contact admin "
+      else
+        flash[:info] = "Account has been created.However you cannot login now ,Once your Account is verified the admin
+                        will contact you !"
+      end
+    end
 
 end

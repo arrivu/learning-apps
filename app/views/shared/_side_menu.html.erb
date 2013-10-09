@@ -7,7 +7,8 @@
     <ul class="collapse " id="user">
       <li ><%= link_to "Users", users_path, :rel=>"tooltip", :title=>" Staff" %></li> 
       <li data-placement="right"><%= link_to "Interested Users", interested_users_path , :rel=>"tooltip", :title=>"View who are all interested in your courses" %></li>
-      <li ><%= link_to "Manage Teaching Staff",teaching_staffs_path, :rel=>"tooltip", :title=>"Manage Teaching Staffs" %></li></ul></li>
+      <li ><%= link_to "Manage Teaching Staff",teaching_staffs_path, :rel=>"tooltip", :title=>"Manage Teaching Staffs" %></li>
+      <li ><%= link_to "Manage Students",students_path, :rel=>"tooltip", :title=>"Manage students" %></li></ul></li>
     <% if !current_user.has_role? :account_admin %>                        
       <li ><%= link_to(accounts_path)   do %><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts<% end %></li>
     <% end %>

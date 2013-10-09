@@ -94,15 +94,21 @@ module LmsHelper
 	end
 
 	def lms_get_modules(course)
-		modules=[]
-		if lms_enable?
-			lmscourse=CanvasREST::Course.new
-			lmscourse.set_token(@domain_root_account.settings[:lms_oauth_token],@domain_root_account.settings[:lms_api_root_url])
-			course=lmscourse.get_course(course.lms_id)
-			modules=course.modules
-    else
-			modules
-		end
+    begin
+      modules=[]
+      if lms_enable?
+        lmscourse=CanvasREST::Course.new
+        lmscourse.set_token(@domain_root_account.settings[:lms_oauth_token],@domain_root_account.settings[:lms_api_root_url])
+        course=lmscourse.get_course(course.lms_id)
+        modules=course.modules
+      else
+        modules
+      end
+    rescue Exception => ex
+      flash[:error] = "Cannot connect to LMS Make sure the lms server is running #{ex}"
+      modules=[]
+    end
+
   end
 
   def lms_update_teacher_enrollment(course,old_teaching_staff_id)

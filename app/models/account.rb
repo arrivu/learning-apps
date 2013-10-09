@@ -24,6 +24,7 @@ class Account < ActiveRecord::Base
   has_many :course_pricings
   has_many :coupons
   has_many :student_courses
+  has_many :students
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
   validates_acceptance_of :terms_of_service
@@ -55,44 +56,34 @@ add_setting :cas_expiry_time, :root_only => false, :default => 28800
 add_setting :cas_url, :root_only => false
 add_setting :cas_login_path, :root_only => false, :default => true
 add_setting :cas_logout_path, :root_only => false, :default => true
-
-add_setting :lms_enable, :root_only => false,:boolean => true, :default => true
+add_setting :lms_enable, :root_only => false,:boolean => true, :default => false
 add_setting :lms_account_id, :root_only => false, :default => 1
 add_setting :lms_oauth_token, :root_only => false
 add_setting :lms_root_url, :root_only => false
 add_setting :lms_course_url_path, :root_only => false, :default => true
 add_setting :lms_api_root_url, :root_only => false
 add_setting :lms_logout_path, :root_only => false, :default => true
-
 add_setting :mailserver_address, :root_only => false
 add_setting :mailserver_port, :root_only => false, :default => 587
 add_setting :mailserver_domain, :root_only => false
 add_setting :mailserver_user_name, :root_only => false
 add_setting :mailserver_password, :root_only => false
-
-
 add_setting :admin_mail_to, :root_only => false
 add_setting :mailserver_signature ,:root_only => false
-
 add_setting :payment_gateway_enable, :root_only => false,:boolean => true
 add_setting :payment_gateway_merchant_id, :root_only => false
 add_setting :payment_gateway_work_key, :root_only => false
 add_setting :payment_gateway_ccavenue_account, :root_only => false
-
 add_setting :invoices_notes, :root_only => false, :default => true
-
 add_setting :exception_notifer_email_prefix, :root_only => false
 add_setting :exception_notifer_sender_address, :root_only => false
 add_setting :exception_notifer_exception_recipients, :root_only => false
-
 add_setting :omniauth_facebook_key, :root_only => false
 add_setting :omniauth_facebook_secret, :root_only => false
 add_setting :omniauth_linkedin_key, :root_only => false
 add_setting :omniauth_linkedin_secret, :root_only => false
 add_setting :omniauth_google_oauth2_key, :root_only => false
 add_setting :omniauth_google_oauth2_secret, :root_only => false
-
-
 add_setting :knowledge_partners_enable, :root_only => false, :boolean => true
 add_setting :media_partners_enable, :root_only => false, :boolean => true
 add_setting :slide_show_enable, :root_only => false, :boolean => true
@@ -102,6 +93,7 @@ add_setting :popular_course_enable, :root_only => false,:boolean => true, :defau
 add_setting :account_statistics_enable, :root_only => false,:boolean =>true, :default => true
 add_setting :signup_teacher_enable, :root_only => false,:boolean =>true, :default => true
 add_setting :domain_url,:root_only => false
+add_setting :open_student_registration, :root_only => false,:boolean =>true, :default => true
 
   def settings=(hash)
     if hash.is_a?(Hash)

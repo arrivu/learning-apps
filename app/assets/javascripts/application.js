@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap/bootstrap-tooltip
 //= require bootstrap
-//= require_tree .
 //= require jquery.purr
 //= require best_in_place
 //= require jquery-minicolors
@@ -23,7 +22,7 @@
 //= require tinymce
 //= require jquery.tokeninput
 //= require rails.validations
-//= require rails.validations.simple_form
+//= require_tree .
 
 
 

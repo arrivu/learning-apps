@@ -32,5 +32,9 @@ class UserMailer < ActionMailer::Base
    mail(:to => user.email, :subject => "Account subscription confirmation")
  end
 
+ def student_activation(student)
+   @student =student
+   mail(:to => student.user.email, :subject => "Account Activation")
+ end
 
 end
