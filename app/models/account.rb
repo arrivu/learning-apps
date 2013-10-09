@@ -24,6 +24,7 @@ class Account < ActiveRecord::Base
   has_many :course_pricings
   has_many :coupons
   has_many :student_courses
+  has_many :students
   validates :name, presence: true, uniqueness: true
   validates :organization, presence: true
   validates_acceptance_of :terms_of_service
@@ -55,7 +56,7 @@ add_setting :cas_expiry_time, :root_only => false, :default => 28800
 add_setting :cas_url, :root_only => false
 add_setting :cas_login_path, :root_only => false, :default => true
 add_setting :cas_logout_path, :root_only => false, :default => true
-add_setting :lms_enable, :root_only => false,:boolean => true, :default => true
+add_setting :lms_enable, :root_only => false,:boolean => true, :default => false
 add_setting :lms_account_id, :root_only => false, :default => 1
 add_setting :lms_oauth_token, :root_only => false
 add_setting :lms_root_url, :root_only => false

@@ -67,64 +67,37 @@ end
       end
     end
 
- def account_subscription
-
-
-  if Account.default.id  == @domain_root_account.id
-
-      @account=Account.new
-      @user=User.new
-   unless params[:user].nil?
-     unless params[:user][:account].nil?
-       @account.name=params[:user][:account][:name]
-       @account.organization=params[:user][:account][:organization]
-       @account.terms_of_service=params[:user][:account][:terms_of_service]
-       @user=User.new(name: params[:user][:name],
-                              email: params[:user][:email],
-                              user_type: 2,
-                              content_type: params[:user][:content_type],
-                              attachment: params[:user][:attachment],
-                              password: params[:user][:password],
-                              password_confirmation: params[:user][:password_confirmation])
-
-           if @account.save  and @user.save
-            @user.add_role(:account_admin)
-            AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
-            cross_domain_login_token = generate_random(nil, 150)
-            #create_subscription_authentication(@account.name,params[:user][:email],params[:user][:password],
-                                              # cross_domain_login_token)
-            authenticate_subscription=AuthenticateSubscription.new
-            authenticate_subscription.account_name = @account.name
-            authenticate_subscription.email = params[:user][:email]
-            authenticate_subscription.password = params[:user][:password]
-            authenticate_subscription.token =cross_domain_login_token
-            authenticate_subscription.save!
-            host_with_subdomain = "#{@account.name }"+"."+ "#{request.domain}"
-            redirect_to url_for(:controller => 'accounts', :action => 'authenticate', :host => host_with_subdomain,:cross_domain_login_token=>cross_domain_login_token)
-           else
-             @user.errors.messages.merge!(@account.errors) unless @user.valid?
-             render :account_subscription
-           end
-       end
-      end
-   else 
-     redirect_to root_path
-      flash[:notice] = "You are not authorized to access this page"   
-   end
-
-       if @account.save  and @user.save
-         @user.add_role(:account_admin)
-         AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
-         cross_domain_login_token = generate_random(nil, 150)
-         create_subscription_authentication(@account.name,params[:user][:email],params[:user][:password],
-                                               cross_domain_login_token)
-         host_with_subdomain = "#{@account.name }"+"."+ "#{request.domain}"
-         redirect_to url_for(:controller => 'accounts', :action => 'authenticate', :host => host_with_subdomain,:cross_domain_login_token=>cross_domain_login_token)
-       else
+  def account_subscription
+    @account=Account.new
+    @user=User.new
+    unless params[:user].nil?
+      unless params[:user][:account].nil?
+        @account.name=params[:user][:account][:name]
+        @account.organization=params[:user][:account][:organization]
+        @account.terms_of_service=params[:user][:account][:terms_of_service]
+        @user=User.new(name: params[:user][:name],
+                       email: params[:user][:email],
+                       user_type: 2,
+                       content_type: params[:user][:content_type],
+                       attachment: params[:user][:attachment],
+                       password: params[:user][:password],
+                       password_confirmation: params[:user][:password_confirmation])
+        if @account.save  and @user.save
+          @user.add_role(:account_admin)
+          AccountUser.create!(:user_id=>@user.id,:account_id=>@account.id,:membership_type => "AccountAdmin")
+          cross_domain_login_token = generate_random(nil, 150)
+          create_subscription_authentication(@account.name,params[:user][:email],params[:user][:password],
+                                             cross_domain_login_token)
+          host_with_subdomain = "#{@account.name }"+"."+ "#{request.domain}"
+          redirect_to url_for(:controller => 'accounts', :action => 'authenticate', :host => host_with_subdomain,:cross_domain_login_token=>cross_domain_login_token)
+        else
           @user.errors.messages.merge!(@account.errors) unless @user.valid?
           render :account_subscription
-         end
-     end
+        end
+      end
+
+    end
+  end
 
      end
 

@@ -1,5 +1,4 @@
   class ApplicationController < ActionController::Base
-    add_breadcrumb "home", :root_path
     protect_from_forgery
     before_filter :load_account
     before_filter :topics
@@ -36,7 +35,7 @@
    elsif current_user.has_role? :account_admin
     users_path
 
-   elsif current_user.has_role :teacher
+   elsif current_user.has_role? :teacher
      @count=current_user.sign_in_count
      if(@count== 1)
        #render "teaching_staffs/teaching_staff_profile.html.erb"

@@ -9,7 +9,7 @@
 </div>
     
     <div class="modal-body">
-                <%= simple_form_for(User.new,:validate=>true, :as => :user, :url => registration_path(:user), :html => {:class => 'form-vertical' }) do |f| %>
+                <%= simple_form_for(User.new, :as => :user, :url => registration_path(:user), :html => {:class => 'form-vertical' }) do |f| %>
 
      
                   <table>

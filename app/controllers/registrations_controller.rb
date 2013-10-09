@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   include CasHelper
   include LmsHelper
+  include ApplicationHelper
   #after_filter :login_cas, :lms_create, :student_create, :only => [:create]
   caches_page :user_image
   def after_sign_up_path_for(resource)
@@ -34,19 +35,18 @@ class RegistrationsController < Devise::RegistrationsController
      clean_up_passwords @user
      respond_with @user
     end
-    # super   
-    if current_user  
-      student_create     
+    # super
+    if current_user
+      student_create
       lms_create
       user_cas_sign_in current_user
-    end 
+      verify_user_status
+    end
   end
 
   def update
-    @user = User.find(current_user.id)
-    @account=Account.find_by_name(request.subdomain)
-    successfully_updated = if needs_password?(@user, params)
-      @user.update_with_password(params[:user])
+    successfully_updated = if needs_password?(current_user, params)
+    current_user.update_with_password(params[:user])
     else
       # remove the virtual current_password attribute update_without_password
       # doesn't know how to ignore it
@@ -56,29 +56,22 @@ class RegistrationsController < Devise::RegistrationsController
     if successfully_updated
       set_flash_message :notice, :updated
       # Sign in the user bypassing validation in case his password changed
-      sign_in @user, :bypass => true
+      sign_in current_user, :bypass => true
       redirect_to edit_user_registration_path
     else
       render "edit"
     end
   end
 
-    private
+  def add_status(student)
+    if @domain_root_account.open_student_registration?
+      student.is_active =true
+    else
+      student.is_active =false
+    end
+  end
 
-    # def login_cas
-    #   #call cas sign to create the cas ticket
-    #   if (current_user && cas_enable?)
-    #     begin
-    #       #cookies[:tgt] = tgt
-    #       # Sets a cookie with the domain
-    #       cookies[:tgt] = { :value => "#{tgt}", :domain => cas_cookie_domain }
-    #     rescue Exception => e
-    #       puts e.inspect
-    #       puts "There is some error to sing_in to cas using user : #{current_user.inspect}"
-    #       raise
-    #     end
-    #   end
-    # end
+    private
 
     def user_cas_sign_in (user)
       tgt = nil
@@ -98,9 +91,11 @@ class RegistrationsController < Devise::RegistrationsController
 
     def student_create
       if current_user
-        Student.create(:user_id=>current_user.id,:account_id=>@account_id)
+       student= Student.create(:user_id=>current_user.id,:account_id=>@domain_root_account.id)
+       add_status(student)
+       student.save!
         current_user.add_role(:student)
-        AccountUser.create(:user_id=>current_user.id,:account_id=>@account_id)
+        AccountUser.create(:user_id=>current_user.id,:account_id=>@domain_root_account.id)
       end
     end
 
@@ -114,7 +109,6 @@ class RegistrationsController < Devise::RegistrationsController
     # ie if password or email was changed
     # extend this as needed
     def needs_password?(user, params)
-      user.email != params[:user][:email] ||
-      !params[:user][:password].blank?
+      user.email != params[:user][:email] || !params[:user][:password].blank?
     end
 end

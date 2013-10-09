@@ -8,6 +8,7 @@ class Student < ActiveRecord::Base
   scope :course_complete
   scope :course_shortlist
   has_many :student_courses
+  belongs_to :account
 
   has_many :courses, :through => :student_courses
   belongs_to :user

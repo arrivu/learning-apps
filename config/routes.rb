@@ -118,4 +118,6 @@ resources :footerlinks
   match 'authenticate', :to=> 'accounts#authenticate'
   match 'activate_comments',:to => 'comments#activate_comments'
   match "/jobs" => DelayedJobWeb, :anchor => false
+  resources :students
+  match 'activate_students',:to=> 'students#activate_students'
 end
