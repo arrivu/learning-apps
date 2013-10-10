@@ -2,22 +2,25 @@ class TermsAndConditionsController < ApplicationController
   load_and_authorize_resource
 	 before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	  before_filter :valid_domain_check, :only=>[:show,:edit]
+    caches_action :index,:show
+
  		 def new
         tid=TermsAndCondition.find_by_account_id(@account_id)
         if tid == nil
          @terms_and_condition=TermsAndCondition.new
+         expire_action action: [:index,:show]
         else
           redirect_to terms_and_conditions_path
         end
-	    end
+     end
+
 	    def create
 	        @terms_and_condition = TermsAndCondition.new(params[:terms_and_condition])
 	        @terms_and_condition.account_id=@account_id
 			    if @terms_and_condition.save
 			      flash[:success] = "Terms added successfully!!!!"
-			     
 			      redirect_to terms_and_conditions_path
-
+            expire_action action: [:index,:show]
 			    else
 			      render :action => 'new'
 			    end
@@ -31,9 +34,10 @@ class TermsAndConditionsController < ApplicationController
      		  @terms_and_condition.account_id=@account_id
      		 if @terms_and_condition.update_attributes(params[:terms_and_condition])
         		flash[:success] = "Terms updated"
-        			redirect_to terms_and_conditions_path
+            expire_action action: [:index,:show]
+            redirect_to terms_and_conditions_path
         	else
-        			render :action => 'edit'
+        		render :action => 'edit'
       		end
  		end	
  		def index
@@ -46,11 +50,11 @@ class TermsAndConditionsController < ApplicationController
 			@terms_and_condition = TermsAndCondition.find(params[:id])
 			@terms_and_condition.destroy
 			flash[:success] = "Terms Deleted"
+      expire_action action: [:index,:show]
 			redirect_to terms_and_conditions_path
     end
 
     def terms
-
       @terms_and_conditions = TermsAndCondition.find_by_account_id(@domain_root_account.id)
     end
 

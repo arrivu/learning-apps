@@ -43,3 +43,17 @@ $(function(){
   $(".collapse li a").tooltip();
   
 })
+
+$(document).ready(function () {
+    $("#slideshow1").sliders({ interval: 5000 });
+});
+
+
+$(document).ready(function(){
+    var frames = document.getElementsByTagName("iframe");
+    for (var i = 0; i < frames.length; i++) {
+        frames[i].src += "?wmode=opaque;"
+
+    }
+
+});

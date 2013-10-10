@@ -3,14 +3,15 @@ class CoursePricingsController < ApplicationController
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
+
   def new
     populate_combo_courses
     @coursepricing=@domain_root_account.course_pricings.new
-
   end
 
   def show
   end
+
   def create
     populate_combo_courses
     @coursepricing=CoursePricing.new(params[:course_pricing])

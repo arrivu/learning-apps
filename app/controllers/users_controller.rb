@@ -10,30 +10,42 @@ class UsersController < ApplicationController
       @topics = @topics.sort_by {|x| x.name.length}
       query = "%#{params[:query]}%"
       if params[:provider]==nil
-        @users = User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
+        @users = User.joins(:account_users).where('account_users.account_id = ?',
+                                            @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
 
         @total_users =  User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id).count
       else
         if params[:provider]!="All"
           if(params[:query] == nil || params[:query] == "")
-            @users = User.joins(:account_users).where("provider = ? and account_users.account_id = ?",params[:provider],@domain_root_account.id).all.paginate(page: params[:page], :per_page => 10)
-            @total_users = User.joins(:account_users).where("provider = ?and account_users.account_id = ?",params[:provider],@domain_root_account.id).count
+            @users = User.joins(:account_users).where("provider = ? and account_users.account_id = ?",
+                        params[:provider],@domain_root_account.id).all.paginate(page: params[:page], :per_page => 10)
+            @total_users = User.joins(:account_users).where("provider = ?and account_users.account_id = ?",
+                                                            params[:provider],@domain_root_account.id).count
           else
-            @users = User.joins(:account_users).where("(lower(name) like ? or lower(email) like ?) and provider = ? and account_users.account_id = ?" , query.downcase,query.downcase,params[:provider],@domain_root_account.id).paginate(page: params[:page], :per_page => 10)
-             @total_users = User.joins(:account_users).where("(lower(name) like ? or lower(email) like ?) and provider = ? and account_users.account_id = ?" , query.downcase,query.downcase,params[:provider],@domain_root_account.id).count
+            @users = User.joins(:account_users).where("(lower(name) like ? or lower(email) like ?) and provider = ?
+                       and account_users.account_id = ?" , query.downcase,query.downcase,params[:provider],
+                       @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
+             @total_users = User.joins(:account_users).where("(lower(name) like ? or lower(email) like ?) and
+                             provider = ? and account_users.account_id = ?" , query.downcase,query.downcase,
+                             params[:provider],@domain_root_account.id).count
           end
         else
           if(params[:query] != "")
-            @users = User.joins(:account_users).where("lower(name) like ? or lower(email) like ? and account_users.account_id = ?", query.downcase,query.downcase,@domain_root_account.id).paginate(page: params[:page], :per_page => 10) 
-             @total_users = User.joins(:account_users).where("lower(name) like ? or lower(email) like ? and account_users.account_id = ?", query.downcase,query.downcase,@domain_root_account.id).count
+            @users = User.joins(:account_users).where("lower(name) like ? or lower(email) like ? and
+                     account_users.account_id = ?", query.downcase,query.downcase,@domain_root_account.id).
+                     paginate(page: params[:page], :per_page => 10)
+             @total_users = User.joins(:account_users).where("lower(name) like ? or lower(email) like ? and
+                            account_users.account_id = ?", query.downcase,query.downcase,@domain_root_account.id).count
           else
-            @users = User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
-            @total_users = User.joins(:account_users).where('account_users.account_id = ?', @domain_root_account.id).count
+            @users = User.joins(:account_users).where('account_users.account_id = ?',
+                                                @domain_root_account.id).paginate(page: params[:page], :per_page => 10)
+            @total_users = User.joins(:account_users).where('account_users.account_id = ?',
+                                                            @domain_root_account.id).count
         end
       end  
     end
 
-    
+
   end
 
   def show
@@ -41,11 +53,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.has_role? :student
       @student=Student.where(user_id: @user.id).first
-      @enrolled_courses=Course.joins(:student_courses).where('student_courses.status = ? and student_courses.student_id=? and student_courses.account_id=?', "enroll",@user.student.id,@domain_root_account.id) 
-       @completed_courses=Course.joins(:student_courses).where('student_courses.status = ? and student_courses.student_id=? and student_courses.account_id=?', "completed",@user.student.id,@domain_root_account.id) 
+      @enrolled_courses=Course.joins(:student_courses).where('student_courses.status = ? and
+                        student_courses.student_id=? and student_courses.account_id=?',
+                        "enroll",@user.student.id,@domain_root_account.id)
+      @completed_courses=Course.joins(:student_courses).where('student_courses.status = ? and student_courses.
+                         student_id=? and student_courses.account_id=?',
+                         "completed",@user.student.id,@domain_root_account.id)
 
       # @enrolled_courses= @student.course_enroll
-      # @completed_courses=@student.course_complete        
+      # @completed_courses=@student.course_complete
     end
   end
   
@@ -68,6 +84,7 @@ class UsersController < ApplicationController
     else
       redirect_to users_path, :notice => "Can't delete yourself."
     end
+
   end
   def interested_users
     add_breadcrumb "Interested Users", interested_users_path
@@ -77,17 +94,16 @@ class UsersController < ApplicationController
         @total_users = @users.count
          
     else
-      @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page], :per_page => 10) 
+      @users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).paginate(page: params[:page],
+                                                                                                  :per_page => 10)
     @total_users = StudentCourse.where("status= ? and course_id=?","follow",params[:search]).count
     
     end
     respond_to do |format|
     format.html
         format.xls # { send_data @products.to_csv(col_sep: "\t") }
-  end  
-      
-
     end
+end
     
      def teaching_courses
  

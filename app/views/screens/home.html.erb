@@ -10,22 +10,22 @@
           <div class="row">
             <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
               <div class="span12" align="center" >
-                <div class="bannertext">  
+                <div class="bannertext">
                  <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
 
-               </div>     </div>  
+               </div>     </div>
                <div class="clearfix"></div>
               <% unless slider.image.nil?  %>
                <div class="span4" align="center" >
-                <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
+                <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %>
               </div>
                  <% end  %>
               <div class="span5" align="justify">
                 <p><%= slider.body_tag %><p>
                   <%= render 'show_topics' %>
-                </div>    
+                </div>
                 <div class="clearfix"></div>
-              </div>  
+              </div>
             </div>
           </div>
           <%end%>
@@ -74,11 +74,6 @@
          </div>
   </div>
   </div>
-  <script type="text/javascript">
-      $(document).ready(function () {
-          $("#slideshow1").sliders({ interval: 5000 });
-      });
-  </script>
   <section class="main keynumbers" >
     <% if @domain_root_account.settings[:account_statistics_enable] %>
     <div class="container">

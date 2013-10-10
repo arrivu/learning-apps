@@ -10,7 +10,6 @@
     include PaymentsHelper 
     include UrlHelper   
     include SubdomainHelper
-    
     include ActiveMerchant::Billing::Integrations::ActionViewHelper
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_path, :alert => exception.message
@@ -109,7 +108,7 @@
 
       def topics
         @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id =?", @domain_root_account.id)
-        @topics = @topics.sort_by {|x| x.name.length} 
+        @topics = @topics.sort_by {|x| x.name.length}
         @footerlinks = Footerlink.where(:account_id=> @domain_root_account.id)
         @social_stream_comments=SocialStreamComment.where(:account_id=> @domain_root_account.id)
         @header_details = HeaderDetail.where(:account_id=>@domain_root_account.id)

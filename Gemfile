@@ -73,4 +73,5 @@ gem "paperclip", "~> 3.0"
 gem 'bootstrap-tooltip-rails'
 gem "delayed_job_web"
 gem 'daemons'
+gem 'newrelic_rpm'
 

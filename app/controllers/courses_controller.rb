@@ -3,25 +3,20 @@ class CoursesController < ApplicationController
   helper_method :course_user_count
   ActiveMerchant::Billing::Integrations
   load_and_authorize_resource
-  caches_page :show_image,:background_image
   before_filter :valid_domain_check, :only=>[:show,:edit]
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   @@course_id
-  def show_image    
+  caches_action :index,:show,:background_image,:show_image
+
+  def show_image
     @course = Course.find(params[:id])
     send_data @course.data, :type => @course.content_type, :disposition => 'inline'
-    unless Rails.env.development?
-      http_cache(@course)
-    end
   end
 
   def background_image    
     @course = Course.find(params[:id])
     send_data @course.background_image, :type => @course.background_image_type, :disposition => 'inline'
-    unless Rails.env.development?
-    http_cache(@course)
-   end
   end
 
   def index
@@ -39,11 +34,12 @@ class CoursesController < ApplicationController
      @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
      @topics = @domain_root_account.topics
   end
-  
+
  end
 
  def new
   add_breadcrumb "Add Course", new_course_path
+  expire_action action: [:index,:show,:background_image,:show_image]
    @course = Course.new
    @topic = Topic.all
  end
@@ -58,6 +54,7 @@ class CoursesController < ApplicationController
    if @course.save
      tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
+     expire_action action: [:index,:show,:background_image,:show_image]
      lms_create_course(@course)
      redirect_to manage_courses_path
    else
@@ -84,7 +81,8 @@ class CoursesController < ApplicationController
    if @course.update_attributes(params[:course])
      tag_list(tags_token,@course)
      lms_update_course(@course,old_teaching_staff_id).delay
-     flash[:success] ="Successfully Updated Course."  
+     flash[:success] ="Successfully Updated Course."
+     expire_action action: [:index,:show,:background_image,:show_image]
      redirect_to manage_courses_path
    else
      render :edit
@@ -157,6 +155,7 @@ class CoursesController < ApplicationController
       lms_id=@course.lms_id
       @course.destroy
       lms_delete_course(lms_id)
+      expire_action action: [:index,:show,:background_image,:show_image]
       flash[:success] = "Successfully destroyed course."
       redirect_to manage_courses_url
     end
@@ -167,9 +166,10 @@ class CoursesController < ApplicationController
         current_user.teaching_staff.teaching_staff_courses.each do |c|
         @courses << c.course
         end
-        @courses=@courses.paginate(page: params[:page], :per_page => 30)
+        @courses=@courses.where(isconcluded: "f").paginate(page: params[:page], :per_page => 30)
       else
-        @courses = @domain_root_account.courses.paginate(page: params[:page], :per_page => 30).order(:id)
+        @courses = @domain_root_account.courses.where(isconcluded: "f").paginate(page: params[:page],
+                                                                                 :per_page => 30).order(:id)
       end
       @topic = @domain_root_account.topics
     end
@@ -340,6 +340,7 @@ class CoursesController < ApplicationController
     end
   end
 
+
   def course_library_page
       # @course= @domain_root_account.courses.find(params[:id])
      # @domain_root_account.courses = params[:course_library_page]
@@ -364,7 +365,7 @@ class CoursesController < ApplicationController
 
 
   end
-  
+
 
 end
 

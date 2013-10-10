@@ -46,7 +46,7 @@ Myapp::Application.configure do
   config.assets.compress = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
   config.action_mailer.default_url_options = { :host => "subdomain.lvh.me:3000" }
   #exception notifier
   #config.middleware.use ExceptionNotifier,
