@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :category
       t.string :image
       t.text :desc
-
       t.timestamps
     end
     # add_index :relationships, :course_id

@@ -340,7 +340,12 @@ class CoursesController < ApplicationController
     end
   end
 
-  
+  def course_library_page
+      # @course= @domain_root_account.courses.find(params[:id])
+     # @domain_root_account.courses = params[:course_library_page]
+     # @domain_root_account.save
+     render :course_library_page
+  end
 
 
   def tagged_courses

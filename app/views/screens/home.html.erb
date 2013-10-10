@@ -1,166 +1,251 @@
+<% provide(:title, 'A Smarter Way to Learn') %>
+  <% provide(:effectingHeader) %>
+   <div class="homebanner" style="">
+    <div class="row">
+      <div class="row">
+        <div id="slideshow1" class="sliders" style="height: 485px;">
+        <% if @domain_root_account.settings[:slide_show_enable] %>
+            <% @slider.each do |slider| %>
+         <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 485px; width: 100%;" class="active-slide slide">
+          <div class="row">
+            <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+              <div class="span12" align="center" >
+                <div class="bannertext">  
+                 <h3 style="color:white;margin-left: 50px;"><%= slider.header %> </h3>
 
-<nav>
-        <ul>
-        <li class="menu_active">
-     
-        <a href="" class="main_menu">HOME</a>
-        <span class="menu_right"></span>
-        </li>
-         <li class="">
-         <span class="menu_left"></span>
-         <a href="courses" class="main_menu">COURSES</a>
-          <span class="menu_right"></span>
-         </li>
-         <li class="about ">
-            <span class="menu_left"></span>
-         <a href="about" class="main_menu">ABOUT US</a>
-          <span class="menu_right"></span>
-         </li>
-         <li class="videos_btn " >
-           <span class="menu_left"></span>
-          <a href="/" class="main_menu">VIDEOS</a>
-             <span class="menu_right"></span>
-          </li>
-        
-          <li class="faq_btn ">
-           <span class="menu_left"></span>
-          <a href="/" class="main_menu">FAQs</a>
-           <span class="menu_right"></span>
-          </li>
-          <li class="contactli ">
-           <span class="menu_left"></span>
-          <a href="contacts/new" class="main_menu">CONTACT</a>
-            
-          </li>
-         </ul>
-      </nav>    
-    </div>
+               </div>     </div>  
+               <div class="clearfix"></div>
+              <% unless slider.image.nil?  %>
+               <div class="span4" align="center" >
+                <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :size => "250x160" %> 
+              </div>
+                 <% end  %>
+              <div class="span5" align="justify">
+                <p><%= slider.body_tag %><p>
+                  <%= render 'show_topics' %>
+                </div>    
+                <div class="clearfix"></div>
+              </div>  
+            </div>
+          </div>
+          <%end%>
+          <% else %>
+<div style="background-image: url('class.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                    <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                        <div class="span12" align="center" >
+                            <div class="bannertext">
+                               <h3 style="color:white;margin-left: 50px;"> </h3>
+                            </div>
+                        </div>
+                           <div class="clearfix"></div>
+                              <div class="span4" align="center" >
 
+                              </div>
+                                 <div class="span5" align="justify">
+                                     <%= render 'show_topics' %>
+                                 </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                               </div>
+                          </div>
+              <div style="background-image: url('ems-banner.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
+                <div class="row">
+                  <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
+                    <div class="span12" align="center" >
+                      <div class="bannertext">
+                        <h3 style="color:white;margin-left: 50px;"> </h3>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="span4" align="center" >
 
-
-<div class="main_container">
-<div class="content_top ds">
-<div class="widget_box html_widget">
-<h2 class="article_heading">sample</h2>
-<div>
-<div class="slide">
-                <div class="slide-image">
-<img src="http://www.jigsawacademy.com/images/banner_img_1.png" class="video">
- <div class="slide-text-right">
-                  <div class="slide-title"> </div>
-                  <span class="subtitle"> Train from people who know it best</span>
-                  <div class="slide-descr">
-                    <ul>
-                      <li>Hands-on learning on latest analytic tools</li>
-                      <li>Advanced predictive modeling techniques</li>
-                      <li>Application of analytics in business</li>
-                      <li>Domain specific advanced courses</li>
-                      <li>Unparalleled placement services</li>
-                    </ul>
+                    </div>
+                    <div class="span5" align="justify">
+                      <%= render 'show_topics' %>
+                    </div>
+                    <div class="clearfix"></div>
                   </div>
-                  <div class="clear"></div>
-                  <a href="">
-                  <div class="btnimg1"></div>
-                  </a> </div>
-                <div class="clear"></div>
+                </div>
+              </div>
 
+          <%end %>
+            </div>
+         </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#slideshow1").sliders({ interval: 5000 });
+      });
+  </script>
+  <section class="main keynumbers" >
+    <% if @domain_root_account.settings[:account_statistics_enable] %>
+    <div class="container">
+       <% if @domain_root_account.settings[:account_statistics_enable] %> 
+      <div class="row-fluid pagination-centered">
+
+        <div class="span3">
+          <h2>
+            <img src="assets/PNG/Grey/64/Bookmark.png" >
+
+          </h2>
+          <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
+        </div>
+        <div class="span3">
+          <h2>
+            <img src="assets/PNG/Grey/64/User.png">
+
+          </h2>
+          <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
+        </div>
+        <div class="span3">
+          <h2>
+            <img src="assets/PNG/Grey/64/Document Add.png">
+
+          </h2>
+          <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
+        </div>
+        <div class="span3">
+          <h2>
+            <img src="assets/PNG/Grey/64/Bookmark.png">
+
+          </h2>
+          <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
+        </div>
+       </div>
+    <%end%>
+   </div>
+  </section>
+  <% end %>
+
+   <% if  @domain_root_account.settings[:popular_course_enable] %>
+    <div class="homecourse">
+      <div class="secondary-content yellobg">
+        <div class="container" align="center">
+          <div class="row testimonial">
+                         <h2 style="margin-left:30px;"> Popular Courses</h2>
+                </div>
+                </div>
+                </div>
+                <div class="container">
+                  <div class="row">
+
+                    <%= render 'shared/popular_courselist' %>
+
+                    <div align="center" style="">
+
+        <!--   <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> -->
+</div>
+
+           
+</div>
+</div>
+ <% end %></div>
+
+
+
+<div class="ourcustomers " >
+   <% if  @domain_root_account.settings[:testimonial_enable] %>
+  <div class="secondary-content ">
+    <div class="container" align="center">
+      <div class="row testimonial">
+ <h2 style="margin-left: 30px;">Knowledge Partners</h2>
+     </div>
+   </div>
  </div>
-              
-              
-              
-              </div></div>
-</div>
- <div class="widget_box html_widget">
-<h2 class="article_heading">top bottom</h2>
-<div>
-<div class="top_content_2">
-<img src="http://www.jigsawacademy.com/uploads/images/plcament_img.png" align="left">
-<p class="top_b">Jigsaw Academy offers analytic training workshops for corporates and some of the leading MBA institutes in the country. Jigsaw course material has been carefully developed to enable students to understand and apply analytic techniques to business problems. Students at Jigsaw Academy are placed in ...</p>
-<div class="place_arrow"></div>
-<div class="logos"><img src="http://www.jigsawacademy.com/uploads/images/1-logos.jpg"></div>
-</div></div>
-</div>
- <div class="clear"></div>
-</div>
-<div class="content_middle">
-<div class="colum_right ds">
-<div class="widget_box html_widget">
-<h2 class="article_heading">other courses</h2>
-<div>
-<div class="advanced_courses_box"><h2>Advanced Courses</h2>
-<ul>
-    <!-- <li><a href="http://www.jigsawacademy.com/jigsaw/courses/retail-analytics-3">Retail Analytics </a></li>
-    <li><a href="http://www.jigsawacademy.com/analytics-courses/financial-analytics">Financial Analytics </a></li>
-    <li><a href="http://www.jigsawacademy.com/analytics-courses/r-analytics">Analytics with R </a></li>
-           -->
-           <% @domain_root_account.courses.limit(4).each do |course| %>
-                 <li> <%= link_to course.title, course_path(course) %></li>
-           <% end %> 
-</ul>
-          <a class="allcourses_btn" href="courses">All Courses</a>
-</div></div>
-</div>
- <div class="clear"></div>
-</div>
-<div class="box1 ds">
-<div class="widget_box html_widget">
-<h2 class="article_heading">About foundation</h2>
-<div>
+ <div class="container" align="center">
+  <div class="row testimonial">
+ <div class="listofkp" >
+                          <table style="min-width: 200px;
+                                  margin: 0px auto;">
+                            <tr>
+                              <% @partners.each do |partners| %>
+                                  <td>
+                                    <div class="span4" style="width: 30%;">
+                                      <div class="kp">
+                                        <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>
 
-<div class="foundation_courses_box">
-  <h2><a href="popular_courses">POPULAR COURSE</a></h2>
-     <div class="foundation_img">
-<img src="http://www.jigsawacademy.com/uploads/images/fOUNDATION_COURSE_image.jpg">
+                                        <div class="testimonialtext">
+                                          "<%= partners.comments%>"
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                              <% end %>
+                            </tr>
+                          </table>
+                <% end %>
 
-</div>   
+                </div>
+                </div>
+                </div>
 
-<div class="foundation_content"> 
+                </div>
 
-  <p style = "margin-left: 175px; margin-top: -189px;"> The Foundation course has been designed by industry experts who have applied analytics to solve business problems in a variety of fields like retail, FMCG, financial services, telecom and health care. Our instructors use their real-world experiences to teach you analytical skills that are most valuable at the work place. </p></div>
-          <div class="right_btn"> 
 
-<a class="allcourses_btn" href="/">Learn More</a> 
+                <div class="ourcustomers " >
+                  <div class="secondary-content">
+                    <div class="container" align="center">
+                      <div class="row testimonial">
+                        <% if  @domain_root_account.settings[:testimonial_enable] %>
 
-<a class="allcourses_btn" id="enrollbtn" href="/">Enroll</a> 
+                            <h2 style="margin-left: 5px;font-size: 35px;">Learners Reviews</h2>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="container" >
+                              <div class="row">
+                                <div class="span12">
+                                  <table >
+                                    <tr>
+                                      <% @testimonial.each do |testimonials| %>
+                                          <td>
+                                            <div class="span4" >
 
-</div>
-</div></div>
-</div>
- <div class="clear"></div>
-</div>
-<div class="clear"></div>
-</div>
-<div class="content_bottom ds">
-<div class="widget_box testimonials_wrap">
-<h2 class="article_heading"><a href="http://www.jigsawacademy.com/testimonials">What Our Students Say</a></h2>
-<div class="testimonials">
-          <div class="left_img"><a href="http://www.linkedin.com/profile/view?id=26820369&amp;authType=name&amp;authToken=TS76&amp;trk=hb_upphoto%7Cn%7C2043286%7C363486%7C358886" target="_blank"><img src="http://www.jigsawacademy.com/uploads/images/rajesh.jpg" height="90px" width="90px"></a></div>
-          <div class="right_testimonials">
-            <h4>Rajesh Ramamurthy, Project manager, Central Analytics Function </h4>
-            <p></p><p class="testimonial-text">
-I strongly recommend the Foundation course to anyone looking for a hands on, fast paced and practical approach at learning Analytics. The faculty ably led by Sarita ensure that all students are given personal attention and importantly are not overwhelmed by the Math behind the Stats. The virtual lab along with the session recordings help you be at it even after the sessions are over. Also the case study approach helps you get exposed to several industry datasets and applications of Analytics. 
-</p><p></p>
-          </div>
-        </div>
-        
-<div class="testimonials">
-          <div class="left_img"><a href="http://www.linkedin.com/profile/view?id=53710654&amp;authType=name&amp;authToken=wRIy&amp;trk=hb_upphoto%7Cn%7C2043286%7C363486%7C250869" target="_blank"><img src="http://www.jigsawacademy.com/uploads/images/11b9a78.jpg" height="90px" width="90px"></a></div>
-          <div class="right_testimonials">
-            <h4>Manju HS,Assistant Manager at Genpact</h4>
-            <p></p><p class="testimonial-text"> Anything I mention will be too less for 
-Sarita and Gaurav’s effort to provide a quality education and support. 
-They constantly monitor the progress and provide excellent feedback to 
-ensure the Participant understand the concept. Real time case studies 
-helps to understand today’s business requirement and thought process to 
-bring up to the standards. Intangible amount of knowledge is 
-transforming into better business understanding, better business 
-solutions and career progression.</p><p></p>
-          </div>
-        </div>
-        
-<a href="http://www.jigsawacademy.com/testimonials">Read what students say about us &gt;&gt;</a>
+                                              <div class="verticalcustomerbox testimonial-one" align="center">
+                                                <div class="testimonialtext">
+                                                  "<%=testimonials.comment%>" 
+                                                </div> <div class="testimonialauthor" >
 
-</div><div class="widget_box">
 
-</div><div class="clear"></div>
-</div>
+                                                -<%= testimonials.name %>,<br/><%=testimonials.organization%>
+
+
+
+                                          </td>
+                                      <%end%>
+                                    </tr></table>
+                        <% end %>
+
+
+                       </div>
+
+                        </div>
+                        </div>
+                        <div align="center">
+                            <%= link_to "Read More Reviews", '', :class => "browseourcoursessmall" , :style=>"color:#000"%>
+                        </div>
+                        </div>
+
+
+                <div class="bottomadsection">
+
+                  <div class="container">
+                    <div class="row">
+                       <div class="span12" align="center" style="width: 95%;">
+                       <h3 style="font-size: 38px;">Step up Your Learning Curve!
+                        </h3>
+
+
+                        <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
+                        <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+

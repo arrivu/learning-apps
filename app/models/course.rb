@@ -48,6 +48,8 @@ class Course < ActiveRecord::Base
   has_many :course_pricings
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :sections
+  has_many :course_modules
   attr_reader :tag_tokens
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }

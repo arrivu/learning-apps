@@ -15,7 +15,8 @@ class Account < ActiveRecord::Base
   has_many :testimonials, :dependent => :destroy
   has_one  :account_theme
   has_one  :terms_and_condition
-
+  has_many :sections
+  has_many :course_modules
   serialize :settings, Hash
   cattr_accessor :account_settings_options
   self.account_settings_options = {}

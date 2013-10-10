@@ -54,6 +54,8 @@ font-size: 16.5px;
 -moz-border-radius: 6px;
 border-radius: 6px;
 padding: 2px 10px;
+width: 145px;
+text-align: left;
 }
 .btn-danger{
 background-color: #942a25 \9;
@@ -189,4 +191,13 @@ list-style: none;
 }
 
 
-
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
+padding-top: 8px;
+padding-bottom: 8px;
+line-height: 20px;
+border: 1px solid #C2C2C2;
+border-bottom: transparent;
+-webkit-border-radius: 4px 4px 0 0;
+-moz-border-radius: 4px 4px 0 0;
+border-radius: 4px 4px 0 0;
+}

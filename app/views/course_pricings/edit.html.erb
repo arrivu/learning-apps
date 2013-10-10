@@ -8,22 +8,22 @@
       <div class="span12">
        <div class="box">
         <div id="collapse4" class="body">
- 	     <div class="icons"><span class="badge badge-info">Edit Course Price</span></div>
+       <div class="icons"><span class="badge badge-info">Edit Course Price</span></div>
            <table id="dataTable">
             <%= simple_form_for (@coursepricing) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-	     	<tr><th>Course Name</th><td>
-			<%= f.select(:course_id, @course.collect {|p| [ p.title,p.id ] })%></td></tr>
-			<tr><th>Start Date</th><td>
-			<div >
-			    <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" ,style: "width: 84px;"%></td></tr></td></tr>
+      <%= render 'shared/error_messages', object: f.object %>
+        <tr><th>Course Name</th><td>
+      <%= f.select(:course_id, @course.collect {|p| [ p.title,p.id ] })%></td></tr>
+      <tr><th>Start Date</th><td>
+      <div >
+          <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" ,style: "width: 84px;"%></td></tr></td></tr>
             </div>
-			<tr><th>End Date</th><td>
-			<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
-		    <tr><th>Price</th><td>
-			<%= f.text_field :price %></td></tr>
-			<tr><th></th><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
-			<% end %>
+      <tr><th>End Date</th><td>
+      <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
+        <tr><th>Price</th><td>
+      <%= f.text_field :price %></td></tr>
+      <tr><th></th><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
+      <% end %>
         </table>
         </div>
       </div>
@@ -32,5 +32,8 @@
    </div>
   </div>
  </div>
+</div>
  <div id="push"></div>
+
 <div class="clearfix"></div>
+</div>

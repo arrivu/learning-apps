@@ -5,7 +5,8 @@ Myapp::Application.routes.draw do
 resources :omniauth_links
 resources :social_stream_comments
 resources :header_details
-
+resources :sections
+resources :course_modules
 match '/' => 'blogs#show', :constraints => {:subdomains => /.+/}
 resources :footerlinks
 
@@ -44,6 +45,8 @@ resources :footerlinks
   match 'payments/follow_course',:to=>'payments#follow_course'
   match 'payments/confirm_course_payment',:to=>'payments#confirm_course_payment'
   match "/download_pdf(.:format)" => "payments#invoice_pdf", :method => :get, :as=>:invoice_pdf
+  match '/sections', :to => 'sections#index'
+  match '/course_modules', :to => 'course_modules#index'
 
   resources :topics
   resources :tutorials
@@ -117,5 +120,6 @@ resources :footerlinks
   match 'account_subscription', :to =>'accounts#account_subscription'
   match 'authenticate', :to=> 'accounts#authenticate'
   match 'activate_comments',:to => 'comments#activate_comments'
+   match'course_library_page' , :to=> 'courses#course_library_page'
   match "/jobs" => DelayedJobWeb, :anchor => false
 end

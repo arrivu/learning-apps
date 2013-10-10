@@ -21,7 +21,7 @@ class CoursePricingsController < ApplicationController
         if(@coursepricing.end_date>=@coursepricing.start_date)
           if @coursepricing.save
             flash[:notice]="Course price saved successfully"
-            redirect_to course_pricings_path
+            redirect_to course_library_page_path
           else
             render 'new'
           end
@@ -55,21 +55,22 @@ class CoursePricingsController < ApplicationController
   if user_can_do?(@coursepricing)
   @coursepricing.destroy
   flash[:success] = "Successfully Destroyed Course Price."
-  redirect_to course_pricings_path
+  redirect_to course_library_page_path
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_pricings_path
+    redirect_to course_library_page_path
   end
 end
 
 def edit
   populate_combo_courses
+
   @coursepricing=@domain_root_account.course_pricings.find(params[:id])
   if user_can_do?(@coursepricing)
     @course = @domain_root_account.courses
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_pricings_path
+    redirect_to course_library_page_path
   end
 
 end
@@ -77,7 +78,7 @@ end
 def update
   @coursepricing=@domain_root_account.course_pricings.find(params[:id])
   if user_can_do?(@coursepricing)
-  @coursepricing_params=@domain_root_account.course_pricing.new(params[:course_pricing])
+  @coursepricing_params=@domain_root_account.course_pricings.new(params[:course_pricing])
   @coursepricing.account_id=@domain_root_account.id
   course_ids=CoursePricing.where("course_id=? AND id!=?",@coursepricing_params.course_id,@coursepricing.id)
   if nooverlap?(course_ids,@coursepricing_params.start_date,@coursepricing_params.end_date)
@@ -86,7 +87,7 @@ def update
         
         if @coursepricing.update_attributes(params[:course_pricing])
           flash[:notice] = "Updated Course Price Details Successfully..."
-          redirect_to course_pricings_path
+          redirect_to course_library_page_path
         else
           render 'edit'
         end
@@ -101,7 +102,7 @@ def update
   end
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_pricings_path
+    redirect_to course_library_page_path
   end
 
 end
