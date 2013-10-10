@@ -426,10 +426,6 @@ return el;
       <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall",style:"margin-top:-70px;margin-right: -60px;"%>
   </div> 
 </div>
-
- <% if @course.comments.size != 0 %>
-<%= link_to "View All",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),:style => "margin-left: 28px;"%>
-<% end %>
 </div>
 </div>
 </div>
