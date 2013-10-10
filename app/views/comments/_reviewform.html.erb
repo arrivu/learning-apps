@@ -8,7 +8,7 @@
             <br>
             <%= f.text_area :comment , :rows => 5, :cols => 40 ,placeholder: "comment" %><br />
             <div class=" clearfix"></div>
-            <div >
+            <div style="width:105px;">
               <a>
                 <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%>
                 <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
