@@ -3,14 +3,15 @@ class CoursePricingsController < ApplicationController
   load_and_authorize_resource
   before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
+
   def new
     populate_combo_courses
     @coursepricing=@domain_root_account.course_pricings.new
-
   end
 
   def show
   end
+
   def create
     populate_combo_courses
     @coursepricing=CoursePricing.new(params[:course_pricing])
@@ -77,7 +78,7 @@ end
 def update
   @coursepricing=@domain_root_account.course_pricings.find(params[:id])
   if user_can_do?(@coursepricing)
-  @coursepricing_params=@domain_root_account.course_pricing.new(params[:course_pricing])
+  @coursepricing_params=@domain_root_account.course_pricings.new(params[:course_pricing])
   @coursepricing.account_id=@domain_root_account.id
   course_ids=CoursePricing.where("course_id=? AND id!=?",@coursepricing_params.course_id,@coursepricing.id)
   if nooverlap?(course_ids,@coursepricing_params.start_date,@coursepricing_params.end_date)

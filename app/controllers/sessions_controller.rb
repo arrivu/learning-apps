@@ -1,7 +1,6 @@
 class SessionsController < Devise::SessionsController
   include CasHelper
   include LmsHelper
-  
 # POST /resource/sign_in
   def create
     self.resource = warden.authenticate!(auth_options)
@@ -35,11 +34,8 @@ class SessionsController < Devise::SessionsController
         end
      else
        redirect_to users_path
-
      end
-
      end
-
 end
 
 
@@ -58,7 +54,7 @@ end
     super
     cas_sign_out
     lms_logout
-    
+
     end
 
   private 

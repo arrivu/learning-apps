@@ -1,9 +1,9 @@
 class ScreensController < ApplicationController
-  include ScreensHelper
-  def home
+ def home
     @courses = Course.all(:conditions => {:ispopular => 1,:account_id => @account_id},:limit => 6)
     @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id)
     @topics = @topics.sort_by {|x| x.name.length}
+    @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 3)
     @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 3)
     @testimonial=Testimonial.where(:account_id=>@account_id)
     @footerlinks=Footerlink.where(:account_id=>@account_id)
@@ -12,11 +12,11 @@ class ScreensController < ApplicationController
     @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
   end
 
-  def about
+ def about
      @aboutdetail = Aboutdetail.where(:account_id=>@account_id)
      @footerlinks=Footerlink.where(:account_id=>@account_id)
-      @header_detail = HeaderDetail.where(:account_id=>@account_id)
-  end
+     @header_detail = HeaderDetail.where(:account_id=>@account_id)
+ end
 
   def faq
   end
@@ -24,7 +24,7 @@ class ScreensController < ApplicationController
   def privacy
      @privacypolicy=Privacypolicy.where(:account_id=>@account_id)
      @footerlinks=Footerlink.where(:account_id=>@account_id)
-      @header_detail = HeaderDetail.where(:account_id=>@account_id)
+     @header_detail = HeaderDetail.where(:account_id=>@account_id)
   end
 
   def termscondition
@@ -47,12 +47,11 @@ class ScreensController < ApplicationController
  def show_image_logo
     @header_detail = HeaderDetail.find(params[:id])
     send_data @header_detail.logo, :type => @header_detail.logo_type, :disposition => 'inline'
-    # http_cache(@header_detail)
   end
 
   def theme_header_image    
     @header_detail = HeaderDetail.find(params[:id])
     send_data @header_detail.theme, :type => @header_detail.theme_type, :disposition => 'inline'
-    # http_cache(@header_detail)
+
   end
 end

@@ -2,25 +2,28 @@ class AboutdetailsController < ApplicationController
   load_and_authorize_resource
 	before_filter :subdomain_authentication, :only=>[:new, :create, :edit, :index]
 	before_filter :valid_domain_check, :only=>[:show,:edit]
- 	 def new
-       add_breadcrumb "Add About Details", new_aboutdetail_path
-	  	@aboutdetail=Aboutdetail.new
-	  	  @about = Aboutdetail.find_by_account_id(@account_id)
-     if @about == nil
-           @aboutdetail=Aboutdetail.new
-        else
-           redirect_to aboutdetails_path
-         end
+  caches_action :index,:show
 
-	 end
-	def create
+ 	 def new
+     add_breadcrumb "Add About Details", new_aboutdetail_path
+     @aboutdetail=Aboutdetail.new
+     @about = Aboutdetail.find_by_account_id(@account_id)
+     if @about == nil
+       @aboutdetail=Aboutdetail.new
+       expire_action_cache action: [:index,:show]
+       else
+         redirect_to aboutdetails_path
+       end
+   end
+
+  def create
 	    @aboutdetail = Aboutdetail.new(params[:aboutdetail])
 	    @aboutdetail.account_id=@account_id
          if @aboutdetail.save
 			      flash[:success] = "About Detail added successfully!!!!"
 			      # NewsletterMailer.weekly("ankithbti007@gmail.com", flash[:success]).deliver
 			      redirect_to aboutdetails_path
-
+            expire_action action:[:index,:show]
 			    else
 			      render :action => 'new'
           end
@@ -33,6 +36,7 @@ class AboutdetailsController < ApplicationController
      		 @aboutdetail = Aboutdetail.find(params[:id])
      		 @aboutdetail.account_id=@account_id
      		 if @aboutdetail.update_attributes(params[:aboutdetail])
+           expire_action action:[:index,:show]
         		flash[:success] = "About Detail updated"
         		redirect_to aboutdetails_path
        		 else
@@ -48,6 +52,7 @@ class AboutdetailsController < ApplicationController
 			def destroy
 				@aboutdetail = Aboutdetail.find(params[:id])
 				@aboutdetail.destroy
+        expire_action action:[:index,:show]
 				flash[:success] = "Testimonial Deleted"
 				redirect_to aboutdetails_path
 			end 

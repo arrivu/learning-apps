@@ -1,6 +1,5 @@
  <div id="wrap">
   <%= render 'shared/side_menu' %>
-
    <div id="content">
      <div class="container-fluid outer"  >
       <div class="row-fluid">
@@ -25,7 +24,7 @@
                <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
               </tr>
             </thead>
-         <% @coursepricing.each do |coursepricing| %>
+         <% @coursepricings.each do |coursepricing| %>
          <tr> <td><%= coursepricing.course.title%></td>
           <td><%= coursepricing.start_date %></td>
           <td><%= coursepricing.end_date %></td>
