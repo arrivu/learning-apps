@@ -16,7 +16,7 @@ class CoursePreviewsController < ApplicationController
 		# @preview.account_id=
 		if @preview.save
 			flash[:success] = "Preview Added Successfully."
-			redirect_to course_previews_path
+			redirect_to course_library_page_path
 		else
 		
 		render 'new'
@@ -29,6 +29,7 @@ class CoursePreviewsController < ApplicationController
     populate_combo_courses
 	end
 
+  
 	def edit
 		@preview= CoursePreview.find(params[:id])
     if user_can_do?(@preview)
@@ -36,7 +37,7 @@ class CoursePreviewsController < ApplicationController
       @preview
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_previews_path
+      redirect_to course_library_page_path
     end
 
 	end
@@ -47,13 +48,13 @@ class CoursePreviewsController < ApplicationController
 	   		@preview.account_id=@account_id
 		if @preview.update_attributes(params[:course_preview])
 			flash[:success] = "Successfully Updated Preview."
-			redirect_to course_previews_path
+			redirect_to course_library_page_path
 		else
 			render :edit
     end
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_previews_path
+      redirect_to course_library_page_path
     end
 	end
 
@@ -63,10 +64,10 @@ class CoursePreviewsController < ApplicationController
 		@preview.destroy
 
 		flash[:success] = "Successfully Destroyed Preview."
-		redirect_to course_previews_path
+		redirect_to course_library_page_path
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_previews_path
+      redirect_to course_library_page_path
     end
 	end
 

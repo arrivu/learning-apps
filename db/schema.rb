@@ -143,6 +143,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   add_index "coupons", ["alpha_code"], :name => "index_coupons_on_alpha_code"
   add_index "coupons", ["digit_code"], :name => "index_coupons_on_digit_code"
 
+  create_table "course_modules", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "course_module"
+    t.integer  "account_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "course_previews", :force => true do |t|
     t.string   "name"
     t.text     "desc"
@@ -375,6 +383,14 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "sections", :force => true do |t|
+    t.integer  "course_id"
+    t.string   "section"
+    t.integer  "account_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "sliders", :force => true do |t|
     t.binary   "image"

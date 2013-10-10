@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
       @topic = Topic.new(params[:topic])
       @topic.account_id =@domain_root_account.id
       if @topic.save
-        redirect_to topics_url
+        redirect_to topics_path
       else
         render :new
       end
@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
     def destroy
       @topic = Topic.find(params[:id])
       @topic.destroy
-      redirect_to topics_url
+      redirect_to topics_path
     end
 
 
