@@ -44,3 +44,10 @@ $(function(){
   $(".collapse li a").tooltip();
   
 })
+
+
+$(document).ready( function() {
+    $('.subMenu').smint({
+    	'scrollSpeed' : 1000
+    });
+});

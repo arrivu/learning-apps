@@ -41,7 +41,7 @@
             <% if @group.tutorials.where(ispublished: 1).size >= 1 %>
                 <div class="well">
                     <% if signed_in? && current_user.user_type == 1 #Teacher %>
-                      <p><%= link_to "Add New Tutorial", new_tutorial_path , class: "move-to-right-top"%></p>
+                      <p><%= link_to "Add Tutorial", new_tutorial_path , class: "move-to-right-top"%></p>
                     <% end %>
                     
                     <%= render @group.tutorials.where(ispublished: 1) %>
@@ -49,7 +49,7 @@
                     <% @group.tutorials.each do |tutorial| %>
                       <% if ((tutorial.id % @countTutorialsPerPage) == 0 ) %>
                         <% if signed_in? && current_user.user_type == 1 #Teacher %>
-                          <p><%= link_to "Add New Tutorial", new_tutorial_path , class: "move-to-right-bottom"%></p>
+                          <p><%= link_to "Add Tutorial", new_tutorial_path , class: "move-to-right-bottom"%></p>
                         <% end %>
                       <% end %>
                     <% end %>

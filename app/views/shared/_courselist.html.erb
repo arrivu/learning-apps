@@ -75,9 +75,9 @@
                    <%= image_tag(author.omni_image_url,size: "25x20", alt: "",:class=>"img-circle", :style=>"border:3px solid #E7E372")%>
                    <% end  %>
                    <% else  %>
-                   <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "20x15",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
+                   <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "25x20",:class=>"img-circle", :style=>"border:1px solid #ffda55;margin-top:-5px;" %>
                    <% end  %>
-                   <div class="user" style="margin: -72px 0px;">
+                   <div class="user" style="margin: -72px 0px;text-align: left;">
                     <%= author.user.name %>
                   </div>
                 </li>

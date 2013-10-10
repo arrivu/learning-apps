@@ -24,7 +24,7 @@
         <%= link_to "Sign In", signin_path , class: "move-to-right-top"%>
       </div>
       <% if signed_in? && current_user.user_type == 2 #Teacher %>
-      <p><%= link_to "Add New Blog", new_blog_path , class: "move-to-right-top"%></p>
+      <p><%= link_to "Add Blog", new_blog_path , class: "move-to-right-top"%></p>
       <% end %>
       
       <% else %>
@@ -33,7 +33,7 @@
         <%= text_field_tag :search, params[:search], class: 'text_field', placeholder: "Enter your search string to find the blog by it's title", autocomplete: "off"  %>
       </p>
       <% if signed_in? && current_user.user_type == 2 #Teacher %>
-      <p><%= link_to "Add New Blog", new_blog_path , class: "move-to-right-top"%></p>
+      <p><%= link_to "Add Blog", new_blog_path , class: "move-to-right-top"%></p>
       <% end %>
       <div class="clearfix"></div>
       <div id="blogs"><%= render 'blogs' %></div>
@@ -76,7 +76,7 @@
                         </div>
                         <% end %>
                         <br/>
-                          <!-- <button id="createTopicbottom" class="btn btn-info" type="button">Add new Topic
+                          <!-- <button id="createTopicbottom" class="btn btn-info" type="button">Add Topic
                         </button> -->
                         <% if signed_in? && current_user.user_type == 3 #Admin %>
                         <%= link_to "Manage Category", tags_path, class: "btn btn-info" %>

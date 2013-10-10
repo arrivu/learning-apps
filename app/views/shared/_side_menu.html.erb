@@ -1,6 +1,6 @@
 <% unless current_user.has_role? :teacher %>
-<div id="left">
- <ul id="menu" class="unstyled accordion collapse in"  style="margin-left: 25px;" >
+<div class="left span2">
+ <ul id="menu" class="unstyled accordion collapse in"  >
     <li class="accordion-group"> 
       
       <a data-parent="#menu"  data-toggle="collapse"  data-target="#user" ><i class="icon icon-user" style="paddign:0px 10px;"></i>Users</a>
@@ -29,7 +29,7 @@
     <% if !current_user.has_role? :account_admin %>
       <li class="accordion-group "><a data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#theme"><i class="icon icon-eye-open" style="paddign:0px 10px;"></i>Themes  </a>
       <ul class="collapse " id="theme">
-        <li><%= link_to "Add new Theme",new_theme_path ,:rel=>"tooltip",:title=>" Create new theme"%></li>
+        <li><%= link_to "Add Theme",new_theme_path ,:rel=>"tooltip",:title=>" Create new theme"%></li>
         <li><%= link_to "Assign Theme",new_account_theme_path ,:rel=>"tooltip",:title=>"Change theme for an organization" %></li>
       </ul></li>
     <% end%>
