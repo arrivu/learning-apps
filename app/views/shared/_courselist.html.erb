@@ -16,7 +16,7 @@
                 <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %>
             </span>
           </div>
-        </div>
+      </div>
         <div class="details">
           <h2>
             <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
