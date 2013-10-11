@@ -429,9 +429,10 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "description"
     t.string   "contact_no"
     t.integer  "user_id"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
     t.integer  "account_id",  :limit => 8
+    t.boolean  "is_active",                :default => true
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "taggings", :force => true do |t|

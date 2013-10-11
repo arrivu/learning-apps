@@ -166,7 +166,7 @@ class CoursesController < ApplicationController
         current_user.teaching_staff.teaching_staff_courses.each do |c|
         @courses << c.course
         end
-        @courses=@courses.where(isconcluded: "f").paginate(page: params[:page], :per_page => 30)
+        @courses=@courses.paginate(page: params[:page], :per_page => 30)
       else
         @courses = @domain_root_account.courses.where(isconcluded: "f").paginate(page: params[:page],
                                                                                  :per_page => 30).order(:id)

@@ -251,7 +251,7 @@ def rating_for_user(rateable_obj, rating_user, dimension = nil, options = {})
     def verify_user_status(action=nil)
       if current_user.has_role?  :student and !current_user.student.is_active?
         clear_user_session(action)
-      elsif current_user.has_role?  :teacher and !current_user.student.is_active?
+      elsif current_user.has_role?  :teacher and !current_user.teaching_staff.is_active?
         clear_user_session(action)
       end
     end
