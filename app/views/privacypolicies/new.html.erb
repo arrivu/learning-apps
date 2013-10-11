@@ -7,7 +7,7 @@ tinyMCE.init({
 </script>
   <%= render 'shared/side_menu' %>
               
-            <div id="content">
+            <div id="content" class="span9">
                
                 <div class="container-fluid outer"  >
                             <div class="row-fluid">
@@ -18,7 +18,7 @@ tinyMCE.init({
                                     <div class="box">
                                                                             <div id="collapse4" class="body">
                                            <div class="icons"><span class="badge badge-info">Add Privacy Policies</span></div> 
-        <table id="dataTable" class="table table-condensed table-hover">
+        <table id="dataTable" class="">
 <%= tinymce_assets %>
 <%= form_for @privacypolicy do |f| %>
   <%= render 'shared/error_messages', object: f.object %>

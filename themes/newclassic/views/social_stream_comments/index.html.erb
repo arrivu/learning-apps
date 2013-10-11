@@ -12,7 +12,7 @@
 
   <%= render 'shared/side_menu' %>
               
-            <div id="content">
+            <div id="content" class="span9">
                
                 <div class="container-fluid outer"  >
                             <div class="row-fluid">
@@ -23,7 +23,7 @@
                                     <div class="box">
    <header>
  <div class="icons"><i class="icon-move"></i></div>
-   <h5>Social Stram Comments </h5><% if SocialStreamComment.find_by_account_id(@account_id) == nil %> <%= link_to "Add New Social Stream Comment", "social_stream_comments/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
+   <h5>Social Stram Comments </h5><% if SocialStreamComment.find_by_account_id(@account_id) == nil %> <%= link_to "Add Social Stream Comment", "social_stream_comments/new", :class=> "btn btn-default btn-large", :style=> "margin:10px;float:right;" %><%end%>
        </header>
  <div id="collapse4" class="body">
   <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">

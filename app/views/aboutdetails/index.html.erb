@@ -3,7 +3,7 @@
 
   <%= render 'shared/side_menu' %>
                
-            <div id="content">
+            <div id="content" class="span9">
                 <!-- .outer -->
                 <div class="container-fluid outer"  >
                             <div class="row-fluid">
@@ -79,7 +79,7 @@
 
 
             <!-- #push do not remove -->
-             <div class="left" style="padding: 0px;width: 16%;float: right;">
+             <div class="span2 left" style="padding: 0px; ">
               <% if Aboutdetail.find_by_account_id(@account_id) == nil %>
  <a href="../aboutdetails/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add About Us </a> <% end %>
   </div>

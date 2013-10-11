@@ -1,10 +1,10 @@
 <div class="row evenflow">
+
   <div class="resource-row">
-    <table style="min-width:200px;margin:0px auto;">
-      <tr>
+    
         <% @courses.each do |course|%><% if course.ispopular? %>
-        <td>
-        <div class="span3 content-box resource" style="float: left;">
+     
+        <div class="span3 content-box resource" style="float: left;margin-top:65px;">
           <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100%% 96%;">
             <% if course.data!=nil %>
             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
@@ -61,7 +61,7 @@
                 <ul class="author" style="text-align: center;border-bottom:0px;">
                   <% course.teaching_staffs.active.each do |author|%>
                   <li>
-                     <div class="user" style="margin: -8px 0px 10px 0px;">
+                     <div class="user" style="margin: -8px 0px 10px 0px;text-align:left;">
                     <%= author.user.name %>
                   </div>
                     <% if author.user.image_blob == nil %>
@@ -73,7 +73,6 @@
                     <% else  %>
                     <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top:-10px;float:left;" %>
                     <% end  %>
-                   
                   </li>
                 </ul>
                  <div style="font-size: 10px;float:left;margin:-40px 63px">
@@ -81,14 +80,16 @@
                 </div>
               </div>
               <%end%>
+
+     <% end %>
+     
             </div>
           </div>
         </div>
-      </td>
-    </tr>
-  </table>
- <% end %>
+          
+   
 
 <script type="text/javascript">
   $('i').tooltip()
 </script>
+

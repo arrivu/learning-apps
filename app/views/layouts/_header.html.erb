@@ -18,50 +18,62 @@
 <% end %>
 <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
     <% @header_details.each do |header_details| %>
-        <header class="navbar" style="margin-bottom:0px;background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;min-height: 45px;">
+<header class="navbar navbar-inverse" style="background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="/" class="brand"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                            <ul class="nav pull-right">
+                <ul class="nav pull-right">
+          <li> <%= link_to "Course Library", courses_path %></li>
+          <% if user_signed_in?%>
+              <% if current_user.has_role? :admin %>
+                  <li ><%= link_to 'Admin', users_path %></li>
+                  <script>
+                      $('.courseslink').css('left',"-100px");
+                  </script>
+              <% elsif current_user.has_role? :account_admin %>
 
-          <div class="span4">
-            <div class="logo" >
-              <a href="/"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
-            </div>
+                  <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
 
-          </div>
-          <nav style="padding:0px;">
-            <ul class="nav pull-right" >
-
-          
-              <li style="color:#fff;"> <%= link_to "Course Library", courses_path, :style=>"color:#fff;" %></li>
-              <% if user_signed_in?%>
-                  <% if current_user.has_role? :admin %>
-                      <li ><%= link_to 'Admin', users_path, :style=>"color:#fff;" %></li>
+                      <li ><%= link_to 'Account Admin', users_path %></li>
                       <script>
                           $('.courseslink').css('left',"-100px");
                       </script>
-                  <% elsif current_user.has_role? :account_admin %>
-                      <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-                          <li ><%= link_to 'Account Admin', users_path, :style=>"color:#fff;" %></li>
+                  <% end %>
+                      <% else  %>
+                  <li class="courseslink"><%= link_to "My Courses", my_courses_path %></li>
+                  <script>
+                      $('.courseslink').css('left',"-140px");
+                  </script>
+              <% end  %>
 
-                          <script>
-                              $('.courseslink').css('left',"-100px");
-                          </script>
-                      <% end %>
-                  <% else  %>
-                      <li class="courseslink"><%= link_to "My Courses", my_courses_path , :style=>"color:#fff;"%></li>
-
-                      <script>
-                          $('.courseslink').css('left',"-140px");
-                      </script>
-                  <% end  %>
-
-      <% if current_user.has_role? :teacher %>
+              <% if current_user.has_role? :teacher %>
           <% if !AccountUser.where(:user_id=>current_user.id,:account_id=>@account_id).empty? %>
-             <li ><%= link_to 'Manage Courses', manage_courses_path, :style=>"color:#fff;" %></li>
+             <li ><%= link_to 'Manage Courses', manage_courses_path %></li>
                       
              <script>
               $('.courseslink').css('left',"-100px");
              </script>
            <% end %>
       <% end %>
+
+         <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <% if current_user.image_blob == nil %>
+                      <% if current_user.omni_image_url == nil %>
+                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                            <%= gravatar_for_with_size current_user, "20x20"%>
+                          </div><% else  %>
+                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
+                            <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%>
+                          </div>
+                      <% end  %>
+                  <% else  %>
+                      <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
+                      <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+                </a>
+                <ul class="dropdown-menu">
 
 
                   <li id="fat-menu" class="dropdown" >
@@ -94,32 +106,31 @@
                 <% if @domain_root_account.signup_teacher_enable? %>
 
               <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path ,:style=>"color:#fff;"%></li>
+
         <% end %>
 
         <% if Account.default.name == @domain_root_account.name %>
-          <li><%= link_to "Subscribe Now", account_subscription_path,:style=>"color:#fff;"%></li>
+          <li><%= link_to "Subscribe Now", account_subscription_path%></li>
         <% end %>
-         <% end %>
-            </ul>
-          </nav>
-          </div>
-          </div>
-          </div>
-          </div>
+   <% end %>
 
+
+        </ul>
+                   </div>
+            
+          </div>
         </header>
-    <% end %>
-<%else%>
-    <header class="navbar" style="min-height: 45px;">
-      <div class="span4">
-        <div class="logo">
-          <a href="/"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
-        </div>
-      </div>
 
-      <nav style="padding:0px;">
-        <ul class="nav pull-right">
-          <li> <%= link_to "Course Library", courses_path, :style=>"color:black" %></li>
+          <% end %>
+<%else%>
+<header class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="/" class="brand"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                            <ul class="nav pull-right">
+                <ul class="nav pull-right">
+          <li> <%= link_to "Course Library", courses_path %></li>
           <% if user_signed_in?%>
               <% if current_user.has_role? :admin %>
                   <li ><%= link_to 'Admin', users_path %></li>
@@ -193,12 +204,9 @@
 
         </ul>
 
-      </nav>
+                   </div>
+            
+          </div>
+        </header>
+        <%end%>
 
-      </div>
-      </div>
-      </div>
-      </div>
-
-    </header>
-    <% end %>

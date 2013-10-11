@@ -1,6 +1,8 @@
  <div id="wrap">
   <%= render 'shared/side_menu' %>
-   <div id="content">
+
+   <div id="content" class="span9">
+
      <div class="container-fluid outer"  >
       <div class="row-fluid">
        <div class="span12 inner">
@@ -46,8 +48,8 @@
  </div>
 </div>
 </div>
-<div class="left" style="padding: 0px;width: 16%;float: right;">
-<a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-380px;"><i class="icon icon-plus-sign"></i>Add New Course</a>
+<div class="span2 left" style="padding: 0px; ">
+<a href= <%=new_course_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-380px;"><i class="icon icon-plus-sign"></i>Add Course</a>
 <a href= <%= new_course_pricing_path%> class="btn btn-default btn-large" style="margin:10px; margin-top:-320px;"><i class="icon icon-plus-sign"></i>Add Price</a>
 </div>
 <div id="push"></div>

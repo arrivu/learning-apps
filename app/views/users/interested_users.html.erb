@@ -1,68 +1,85 @@
  <div id="wrap">
   <%= render 'shared/side_menu' %>
-   <div id="content">
-     <div class="container-fluid outer"  >
-       <div class="row-fluid">
-         <div class="span12 inner">
-           <div class="row-fluid">
-             <div class="span12">
-               <div class="box">
-                 <table >
-                   <tr>
-                     <td><%= form_tag "/interested_users", :method => 'get' do %></td>
-                           <td><%= label_tag(:search,"Courses") %></td>
-                           <td><%= select_tag :search, options_from_collection_for_select(Course.where(account_id:
-                                   @account_id), "id", "title",:selected => params[:search]) ,
-                                   {:prompt => 'ALL'} %></td>
-                           <td valign="top"><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %>
-                           </td>
-                           </tr>
-                           </table>
-                       <% end %>
-                       <div id="collapse4" class="body">
-                         <div class="icons"><span class="badge badge-info">Interested Users</span></div>
-                         <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-                           <thead>
-                           <tr class="tab_head">
-                             <th >Username</th>
-                             <th >Email</th>
-                             <th >Interested Course</th>
-                             <th>Date</th>
-                           </tr>
-                           </thead>
-                           <tbody>
-                           Download:
-                           <%= link_to "Excel", interested_users_path(format: "xls",:search =>params[:search]) %>
-                           <% @users.each do |user| %>
-                               <tr>
-                                 <td><%= link_to user.student.user.name %></td>
-                                 <td><%= user.student.user.email %></td>
-                                 <td><%= user.course.title %></td>
-                                 <td><%=l user.created_at , :format=>'%d %b. %Y %I:%M'%></td>
-                               </tr>
-                           <% end %>
-                           </tbody>
-                         </table>
-                       </div>
-                       <div class='apple_pagination' align="center"><%= will_paginate  @users, :container => false %></div>
-                       </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-            <!-- END CONTENT -->
-<div class="left" style="padding: 0px;width: 16%;float: right;margin-top: 36px;">
-  <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Account</a>
-  <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add Course</a>
+
+              
+            <div id="content" class="span9">
+               
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+   <table >
+   <tr>
+   <td><%= form_tag "/interested_users", :method => 'get' do %></td>
+   
+   <td><%= label_tag(:search,"Courses") %></td>
+
+   <td><%= select_tag :search, options_from_collection_for_select(Course.where(account_id: @account_id), "id", "title",:selected => params[:search]) , {:prompt => 'ALL'} %></td>
+
+   <td valign="top"><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %></td>
+   </tr>
+ </table>
+   
+   <% end %>
+  <div id="collapse4" class="body">
+  <div class="icons"><span class="badge badge-info">Interested Users</span></div>
+  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+      <tr class="tab_head">
+        <th >Username</th>
+        <th >Email</th>
+        <th >Interested Course</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      Download:
+ 
+  <%= link_to "Excel", interested_users_path(format: "xls",:search =>params[:search]) %>
+      <% @users.each do |user| %>
+      <tr>
+        <td ><%= link_to user.student.user.name %></td>
+        <td><%= user.student.user.email %></td>
+        <td><%= user.course.title %></td>
+        <td><%=l user.created_at , :format=>'%d %b. %Y %I:%M'%></td>
+        
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
 </div>
-   <!-- #push do not remove -->
-   <div id="push"></div>
-   <!-- /#push -->
-         <!-- END WRAP -->
-   <div class="clearfix"></div>
- <script>
+<div class='apple_pagination' align="center"><%= will_paginate  @users, :container => false %></div>
+
+                                    </div>
+                                </div>
+                            </div> 
+
+                    </div>
+                </div>
+            </div>
+          </div>
+            <!-- END CONTENT -->
+
+<div class="span2 left" style="padding: 0px; margin-top: 36px;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add Course</a>
+    </div>
+
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+        <script>
+
 $(document).ready(function() 
     { 
         $("#myTable").tablesorter(); 

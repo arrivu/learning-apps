@@ -6,7 +6,7 @@
   <div id="wrap">
 
   <%= render 'shared/side_menu' %>
-            <div id="content">
+            <div id="content" class="span9">
                
                 <div class="container-fluid outer"  >
                             <div class="row-fluid">
@@ -17,7 +17,7 @@
                                     <div class="box">
    <header>
  <div class="icons"><i class="icon-move"></i></div>
-   <h5>Manage Category </h5> <%= link_to('topics/new', :style=> 'margin:10px;float:right;', :class=>'btn btn-default') do %><i class="icon icon-tag"></i>Add New Category<%end%>
+   <h5>Manage Category </h5> <%= link_to('topics/new', :style=> 'margin:10px;float:right;', :class=>'btn btn-default') do %><i class="icon icon-tag"></i>Add Category<%end%>
        </header>
  <div id="collapse4" class="body">
   <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
@@ -90,9 +90,9 @@
             </div>
            </div>
 
- <div class="left" style="padding: 0px;width: 210px;float: right;">
-    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add New Account</a>
-    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add New Course</a>
+ <div class="span2 left" style="padding: 0px;width: 210px;float: right;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add Course</a>
     </div>
 
             <div id="push"></div>

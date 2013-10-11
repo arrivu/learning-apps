@@ -2,7 +2,7 @@
 
   <%= render 'shared/side_menu' %>
               
-            <div id="content">
+            <div id="content" class="span9">
                
                 <div class="container-fluid outer"  >
                             <div class="row-fluid">
@@ -46,7 +46,7 @@
 
 
             <!-- #push do not remove -->
-            <div class="left" style="padding: 0px;width: 16%;float: right;">
+            <div class="span2 left" style="padding: 0px; ">
               <% if SocialStreamComment.find_by_account_id(@account_id) == nil %>
     <a href="social_stream_comments/new" class="btn btn-default btn-large" style="margin:10px;width: 167px"><i class="icon icon-plus-sign"></i>Add Social Stream</a><% end %>
   </div>

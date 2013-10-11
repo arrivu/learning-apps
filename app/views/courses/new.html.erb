@@ -1,6 +1,6 @@
 <div id="wrap">
 <%= render 'shared/side_menu' %>
- <div id="content">
+ <div id="content" class="span9">
   <div class="container-fluid outer"  >
    <div class="row-fluid">
     <div class="span12 inner">
@@ -8,7 +8,7 @@
       <div class="span12">
        <div class="box">
         <div id="collapse4" class="body">
-     	 <div class="icons"><span class="badge badge-info">  Add New Course </span></div>
+     	 <div class="icons"><span class="badge badge-info">  Add Course </span></div>
           <%= simple_form_for @course do |f| %>
 			<table id="dataTable">
 		   	<tr><%= render 'shared/error_messages', object: f.object %></tr>
