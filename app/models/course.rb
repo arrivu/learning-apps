@@ -28,7 +28,7 @@ class Course < ActiveRecord::Base
   scope :enrolled_students, joins(:student_courses).where('student_courses.status = ?', "enroll") 
   scope :completed_students, joins(:student_courses).where('student_courses.status = ?', "completed") 
   scope :shortlisted_students, joins(:student_courses).where('student_courses.status = ?', "shortlisted") 
-  scope :following_students, joins(:student_courses).where('student_courses.status = ?', "follow") 
+  scope :following_students, joins(:student_courses).where('student_courses.status = ?', "follow")
   scope :student_enroll
   scope :student_complete
   scope :student_shortlist
