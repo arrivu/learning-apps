@@ -1,0 +1,115 @@
+<!-- <h3 align = "center">Knowledge Partners</h3>
+<table align="center">
+<tr>
+	<% @partner.each do |partners| %>
+	
+	<td>
+		<%= partners.company_name %>
+	</td>
+	<td>
+		
+	   <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners), :size => "50x50" %> 
+	</td>
+	<td>
+          <%= partners.comments %>
+	</td>
+	<td>
+		<%= link_to "show",partner_path(partners) %>
+	</td>
+ 	<td>
+ 		<%= link_to "edit",edit_partner_path(partners) %>
+ 	</td> 
+ 	<td>
+ 		<%= link_to "destroy",partners, method: :delete, data: { confirm: 'Are you sure?' } %>
+ 	</td>
+ </tr>
+ <%end%>
+</table> -->
+
+
+ <div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content" class="span9">
+                <!-- .outer -->
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+
+                                                              <div id="collapse4" class="body">
+               <div class="icons"><span class="badge badge-info">Knowledge Partners</span></div>
+             
+ 
+                                        
+                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                  
+      <tr class="tab_head">
+        <th >Company Name</th>
+        <th >Logo</th>
+        <th >Comments</th>
+        <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
+         </tr>
+    </thead>
+    <tbody>
+                    <% @partner.each do |partners| %>
+                       <tr>
+	<td>
+		<%= partners.company_name %>
+	</td>
+	<td>
+		
+	   <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners), :size => "50x50" %> 
+	</td>
+	<td>
+          <%= partners.comments %>
+	</td>
+	
+ <td> <%= link_to(edit_partner_path(partners)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+
+    <td>
+    <%= link_to(partner_path(partners),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+
+ </tr>
+ <%end%>
+                                            </table>
+
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+           <!-- #push do not remove -->
+
+
+
+           <div class="span2 left" style="padding: 0px; ">
+    <a href="partners/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Knowledge Partner</a>
+
+  </div>
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

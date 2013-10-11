@@ -2,7 +2,7 @@
     protect_from_forgery
     before_filter :load_account
     before_filter :topics
-   # before_filter :theme_create
+    before_filter :load_theme
    # before_filter :set_mailer_settings
     include ApplicationHelper
     include CoursesHelper
@@ -15,13 +15,13 @@
       redirect_to root_path, :alert => exception.message
   end
   include TaxRatesHelper
-  def theme_create
-     @account_theme= @domain_root_account.account_theme
-    if  @account_theme!=nil
-     theme @account_theme.name
-    else
-    theme "default"
-    end
+  def load_theme
+    # @account_theme= @domain_root_account.account_theme
+    #if  @account_theme!=nil
+    # theme @account_theme.name
+    #else
+    theme "jigsaw"
+    #end
   end
     
 

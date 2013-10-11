@@ -1,0 +1,92 @@
+<div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content" class="span9">
+                <!-- .outer -->
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                         
+                                        <div id="collapse4" class="body">
+                                        	 <div class="icons"><span class="badge badge-info">Edit Teaching Staff </span></div>
+                                          <%= simple_form_for(@teachingstaff) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+					<%= f.fields_for (@teachingstaff.user) do |user_form| %>
+					
+			    <table class="tableform"> 
+			        <tbody><tr> 
+			        	<th>Name</th>
+			            <td> 
+			            <%= user_form.text_field :name, :autofocus => true %>
+			              </td> 
+			        </tr> 
+			        <tr> <th>Email</th>
+			            <td> 
+			            <%= user_form.text_field :email, :required => true %>
+			              </td> 
+			        </tr>
+
+                    
+
+
+                    <tr><td>  </td><td>
+								<% if @teachingstaff.user.image_blob != nil %>
+			        	<%= image_tag url_for(:controller=>"registrations",:action => 'user_image', :id => @teachingstaff.user.id), :size => "100x100" %>
+								<% end  %>
+			        </td></tr>
+
+			        				<tr><th>Image</td>
+				<td><%= user_form.file_field :attachment %></td></tr>
+
+
+			        
+			        <%end %>
+
+
+			        <tr><th>Description</th><td><%= f.text_area :description ,:cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
+			 		 
+					   <tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
+			        <tr> <th>Linkedin Profile Url</th>
+                      <td>
+                        <%= f.text_field :linkedin_profile_url  %>
+                      </td>
+                    </tr>
+                    <tr> <th>Active</th>
+                         <td>
+                         <%= f.check_box :is_active %>
+                         </td>
+                    </tr>
+
+			  	<tr><td></td><td><%= f.submit "Update", class: "btn btn-primary " %>
+
+			   
+			  
+			<% end %></td></tr></table>
+</div>
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div>
+            <!-- END CONTENT -->
+
+
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        </div>
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

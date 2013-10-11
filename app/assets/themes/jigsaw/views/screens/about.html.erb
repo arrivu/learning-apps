@@ -1,0 +1,24 @@
+<% provide(:title, 'About') %>
+<% provide(:effectingHeader) %>
+<br/><br/>
+<h3 align = "center">About Details</h3>
+<div class="row">
+  <div class="container privacy">
+    <div class="span12">
+
+<table align="justify">
+  <% @aboutdetail.each do |aboutdetails| %>
+    <tr>
+     <td>
+       <%= aboutdetails.title%>
+     </td>
+    </tr>
+    <tr>
+     <td>
+      <%= aboutdetails.desc.html_safe %>
+     </td>
+    </tr><% end %></table >
+      </div>
+    </div>
+  </div>
+

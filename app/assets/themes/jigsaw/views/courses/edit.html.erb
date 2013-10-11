@@ -1,0 +1,78 @@
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+   <div id="content" class="span9">
+     <div class="container-fluid outer"  >
+       <div class="row-fluid">
+         <div class="span12 inner">
+           <div class="row-fluid">
+             <div class="span12">
+               <div class="box">
+                 <div id="collapse4" class="body">
+                  <div class="icons"><span class="badge badge-info">Edit Course</span></div>
+                  <table id="dataTable" >
+                   <%= simple_form_for(@course) do |f| %>
+                    <%= render 'shared/error_messages', object: f.object %>
+                    <tr><td><%= f.label :title, "Title" %></td>
+                        <td><%= f.text_field :title %></td></tr>
+                    <tr><td><%= f.label :start_date, "Start Date" %></td><td>
+                            <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
+                        </td></tr>
+                    <tr><td><%= f.label :end_date, "End Date" %></td><td>
+                            <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
+                        </td></tr>
+                        <% if current_user.has_role? :teacher %>
+                            <%= f.hidden_field :teaching_staff_ids,:value=>current_user.teaching_staff.id%>
+                        <% else  %>
+                    <tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
+                            <td>
+                            <%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.order(:name), :id, :name, {}, {multiple: false} %>
+                            </td></tr>
+                        <% end %>
+                    <tr><td><%= f.label :short_desc, "Short Description" %></td>
+                            <td><%= f.text_field :short_desc %></td></tr>
+                    <tr><td><%= f.label :desc, "Course Description" %></td>
+                            <td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
+                    <tr><td>  </td><td>
+                                    <% if @course.data!=nil %>
+                                    <%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
+                                    <% end %>
+                                </td></tr>
+                    <tr><td><%= f.label 'attachment', "Image" %></td>
+                                    <td><%= f.file_field 'attachment' %></td></tr>
+                    <tr><td>  </td><td>
+                                    <% if @course.background_image != nil %>
+                                    <%= image_tag url_for(:controller=>"courses", :action => 'background_image', :id =>  @course.id), :size => "450x103" %>
+                                <% end %>
+                                </td></tr>
+                    <tr><td><%= f.label 'background', "Background Image (1350x310)" %></td>
+                                <td><%= f.file_field 'background' %></td></tr>
+                    <tr><td><%= f.label :ispopular, "Popular" %></td>
+                                <td><%= f.check_box :ispopular %></td></tr>
+                    <tr><td><%= f.label :ispublished, "Publish" %></td>
+                                <td><%= f.check_box :ispublished 	%></td></tr>
+                    <tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
+                                <td><%= f.check_box :is_coming_soon %></td></tr>
+                    <tr><td><%= f.label :topic_id, "Topics" %></td>
+                    <td><%= f.collection_select :topic_id,@domain_root_account.topics.order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                    <tr> <td>        <%= f.label :tag_tokens, "Update Tags" %></td>
+                         <td>
+                           <div class="field">
+         <%= f.text_field :tag_tokens, :class => "token_input", "data-pre" => @course.tags.map(&:attributes).to_json %>
+
+                           </div>
+                         </td>
+                         </tr>
+                   <tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
+                       </td></tr>
+                    <% end %>
+                </table>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+      <div id="push"></div>
+   </div>
+<div class="clearfix"></div>

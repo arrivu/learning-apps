@@ -1,0 +1,37 @@
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content" class="span9">
+               
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+  
+     <div id="collapse4" class="body">
+                               <div class="icons"><span class="badge badge-info">Edit Social Stream Comments </span></div>            
+<table id="dataTable">
+<%= form_for (@social_stream_comment) do |f| %>
+<tr><td><%= f.label :facebook_comment_script %></td><td>
+<%= f.text_area :facebook_comment_script %></td></tr>
+<tr><td><%= f.label :twitter_comment_script %></td><td>
+<%= f.text_area :twitter_comment_script%></td></tr>
+<tr><td></td><td><%= f.submit "update" %></td></tr>
+<% end %>	</table>
+</div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                    </div>
+                </div>
+
+            </div>
+                
+
+            <div id="push"></div>
+ </div>
+<div class="clearfix"></div>

@@ -1,0 +1,59 @@
+<div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+               
+            <div id="content" class="span9">
+                <!-- .outer -->
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                                
+                                        <div id="collapse4" class="body">
+                                            <div class="icons"><span class="badge badge-info">Edit Slider </span></div>
+                            <table id="dataTable" class="">
+<%= form_for (@slider) do |f| %>
+
+	<tr>
+		<td><%= f.label :image %></td>
+		<td><%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => @slider.id), :width => "200",:height => "200"%>
+		<td><%= f.file_field 'attachment' %></td></tr>
+
+    	<tr><td><%= f.label :backgroundimage %></td>
+    		<td><%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => @slider.id), :width => "200",:height => "200"%>
+		<td><%= f.file_field 'background' %></td></tr>
+
+		<tr><td><%= f.label :header %></td>
+		<td><%= f.text_field :header %></td></tr>
+
+		<tr><td><%= f.label :body_tag %></td>
+		<td><%= f.text_field :body_tag %></td></tr>
+
+		
+        <tr><td><%= f.submit  "update" %></td></tr>
+<% end %>
+                                            </table>
+
+<!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+           <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

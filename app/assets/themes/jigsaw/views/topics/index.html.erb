@@ -1,0 +1,26 @@
+<%- model_class = Topic -%>
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+    <div id="content" class="span9">
+      <div class="container-fluid outer"  >
+        <div class="row-fluid">
+          <div class="span12 inner">
+            <div class="row-fluid">
+              <div class="span12">
+               <div class="box">
+                   <div id="collapse4" class="body">
+                    <div class="icons"><span class="badge badge-info">Category </span></div>
+                     <%= nested_topics @topics.arrange(:order => :created_at) %>
+                     <%= render "form" %>
+                   </div>
+                </div>
+              </div>
+             </div>
+            </div>
+          </div>
+         </div>
+        </div>
+      <div id="push"></div>
+    <div class="clearfix"></div>
+
+     </div>

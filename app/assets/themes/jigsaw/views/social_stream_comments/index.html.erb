@@ -1,0 +1,58 @@
+  <div id="wrap">
+
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content" class="span9">
+               
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+
+   <div id="collapse4" class="body">
+    <div class="icons"><span class="badge badge-info">Social Stream Comments</span></div>
+
+  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+   <thead>
+     <tr class="tab_head">
+      <th>Facebook</th>
+      <th>Twitter</th>
+      <th>Action</th>
+     </tr>
+  </thead>
+  <tbody>
+   <% @social_stream_comments.each do|social_stream_comment| %>
+<tr><td><%= social_stream_comment.facebook_comment_script%></td>
+<td><%= social_stream_comment.twitter_comment_script%></td>
+
+<td> <%= link_to(edit_social_stream_comment_path(social_stream_comment)) do%><i class="icon icon-edit"></i><% end%>
+</td> 
+</tr>
+<% end %>
+  </tbody>
+</table>                     
+</div>
+</div>
+</div>
+</div> 
+</div>
+ </div>
+            </div>
+           </div>
+            <!-- END CONTENT -->
+
+
+            <!-- #push do not remove -->
+            <div class="span2 left" style="padding: 0px; ">
+              <% if SocialStreamComment.find_by_account_id(@account_id) == nil %>
+    <a href="social_stream_comments/new" class="btn btn-default btn-large" style="margin:10px;width: 167px"><i class="icon icon-plus-sign"></i>Add Social Stream</a><% end %>
+  </div>
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

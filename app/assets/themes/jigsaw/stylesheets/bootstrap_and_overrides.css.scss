@@ -1,0 +1,75 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+.container-fluid {
+padding-right: 0px;
+padding-left: 0px;
+}
+.navbar {
+overflow: visible;
+margin-bottom: 0px;
+}
+header {
+background: white;
+margin: 0;
+padding: 0px 0px;
+height: auto;
+top: 0;
+width: 100%;
+z-index: 100;
+}
+.navbar-inner {
+min-height: 60px;
+padding-left: 20px;
+padding-right: 20px;
+background-color: #f9f9f9;
+background-image: -moz-linear-gradient(top, #fff, #f2f2f2);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f2f2f2));
+background-image: -webkit-linear-gradient(top, #fff, #f2f2f2);
+background-image: -o-linear-gradient(top, #fff, #f2f2f2);
+background-image: linear-gradient(to bottom, #fff, #f2f2f2);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFF2F2F2', GradientType=0);
+border: 1px solid #d4d4d4;
+-webkit-border-radius: 0px;
+-moz-border-radius: 0px;
+border-radius: 0px;
+-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+}
+.navbar .brand {
+float: left;
+display: block;
+padding: 0px 20px 0px;
+margin-left: -20px;
+font-size: 20px;
+font-weight: 200;
+color: #777;
+text-shadow: 0 1px 0 #fff;
+}
+
+.btn-large {
+padding: 3px 3px;
+width: 170px;
+font-size: 15px;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+}
+
+.nav-list>li>a {
+padding: 3px 15px;
+font-weight: bold;
+}
+.nav-header .nav-list>li>a {
+padding: 3px 15px;
+font-weight: normal;
+color:#000;
+}
+
+.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
+margin-top: 1px;
+margin-right: 2px;
+}

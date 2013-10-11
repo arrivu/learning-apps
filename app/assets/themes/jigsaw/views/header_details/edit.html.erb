@@ -1,0 +1,59 @@
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+      <div id="content" class="span9">
+                <!-- .outer -->
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+         <div id="collapse4" class="body">
+                                          <div class="icons"><span class="badge badge-info">Edit Header Details </span></div>
+                                            <table id="dataTable" class="table table-bordered table-condensed table-hover">
+            
+  <%= form_for (@header_detail) do |f| %>
+<tr>
+	<td><%=f.label 'logo' %></td>
+	<td> <%= image_tag("/images/#{@header_detail.logo_name}", :size=> "100x100") %>
+	<%= f.file_field :logo_name %></td> 
+</tr>
+<tr>
+	<td><%=f.label 'theme' %></td>
+	<td><%= image_tag url_for(:controller => 'header_details',:action => 'theme_image_detail', :id => @header_detail.id), :width => "100",:height => "100"%>
+	<%= f.file_field :uploaded %></td> 
+</tr>
+
+<tr>
+	<td><%=f.label 'message'%></td>
+	<td><%=f.text_field :message%></td>
+</tr>
+
+<tr >
+   <td><%= f.submit "Update" %> </td>
+</tr>
+
+<% end %>
+                     </table>
+
+                                   </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>

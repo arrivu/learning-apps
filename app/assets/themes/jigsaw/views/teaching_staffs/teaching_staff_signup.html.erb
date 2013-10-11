@@ -1,0 +1,39 @@
+<div id="wrap" style="background:#fff;">
+ <div id="content" class="span9" style="margin: 0px 15% 45px;box-shadow: -2px -1px 10px #333;">
+  <div class="container-fluid outer" >
+   <div class="row-fluid">
+    <div class="span12 inner">
+      <div class="row-fluid">
+       <div class="span12">
+        <div class="box">
+         <div id="collapse4" >
+           <h3 style="margin-left: 288px; color: #f27428;">Apply to be a Teaching Expert</h3>
+            <hr>
+             <%= form_for(@teachingstaff,:validate=> true,:url => url_for(:controller => 'teaching_staffs', :action => 'teaching_staff_signup')) do |f| %>
+             <%= f.error_messages %>
+             <%= f.fields_for @teaching_staff_user,:validate=> true do |user_form| %>
+                  <%= user_form.error_messages %>
+             <table id="dataTable" style="margin: 0px auto;text-align: left">
+             <tbody><tr><th>Name *</th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
+             <tr><th>Email*</th><td> <%= user_form.text_field :email%></td></tr>
+             <tr><th>Password*</th><td><%= user_form.password_field :password %></td></tr>
+              <tr><th>Confirm Password*</th><td><%= user_form.password_field :password_confirmation %></td></tr>
+             <%end %>
+              <tr><th style="width: 193px;">Description: <div>  <h7 style="font-weight: normal;">(Tell us a bit about why you are qualified to teach the classes you have proposed above. Provide links to more information where appropriate)</h7> </div> </th><td>
+             <%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
+             <tr><th>Qualification:</th><td> <%= f.text_field :qualification %></td></tr>
+             <tr> <th>Linkedin Profile URL:</th><td><%= f.text_field :linkedin_profile_url%></td></tr>
+            <tr><td></td><td><%= f.submit "Create My Account", class: "btn btn-large btn-primary" %></td></tr>
+            </table>
+            <% end %>
+           </div>
+          </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    <div id="push"></div>
+   </div>
+  <div class="clearfix"></div>
+ </div>
+</div>
