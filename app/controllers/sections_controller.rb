@@ -13,7 +13,7 @@ class SectionsController < ApplicationController
   		flash[:success]="Section created Successfully"
   		redirect_to course_library_page_path
     else
-      render "new"
+      redirect_to "new"
   	end
   end
   def edit
