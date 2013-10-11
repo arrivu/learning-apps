@@ -1,431 +1,95 @@
-<div class="row">
-<div class="container" style="width:100%;background: #F7F7F7;">
-<div class="span12" style="width:100%;margin-top:20px;">
-<div class="span3 content-box resource" style="float: left;">
-  <div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 96%;"></div>
-  <div class="details" style="margin-top:165px;">
-    <div class="we" style="margin:0px 5px;"><h2 >
-      <%= @course.title %>
-    </h2><%= rating_for @course, "rate" %></div>
-    <div class="review-stars"  >
-      <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%>
-      <div class="tag" style="padding:0px 10px;margin: 30px -13px 0px -33px;">
-        <div style="font-size: 14px;margin-left: -8px;margin-bottom: -4px;">courses tags with:</div>
-        <ul class="tags" style="border:0px;">
-          <% @course.tags.each do |tag| %>
-              <li><a href="<%=tagged_courses_path(tag: tag)%>" >
-                <b> <%= tag.name%> </b>
-                <span><%= tag.courses.count%></span></a></li>
-          <%end  %>
-        </ul>
-      </div>
-      <div id="rating" style="font-size: 14px;float:left;width: 100%;text-align: right;margin: -95px 0px;border-bottom: 1px solid hsl(0, 0%, 86%);">
-        <%=pluralize(@qty,"rate")if !!@qty %></div>
-    </div>
-    <ul class="author" style="text-align: center;border-bottom:0px;border-top:0px;margin: 0px 15px;"><% @course.teaching_staffs.each do |author|%>
-          <li>
-            <div class="user" style="margin: 0px 0px 10px -5px;font-size:18px;">
-              <%= author.user.name %>
-            </div>  <% if author.user.image_blob == nil %>
-                <% if author.user.omni_image_url == nil %>
-                    <%= gravatar_for_with_size_course_box author.user, "25x20" %>
-                <% else  %>
-                    <%= image_tag(author.omni_image_url,size: "45x40", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
-                <% end  %>
-            <% else  %>
-                <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top: -0px;float:left;" %>
-            <% end  %>
-          </li>
-          </ul>
-          <div style="font-size: 13px;margin: -4px 13px;">
-            <%= truncate(author.description, :length => 500)%></div>
-      <% end %>
-      </div>
-</div>
-<div class="span7">
-<div style="-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
-        -webkit-box-shadow: 0 1px 2px 1px rgba(0,0,0,0.25);box-shadow: 0 1px 2px 1px rgba(0,0,0,0.25);
-        background-color: #fff;-webkit-border-radius: 1px;border-radius: 1px;padding: 0px 0px 48px 0px;
-        margin-left: 0px;width: 100%;height: 100%;margin-bottom:20px;float:left;">
-<div style="background-image:url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => @course.id) %>');background-repeat: no-repeat;
-        background-size: 100% 100%;height:250px;margin-top:0px;padding:10px;">
-  <h1 style="color:#fff">
-    <%= @course.title %>
-  </h1>
-  <h2 class="author_names" style="color:#fff;">
-    with  <% @course.teaching_staffs.each do |author|%><%= author.name%><%end%>
-  </h2>
-  <p class="resource-tagline" style="color:#fff;">
-    <%= @course.short_desc  %>
-  </p>
-</div>
-<div class="tabbable">
-<ul class="nav nav-tabs" id="myTab" >
-  <li class="active"><a href="#home">Overview</a></li>
-  <li><a href="#profile">Previews</a></li>
-</ul>
-<div class="tab-content" style="width: 95%;float: left;">
-<div class="tab-pane active" id="home">
-  <div class="aboutcompany">
-    <div class="underlinetext">
-      <div class="coursesyllabus">
-        <div class="">
-          <div class="">
-            <div class="">
-              <div class="">
-                <h3>Course Description</h3>
-              </div>
-              <div class="underlinetext" >
-                <%= @course.desc  %></br> </br>
-              </div></div>
-            <div class="">
-              <div class="">
-                <h3>Course Modules</h3>
-              </div>
-              <div class="underlinetext">
-                <ul>
-                  <li>
-                    <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 1</h4>
-                  </li>
-                  <li>
-                    <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 2</h4>
-                  </li>
-                  <li>
-                    <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 3</h4>
-                  </li>
-                  <li>
-                    <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 4</h4>
-                  </li>
-                  <li>
-                    <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 5</h4>
-                  </li>
-                </ul>
-              </div>
-            </div>
+<div class="row evenflow">
 
-
-            <!-- <div class="starrating">
-         <div class='spread'>  <div class='twshare left'>   </div>
-         <table> <tr>
-          <td>
-           <td><script type="text/javascript" src="http://platform.linkedin.com/in.js"></script></td>
-           <script type="in/share" data-url="<%=request.url%>" data-counter="right"></script>
-           <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>  
-           <td><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script> <fb:like href="<%=request.url%>" layout="button_count" show_faces="false" width="450" font=""></fb:like></td> 
-           <script src="https://apis.google.com/js/plusone.js"></script>
-           <td><g:plus action="share" annotation="bubble" ></g:plus></td> 
-           <td>
-<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<%= truncate(@course.desc, :length => 70)  %>">Tweet</a>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div> -->
+  <div class="resource-row">
+    
+        <% @courses.each do |course|%>
+     
+        <div class="span3 content-box resource" style="float: left;margin-top:65px;">
+          <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100%% 96%;">
+            <% if course.data!=nil %>
+            <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
+            <% else %>
+            <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
+            <% end %>
+            <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>>
+              <span class="prefix"> 
+                <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %>
+            </span>
           </div>
         </div>
-      </div>
-      <!-- <div class="aboutauthor">
-  <div class=" ">
-    <h4>About the Faculty</h4>
-    <% @authors.each do |author|%>
-    <div class="row" style="width:61%; display:inline-block; clear:left; margin:15px">
-      <div class="authorimage">
-        <% if author.user.image_blob == nil %>
-        <% if author.user.omni_image_url == nil %>
-        <%= gravatar_for_with_size author.user, "100x100" %>
-        <% else  %>
-        <%= image_tag(author.user.omni_image_url,size: "100x100", alt: "")%>
-        <% end  %>
-        <% else  %>
-        <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "100x100" %>
-        <% end  %>
-        <p ><%= truncate(author.description, :length => 300)%></p>
-      </div>
-      <div class="authorinfo">
-        <h4><%= author.name %></h4>
-        <% if !!author.linkedin_profile_url %>
-  <%= link_to image_tag("linkedin_badge.png", :alt => author.name ), "http://" + author.linkedin_profile_url, :target => "_blank" %>
-        <% end  %>
-
-      </div>
-
-      <div class=" clearfix"></div>
-    </div>
-    <% end %>
-    </div>
-  
-</div>
- -->
-
-      <!-- <div align="center">
-  <a href="<%= courses_path %>"><span class="browsemore" align="center">
-    
-      </span></a>
-      <h6 style="color:steelblue;margin:0px;"> Discover More courses</h6>
-</div> -->
-
-      <script>
-          $(document).ready(function(){
-              $(".star").click(function(){
-                  $(".rated").html("Course Rated")
-              });
-
-              $(".close").click(function(){
-                  var frames = document.getElementsByTagName("iframe");
-                  for (var i = 0; i < frames.length; i++) {
-                      frames[i].src += "&stop";
-                  }
-              });
-
-          });
-      </script>
-
-
-      <script>
-          $(function() {
-
-              function filterPath(string) {
-                  return string
-                          .replace(/^\//,'')
-                          .replace(/(index|default).[a-zA-Z]{3,4}$/,'')
-                          .replace(/\/$/,'');
-              }
-
-              var locationPath = filterPath(location.pathname);
-              var scrollElem = scrollableElement('html', 'body');
-
-              // Any links with hash tags in them (can't do ^= because of fully qualified URL potential)
-              $('a[href*=#]').each(function() {
-
-                  // Ensure it's a same-page link
-                  var thisPath = filterPath(this.pathname) || locationPath;
-                  if (  locationPath == thisPath
-                          && (location.hostname == this.hostname || !this.hostname)
-                          && this.hash.replace(/#/,'') ) {
-
-                      // Ensure target exists
-                      var $target = $(this.hash), target = this.hash;
-                      if (target) {
-
-// Find location of target
-                          var targetOffset = $target.offset().top;
-                          $(this).click(function(event) {
-
-                              // Prevent jump-down
-                              event.preventDefault();
-                              //alert(target);
-                              if(target!="#previewcourse" && target!="#top" ) return;
-                              // Animate to target
-                              $(scrollElem).animate({scrollTop: targetOffset}, 900, function() {
-
-                                  // Set hash in URL after animation successful
-                                  location.hash = target;
-
-                              });
-                          });
-                      }
-                  }
-
-              });
-
-              // Use the first element that is "scrollable"  (cross-browser fix?)
-              function scrollableElement(els) {
-                  for (var i = 0, argLength = arguments.length; i <argLength; i++) {
-                      var el = arguments[i],
-                              $scrollElement = $(el);
-                      if ($scrollElement.scrollTop()> 0) {
-                          return el;
-                      } else {
-                          $scrollElement.scrollTop(1);
-                          var isScrollable = $scrollElement.scrollTop()> 0;
-                          $scrollElement.scrollTop(0);
-                          if (isScrollable) {
-                              return el;
-                          }
-                      }
-                  }
-                  return [];
-              }
-
-          });
-      </script>
-
-
-    </div></div></div>
-
-<div class="tab-pane" id="profile"><div class="aboutcompany">
-  <div class="underlinetext">
-    <div class="previewcourse" id="previewcourse">
-      <div class="">
-        <div class="">
-          <h2>Lecture Preview: A Sneak Peak into the course</h2>
-          <% a=0 %>
-          <% @course.course_previews.where(enable: 1).order(:sequence).each do |p| %>
-              <% a +=1  %>
-              <div class="span4 prevbox">
-                <table> <tr>
+        <div class="details">
+          <h2>
+            <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %><%end%>
+          </h2>
+          <ul style="border-top:0px;">
+            <li class="length time">
+              <table>
+                <tr>
                   <td>
-                    <div class="bannervideo">
-                      <% h = p.video_url %>
-                      <% url = h[38..h.length-44].split('/')  %>
-
-                      <a href="#preview_model<%= a %>" data-toggle="modal" > <img src="http://i.ytimg.com/vi/<%= url[4] %>/default.jpg" /></a>
-                      <div id="preview_model<%= a %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="position:fixed;margin:0px auto;left:28%;" >
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-
-                          <%=image_tag("close.png", alt: "")%></a>
-                          </a></button>
-
-                        <div class="modal-header">
-                          <h3 id="myModalLabel">Preview Video</h3>
-                        </div>
-
-                        <div class="modal-body" style="margin-left:0px;">
-
-                          <%= raw(p.video_url) %>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="previnfo">
-                      <h3><%= p.name %></h3>
-                      <p class="prevtxt"><%= p.desc %></p>
-
-                    </div>
+                    <i class="icon-book" rel="tooltip" title="number of courses "></i></td><td style="verticle-align:bottom;"><%=lms_get_modules(course).count%>
                   </td>
                 </tr>
-                </table>
+              </table>  
+            </li>
+            <li class="users">
+              <table>
+                <tr>
+                  <td>
+                    <i class="icon-user" rel="tooltip" title=" number of users"></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+                  </td>
+                </tr>
+              </table>
+            </li>
+            <li class="tags">
+              <table>
+                <tr>
+                  <td>
+                    <i class="icon icon-tag" rel="tooltip" title="number of tags"></li></td><td style="verticle-align:bottom;"><%= course.tags.count%></i>
+                  </tr></table></li>
+                </ul>
+                <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
+                  <% course.tags.each do |tag| %> 
+                  <li><a href=<%=tagged_courses_path(tag: tag)%> >
+                    <b> <%= tag.name%> </b>
+                    <span><%= tag.courses.count%></span></a></li>
+                    <%end  %>
+                  </ul>
+                </div>
+                <div class="desc" style="min-height: 20px;padding: 10px">
+                  <%= course.short_desc  %>
+                </div>
+                <ul class="author" style="text-align: center;border-bottom:0px;">
+                  <% course.teaching_staffs.active.each do |author|%>
+                  <li>
+                     <div class="user" style="margin: -8px 0px 10px 0px;text-align:left;">
+                    <%= author.user.name %>
+                  </div>
+                    <% if author.user.image_blob == nil %>
+                    <% if author.user.omni_image_url == nil %>
+                    <%= gravatar_for_with_size_course_box author.user, "25x20" %>
+                    <% else  %>
+                    <%= image_tag(author.omni_image_url,size: "45x40", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
+                    <% end  %>
+                    <% else  %>
+                    <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top:-10px;float:left;" %>
+                    <% end  %>
+                  </li>
+                </ul>
+                 <div style="font-size: 10px;float:left;margin:-40px 63px">
+                  <%= truncate(author.description, :length => 100)%></div> <% end %>
+                </div>
               </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-     </div>
-</div></div>
+              <%end%>
 
-  </div>
-</div>
-</div>
-</div>
-
-
-<div class="span3 content-box resource" style="float: left;padding: 10px 20px 0px 20px;">
-  <% if @course.is_coming_soon %>
-      <h4>Date to be announced</h4>
-  <% else %>
-      <% start=""
-         if @course.start_date != nil
-           start=@course.start_date.to_formatted_s(:long)
-         end
-         duration=""
-         if @course.start_date != nil and @course.end_date != nil
-           x=(@course.end_date - @course.start_date).to_i
-           y=x/7
-           z=x%7
-           duration = pluralize(y,"Week")
-           if(z != 0)
-             duration = duration + " " + pluralize(z,"Day")
-           end
-           duration = duration + " Long"
-           #duration=distance_of_time_in_words(@course.start_date,@course.end_date)
-         end
-         next_session=""
-         if @course.start_date != nil and @course.end_date != nil
-           next_session="Next Session: #{start} (#{duration})"
-         end
-      %>
-      <h4><%= next_session %></h4>
-  <% end %>
-  <% if @price.to_i != 0 %>
-      <h2>Rs&nbsp;<%= @price.to_i %></h2>
-  <% end %>
-
-  <% if (current_user.present? ) %>
-      <% if !(current_user.has_role? :admin) and !(current_user.has_role? :account_admin) and !(current_user.has_role? :teacher)%>
-
-          <% if @course.is_coming_soon %>
-              <% if @status!="follow" %>
-
-                  <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
-              <% end %>
-          <% elsif @status=="enroll" %>
-              <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class="enroll">Go To Class
-              </div></a>
-          <% elsif @status=="completed" %>
-
-          <% else %>
-
-              <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user.id).empty? %>
-
-                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
-              <% else %>
-                  <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="enroll"  >Enroll</a>
-              <% end %>
-          <% end %>
-
-      <% end %>
-
-
-  <% else %>
-      <% if @course.is_coming_soon %>
-          <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
-          <!--  <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Follow</a> -->
-
-      <% else %>
-
-          <% if @current_user !=nil %>
-              <% if !AccountUser.where(  :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
-
-                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
-              <% else %>
-                  <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary" ,payments_follow_course_path(:id=>@course.id) >Enroll</a>
-              <% end %>
-          <% else %>
-              <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
-
-          <% end %>
-      <% end %>
-  <% end%>
-
-</div>
-
-<div class="span3 content-box resource" style="float: left;padding: 40px 40px 0px 0px; margin-top: 30px;">
-  <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
-  <div class="underlinetext">
-
-    <div class="coursereviews" >
-      <div class="">
-        <div class="">
-          <div align="center">
-            <h4 style="margin:-25px 0"><%=@course.comments.size%> Reviews</h4>
-            <br/>
-          </div>
-        </div>
-        <%= render "comments/comments" %>
-        <div class=" clearfix"></div>
-
-
-        <div class=" clearfix"></div>
-        <div class="row">
-          <div align="center">
-            <div>
-
-              <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall",style:"margin-top:-70px;margin-right: -60px;"%>
+  
+     
             </div>
           </div>
         </div>
-      </div>
-    </div>
+          
+   
 
-
-
-
-
-<script>
-    $('#myTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    })
+<script type="text/javascript">
+  $('i').tooltip()
 </script>
+

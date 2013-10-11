@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   @@course_id
-  caches_action :index,:show,:background_image,:show_image
+  caches_action :background_image,:show_image
 
   def show_image
     @course = Course.find(params[:id])
