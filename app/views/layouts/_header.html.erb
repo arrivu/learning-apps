@@ -1,3 +1,4 @@
+
 <%= javascript_tag do %>
     function logout_lms()
 
@@ -25,7 +26,7 @@
             <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="nav pull-right">
                 <ul class="nav pull-right">
-          <li> <%= link_to "Course Library", courses_path %></li>
+          <li> <%= link_to "Course Library of jigsaw", courses_path %></li>
           <% if user_signed_in?%>
               <% if current_user.has_role? :admin %>
                   <li ><%= link_to 'Admin', users_path %></li>
@@ -130,7 +131,7 @@
             <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="nav pull-right">
                 <ul class="nav pull-right">
-          <li> <%= link_to "Course Library", courses_path %></li>
+          <li> <%= link_to "Course Library for jigsaw", courses_path %></li>
           <% if user_signed_in?%>
               <% if current_user.has_role? :admin %>
                   <li ><%= link_to 'Admin', users_path %></li>

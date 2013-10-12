@@ -1,252 +1,134 @@
-  <div class="subMenu" >
-    <div class="inner">
-      <a href="#" id="sTop" class="subNavBtn">Home</a> 
-      <a href="#" id="s1" class="subNavBtn">Popular Courses</a>
-      <a href="#" id="s2" class="subNavBtn">Knowledge Partners</a>
-      <a href="#" id="s3" class="subNavBtn end">Learners Reviews</a>
-    </div>          
-  </div>
-<% provide(:title, 'A Smarter Way to Learn') %>
-  <% provide(:effectingHeader) %>
-   <div class=" row sTop" style="">
-            <div id="slideshow1" class="sliders" style="height: 485px">
-        <% if @domain_root_account.settings[:slide_show_enable] %>
-            <% @slider.each do |slider| %>
+<div id="bannerarea">
+<div class="banner">
+<div class="left"><h1 class="orange bottom30">Learn Analytics and <br />
+  Data Science.</h1>
+Jigsaw Academy provides groundbreaking online analytics <br />
+courses that can change the course of your career.</div>
+<div class="right"><span class="blue-button buttonleft135"><a href="course-schedule">Start learning</a></span></div>
+<div class="clear"></div>
+<div align="center"><img src="http://www.jigsawacademy.com/assets/images/banner_image.png" width="799" height="284" alt="Jigsaw_banner" /></div>
+</div>
+</div>
+<!-- BANNER END -->
 
-         <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 100%; width: 100%;" class="active-slide slide">
-                 <div class="span12 offset1" style="background-image: url('assets/banner-content-bg.png');height:300px;margin-top:3%;padding:3% 0px;">
-              <% unless slider.image.nil?  %>
-               <div class="span4 offset1">
-                <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :style=>"width:55%;height:65%" %> 
+<!-- MAINBODY START -->
+<div class="mainbody">
 
-              </div>
-                 <% end  %>           
-              
-              <div class="span6">
-                <h3 style="color:white;"><%= slider.header %> </h3>
-                <p><%= slider.body_tag %><p>
-                  <%= render 'show_topics' %>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-                   <%end%>
-          <% else %>
-<div style="background-image: url('class.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
-                <div class="row">
-                    <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
-                        <div class="span12" align="center" >
-                            <div class="bannertext">
-                               <h3 style="color:white;margin-left: 50px;"> </h3>
-                            </div>
-                        </div>
-                           <div class="clearfix"></div>
-                              <div class="span4" align="center" >
+<div class="mainbodyinner">
+<div class="leftimage"><img src="http://www.jigsawacademy.com/assets/images/expert_image.jpg" width="220" height="250" alt="expert" /></div>
 
-                              </div>
-                                 <div class="span5" align="justify">
-                                     <%= render 'show_topics' %>
-                                 </div>
-                                  <div class="clearfix"></div>
-                                </div>
-                               </div>
-                          </div>
-              <div style="background-image: url('ems-banner.jpg');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 455px; width: 100%;" class="active-slide slide">
-                <div class="row">
-                  <div class="container" style="background-image: url('assets/banner-content-bg.png');padding:25px 0px;margin: 70px 185px;height:300px;">
-                    <div class="span12" align="center" >
-                      <div class="bannertext">
-                        <h3 style="color:white;margin-left: 50px;"> </h3>
-                      </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="span4" align="center" >
-
-                    </div>
-                    <div class="span5" align="justify">
-                      <%= render 'show_topics' %>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-              </div>
-
-          <%end %>
-            </div>
-     
-  </div>
-  <section class="main keynumbers" >
-    <% if @domain_root_account.settings[:account_statistics_enable] %>
-    <div class="container">
-       <% if @domain_root_account.settings[:account_statistics_enable] %> 
-      <div class="row-fluid pagination-centered">
-
-        <div class="span3">
-          <h2>
-            <img src="assets/PNG/Grey/64/Bookmark.png" >
-
-          </h2>
-          <p> <b> <%=@domain_root_account.courses.count %> </b> Courses</p>
+<div class="right">
+<h1 class="orange bottom10">Become an expert in analytics</h1>
+<div>Enrol for these online analytics courses and join the league of best business analytics professionals.</div>
+<div class="expert-module">
+  <div class="left_icon"><img src="http://www.jigsawacademy.com/assets/images/icon_beginners_choice.jpg" alt="Beginner’s Course" width="37" height="37" /></div>
+        <div class="right">
+        <span class="link-style-new"><h2><a href="http://www.jigsawacademy.com/jigsaw-course-beginners" class="blue">Beginners Courses</a></h2></span>
+        <p>These courses provide you a solid foundation for a bright career in analytics</p>
+        <p><span class="learn-more-blue"><a href="http://www.jigsawacademy.com/jigsaw-course-beginners">LEARN MORE</a></span></p>
         </div>
-        <div class="span3">
-          <h2>
-            <img src="assets/PNG/Grey/64/User.png">
-
-          </h2>
-          <p> <b><%=@domain_root_account.account_users.count %> </b>Users</p>
-        </div>
-        <div class="span3">
-          <h2>
-            <img src="assets/PNG/Grey/64/Document Add.png">
-
-          </h2>
-          <p> <b> <%=  modules_count=totalmodulescount %></b> Modules</p>
-        </div>
-        <div class="span3">
-          <h2>
-            <img src="assets/PNG/Grey/64/Bookmark.png">
-
-          </h2>
-          <p><b> <%= @domain_root_account.topics.count %> </b> Categories</p>
-        </div>
-       </div>
-    <%end%>
-   </div>
-  </section>
-  <% end %>
-
-   <% if  @domain_root_account.settings[:popular_course_enable] %>
-    <div class="row homecourse s1">
-      <div class="secondary-content yellobg">
-        <div class="container" align="center">
-          <div class="row testimonial">
-                         <h2 style="margin-left:30px;">Popular Courses</h2>
-                </div>
-                </div>
-                </div>
-                <div class="container">
-                  <div class="span12 offset1">
-
-  <%= render 'shared/popular_courselist' %>
 </div>
 
-                    <div align="center" style="">
+<div class="expert-module mright0">
+  <div class="left_icon"><img src="http://www.jigsawacademy.com/assets/images/icon_advance_course.jpg" alt="Advanced Course" width="37" height="37" /></div>
+        <div class="right">
+        <span class="link-style-new"><h2><a href="http://www.jigsawacademy.com/jigsaw-course-advanced" class="blue">Advanced Courses</a></h2></span>
+        <p>Learn advanced analytics skills for niche domains</p>
+        <p><span class="learn-more-blue"><a href="http://www.jigsawacademy.com/jigsaw-course-advanced">LEARN MORE</a></span></p>
+        </div>
+</div>
 
-         <%= link_to "Discover More courses", courses_path, :class => "browseourcoursessmall"%> 
+</div>
+
+<div class="clear"></div>
+<div class="highlight bggrey">3000+ students have enroled in Jigsaw Academy’s online analytics courses. <span class="blue-link"><a href="http://www.jigsawacademy.com/why-jigsaw">Learn why</a></span> they chose Jigsaw.</div>
+
+<div class="ebookpart">
+<h3 class="bottom10">Get more insight on the…</h3>
+<div>Application of analytics in various domains, popular tools & techniques, and career opportunities in analytics.</div>
+<div></div> 
+<div class="ebookiamge homeebook" align="center">
+<span class="resourcesbutton"><a href="http://www.jigsawacademy.com/resources-ebooks">See e-books and other resources</a></span>
+
 </div>
 </div>
 
- <% end %></div></div>
 </div>
 
-   <% if  @domain_root_account.settings[:testimonial_enable] %>
-   <div class="row ourcustomers s2" >
-  <div class="secondary-content ">
-    <div class="container" align="center">
-      <div class="row testimonial">
- <h2 style="">Knowledge Partners</h2>
-     </div>
-   </div>
- </div>
-
- <div class="container">
-    <div class="row-fluid">
-      <ul class="span12 offset1" style="margin-top:40px;margin-bottom:40px;"> 
-              <% @partners.each do |partners| %>
-        <li class="span3">
-          <div class="thumbnail" style="padding: 0;min-height: 255px;">
-                        <div class="caption">
-                 <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>                      </div>
-            <div style="text-align: center">
-            <p>  "<%= partners.comments%>" </p>
-            
-            </div>
-          </div>
-        </li>
-        <%end%>
-            </ul>    
-            </div>
-            </div>  
-            </div>
-            <%end%>              
+</div>
+<!-- MAINBODY END -->
 
 
+<!-- BLUEPART START -->
+<div class="blue-module">
+<div class="blue-moduleinner">
 
- 
-                <div class="bottomadsection">
+<div class="module">
+  <img src="http://www.jigsawacademy.com/assets/images/blue_box_01.png" alt="Hitesh Pant" width="122" height="122" class="bottom30"/>
+  <div class="heading">It is so easy to learn.</div>
+     I recommend these courses to all those who are looking to enter the world of Data Analytics.<br />
+    <div class="smalltext">Hitesh Pant<br />
+    Software Engineer at Capgemini</div>
+</div>
 
-                  <div class="container">
-                    <div class="row">
+<div class="module">
+  <img src="http://www.jigsawacademy.com/assets/images/blue_box_02.png" alt="Akanksha Soni" width="122" height="122" class="bottom30"/>
+  <div class="heading">Very well designed.</div>
+  The Data Science course is very well designed. It made learning R enjoyable. The faculty support is awesome. <br />
+    <div class="smalltext">Swathi Munikoti<br />
+Project Manager, Bangalore</div>
+</div>
 
+<div class="module">
+  <img src="http://www.jigsawacademy.com/assets/images/blue_box_03.png" alt="Ashish Merchant" width="122" height="122" class="bottom30"/>
+  <div class="heading">Highly recommended!</div>
+  Sharp faculty, quick pace and lots of case studies. These courses have it all.<br />  
+  <div class="smalltext">Ashish Merchant<br />
+  President at Net Carrots Loyalty</div>
+</div>
 
-                       <div class="span12" align="center" style="width: 95%;">
-                       <h3 style="font-size: 38px;">Step up Your Learning Curve!
-
-                        </h3>
-
-
-                        <a href="/courses" class="browseourcoursessmall">Browse Our Courses</a>
-                        <a href="#sign_up_Modal" role="button" data-toggle="modal" class="browseourcoursessmall">Create Account</a>
-
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div class="ourcustomers row s3" >
-                  <div class="secondary-content">
-                    <div class="container" align="center">
-                      <div class="row testimonial">
-                        <% if  @domain_root_account.settings[:testimonial_enable] %>
-
-                            <h2 style="font-size: 35px;">Learners Reviews</h2>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="container">
-    <div class="row-fluid">
-      <ul class="span12 offset1" style="margin-top:40px;margin-bottom:40px;"> 
-           <% @testimonial.each do |testimonials| %>
-        <li class="span3">
-          <div class="thumbnail" style="padding: 0">
-                        <div class="caption">
-                     <p> "<%=testimonials.comment%>" </p>
-                      </div>
-            <div style="text-align: center">
-              <h6>   -<%= testimonials.name %>,<br/><%=testimonials.organization%> </h6>
-            
-            </div>
-          </div>
-        </li>
-        <%end%>
-            </ul>    
-            </div>
-            </div>                 
-
-                     </div>              
-                        <% end %>          
-                        
+</div>
+</div>
+<div class="clear"></div>
+<!-- BLUEPART END -->
 
 
-
-<script type="text/javascript">
-$(document).ready( function() {
-    $('.subMenu').smint({
-      'scrollSpeed' : 1000
-    });
-
-$(window).scroll(function() {
-    if ($(window).scrollTop() > 150) {
-        $(".subMenu").show();
-        } else {
-            $(".subMenu").hide();
-    }
-});
-
+<script type="text/javascript" src="http://www.jigsawacademy.com/assets/js/jquery.fancybox.pack.js"></script>
+<script>
+  jQuery(document).ready(function($){   
+    $('.fancybox').fancybox();
+  });
 </script>
+<!-- NEWSLETTER START -->
+<div class="newsletterpart">
+<div class="newsletterpartinner">
 
+<div class="subscribemodule">
+<div class="left_icon"><img src="http://www.jigsawacademy.com/assets/images/icon_newsletter.jpg" width="67" height="67" alt="newsletter" /></div>
+<div class="right"><h4>Subscribe to the Jigsaw newsletter</h4>
+  <span class="orange">11,000+ people</span>  have subscribed to this newsletter. <span class="learn-more-blue"><a href="#newsletter" class="fancybox">SUBSCRIBE NOW</a></span>
+  <div id="newsletter" style="width:655px;display:none;padding:20px;font:15px arial;line-height:22px;">
+<div class="newsletterform"> 
+<form action="#" name="newsletterform" id="newsletterform" method="post" data-validate="parsley" >  
+<h4 class="blue">Subscribe to the Jigsaw Newsletter</h4>      
+  <div class="small-text mrtop10">EMAIL ADDRESS</div>
+  <input type="text" name="emailnewsletter" id="emailnewsletter" class="emailicon w250" tabindex="1" data-required="true" data-type="email" data-error-message="enter valid email"/>
+    
+    
+  <div class="small-text">YOUR NAME</div>
+  <input type="text" name="namenewsletter" id="namenewsletter" class="nameicon w250" tabindex="2" data-required="true" data-error-message="enter valid name"/>
+    
+    <div id="ermsg"></div>
+  <input name="sendnewsletter" type="submit" value="subscribe now" class="form-blue-button buttontop30" tabindex="3"/>
+  </form>
+</div></div>
+</div>
+</div>
+<div class="clear"></div>
 
+<div class="highlight bggrey">Students & experts of analytics – Subscribe to our newsletter to get the latest analytics news, career tips & happenings in Jigsaw. </div>
+
+<div class="clear"></div>
+
+</div></div>
+<div class="clear"></div>
