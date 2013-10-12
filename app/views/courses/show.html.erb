@@ -20,7 +20,7 @@ $(document).ready(function(){
           <div class="review-stars"  >
  <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%> 
        <div class="tag" style="padding:0px 10px;margin: 30px -13px 0px -33px;">
-        <div style="font-size: 14px;margin-left: -8px;margin-bottom: -4px;">courses tags with:</div>
+        <div style="font-size: 14px;">courses tags with:</div>
         <ul class="tags" style="border:0px;">
          <% @course.tags.each do |tag| %> 
          <li><a href="<%=tagged_courses_path(tag: tag)%>" >
