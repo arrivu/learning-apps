@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
     load_and_authorize_resource
     before_filter :valid_domain_check, :only=>[:show,:edit]
     before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
-    caches_action :index,:show
+  
 
     def index
       @topics = @domain_root_account.topics.scoped

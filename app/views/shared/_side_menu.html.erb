@@ -46,10 +46,8 @@
            <li style="padding-left:20px"><%= link_to "Manage Taxes",tax_rates_path,:rel=>"tooltip",:title=>"Manage Taxes" %></li>
          </ol>
        </div>
-        <h3 style="padding-left: 20px;"><i class="icon icon-cog" style="paddign:0px 10px;"></i>Topics</h3>
-        <div>
-          <li style="padding-left:20px"><%= link_to "Course Categoty", topics_path,:rel=>"tooltip",:title=>"Assign Categoty" %></li>
-        </div>  
+        <h4 style="padding-left: 20px;"><i class="icon icon-cog" style="paddign:0px 10px;"></i><%= link_to "Topics", topics_path,:rel=>"tooltip",:title=>"Assign Categoty" %></h4>
+         
        <h3 style="padding-left: 20px;"><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings</h3>
        <div>
          <ol>
@@ -63,12 +61,8 @@
 
      </div>
 
-     <h2><i class="icon icon-book" style="paddign:0px 10px;"></i> Course  </h2>
-     <div>
-<li style="padding-left:29px;list-style:none;"><%= link_to "Course Library", course_library_page_path ,:rel=>"tooltip",:title=>"Mange Course" %></li>
-  
-
-</div>
+     <h4><i class="icon icon-book" style="paddign:0px 10px;"></i> <%= link_to "Course Library", course_library_page_path ,:rel=>"tooltip",:title=>"Mange Course" %>  </h4>
+    
     
      <h2><i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon  </h2>
        <div>

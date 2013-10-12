@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var parentDivs = $('#nestedAccordion div'),
         childDivs = $('#nestedAccordion h3').siblings('div');
+        SingleDivs = $('#nestedAccordion h4').siblings('');
 
     $('#nestedAccordion h2').click(function(){
         parentDivs.slideUp();

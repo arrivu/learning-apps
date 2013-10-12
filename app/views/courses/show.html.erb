@@ -10,8 +10,8 @@ $(document).ready(function(){
 </script>
 <div class="row">
   <div class="container" style="width:100%;background: #F7F7F7;">
-    <div class="span12" style="width:100%;margin-top:20px;">
-      <div class="span3 content-box resource" style="float: left;">
+    <div class="span12" style="width:97%;margin-top:20px;">
+      <div class="span3 content-box resource" style="float: left;margin-left:40px;">
         <div class="type-tag-positioner" style="background-image:url('<%= url_for(:controller=>"courses", :action => 'show_image', :id => @course.id) %>');background-size: 100% 96%;"></div>
         <div class="details" style="margin-top:165px;">
           <div class="we" style="margin:0px 5px;"><h2 >
@@ -33,7 +33,7 @@ $(document).ready(function(){
         <%=pluralize(@qty,"rate")if !!@qty %></div>
       </div>
       <ul class="author" style="text-align: center;border-bottom:0px;border-top:0px;margin: 0px 15px;"><% @course.teaching_staffs.each do |author|%>
-        <li>      
+        <li style="width:auto;">      
           <div class="user" style="margin: 0px 0px 10px -5px;font-size:18px;">
             <%= author.user.name %>
           </div>  <% if author.user.image_blob == nil %>

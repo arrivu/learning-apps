@@ -1,6 +1,6 @@
  <div class="row evenflow">
    <div class="resource-row">
-     <div class="container" >
+     <div class="" >
        <% @courses.each do |course|%>
            <% module_count =lms_get_modules(course).count %>
            <div class="span3 content-box resource" style="float: left;">
@@ -69,7 +69,7 @@
               <ul class="author" style="text-align: center;border-bottom:0px;">
                 <% course.teaching_staffs.active.each do |author|%>
                 <li>
-                   <div class="user" style="margin: -8px 0px 10px 0px;">
+                   <div class="user" style="margin: -8px 0px 10px 0px;text-align: left;">
                     <%= author.user.name %>
                   </div>
                   <% if author.user.image_blob == nil %>
@@ -84,7 +84,7 @@
                   
                 </li>
               </ul>
-              <p style="font-size: 10px;float: left;margin: -40px 63px;">
+              <p style="font-size: 10px;float: left;margin: -40px 0px 0px 55px;">
                 <%= truncate(author.description, :length => 100)%></p> <% end %>
               </div>
             </div>
@@ -92,9 +92,6 @@
           </div>
         </div>
       </div>
-    </td>
-    </tr>
-  </table>
 
  
 

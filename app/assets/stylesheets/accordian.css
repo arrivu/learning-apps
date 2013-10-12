@@ -1,7 +1,7 @@
 #nestedAccordion{
     width:175px;
 }
-#nestedAccordion h2, #nestedAccordion h3,
+#nestedAccordion h2, #nestedAccordion h3,#nestedAccordion h4,
 #nestedAccordion div, #nestedAccordion ol,
 #nestedAccordion li{
     /* reset styles for accordion */
@@ -9,6 +9,19 @@
     padding: 5px 0px 0px 0px;;
     font-size:1em;
     font-weight:normal;
+
+}
+#nestedAccordion h4 {
+cursor: pointer;
+color: #666;
+font-size: 1.1em;
+line-height: 38px;
+moz-border-radius: 5px 5px 0 0;
+background: #efefef;
+border-bottom: 1px solid #ddd;
+}
+#nestedAccordion h4 a{
+color: #666;
 
 }
 #nestedAccordion div{

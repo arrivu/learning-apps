@@ -345,7 +345,7 @@ body.fixed .pattern-switcher {
 /*********************************************************/
 /* Wrapper styles ------------------------------------*/
 #wrap {
-  background: url("bg.jpg") repeat #444444;
+  background: url("bg.jpg") repeat;
   padding-top:0px;
   *zoom: 1;
 }
