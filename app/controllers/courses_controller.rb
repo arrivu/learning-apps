@@ -33,6 +33,7 @@ class CoursesController < ApplicationController
       else
      @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
      @topics = @domain_root_account.topics
+     add_breadcrumb "Course", courses_path
   end
 
  end
@@ -105,6 +106,7 @@ class CoursesController < ApplicationController
       @status=@status_check.status
 
     end
+    add_breadcrumb  @course.title , course_path
   end
 
   @modules=lms_get_modules(@course)

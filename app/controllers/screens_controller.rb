@@ -10,6 +10,7 @@ class ScreensController < ApplicationController
     @header_details = HeaderDetail.where(:account_id=>@account_id)
     @slider = Slider.where(:account_id=>@account_id).paginate(page: params[:page])
     @social_stream_comments=SocialStreamComment.where(:account_id=>@account_id)
+    add_breadcrumb "Home", root_path
   end
 
  def about
