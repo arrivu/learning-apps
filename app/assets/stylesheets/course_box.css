@@ -74,7 +74,7 @@
 }
 .featured-review-star-rating {
     display: inline-block;
-    margin-left: -5px;
+    margin-left: 25px;
     position: relative;
     top: 0px;
     float:left;
@@ -285,7 +285,7 @@
 }
 .star{
  float: right;
-    margin: 10px 0px;
+    margin: 0px 0px;
 }
 
 

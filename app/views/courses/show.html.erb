@@ -93,87 +93,23 @@ $(document).ready(function(){
                             <h3>Course Modules</h3>
                           </div>
                           <div class="underlinetext">
-                            <ul>
-                              <li>
-                                <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 1</h4>
-                              </li>
-                              <li>
-                                <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 2</h4>
-                              </li>
-                              <li>
-                                <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 3</h4>
-                              </li>
-                              <li>
-                                <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 4</h4>
-                              </li>
-                              <li>
-                                <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i>Module 5</h4>
-                              </li>          
-                            </ul>
+                             <ul>
+            <% @modules.each do |m| %>
+            <li>
+              <h4 style="color:#000;font-size:17px;"><i class="icon-star" style="margin-right:5px;"></i><%= m.name %></h4>
+            </li>
+            <% end %>
+          </ul>
+
+
                           </div>
                         </div>
         
 
-       <!-- <div class="starrating">
-         <div class='spread'>  <div class='twshare left'>   </div>
-         <table> <tr>
-          <td>
-           <td><script type="text/javascript" src="http://platform.linkedin.com/in.js"></script></td>
-           <script type="in/share" data-url="<%=request.url%>" data-counter="right"></script>
-           <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>  
-           <td><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script> <fb:like href="<%=request.url%>" layout="button_count" show_faces="false" width="450" font=""></fb:like></td> 
-           <script src="https://apis.google.com/js/plusone.js"></script>
-           <td><g:plus action="share" annotation="bubble" ></g:plus></td> 
-           <td>
-<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<%= truncate(@course.desc, :length => 70)  %>">Tweet</a>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div> -->
+   
 </div>
 </div>
 </div>
-<!-- <div class="aboutauthor">
-  <div class=" ">
-    <h4>About the Faculty</h4>
-    <% @authors.each do |author|%>
-    <div class="row" style="width:61%; display:inline-block; clear:left; margin:15px">
-      <div class="authorimage">
-        <% if author.user.image_blob == nil %>
-        <% if author.user.omni_image_url == nil %>
-        <%= gravatar_for_with_size author.user, "100x100" %>
-        <% else  %>
-        <%= image_tag(author.user.omni_image_url,size: "100x100", alt: "")%>
-        <% end  %>
-        <% else  %>
-        <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "100x100" %>
-        <% end  %>
-        <p ><%= truncate(author.description, :length => 300)%></p>
-      </div>
-      <div class="authorinfo">
-        <h4><%= author.name %></h4>
-        <% if !!author.linkedin_profile_url %>
-  <%= link_to image_tag("linkedin_badge.png", :alt => author.name ), "http://" + author.linkedin_profile_url, :target => "_blank" %>
-        <% end  %>
-
-      </div>
-
-      <div class=" clearfix"></div>
-    </div>
-    <% end %>
-    </div>
-  
-</div>
- -->
-
-<!-- <div align="center">
-  <a href="<%= courses_path %>"><span class="browsemore" align="center">
-    
-      </span></a>
-      <h6 style="color:steelblue;margin:0px;"> Discover More courses</h6>
-</div> -->
 
 <script>
 $(document).ready(function(){
@@ -423,7 +359,7 @@ return el;
   <div align="center">
  <div>
      
-      <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall",style:"margin-top:-70px;margin-right: -60px;"%>
+      <%= link_to "Add Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall",style:"margin-bottom: 10px;margin-right: -60px;"%>
   </div> 
 </div>
 </div>

@@ -3,7 +3,7 @@
      <div class="" >
        <% @courses.each do |course|%>
            <% module_count =lms_get_modules(course).count %>
-           <div class="span3 content-box resource" style="float: left;">
+           <div class="span3 content-box resource" style="float: left;margin-top:0px;">
              <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100% 96%;">
                <% if course.data!=nil %>
                    <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
