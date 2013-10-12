@@ -137,8 +137,7 @@
 </div>
 </div>
 
- <% end %></div></div>
-</div>
+ <% end %></div>
 
    <% if  @domain_root_account.settings[:testimonial_enable] %>
    <div class="row ourcustomers s2" >
@@ -197,12 +196,12 @@
                 </div>
 
 
-
+    <% if  @domain_root_account.settings[:testimonial_enable] %>
                 <div class="ourcustomers row s3" >
                   <div class="secondary-content">
                     <div class="container" align="center">
                       <div class="row testimonial">
-                        <% if  @domain_root_account.settings[:testimonial_enable] %>
+
 
                             <h2 style="font-size: 35px;">Learners Reviews</h2>
                             </div>
@@ -228,7 +227,7 @@
             </div>
             </div>                 
 
-                     </div>              
+                     </div>
                         <% end %>          
                         
 
