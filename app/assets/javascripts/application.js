@@ -47,7 +47,11 @@ $(function(){
 
 $(document).ready(function () {
     $("#slideshow1").sliders({ interval: 5000 });
+    $('.subMenu').smint({
+        'scrollSpeed' : 1000
+    });
 });
+
 
 
 
