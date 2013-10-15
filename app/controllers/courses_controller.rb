@@ -7,11 +7,11 @@ class CoursesController < ApplicationController
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   @@course_id
-  caches_action :background_image,:show_image
+  caches_action :manage_courses
 
   def show_image
     @course = Course.find(params[:id])
-    send_data @course.data, :type => @course.content_type, :disposition => 'inline'
+    send_data @course.course_image, :type => @course.content_type, :disposition => 'inline'
   end
 
   def background_image    
@@ -22,16 +22,16 @@ class CoursesController < ApplicationController
   def index
     add_breadcrumb "Courses", courses_path
    if @account_id!=nil
-     @total_course_count = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).all.count
+     @total_course_count = Course.where(is_published: 1,is_concluded: "f",account_id: @account_id).all.count
      @countCoursesPerPage = 6
          if params[:mycourses]=="mycourses"
-       @courses = Course.where(user_id: current_user.id, isconcluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
+       @courses = Course.where(user_id: current_user.id, is_concluded: "f",account_id: @account_id).paginate(page: params[:page], per_page: 6)
      else
-       @courses = Course.where(ispublished: 1,isconcluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
+       @courses = Course.where(is_published: 1,is_concluded: "f",account_id: @account_id).paginate(page: params[:page], :per_page => 6)
      end
      @topics = @domain_root_account.topics
       else
-     @courses = Course.where(ispublished: 1,isconcluded: "f",global:"t").paginate(page: params[:page], :per_page => 6)
+     @courses = Course.where(is_published: 1,is_concluded: "f",is_global:"t").paginate(page: params[:page], :per_page => 6)
      @topics = @domain_root_account.topics
      add_breadcrumb "Course", courses_path
   end
@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
 
  def new
   add_breadcrumb "Add Course", new_course_path
-  expire_action action: [:index,:show,:background_image,:show_image]
+  expire_action action: [:index,:show]
    @course = Course.new
    @topic = Topic.all
  end
@@ -51,11 +51,11 @@ class CoursesController < ApplicationController
    params[:course].delete :tag_tokens
    @course = Course.new(params[:course])
    @course.account_id=@domain_root_account.id
-   @course.isconcluded="f"
+   @course.is_concluded="f"
    if @course.save
      tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
-     expire_action action: [:index,:show,:background_image,:show_image]
+     expire_action action: [:index,:show]
      lms_create_course(@course)
      redirect_to manage_courses_path
    else
@@ -83,7 +83,7 @@ class CoursesController < ApplicationController
      tag_list(tags_token,@course)
      lms_update_course(@course,old_teaching_staff_id).delay
      flash[:success] ="Successfully Updated Course."
-     expire_action action: [:index,:show,:background_image,:show_image]
+     expire_action action: [:index,:show,:manage_courses]
      redirect_to manage_courses_path
    else
      render :edit
@@ -126,23 +126,23 @@ class CoursesController < ApplicationController
 
 
   def upcomming_courses
-    @total_course_count = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).all.count
+    @total_course_count = Course.where(is_published: 0,:is_concluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispublished: 0,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(is_published: 0,:is_concluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
     @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
   def popular_courses
-    @total_course_count = Course.where(ispopular: 1,:isconcluded=>false,ispublished: 1,account_id: @account_id).all.count
+    @total_course_count = Course.where(is_popular: 1,:is_concluded=>false,is_published: 1,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispopular: 1,ispublished: 1,:isconcluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(is_popular: 1,is_published: 1,:is_concluded=>false,account_id: @account_id).paginate(page: params[:page], per_page: 6)
     @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
   def datewise_courses
-    @total_course_count = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).all.count
+    @total_course_count = Course.where(is_published: 1,:is_concluded=>false,account_id: @account_id).all.count
     @countCoursesPerPage = 6
-    @courses = Course.where(ispublished: 1,:isconcluded=>false,account_id: @account_id).order(:created_at).paginate(page: params[:page], per_page: 6)
+    @courses = Course.where(is_published: 1,:is_concluded=>false,account_id: @account_id).order(:created_at).paginate(page: params[:page], per_page: 6)
     @topics = Topic.where("parent_topic_id!=root_topic_id").order(:name)
   end
 
@@ -157,7 +157,7 @@ class CoursesController < ApplicationController
       lms_id=@course.lms_id
       @course.destroy
       lms_delete_course(lms_id)
-      expire_action action: [:index,:show,:background_image,:show_image]
+      expire_action action: [:index,:show]
       flash[:success] = "Successfully destroyed course."
       redirect_to manage_courses_url
     end
@@ -170,7 +170,7 @@ class CoursesController < ApplicationController
         end
         @courses=@courses.paginate(page: params[:page], :per_page => 30)
       else
-        @courses = @domain_root_account.courses.where(isconcluded: "f").paginate(page: params[:page],
+        @courses = @domain_root_account.courses.where(is_concluded: "f").paginate(page: params[:page],
                                                                                  :per_page => 30).order(:id)
       end
       @topic = @domain_root_account.topics
@@ -240,7 +240,7 @@ class CoursesController < ApplicationController
     if params[:search]==""
       flash[:notice] = "Please choose a course"
       render :conclude_course
-    elsif params[:isconcluded]==nil
+    elsif params[:is_concluded]==nil
       flash[:notice] = "Please select a Conclude check box to Conclude this course"
       render :conclude_course
     else  
@@ -251,7 +251,7 @@ class CoursesController < ApplicationController
           flash[:notice] = "This course is already enrolled by User"
           render :conclude_course
         else
-          if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
+          if @course_id.update_attributes(is_concluded:params[:is_concluded],concluded_review:params[:concluded_review])
             flash[:notice] = "Course Successfully Concluded..."
             lms_conclude_course(@course_id.lms_id)
             redirect_to conclude_course_path
@@ -260,7 +260,7 @@ class CoursesController < ApplicationController
           end
         end
       else
-        if @course_id.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
+        if @course_id.update_attributes(is_concluded:params[:is_concluded],concluded_review:params[:concluded_review])
           flash[:notice] = "Course Successfully Concluded..."
           lms_conclude_course(@course_id.lms_id)
           redirect_to conclude_course_path
@@ -272,7 +272,7 @@ class CoursesController < ApplicationController
   end
 
   def concluded_courses
-    @all_concluded_courses=Course.where("isconcluded=?","t")
+    @all_concluded_courses=Course.where("is_concluded=?","t")
   end
 
   def edit_concluded_course
@@ -281,10 +281,10 @@ class CoursesController < ApplicationController
 
   def update_un_concluded_course
     @course=Course.find(params[:id])
-    if params[:isconcluded]==nil 
-      params[:isconcluded]="f"
+    if params[:is_concluded]==nil
+      params[:is_concluded]="f"
     end
-    if @course.update_attributes(isconcluded:params[:isconcluded],concluded_review:params[:concluded_review])
+    if @course.update_attributes(is_concluded:params[:is_concluded],concluded_review:params[:concluded_review])
       flash[:notice] = "Course Successfully Concluded..."
       lms_conclude_course(@course.lms_id)
 

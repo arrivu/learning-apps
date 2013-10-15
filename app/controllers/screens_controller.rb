@@ -1,6 +1,6 @@
 class ScreensController < ApplicationController
  def home
-    @courses = Course.all(:conditions => {:ispopular => 1,:account_id => @account_id},:limit => 6)
+    @courses = Course.all(:conditions => {:is_popular => 1,:account_id => @account_id},:limit => 6)
     @topics=Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id)
     @topics = @topics.sort_by {|x| x.name.length}
     @partners=Partner.all(:conditions => {:account_id => @account_id},:limit => 3)

@@ -60,37 +60,14 @@
 
          <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <% if current_user.image_blob == nil %>
-                      <% if current_user.omni_image_url == nil %>
-                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                            <%= gravatar_for_with_size current_user, "20x20"%>
-                          </div><% else  %>
-                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                            <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%>
-                          </div>
-                      <% end  %>
+                  <% if current_user.omni_image_url.nil? %>
+                      <%= image_tag current_user.avatar.url(:small), alt: current_user.name%>
                   <% else  %>
-                      <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
-                      <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+                      <%= image_tag(current_user.omni_image_url,size: "20x20", alt: current_user.name)%>
+                  <% end  %>
+                  <%= current_user.name %> <b class="caret" style="top:0px;" ></b>
                 </a>
-                <ul class="dropdown-menu">
-
-
-                  <li id="fat-menu" class="dropdown" >
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:#fff;">
-                      <% if current_user.image_blob == nil %>
-                          <% if current_user.omni_image_url == nil %>
-                              <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                                <%= gravatar_for_with_size current_user, "20x20"%>
-                              </div><% else  %>
-                              <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                                <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%>
-                              </div>
-                          <% end  %>
-                      <% else  %>
-                          <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
-                          <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
-                    </a>
+               
                     <ul class="dropdown-menu">
 
                       <li><%= link_to "My Profile", edit_user_registration_path %></li>
@@ -100,12 +77,12 @@
                   </li>
 
               <% else %>
-                  <li><a href="#loginmodal" role="button" data-toggle="modal", style="color:#fff;">Log In</a></li>
+                  <li><a href="#loginmodal" role="button" data-toggle="modal">Log In</a></li>
                   <li><%= link_to "Sign up" ,new_user_registration_path%></li>
 
                 <% if @domain_root_account.signup_teacher_enable? %>
 
-              <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path ,:style=>"color:#fff;"%></li>
+              <li> <%= link_to "Signup as a Teacher" ,teaching_staff_signup_path %></li>
 
         <% end %>
 
@@ -165,18 +142,12 @@
 
          <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <% if current_user.image_blob == nil %>
-                      <% if current_user.omni_image_url == nil %>
-                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                            <%= gravatar_for_with_size current_user, "20x20"%>
-                          </div><% else  %>
-                          <div style="top:-20px; float:left; margin-left:3px; margin-top:0px; margin-right: 3px;">
-                            <%= image_tag(current_user.omni_image_url,size: "20x20", alt: "")%>
-                          </div>
-                      <% end  %>
+                  <% if current_user.omni_image_url.nil? %>
+                      <%= image_tag current_user.avatar.url(:small), alt: current_user.name%>
                   <% else  %>
-                      <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "15x15" %>
-                      <% end  %><%= current_user.name %> <b class="caret" style="top:0px;" ></b>
+                      <%= image_tag(current_user.omni_image_url,size: "20x20", alt: current_user.name)%>
+                  <% end  %>
+                  <%= current_user.name %> <b class="caret" style="top:0px;" ></b>
                 </a>
                 <ul class="dropdown-menu">
 

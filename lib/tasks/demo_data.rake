@@ -149,11 +149,11 @@ namespace :db do
                     desc: "Learn Algorithm using the language of Program",
                     topic_id: 1,
                     short_desc:"Learn Algorithm using the language of Program",
-                    ispublished: 1 ,
-                    ispopular: 1 ,
+                    is_published: 1 ,
+                    is_popular: 1 ,
                     start_date: '2013-08-03' ,
                     end_date: '2013-12-03',
-                    isconcluded: "false",
+                    is_concluded: "false",
                     account_id: 2
                 )
 
@@ -161,11 +161,11 @@ namespace :db do
                     desc: "Learn web applications and create new social media",
                     topic_id: 2,
                     short_desc:"Learn web applications and create new social media",
-                    ispublished: 1 ,
-                    ispopular: 1 ,
+                    is_published: 1 ,
+                    is_popular: 1 ,
                     start_date: '2013-08-03' ,
                     end_date: '2013-12-03',
-                    isconcluded: "false",
+                    is_concluded: "false",
                     account_id: 2
                 )
 
@@ -173,12 +173,12 @@ namespace :db do
                     desc: "Learn Big data send and receive using the language of Networking",
                     topic_id: 3,
                     short_desc:"Learn Big data send and receive using the language of Networking",
-                    ispublished: 1 ,
-                    ispopular: 0 ,
+                    is_published: 1 ,
+                    is_popular: 0 ,
                     is_coming_soon: "TRUE",
                     start_date: '2013-08-03' ,
                     end_date: '2013-12-03',
-                    isconcluded: "false",
+                    is_concluded: "false",
                     account_id: 2
                 )
 

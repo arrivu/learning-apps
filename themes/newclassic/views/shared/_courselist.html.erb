@@ -5,7 +5,7 @@
 <div class="span3 content-box resource" style="float: left;width: 22%;">
    
 <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 96%% 96%;">
-   <% if course.data!=nil %>
+   <% if course.course_image!=nil %>
             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
             <% else %>
             <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>

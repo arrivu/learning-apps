@@ -29,11 +29,7 @@
     <% @courses.each do |course| %>
     <tr>
 
-      <td>
-        <%= if course.data !=nil
-          image_tag url_for(:controller=>"courses", :action => 'show_image', :id => course.id), :size => "40x40" 
-        end 
-        %></td>
+      <td><%= image_tag course.course_image.url(:small) %></td>
       <td><%= course.topic.name %></td> 
         <td><%= link_to course.title, course_path(course) %></td>
         <td><%= course.start_date %></td>

@@ -8,7 +8,7 @@ class RaterController < ApplicationController
       else
         obj.rate params[:score].to_i, current_user.id 
       end
-      
+      expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
       render :json => true 
     else
        respond_to do |format|

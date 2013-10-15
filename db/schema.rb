@@ -184,32 +184,35 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
-    t.string   "author"
-    t.string   "image"
     t.text     "desc"
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
-    t.integer  "ispublished",                        :default => 0
-    t.string   "releasemonth",                       :default => "December"
-    t.integer  "ispopular"
-    t.string   "content_type"
-    t.binary   "data"
-    t.integer  "lms_id"
-    t.integer  "topic_id"
-    t.string   "short_desc"
-    t.boolean  "isconcluded"
-    t.string   "concluded_review"
-    t.date     "concluded"
+    t.text     "short_desc"
     t.date     "start_date"
     t.date     "end_date"
+    t.string   "course_image_file_name"
+    t.string   "course_image_content_type"
+    t.integer  "course_image_file_size"
+    t.datetime "course_image_updated_at"
+    t.string   "course_background_image_file_name"
+    t.string   "course_background_image_content_type"
+    t.integer  "course_background_image_file_size"
+    t.datetime "course_background_image_updated_at"
+    t.string   "release_month",                                     :default => "December"
+    t.integer  "topic_id"
+    t.integer  "lms_id"
+    t.integer  "account_id",                           :limit => 8
+    t.boolean  "is_published",                                      :default => false
+    t.boolean  "is_popular"
     t.boolean  "is_coming_soon"
-    t.binary   "background_image"
-    t.string   "background_image_type"
-    t.integer  "account_id",            :limit => 8
-    t.boolean  "global"
+    t.boolean  "is_global"
+    t.boolean  "is_concluded",                                      :default => false
+    t.text     "concluded_review"
+    t.date     "concluded_at"
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
   end
 
-  add_index "courses", ["title", "author"], :name => "index_courses_on_title_and_author"
+  add_index "courses", ["id", "account_id"], :name => "index_courses_on_id_and_account_id", :unique => true
+  add_index "courses", ["title", "account_id"], :name => "index_courses_on_title_and_account_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -556,10 +559,11 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
     t.string   "name"
     t.string   "username"
     t.integer  "lms_id"
-    t.string   "attachment"
-    t.string   "content_type"
-    t.binary   "image_blob"
     t.string   "uid"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

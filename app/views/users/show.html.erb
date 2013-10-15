@@ -17,15 +17,13 @@
 
                                           <div class="row">
   <div class="span8 offset3" style="min-height:500px;">
-   <table cellpadding="10"> <% if @user.image_blob == nil %>
-     <tr><td> <% if @user.omni_image_url == nil %>
-      <%= gravatar_for_with_size @user, "100x100" %>
-      <% else  %>
-      <%= image_tag(@user.omni_image_url,size: "100x100", alt: "")%> 
-      <% end  %>
-      <% else  %>
-      <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => @user.id), :size => "100x100" %>
-      <% end  %></td>
+   <table cellpadding="10">
+     <% if @user.omni_image_url.nil? %>
+         <%= image_tag @user.avatar.url(:thumb) %>
+     <% else  %>
+         <%= image_tag(@user.omni_image_url,size: "45x40", alt: current_user.name)%>
+     <% end  %>
+     </td>
       <td>
 
        <p> <%= @user.name %></p>
@@ -53,7 +51,7 @@
                     <div class="card-a course-inner">
                       <div class="course-progress" data-width="0%" style="width: 0%;"></div>
 
-                      <% if course.data!=nil %>
+                      <% if course.course_image!=nil %>
                       <%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id => course.id), width: "130", height: "130",:class=>"course-badge img-circle" %>
                       <% else %>
                       <%= image_tag "test.png", width: "130", height: "130",:class=>"course-badge img-circle" %>
@@ -86,7 +84,7 @@
                     <div class="card-a course-inner">
                       <div class="course-progress" data-width="0%" style="width: 0%;"></div>
 
-                       <% if course.data!=nil %>
+                       <% if course.course_image!=nil %>
                       <%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id => course.id), width: "130", height: "130",:class=>"course-badge img-circle" %>
                       <% else %>
                       <%= image_tag "test.png", width: "130", height: "130",:class=>"course-badge img-circle" %>
