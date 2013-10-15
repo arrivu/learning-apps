@@ -55,4 +55,5 @@ Myapp::Application.configure do
   #  :exception_recipients =>  "#{Settings.exception_notifer.exception_recipients}"
   #
   config.serve_static_assets=true
+  Paperclip.options[:command_path] = "/usr/bin/convert"
 end

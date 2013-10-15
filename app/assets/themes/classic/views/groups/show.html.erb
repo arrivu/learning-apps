@@ -38,13 +38,13 @@
   <div class="row">
         <div class="span8">
             
-            <% if @group.tutorials.where(ispublished: 1).size >= 1 %>
+            <% if @group.tutorials.where(is_published: 1).size >= 1 %>
                 <div class="well">
                     <% if signed_in? && current_user.user_type == 1 #Teacher %>
                       <p><%= link_to "Add Tutorial", new_tutorial_path , class: "move-to-right-top"%></p>
                     <% end %>
                     
-                    <%= render @group.tutorials.where(ispublished: 1) %>
+                    <%= render @group.tutorials.where(is_published: 1) %>
 
                     <% @group.tutorials.each do |tutorial| %>
                       <% if ((tutorial.id % @countTutorialsPerPage) == 0 ) %>
@@ -84,14 +84,14 @@
                           
                           <ul class="nav nav-list">
                               <li class="nav-header"></li>
-                              <li><%= link_to "All" + " ( #{Tutorial.where(ispublished: 1).all.size} )", tutorials_path %></a></li>
+                              <li><%= link_to "All" + " ( #{Tutorial.where(is_published: 1).all.size} )", tutorials_path %></a></li>
                               <% @groups.each do |group| %>
                                 
                                 <% if group.id == @group.id %>
-                                  <% @groupStructure = group.name + " ( #{ group.tutorials.where(ispublished: 1).size } )" %>
+                                  <% @groupStructure = group.name + " ( #{ group.tutorials.where(is_published: 1).size } )" %>
                                   <li class="active"><a href="#"><%= link_to @groupStructure, group %></a></li>
                                 <% else %>
-                                  <% @groupStructure = group.name + " ( #{ group.tutorials.where(ispublished: 1).size } )" %>
+                                  <% @groupStructure = group.name + " ( #{ group.tutorials.where(is_published: 1).size } )" %>
                                   <li><a href="#"><%= link_to @groupStructure, group %></a></li>
                                 <% end %>
                               <% end %>
@@ -108,7 +108,7 @@
                     <div class="tab-pane" id="upcomingcourses">
                       
                       <div class="upcoming">
-                          <% Tutorial.where(ispublished: 0).all.each do |t| %>
+                          <% Tutorial.where(is_published: 0).all.each do |t| %>
                               <div class="upcoming-widget">
                                 <div class="widget-thumbnail">
                                   <!-- <img src="homeOnline.jpg" width="70px" height="100px"> -->
@@ -117,7 +117,7 @@
                                 </div><!-- end .widget-thumbnail -->
                                 <div class="widget-body">
                                   <h4><%= t.title %></h4>
-                                  <span class="label label-info"><%= t.releasemonth %></span>
+                                  <span class="label label-info"><%= t.release_month %></span>
                                 </div>
                                 <div class="clearfix"></div>
                               </div>

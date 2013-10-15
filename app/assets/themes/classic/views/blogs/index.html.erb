@@ -66,7 +66,7 @@
                           <li class="nav-header"></li>
                           <li class="active"><%= link_to "All" + " ( #{Blog.where(ispublished: 1).all.size} )", blogs_path %></a></li>
                           <% @tags.each do |tag| %>    
-                          <% @tagStructure = tag.name + " ( #{ tag.blogs.where(ispublished: 1).size} )" %>
+                          <% @tagStructure = tag.name + " ( #{ tag.blogs.where(is_published: 1).size} )" %>
                           <li><a href="#"><%= link_to @tagStructure, tag %></a></li>
                           <% end %>
                         </ul>
@@ -88,7 +88,7 @@
                     <div class="tab-pane" id="upcomingcourses">
                       
                       <div class="upcoming">
-                        <% Blog.where(ispublished: 0).all.each do |t| %>
+                        <% Blog.where(is_published: 0).all.each do |t| %>
                         <div class="upcoming-widget">
                           <div class="widget-thumbnail">
                             <!-- <img src="homeOnline.jpg" width="70px" height="100px"> -->
@@ -97,7 +97,7 @@
                           </div><!-- end .widget-thumbnail -->
                           <div class="widget-body">
                             <h4><%= t.title %></h4>
-                            <span class="label label-info"><%= t.releasemonth %></span>
+                            <span class="label label-info"><%= t.release_month %></span>
                           </div>
                           <div class="clearfix"></div>
                         </div>

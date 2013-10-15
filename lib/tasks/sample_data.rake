@@ -44,10 +44,10 @@ namespace :db do
 			topic_id: array[2],
 			account_id:  array[3],
 			short_desc: array[1],
-			ispublished: 1 ,
+			is_published: 1 ,
 			start_date: '2013-05-03' ,
 			end_date: '2013-12-03',
-			isconcluded: 'f',
+			is_concluded: 'f',
 			)
 			end
 

@@ -47,7 +47,7 @@
 							<td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
 
 							<tr><td>  </td><td>
-								<% if @course.data!=nil %>
+								<% if @course.course_image!=nil %>
 								<%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
 								<% end %>
 							</td></tr>
@@ -66,11 +66,11 @@
 									<td><%= f.file_field 'background' %></td></tr>
 
 
-								<tr><td><%= f.label :ispopular, "Popular" %></td>
-									<td><%= f.check_box :ispopular %></td></tr>
+								<tr><td><%= f.label :is_popular, "Popular" %></td>
+									<td><%= f.check_box :is_popular %></td></tr>
 
-									<tr><td><%= f.label :ispublished, "Publish" %></td>
-										<td><%= f.check_box :ispublished 	%></td></tr>
+									<tr><td><%= f.label :is_published, "Publish" %></td>
+										<td><%= f.check_box :is_published 	%></td></tr>
 
 										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
 											<td><%= f.check_box :is_coming_soon %></td></tr>
@@ -139,7 +139,7 @@
 							<td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
 
 							<tr><td>  </td><td>
-								<% if @course.data!=nil %>
+								<% if @course.course_image!=nil %>
 								<%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
 								<% end %>
 							</td></tr>
@@ -158,11 +158,11 @@
 									<td><%= f.file_field 'background' %></td></tr>
 
 
-								<tr><td><%= f.label :ispopular, "Popular" %></td>
-									<td><%= f.check_box :ispopular %></td></tr>
+								<tr><td><%= f.label :is_popular, "Popular" %></td>
+									<td><%= f.check_box :is_popular %></td></tr>
 
-									<tr><td><%= f.label :ispublished, "Publish" %></td>
-										<td><%= f.check_box :ispublished 	%></td></tr>
+									<tr><td><%= f.label :is_published, "Publish" %></td>
+										<td><%= f.check_box :is_published 	%></td></tr>
 
 										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
 											<td><%= f.check_box :is_coming_soon %></td></tr>

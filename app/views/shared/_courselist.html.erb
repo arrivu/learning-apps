@@ -4,12 +4,8 @@
        <% @courses.each do |course|%>
            <% module_count =lms_get_modules(course).count %>
            <div class="span3 content-box resource" style="float: left;">
-             <div class="type-tag-positioner" style="background-image: url('<%= url_for(:controller=>"courses", :action => 'background_image', :id => course.id) %>');background-size: 100% 96%;">
-               <% if course.data!=nil %>
-                   <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => course.id), width: "80", height: "80",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
-               <% else %>
-                   <%= image_tag "test.png", width: "80", height: "80",:class=>"course-badge img-circle", :style=>"border: 5px solid #ffda55;" %>
-               <% end %>
+             <div class="type-tag-positioner" style="background-image: url(<%= course.course_background_image.url(:thumb) %>);background-size: 100% 96%;">
+               <%= image_tag course.course_image.url(:thumb) ,:class=>"course-badge img-circle", :style=>"padding:5px;"%>
                <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:darkblue" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>>
                  <span class="prefix">
                    <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span>
@@ -56,7 +52,7 @@
                    </li>
                </ul>
                <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
-                <% course.tags.each do |tag| %>
+                <% course.tags.limit(3).each do |tag| %>
                 <li><a href=<%=tagged_courses_path(tag: tag)%> >
                   <b> <%= tag.name%> </b>
                   <span><%= tag.courses.count%></span></a></li>
@@ -72,16 +68,11 @@
                    <div class="user" style="margin: -8px 0px 10px 0px;">
                     <%= author.user.name %>
                   </div>
-                  <% if author.user.image_blob == nil %>
-                  <% if author.user.omni_image_url == nil %>
-                  <%= gravatar_for_with_size_course_box author.user, "25x20" %>
+                  <% if author.user.omni_image_url.nil? %>
+                      <%= image_tag author.user.avatar.url(:thumb), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top: -10px;float:left;" %>
                   <% else  %>
-                   <%= image_tag(author.omni_image_url,size: "45x40", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
-                   <% end  %>
-                   <% else  %>
-                   <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => author.user.id), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top: -10px;float:left;" %>
-                   <% end  %>
-                  
+                          <%= image_tag(author.user.omni_image_url,size: "35x30", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
+                  <% end  %>
                 </li>
               </ul>
               <p style="font-size: 10px;float: left;margin: -40px 63px;">
