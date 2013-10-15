@@ -13,7 +13,6 @@
                      <thead>
                       <tr>
                         <th ></th>
-                        
                         <th >Name</th>
                         <th >Email</th>
                         <th >Qualification</th>
@@ -24,11 +23,12 @@
                      </tr></thead>
                         <% @teachingstaff.each do |teachingstaff| %>
                         <tr><td>
-                        <% if teachingstaff.user.image_blob != nil %>
-                        <%= image_tag url_for(:controller=>"registrations",:action => 'user_image', :id => teachingstaff.user.id), :size => "30x30" %>
-                        <% end  %>
+                          <% if teachingstaff.user.omni_image_url.nil? %>
+                              <%= image_tag teachingstaff.user.avatar.url(:thumb) , alt: teachingstaff.name%>
+                          <% else  %>
+                              <%= image_tag(teachingstaff.user.omni_image_url,size: "35x30", alt: teachingstaff.name)%>
+                          <% end  %>
                         </td>
-                        
                         <td><%= teachingstaff.name %></td>
                         <td><%= teachingstaff.user.email %></td>
                         <td><%= teachingstaff.qualification %></td>

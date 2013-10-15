@@ -30,7 +30,7 @@
     <tr>
 
       <td>
-        <%= if course.data !=nil 
+        <%= if course.course_image !=nil
           image_tag url_for(:controller=>"courses", :action => 'show_image', :id => course.id), :size => "40x40" 
         end 
         %></td>
@@ -103,7 +103,7 @@
     <tr>
 
       <td>
-        <%= if course.data !=nil 
+        <%= if course.course_image !=nil
           image_tag url_for(:controller=>"courses", :action => 'show_image', :id => course.id), :size => "40x40" 
         end 
         %></td>

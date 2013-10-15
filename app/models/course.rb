@@ -11,17 +11,22 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer
-#  ispublished  :integer          default(0)
-#  releasemonth :string(255)      default("December")
+#  is_published  :integer          default(0)
+#  release_month :string(255)      default("December")
 #
 
 class Course < ActiveRecord::Base
   self.per_page = 6
   acts_as_commentable
   attr_accessible :content, :name, :tag_list ,:tag_tokens
-  attr_accessible :lms_id,:attachment,:background,:author, :desc, :image, :title, :topic_id, :user_id, :ispublished,
-  :releasemonth, :is_coming_soon,:ispopular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
-  :isconcluded,:concluded_review,:start_date,:end_date,:background_image,:background_image_type,:account_id,:global
+  attr_accessible :lms_id,:author, :desc, :image, :title, :topic_id, :user_id, :is_published,
+  :release_month, :is_coming_soon,:is_popular,:filename,:content_type,:data, :short_desc,:teaching_staff_ids,
+  :concluded_at,:is_concluded,:concluded_review,:start_date,:end_date,:account_id,:is_global,
+  :course_image,:course_background_image
+  has_attached_file :course_image, :styles => { :medium => "270x150#", :thumb => "80x80#",:small=> "40x40#" },
+                    :default_url => "/images/:style/course_image.png"
+  has_attached_file :course_background_image, :styles => { :medium => "670x250#", :thumb => "270x150#" },
+                    :default_url => "/images/:style/course_background_image.png"
   cattr_accessor :tag_tokens
   scope :teachers, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher")
   scope :teacher_assistants, joins(:teaching_staff_courses).where('teaching_staff_courses.teaching_staff_type = ?', "teacher_assitant")
