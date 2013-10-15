@@ -10,7 +10,7 @@ Website: http://www.onokumus.com
 
 /* Wrapper for page content to push down footer */
 #wrap {
-  min-height: 100%;
+  min-height: 500px;
   height: auto !important;
   height: 100%;
   /* Negative indent footer by it's height */
@@ -344,6 +344,7 @@ body.fixed .pattern-switcher {
   background: url("bg.jpg") repeat #444444;
   padding-top:20px;
   *zoom: 1;
+  min-height: 500px;
 }
 #wrap:before,
 #wrap:after {

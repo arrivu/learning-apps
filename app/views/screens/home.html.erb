@@ -1,9 +1,17 @@
 <div class="subMenu" >
     <div class="inner">
+      <% if @domain_root_account.settings[:slide_show_enable] %>
       <a href="#" id="sTop" class="subNavBtn">Home</a> 
+      <%end%>
+      <% if @domain_root_account.settings[:popular_course_enable] %>
       <a href="#" id="s1" class="subNavBtn">Popular Courses</a>
+      <%end%>
+      <% if @domain_root_account.settings[:knowledge_partners_enable] %>
       <a href="#" id="s2" class="subNavBtn">Knowledge Partners</a>
+      <%end%>
+      <% if @domain_root_account.settings[:testimonial_enable] %>
       <a href="#" id="s3" class="subNavBtn end">Learners Reviews</a>
+      <%end%>
     </div>          
 </div>
 <% provide(:title, 'A Smarter Way to Learn') %>

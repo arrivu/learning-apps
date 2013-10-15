@@ -544,7 +544,7 @@ padding: 1.5em 0;
     max-height: 17px;
     max-width: 100%;
     overflow: hidden;
-    margin-right: 45px;
+    margin-right: 0px;
     text-align: left;
 }
 .featured-review-star-rating {

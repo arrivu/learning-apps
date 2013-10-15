@@ -5,7 +5,7 @@
       <h3>Change Role</h3>
     </div>
     <div class="modal-body" style="margin-left:40px;">
-      <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: user.role_ids.first %>
+      <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline', checked: user.role_ids.first, :style=>"display:inline;" %>
     </div>
     <div class="modal-footer">
       <table style="float:right;"><tr><td><%= f.submit "Change Role", :class => "btn" %></td>
