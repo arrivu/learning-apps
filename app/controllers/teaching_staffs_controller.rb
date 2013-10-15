@@ -27,8 +27,7 @@
 		@teachingstaff.build_user(name: params[:teaching_staff][:teaching_staff_user][:name],
 								email: params[:teaching_staff][:teaching_staff_user][:email],
 								 user_type: 3,
-								content_type: params[:teaching_staff][:teaching_staff_user][:content_type],
-								attachment: params[:teaching_staff][:teaching_staff_user][:attachment],
+								avatar: params[:teaching_staff][:teaching_staff_user][:avatar],
 								password: params[:teaching_staff][:teaching_staff_user][:password],
 								password_confirmation: params[:teaching_staff][:teaching_staff_user][:password_confirmation])
 		
@@ -53,55 +52,26 @@
 
   def update
     @teachingstaff=TeachingStaff.find(params[:id])
-
-    if params[:teaching_staff][:user][:attachment]!=nil
-
-      @teachingstaff.account_id=@account_id
-      if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
-                                               password: params[:teaching_staff][:user][:password],
-                                               password_confirmation: params[:teaching_staff][:user][:password_confirmation],
-                                               content_type: params[:teaching_staff][:user][:content_type],
-                                               attachment: params[:teaching_staff][:user][:attachment],
-
-                                               name:params[:teaching_staff][:user][:name]) && @teachingstaff.update_attributes(
+    @teachingstaff.account_id=@account_id
+    if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
+                              password: params[:teaching_staff][:user][:password],
+                              password_confirmation: params[:teaching_staff][:user][:password_confirmation],
+                              avatar: params[:teaching_staff][:user][:avatar],
+                              name:params[:teaching_staff][:user][:name]) &&
+       @teachingstaff.update_attributes(
           description:params[:teaching_staff][:description],
           linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
           qualification:params[:teaching_staff][:qualification],
           name:params[:teaching_staff][:user][:name],
           is_active:params[:teaching_staff][:is_active]
           )
-
-        # AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-
+        expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
         flash[:notice]="Teaching Staff details updated successfully"
         redirect_to teaching_staffs_path
-
-      else
-        render 'edit'
-      end
     else
-      @teachingstaff.account_id=@domain_root_account.id
-      if @teachingstaff.user.update_attributes(:email => params[:teaching_staff][:user][:email],
-                                               password: params[:teaching_staff][:user][:password],
-                                               password_confirmation: params[:teaching_staff][:user][:password_confirmation],
-                                               name:params[:teaching_staff][:user][:name]) && @teachingstaff.update_attributes(
-          description:params[:teaching_staff][:description],
-          qualification:params[:teaching_staff][:qualification],
-          linkedin_profile_url:params[:teaching_staff][:linkedin_profile_url],
-          name:params[:teaching_staff][:user][:name],
-          is_active:params[:teaching_staff][:is_active]
-
-      )
-
-        # AccountUser.create(:user_id=>@teachingstaff.user.id,:account_id=>@account_id,:membership_type => "teacher")
-
-        flash[:notice]="Teaching Staff details updated successfully"
-        redirect_to teaching_staffs_path
-
-      else
+      flash[:error]="There is some error while saving teaching staff details"
         render 'edit'
       end
-    end
   end
 
 	def index

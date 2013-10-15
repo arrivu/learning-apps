@@ -21,3 +21,4 @@ tags
 /public/background_image/*
 /.idea/*
 /config/database.yml
+/public/system/*

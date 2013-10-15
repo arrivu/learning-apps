@@ -47,25 +47,26 @@
                     <td><%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.
                             where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
                      <%end  %>
-        <tr><td><%= f.label :short_desc, "Short Description" %></td>
-          <td><%= f.text_field :short_desc,:maxlength => 50 %></td></tr>
-        <tr><td><%= f.label :desc, "Course Description" %></td>
-          <td><%= f.text_area :desc ,:cols => "30", :rows => "10",:maxlength => 1000 %></td></tr>
-        <tr><td><%= f.label 'attachment', "Image" %></td>
-          <td><%= f.file_field 'attachment' %></td></tr>
-        <tr><td><%= f.label 'background', "Background Image (1350x310)" %></td>
-          <td><%= f.file_field 'background' %></td></tr>
-        <tr><td><%= f.label :ispopular, "Popular" %></td>
-          <td><%= f.check_box :ispopular %></td></tr>
-        <tr><td><%= f.label :ispublished, "Publish" %></td>
-          <td><%= f.check_box :ispublished ,:checked => true%></td></tr>
-        <tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
-          <td><%= f.check_box :is_coming_soon %></td></tr>
-        <tr><td><%= f.label :global, "Global Course" %></td>
-          <td><%= f.check_box :global %></td></tr>
-        <tr><td><%= f.label :topic_id, "Category" %></td>
-          <td><% topics_array = @domain_root_account.topics.map { |topic| [topic.name, topic.id] } %>
-              <%= f.select(:topic_id,options_for_select(topics_array))%></td></tr>
+				<tr><td><%= f.label :short_desc, "Short Description" %></td>
+					<td><%= f.text_field :short_desc,:maxlength => 50 %></td></tr>
+				<tr><td><%= f.label :desc, "Course Description" %></td>
+					<td><%= f.text_area :desc ,:cols => "30", :rows => "10",:maxlength => 1000 %></td></tr>
+				<tr><td><%= f.label :course_image, "Image" %></td>
+					<td><%= f.file_field :course_image %></td></tr>
+				<tr><td><%= f.label :course_background_image, "Background Image (1350x310)" %></td>
+					<td><%= f.file_field :course_background_image %></td></tr>
+				<tr><td><%= f.label :is_popular, "Popular" %></td>
+					<td><%= f.check_box :is_popular %></td></tr>
+				<tr><td><%= f.label :is_published, "Publish" %></td>
+					<td><%= f.check_box :is_published ,:checked => true%></td></tr>
+				<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
+					<td><%= f.check_box :is_coming_soon %></td></tr>
+				<tr><td><%= f.label :is_global, "Global Course" %></td>
+					<td><%= f.check_box :is_global %></td></tr>
+				<tr><td><%= f.label :topic_id, "Category" %></td>
+					<td><% topics_array = @domain_root_account.topics.map { |topic| [topic.name, topic.id] } %>
+					    <%= f.select(:topic_id,options_for_select(topics_array))%></td></tr>
+
                 <tr><td><%= f.label :tag_tokens, "Add Tags" %></td>
                     <td>
                        <div class="field">

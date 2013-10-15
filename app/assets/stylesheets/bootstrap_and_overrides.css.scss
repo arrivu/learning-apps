@@ -51,12 +51,14 @@ text-shadow: 0 1px 0 #fff;
 }
 
 .btn-large {
-padding: 3px 3px;
-width: 170px;
+padding: 3px 0px 0px 10px;
+width: 155px;
 font-size: 15px;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px;
+margin:10px 0px;
+text-align:left;
 }
 
 .nav-list>li>a {
