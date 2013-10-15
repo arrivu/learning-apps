@@ -22,7 +22,7 @@ class CoursePricingsController < ApplicationController
         if(@coursepricing.end_date>=@coursepricing.start_date)
           if @coursepricing.save
             flash[:notice]="Course price saved successfully"
-            redirect_to course_library_page_path
+            redirect_to manage_courses_path
           else
             render 'new'
           end
@@ -56,10 +56,10 @@ class CoursePricingsController < ApplicationController
   if user_can_do?(@coursepricing)
   @coursepricing.destroy
   flash[:success] = "Successfully Destroyed Course Price."
-  redirect_to course_library_page_path
+  redirect_to manage_Courses_path
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_library_page_path
+    redirect_to manage_Courses_path
   end
 end
 
@@ -71,7 +71,7 @@ def edit
     @course = @domain_root_account.courses
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_library_page_path
+    redirect_to manage_Courses_path
   end
 
 end
@@ -88,7 +88,7 @@ def update
         
         if @coursepricing.update_attributes(params[:course_pricing])
           flash[:notice] = "Updated Course Price Details Successfully..."
-          redirect_to course_library_page_path
+          redirect_to manage_Courses_path
         else
           render 'edit'
         end
@@ -103,7 +103,7 @@ def update
   end
   else
     flash[:error] = "Not Authorized"
-    redirect_to course_library_page_path
+    redirect_to manage_Courses_path
   end
 
 end
