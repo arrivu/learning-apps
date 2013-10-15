@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
 		respond_to do |format|
 			if @comment.save
 				format.html { redirect_to @commentable }
+        expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
 				flash[:info] = "Your review is added "
 			else
 				format.html { render :action => 'new' }
@@ -44,6 +45,7 @@ class CommentsController < ApplicationController
     @comments = Comment.find(params[:id])
     # @comments.destroy
     @comments.is_active
+    expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
     flash[:success] = "Successfully Destroyed Category."
     redirect_to :back
   end
@@ -70,6 +72,7 @@ def review
     if @comment.update_attributes(params[:comment])
       if @comment.is_active?
         redirect_to :back
+        expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
         flash[:success] = "Review is enabled"
       else
         flash[:info] = "Review is disabled"

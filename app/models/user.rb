@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   attr_accessible :attachment,:content_type,:image_blob,:lms_id,:name, :email, :password, :password_confirmation,
                   :remember_me, :omni_image_url, :phone,:user_type,:sub_plan,:user_desc, :provider,:subtype, :uid,
                   :reset_password_sent_at,:avatar
-  has_attached_file :avatar, :styles => {:thumb => "35x30#",:small=> "20x20#" },
+  has_attached_file :avatar, :styles => {:medium => "50x50#",:thumb => "35x30#",:small=> "20x20#" },
                     :default_url => "/images/:style/user_avatar.jpg"
   has_many :authentication, :dependent => :delete_all
   has_many :comments
