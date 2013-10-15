@@ -65,6 +65,7 @@
           name:params[:teaching_staff][:user][:name],
           is_active:params[:teaching_staff][:is_active]
           )
+        expire_action(controller: '/courses', action: [:index,:show,:background_image,:show_image])
         flash[:notice]="Teaching Staff details updated successfully"
         redirect_to teaching_staffs_path
     else
