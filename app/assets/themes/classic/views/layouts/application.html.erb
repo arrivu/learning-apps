@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
-  <%= theme_stylesheet_link_tag "application" , :media => "all" %>
-  <%= theme_javascript_include_tag "application" %>
-  <%= csrf_meta_tags unless response.cache_control[:public] %>
-  <%= render 'layouts/shim' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
-
-</head>
-<body>
-
-  <% if check_null(yield(:effectingHeader)) %>
-  <div style="margin-bottom:70px;">
-  <%= render 'layouts/header' %>
-
-  </div>
-
-  <% else %>
-  <!-- Do Nothing -->
-  <% end %>
-  <!-- <div class="container"> -->
-
-  <% unless response.cache_control[:public] %>
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
-<% end %>
-  </br>
-    <hr style="margin: -1px 0;">
-
+    <head>
+      <title><%= full_title(yield(:title)) %></title>
+      <%= javascript_include_tag :defaults, "rails.validations", "rails.validations.custom" %>
+      <%= stylesheet_link_tag "application", media: "all" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags unless response.cache_control[:public] %>
+      <%= render 'layouts/shim' %>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <%= favicon_link_tag 'favicon.png', :size => "16x16"%>
+    </head>
+    <body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
+      <div class="container-fluid">
+  <div class="row">
+        <% if check_null(yield(:effectingHeader)) %>
+         <%= render 'layouts/header' %>
+          <% else %>
+        <% end %>
+        <% unless response.cache_control[:public] %>
+            <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>" style="width: 695px;margin-left: 332px;margin-top: 10px;
+                        text-align: center;">
+                  <%= value %>
+                </div>
+            <% end %>
+        <% end %>
+<!-- <div class="breadcrumb">
+  <%= render_breadcrumbs %>
+</div> -->
+          
     <%= yield %>
-
     <%= render 'layouts/login_popup' %>
     <%= render 'layouts/signup_popup' %>
-<%= render 'layouts/forgot_password' %>
-  <%= render 'layouts/footer' %>
-</body>
-<%= debug(params) if Rails.env.development? %>
+    <%= render 'layouts/teacher_sign_up_popup' %>
+    <%= render 'layouts/forgot_password' %>
+    <%= render 'layouts/footer' %>
+   <%= debug(params)  if Rails.env.development?%> 
+</div>
+</div> 
+    </body>
 </html>

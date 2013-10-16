@@ -1,0 +1,40 @@
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content">
+               
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+  <header>
+                                          <div class="icons"><span class="badge badge-info">Section</span></div>
+                                        </header>
+                                     <div id="collapse4" class="body">
+                                           
+        <table id="dataTable" class="table table-condensed table-hover">
+<%= form_for (@section) do |f| %>
+
+<tr>
+    <td><%= f.label :section %></td>
+    <td><%= f.text_field :section %></td></tr>
+
+      <tr><td><%= f.submit  "Update" %></td></tr> 
+<% end %>	</table>
+</div>
+                                    </div>
+                                </div>
+                            </div> 
+
+                    </div>
+                </div>
+
+            </div>
+                
+
+            <div id="push"></div>
+ </div>
+<div class="clearfix"></div>

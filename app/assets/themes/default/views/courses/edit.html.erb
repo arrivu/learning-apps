@@ -1,191 +1,255 @@
-<!-- <div style="float:left">
-</div>
 
-<br>
-
-<div class="row">
-	<div class="span12 offset3">
-<% provide(:title, 'Create Course') %>
-<br>
-<div class="row">
-	<div class="span10">
-		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-			<table class="table table-hover ">
-				<tr>
-					<h3 align = "center">Edit Course Library</h3>
-				</tr>
-
-				<%= simple_form_for(@course) do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
-				<tr><td><%= f.label :title, "Title" %></td>
-					<td><%= f.text_field :title %></td></tr>
-
-
-										<tr><td><%= f.label :start_date, "Start Date" %></td><td>
-
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
-
-					<tr><td><%= f.label :end_date, "End Date" %></td><td>
-
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
-
-
-					<tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
-						<td>
-
-							<%= f.collection_select :teaching_staff_ids, TeachingStaff.where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %>
-
-
-						</td></tr>
-						<tr><td><%= f.label :short_desc, "Short Description" %></td>
-							<td><%= f.text_field :short_desc %></td></tr>
-						
-
-						<tr><td><%= f.label :desc, "Course Description" %></td>
-							<td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
-
-							<tr><td>  </td><td>
-								<% if @course.course_image!=nil %>
-								<%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
-								<% end %>
-							</td></tr>
-
-							<tr><td><%= f.label 'attachment', "Image" %></td>
-								<td><%= f.file_field 'attachment' %></td></tr>
-
-							<tr><td>  </td><td>
-								<% if @course.background_image != nil %>
-
-								<%= image_tag url_for(:controller=>"courses", :action => 'background_image', :id =>  @course.id), :size => "450x103" %>
-							<% end %>
-							</td></tr>
-
-									<tr><td><%= f.label 'background', "Background Image (1350x310)" %></td>
-									<td><%= f.file_field 'background' %></td></tr>
-
-
-								<tr><td><%= f.label :is_popular, "Popular" %></td>
-									<td><%= f.check_box :is_popular %></td></tr>
-
-									<tr><td><%= f.label :is_published, "Publish" %></td>
-										<td><%= f.check_box :is_published 	%></td></tr>
-
-										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
-											<td><%= f.check_box :is_coming_soon %></td></tr>
-										
-
-										<tr><td><%= f.label :topic_id, "Topics" %></td>
-											<td><%= f.collection_select :topic_id, Topic.where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
-
-											<tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
-												</td></tr>
-											
-											<% end %>
-
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						</div> -->
-
-						<div id="wrap">
+<div id="wrap">
 
   <%= render 'shared/side_menu' %>
-              
-            <div id="content" class="span9">
                
-                <div class="container-fluid outer"  >
+            <div id="content" style = "min-height: 300px;">
+                <!-- .outer -->
+                <div class="container-fluid outer" style="background:#fff;">
                             <div class="row-fluid">
                                                         <div class="span12 inner">
-                           
+                            <!--Begin Datatables-->
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-                                                  <div id="collapse4" class="body">
-                                           
-      <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-       <%= simple_form_for(@course) do |f| %>
-				<%= render 'shared/error_messages', object: f.object %>
-				<tr><td><%= f.label :title, "Title" %></td>
-					<td><%= f.text_field :title %></td></tr>
+                                        <div id="collapse4" class="body">
+
+    <%= simple_form_for(@course) do |f| %>
+<table cellpadding="10">
+   <tr><td><%= f.label :title, "Coure Name" %></td>
+    <td style = "font-weight: bold;vertical-align: top;"><%= @course.title %></td></tr>
+</table>
+    
 
 
-										<tr><td><%= f.label :start_date, "Start Date" %></td><td>
-
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
-
-					<tr><td><%= f.label :end_date, "End Date" %></td><td>
-
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
 
 
-					<tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
-						<td>
+<ul class="nav nav-tabs" id="myTab">
+ 
+  <li class="active"><a href="#edit">Course</a></li>
 
-							<%= f.collection_select :teaching_staff_ids, TeachingStaff.where(:account_id=>@account_id).order(:name), :id, :name, {}, {multiple: false} %>
+  <li><a href="#price">Course Price</a></li>
+  <li><a href="#preview">Course Preview</a></li>
+   <li><a href="#module">Course Module</a></li>
+  <li><a href="#section">Course Section</a></li>
 
+</ul>
 
-						</td></tr>
-						<tr><td><%= f.label :short_desc, "Short Description" %></td>
-							<td><%= f.text_field :short_desc %></td></tr>
-						
-
-						<tr><td><%= f.label :desc, "Course Description" %></td>
-							<td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
-
-							<tr><td>  </td><td>
-								<% if @course.course_image!=nil %>
-								<%= image_tag url_for(:controller=>"courses", :action => 'show_image', :id =>      @course.id), :size => "100x100" %>
-								<% end %>
-							</td></tr>
-
-							<tr><td><%= f.label 'attachment', "Image" %></td>
-								<td><%= f.file_field 'attachment' %></td></tr>
-
-							<tr><td>  </td><td>
-								<% if @course.background_image != nil %>
-
-								<%= image_tag url_for(:controller=>"courses", :action => 'background_image', :id =>  @course.id), :size => "450x103" %>
-							<% end %>
-							</td></tr>
-
-									<tr><td><%= f.label 'background', "Background Image (1350x310)" %></td>
-									<td><%= f.file_field 'background' %></td></tr>
+<div class="tab-content">
 
 
-								<tr><td><%= f.label :is_popular, "Popular" %></td>
-									<td><%= f.check_box :is_popular %></td></tr>
+ <div class="tab-pane active" id="edit">
+ 
+   
+   <table id="dataTable" >
+               
+                    <%= render 'shared/error_messages', object: f.object %>
+                   
+                    <tr><td><%= f.label :start_date, "Start Date" %></td><td>
+                            <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
+                        </td></tr>
+                    <tr><td><%= f.label :end_date, "End Date" %></td><td>
+                            <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date",style: "width: 84px;", :required => true %>
+                        </td></tr>
+                        <% if current_user.has_role? :teacher %>
+                            <%= f.hidden_field :teaching_staff_ids,:value=>current_user.teaching_staff.id%>
+                        <% else  %>
+                    <tr><td><%= f.label :teaching_staff_ids, "Author Name" %></td>
+                            <td>
+                            <%= f.collection_select :teaching_staff_ids, @domain_root_account.teaching_staffs.active.order(:name), :id, :name, {}, {multiple: false} %>
+                            </td></tr>
+                        <% end %>
+                    <tr><td><%= f.label :short_desc, "Short Description" %></td>
+                            <td><%= f.text_field :short_desc %></td></tr>
+                    <tr><td><%= f.label :desc, "Course Description" %></td>
+                            <td><%= f.text_area :desc ,:cols => "30", :rows => "10"%></td></tr>
+                    <tr><td>  </td><td>
+                      <%= image_tag @course.course_image.url(:medium)  %>
+                    </td></tr>
+                    <tr><td><%= f.label :course_image, "Image" %></td>
+                                    <td><%= f.file_field :course_image %></td></tr>
+                    <tr><td>  </td><td>
+                      <%= image_tag @course.course_background_image.url(:thumb)  %>
+                                </td></tr>
 
-									<tr><td><%= f.label :is_published, "Publish" %></td>
-										<td><%= f.check_box :is_published 	%></td></tr>
+                    <tr><td><%= f.label :course_background_image, "Background Image (1350x310)" %></td>
+                                <td><%= f.file_field :course_background_image %></td></tr>
+                    <tr><td><%= f.label :is_popular, "Popular" %></td>
+                                <td><%= f.check_box :is_popular %></td></tr>
+                    <tr><td><%= f.label :is_published, "Publish" %></td>
+                                <td><%= f.check_box :is_published 	%></td></tr>
+                    <tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
+                                <td><%= f.check_box :is_coming_soon %></td></tr>
+                    <tr><td><%= f.label :topic_id, "Topics" %></td>
+                    <td><%= f.collection_select :topic_id,@domain_root_account.topics.order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+                    <tr> <td>        <%= f.label :tag_tokens, "Update Tags" %></td>
+                         <td>
+                           <div class="field">
+         <%= f.text_field :tag_tokens, :class => "token_input", "data-pre" => @course.tags.map(&:attributes).to_json %>
 
-										<tr><td><%= f.label :is_coming_soon, "Coming Soon" %></td>
-											<td><%= f.check_box :is_coming_soon %></td></tr>
-										
+                           </div>
+                         </td>
+                         </tr>
+                   <tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
+                       </td></tr>
+                     </table>
+                 
+ </div>
 
-										<tr><td><%= f.label :topic_id, "Topics" %></td>
-											<td><%= f.collection_select :topic_id,Topic.where("parent_topic_id!=root_topic_id AND account_id=?",@account_id).order(:name), :id, :name, {}, {multiple: false} %></td></tr>
+<% end %>
+ <div class="tab-pane" id="price">
+ 
+      <table id="dataTable">
+       <%= simple_form_for (@course_pricing) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %> 
+       
+        <tr><td>Start Date</td><td>
+        <div >
+            <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" ,style: "width: 84px;"%></td></tr></td></tr>
+            </div>
+         <tr><td>End Date</td><td>
+         <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
+        <tr><td>Price</td><td>
+         <%= f.text_field :price %></td></tr>
+         <tr><td></td><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
+       <% end %>
+      </table>
+ </div>
 
-											<tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
-												</td></tr>
-											
-											<% end %>
+<div class="tab-pane" id="preview">
+   <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+      <thead>
+          <tr class="tab_head">
+            <th>Course </th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Display Order</th>
+            <th>Created At</th>
 
-										</table>
-                     
+<th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>          </tr>
+        </thead>
+        <tbody>
+          <% @course_previews.each do |preview| %>
+          <tr>
+            <td><%= preview.course.title %></td>
+            <td><%= preview.name %></td>
+            <td><%= preview.desc %></td>
+            <td><%= preview.sequence %></td>
+            <td><%=l preview.created_at, :format=>'%d %b. %Y %I:%M' %></td>
+
+<td> <%= link_to(edit_course_preview_path(@course_previews)) do%><i class="icon icon-edit"></i><% end%>
+
+    </td> 
+    <td>
+    <%= link_to(course_preview_path(@course_previews),
+                                   :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+</div> 
+
+
+<div class="tab-pane" id="module">
+
+
+ <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+
+  <thead>                                           
+      <tr class="tab_head">
+        <th >Modules</th>
+      <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th> 
+         </tr>
+    </thead>
+    <tbody>
+   <% @course_modules.each do |mod| %>
+  <tr><td>
+    <%= mod.course_module %></td>
+   <td> <%= link_to(edit_course_module_path(mod)) do%><i class="icon icon-edit"></i><% end%></td> 
+   <td><%= link_to(course_module_path(mod),
+     :method => :delete,:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+       <i class="icon icon-trash"></i>
+  <% end %>
+    </td></tr>
+    <% end %></table>
+  </div>
+<div class="tab-pane" id="section">
+
+
+               <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+  <thead>
+                                                  
+      <tr class="tab_head">
+    
+        <th >Sections</th>
+      <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th> 
+         </tr>
+    </thead>
+    <tbody>
+      <% @sections.each do |sect| %>
+ <tr><td><%= sect.section %></td>
+ 
+ <td> <%= link_to(edit_section_path(sect)) do%><i class="icon icon-edit"></i><% end%>
+ </td> 
+  <td>
+    <%= link_to(section_path(@sections),
+     :method => :delete,:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
+           <i class="icon icon-trash"></i>
+          <% end %>
+        </td>
+
+ </tr>
+ <%end%>
+  </table>
 </div>
+</div> <br>
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
+                                       </div>
                                     </div>
                                 </div>
                             </div> 
-
                     </div>
+                    <!-- /.row-fluid -->
                 </div>
-            </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+ <!-- <div id="nestedAccordion" style="float: left;"> -->
+  <div class="left" >  
+
+<a href= <%= new_course_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Course</a>
+
+<a href= <%= new_course_pricing_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Price</a>
+
+<a href= <%=new_course_preview_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Preview</a> 
+
+<a href= <%=conclude_course_path%> class="btn btn-default btn-large"><i class="icon icon-lock"></i>Conclude Course</a> 
+
+<a href= <%=course_status_search_path%> class="btn btn-default btn-large"><i class="icon icon-search"></i>Course Status</a> 
+
+<a href= <%= new_section_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Section</a> 
+
+<a href= <%= new_course_module_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Module</a> 
+
+</div>
+            <!-- #push do not remove -->
             <div id="push"></div>
-        </div>
-<div class="clearfix"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+       
+
+
+    </div>

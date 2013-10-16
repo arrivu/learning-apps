@@ -1,33 +1,20 @@
-<div style="float:left">
-  <%= render 'shared/side_menu' %>
-</div>
 
-<br>
-<div class="row">
-  <div class="span12 offset3" style="min-height:530px;">
-   <h3 align = "center">Users</h3>
-   <table>
-   <tr>
-   <td><%= form_tag "", :method => 'get' do %></td>
-   <td><%= label_tag(:query,"Username or Email") %></td>
-   <td><%= text_field_tag(:query,params[:query]) %></td>
-   <td><%= label_tag(:provider,"Login Type") %></td>
+<div id="wrap" style=" background: url("bg.jpg") repeat;">
+  <%= render 'shared/side_menu' %>             
+  <div id="content"  class="span9">
+    <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                            <!--Begin Datatables-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
 
-
-   <td><%= select_tag(:provider, options_for_select(['All',['Signup','signup'],['Facebook','facebook'],['Linkedin','linkedin'],['Google','google_oauth2']], :selected => params[:provider])) %></td>
-
-
-   <td valign="top"><%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %></td>
-   </tr>
- </table>
-   
-   <% end %>
-           <div class="coursecount pull-left">
-          <span class="badge badge-info">Found <%=pluralize(@total_users,"user")%> </span>
-        </div><br/><br/>
-
-   <table class="table table-condensed table-hover table table-striped">
-    <thead>
+                                        <div id="collapse4" class="body">
+                                          <div class="icons"><span class="badge badge-info">Users</span></div>
+                                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                  
       <tr class="tab_head">
         <th >Username</th>
         <th >Email</th>
@@ -52,6 +39,7 @@
         <% end %>
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
         <td >
+          <% if current_user.has_role? :admin %>
           <% unless user==current_user %>
           <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
           <%= render user %>
@@ -60,17 +48,38 @@
         <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
       </tr>
       <% end %>
+      <% end %>
 
     </tbody>
-  </table>
+                                            </table>
+
+                                    </div>
+                                    <div class='apple_pagination' align="center"><%= will_paginate  @users, :container => true %></div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+<div class="span2 left" style="padding: 0px;">
+    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-user"></i>Add Account</a>
+    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add Course</a>
+    </div>
 
 
-</div>
-</div>
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
 
-</div>
+        <div class="clearfix"></div>
 
-
-</div>
-<div class='apple_pagination' align="center"><%= will_paginate  @users, :container => true %></div>
+ </div>
 

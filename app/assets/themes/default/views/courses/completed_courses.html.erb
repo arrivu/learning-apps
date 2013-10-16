@@ -12,7 +12,7 @@
 				<tr><td width="200px"><label>User Name</label></td><td><label><%=@coursesstauts.student.user.name %></label></td></tr>
 				<tr><td width="200px"><label>Course Status</label></td><td><%= select_tag :status,  options_for_select(["enroll","completed"],@coursesstauts.status)  %></td></tr>        
 				<tr><td></td><td><%= hidden_field_tag :id, @coursesstauts.id %></tr>
-				<tr><td></td><td><%= submit_tag 'Change',class:"btn btn-primary" %></td></tr>  
+				<tr><td></td><td><%= submit_tag 'Change',class:"btn btn-primary yellobg" %></td></tr>  
 			</table>  
 
 			<% end %>

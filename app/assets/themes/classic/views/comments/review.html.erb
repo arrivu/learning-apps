@@ -1,0 +1,62 @@
+<div class="container" style = "margin-top: 50px;">
+<div class="span12" style = "padding: 15px; box-shadow: 3px 5px 10px 2px #ccc;">
+<div class="span6">       
+<div class='span5' style="font-size: 1.6em; font-family: Arial;  text-align:justify;">
+  <b style="color: #b26b3a;"><%= @course.title%> </b><br/>
+   </div>
+  <div class='span5' style="font-size: 17px; font-family: verdana;  text-align: justify;">
+      <%= @course.desc%>
+</div>   
+
+ <p><%= render 'reviewform' %></p>
+ 
+</div>
+<table>
+ <div class="multicol-column" style="float:left;width:48%;">
+  <%= simple_form_for(@comment,:url => url_for(:controller => 'comments',:action => 'review')) do |f| %>
+    <% @comments.each do |comment| %>
+<tr><td>
+  <div class="featured-review clickable"> <div class="author"> <a class="no-nav g-hovercard" >
+    <% if comment.user.omni_image_url.nil? %>
+        <%= image_tag comment.user.avatar.url(:medium),alt: comment.user.name %>
+    <% else  %>
+        <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: comment.user.name)%>
+    <% end  %>
+
+  </a> <br><a class="no-nav g-hovercard"> reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago  </a><br> <div class="featured-review-star-rating">  
+               <div class="tiny-star star-rating-non-editable-container">
+                <%= rating_for_user @course,comment.user, "rate"  %></div>  
+                  </div></div>      <span class="author-name"> <%= comment.user.name  %> 
+             </span>
+              <div> 
+  </td><td>
+              <div class="featured-review" style="max-width:400px;padding: 0 5px 0 65px;">
+         <div class="quoted-review"> 
+          <div class="review-text"> <span class="review-title"> <%= comment.title  %></span> <%= comment.comment  %></div> 
+
+          
+
+           <div class="paragraph-end details-light"></div> 
+           <% if current_user.has_role? :admin or current_user.has_role? :account_admin %>
+               <% @comment=comment  %>
+
+           <%= render 'comment_enable' %>
+           <% end %>
+         </div> 
+        </div>
+             </div>    </td></tr> <%end%><%end%></table></div> 
+           
+                    <div class="clearfix"></div>
+
+           
+
+ </div>
+     
+
+</div>
+
+</div>
+</div>
+
+    </div> 
+ 

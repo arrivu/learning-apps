@@ -1,4 +1,3 @@
- 
 <% if @course.background_image ==nil %>
 <div class="coursedetailtop" style="background-color: #d14836;background-image: -webkit-linear-gradient(top,#2C3E50,#ECF0F1); background-image: -moz-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -ms-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: -o-linear-gradient(top,#2C3E50,#ECF0F1);  background-image: linear-gradient(top,#2C3E50,#ECF0F1);  color:#fff;  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C3E50', endColorstr='#ECF0F1'); 
 " id="top">
@@ -8,13 +7,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="span4">
+<div class="span12">
+      <div class="span2">
         <div class="coursevideo">
-          
-         
+             <%= image_tag url_for(:controller => 'courses',:action => 'show_image', :id => @course.id), width: "130", height: "130",:class=>"course-badge img-circle", :style=>"padding:5px;" %>
         </div>
       </div>
-      <div class="span7">
+      <div class="span6">
         <div class="coursedesc">
           <div class="coursetitle">
             <h3><%= @course.title %></h3>
@@ -53,47 +52,68 @@
             <h2 style="color:white">Rs&nbsp;<%= @price.to_i %></h2>
             <% end %>
           </div>
-          <div class="container clearfix"></div>
-          <div class="subsection">
+          </div>
+        
+      </div><div class="span4" style="float:right;margin-top: -15px;">
+  <div class="subsection">
 
             <% if (current_user.present? ) %>
-              <% if !(current_user.has_role? :admin) %>
+              <% if !(current_user.has_role? :admin)  and !(current_user.has_role? :account_admin)  %>
+
 
                 <% if @course.is_coming_soon %>
                 <% if @status!="follow" %>
 
                   <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
                   <% end %>
-                <% elsif @status=="enroll" %>
+                  <% elsif @status=="enroll" %>
                 <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class="enroll">Go To Class
                 </div></a>
                 <% elsif @status=="completed" %>
                 
                 <% else %>
-                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+                 <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user.id).empty? %>
+
+
+                     <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+                  <% else %>
+                       <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="enroll"  >Enroll</a>
+                  <% end %>
                 <% end %> 
 
               <% end %> 
-
+              
+                
             <% else %>
               <% if @course.is_coming_soon %>
                 <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
               <!--  <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Follow</a> -->
               
               <% else %>
-               <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
-              <!-- <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Enroll</a> -->
+
+              <% if @current_user !=nil %>
+              
+             <% if !AccountUser.where( :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
+
+                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+              <% else %>
+                 <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary" ,payments_follow_course_path(:id=>@course.id) >Enroll</a>
+                  <% end %>
+                  <% else %>
+                  <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
 
               <% end %> 
             <% end %> 
+            <% end%>
 
-            <a href="#previewcourse"><div class="shortlist">
+            
+          <!--   <a href="#previewcourse"><div class="shortlist">
               Preview
-            </div></a>
+            </div></a> -->
 
           </div>
           <div class="clearfix"></div>
-          <div style="margin-left: 80px;">
+          <div style="margin-left: 35px;">
            <a>
             <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%> 
             <% unless url_for(:only_path => true, :overwrite_params=> { }) == '/courses?'  %>
@@ -108,7 +128,7 @@
            <% end %>
           </a>
         </div>
-      </div>
+    </div>
       <div class="container clearfix"></div>
     </div>
   </div>
@@ -116,7 +136,7 @@
 
   </div>
 </div>
-
+<%= render 'layouts/alert_popup'%>
 <div class="container clearfix">
 </div>
 </div>

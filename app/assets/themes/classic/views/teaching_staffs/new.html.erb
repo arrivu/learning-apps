@@ -1,67 +1,39 @@
-			<div style="float:left">
-				<%= render 'shared/side_menu' %>
-			</div>
-
-			<br>
-			<div class="row">
-				<div class="span8 offset3" style="min-height:550px;">
-					<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-						<h3 align = "center">Teaching Staff </h3>
-						<%= simple_form_for(@teachingstaff) do |f| %>
-						<%= render 'shared/error_messages', object: f.object %>
-
-						<%= f.fields_for :teaching_staff_user do |user_form| %>
-						<table class="tableform"> 
-							<tbody><tr> 
-								<th>Name </th>
-								<td> 
-									<%= user_form.text_field :name, :autofocus => true %>
-								</td> 
-							</tr> 
-							<tr> <th>Email</th>
-								<td> 
-									<%= user_form.text_field :email, :required => true %>
-								</td> 
-							</tr>
-
-							<tr> 
-								<th>Password</th>
-								<td> 
-									<%= user_form.password_field :password, :required => true %>
-								</td> 
-							</tr> 
-							<tr> 
-								<th>Password confirmation</th>
-								<td> 
-									<%= user_form.password_field :password_confirmation, :required => true %>
-								</td> 
-						</tr> 
-
-				<tr><th>Image</td>
-				<td><%= user_form.file_field :attachment %></td></tr>
-
-								
-
-
-							<%end %>
-
-							<tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
-
-							<tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
-                          <tr> <th>Linkedin Profile URL</th>
-                            <td>
-                              <%= f.text_field :linkedin_profile_url%>
-                            </td>
-                          </tr>
-
-
-
-							<tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
-
-
-							<% end %></table>
-						</div>
-					</div>
-				</div>
-
-
+<div id="wrap">
+<%= render 'shared/side_menu' %>
+ <div id="content" class="span9">
+  <div class="container-fluid outer" style="background:#fff;">
+   <div class="row-fluid">
+    <div class="span12 inner">
+     <div class="row-fluid">
+      <div class="span12">
+       <div class="box">
+         <div id="collapse4" class="body">
+           <div class="icons"><span class="badge badge-info">Teaching Staff</span></div>
+         <%= simple_form_for(@teachingstaff) do |f| %>
+         <%= render 'shared/error_messages', object: f.object  %>
+             <%= f.fields_for :teaching_staff_user do |user_form| %>
+             <table id="dataTable">
+              <tbody><tr><th>Name </th><td><%= user_form.text_field :name, :autofocus => true %></td></tr>
+                     <tr><th>Email</th><td> <%= user_form.text_field :email, :required => true %></td></tr>
+                     <tr><th>Password</th><td><%= user_form.password_field :password, :required => true %></td></tr>
+                     <tr><th>Password confirmation</th><td><%= user_form.password_field :password_confirmation, :required => true %></td></tr>
+                     <tr><th>Image</th><td><%= user_form.file_field :avatar %></td></tr>
+             <%end %>
+                     <tr><th>Description</th><td><%= f.text_area :description, :cols => "30", :rows => "10",:maxlength => 300 %></td></tr>
+					 <tr><th>Qualification</th><td> <%= f.text_field :qualification %></td></tr>
+                     <tr> <th>Linkedin Profile URL</th><td><%= f.text_field :linkedin_profile_url%></td></tr>
+                     <tr> <th>Active</th><td><%= f.check_box :is_active,:checked=> true%></td></tr>
+					 <tr><td></td><td><%= f.submit "Save", class: "btn btn-large btn-primary" %></td></tr>
+             </table>
+         <% end %>
+         </div>
+        </div>
+       </div>
+      </div>
+      </div>
+     </div>
+    <div id="push"></div>
+   </div>
+  <div class="clearfix"></div>
+ </div>
+</div>

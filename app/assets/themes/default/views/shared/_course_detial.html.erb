@@ -58,20 +58,22 @@
   <div class="subsection">
 
             <% if (current_user.present? ) %>
-              <% if !(current_user.has_role? :admin) %>
+              <% if !(current_user.has_role? :admin)  and !(current_user.has_role? :account_admin)  %>
+
 
                 <% if @course.is_coming_soon %>
                 <% if @status!="follow" %>
 
                   <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
                   <% end %>
-                <% elsif @status=="enroll" %>
+                  <% elsif @status=="enroll" %>
                 <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class="enroll">Go To Class
                 </div></a>
                 <% elsif @status=="completed" %>
                 
                 <% else %>
                  <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user.id).empty? %>
+
 
                      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
                   <% else %>
@@ -80,7 +82,8 @@
                 <% end %> 
 
               <% end %> 
-
+              
+                
             <% else %>
               <% if @course.is_coming_soon %>
                 <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
@@ -89,7 +92,8 @@
               <% else %>
 
               <% if @current_user !=nil %>
-             <% if !AccountUser.where(  :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
+              
+             <% if !AccountUser.where( :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
 
                   <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
               <% else %>
@@ -102,6 +106,7 @@
             <% end %> 
             <% end%>
 
+            
           <!--   <a href="#previewcourse"><div class="shortlist">
               Preview
             </div></a> -->

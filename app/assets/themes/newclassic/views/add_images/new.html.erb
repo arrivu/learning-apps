@@ -1,0 +1,15 @@
+<h3 align = "center">Add Images</h3>
+<table align="center">
+<%= form_for @addimage do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+<tr>
+	<td><%=f.label 'Images' %></td>
+	
+	<td><%= f.file_field :uploaded_file %></td>
+</tr>
+<tr >
+   <td><%= f.submit "Save" %> </td>
+</tr>
+<% end %>
+</table>
+</html>

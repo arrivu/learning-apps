@@ -13,13 +13,17 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap/bootstrap-tooltip
 //= require bootstrap
-//= require_tree .
 //= require jquery.purr
 //= require best_in_place
 //= require jquery-minicolors
 //= require jquery-minicolors-simple_form
 //= require tinymce
+//= require jquery.tokeninput
+//= require rails.validations
+//= require_tree .
+
 
 
 $(function() {
@@ -29,3 +33,30 @@ $(function() {
     return false;
   });
 });
+
+$(".alert-success").alert();
+window.setTimeout(function() { $(".alert-success").alert('close'); }, 5000);
+$(".alert-notice").alert();
+window.setTimeout(function() { $(".alert-notice").alert('close'); }, 5000);
+
+$(function(){
+  $(".collapse li a").tooltip();
+  
+})
+
+
+$(document).ready(function () {
+    $("#slideshow1").sliders({ interval: 5000 });
+    $('.subMenu').smint({
+        'scrollSpeed' : 1000
+    });
+});
+
+
+$(document).ready( function() {
+    $('.subMenu').smint({
+    	'scrollSpeed' : 1000
+    });
+});
+
+

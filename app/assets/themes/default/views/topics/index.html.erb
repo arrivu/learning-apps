@@ -1,103 +1,26 @@
-
-
 <%- model_class = Topic -%>
-
-
-  <div id="wrap">
-
+<div id="wrap">
   <%= render 'shared/side_menu' %>
-            <div id="content" class="span9">
-               
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                           
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-   <header>
- <div class="icons"><i class="icon-move"></i></div>
-   <h5>Manage Category </h5> <%= link_to('topics/new', :style=> 'margin:10px;float:right;', :class=>'btn btn-default') do %><i class="icon icon-tag"></i>Add Category<%end%>
-       </header>
- <div id="collapse4" class="body">
-  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
-      <thead>
-        <tr class="tab_head">
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><th>
-      <th></th>
-      <th>Color</th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th style="text-align:center;"><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <% @topics.each do |topic| %>
-   
-      <tr>
-  <td><%= link_to topic.name, topic_path(topic) %></td></td><td></td><td>
-  <td><span style="width:20px;background-color:<%= topic.color %>">&nbsp;&nbsp;&nbsp;</span></td>
-        <td><%=l topic.created_at, :format=>'%d %b. %Y %I:%M'  %></td>
-        <td><%= link_to (topic_path(topic)) do %><i class="icon icon-plus"></i><% end %></td>
-        <td><%= link_to (edit_topic_path(topic)) do%><i class="icon icon-edit"></i><% end%></td> 
- <td>
-    <%= link_to(topic_path(topic),
-                                   :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
-           <i class="icon icon-trash"></i><% end %>
-         <% Topic.where("parent_topic_id = root_topic_id AND parent_topic_id=?",topic.id).each do |topiccategory| %>
-             <tr><td></td>
-    <td><%= link_to topiccategory.name, topic_path(topiccategory) %></td><td></td>
-    <td><span style="width:20px;background-color:<%= topiccategory.color %>">&nbsp;&nbsp;&nbsp;</span></td>
-        <td><%=l topiccategory.created_at, :format=>'%d %b. %Y %I:%M'  %></td>
-         <td><%= link_to (topic_path(topiccategory)) do %><i class="icon icon-plus"></i><% end %></td>
-        <td><%= link_to (edit_topic_path(topiccategory)) do%><i class="icon icon-edit"></i><% end%></td> 
-   <td>
-    <%= link_to(topic_path(topiccategory),
-                                   :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
-           <i class="icon icon-trash"></i><% end %>
-           <% Topic.where("parent_topic_id!=root_topic_id AND parent_topic_id=? AND root_topic_id=?",topiccategory.id,topic.id).each do |topicsubcategory| %>
-             <tr><td></td><td></td>
-    <td><%= link_to topicsubcategory.name, topic_path(topicsubcategory) %></td>
-    <td><span style="width:20px;background-color:<%= topicsubcategory.color %>">&nbsp;&nbsp;&nbsp;</span></td>
-        <td><%=l topicsubcategory.created_at, :format=>'%d %b. %Y %I:%M'  %></td>
-        <td></td>
-        <td><%= link_to (edit_topic_path(topicsubcategory)) do%><i class="icon icon-edit"></i><% end%></td> 
-   <td>
-    <%= link_to(topic_path(topicsubcategory),
-                                   :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) ) do %>
-           <i class="icon icon-trash"></i>
-           <% end %>
-           <% end%>
-         
-        
-        </td>
-    </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-</div>
-
-</div>
-</div>
-</div>
-</div>
- </div>
+    <div id="content" class="span9">
+      <div class="container-fluid outer"  >
+        <div class="row-fluid">
+          <div class="span12 inner">
+            <div class="row-fluid">
+              <div class="span12">
+               <div class="box">
+                   <div id="collapse4" class="body">
+                    <div class="icons"><span class="badge badge-info">Category </span></div>
+                     <%= nested_topics @topics.arrange(:order => :created_at) %>
+                     <%= render "form" %>
+                   </div>
+                </div>
+              </div>
+             </div>
             </div>
-           </div>
+          </div>
+         </div>
+        </div>
+      <div id="push"></div>
+    <div class="clearfix"></div>
 
- <div class="span2 left" style="padding: 0px;width: 210px;float: right;">
-    <a href="accounts/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Account</a>
-    <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-book"></i>Add Course</a>
-    </div>
-
-            <div id="push"></div>
-
-
-        <div class="clearfix"></div>
-
-
+     </div>

@@ -1,98 +1,89 @@
 
-
-
-
-
-
-
 <div class="footer">
   <div class="container">
 
     <div class="row">
-      <div class="four columns mission">
-        <p class="headinglike" style="font-size: 20px; font-weight:300;">Arrivu Apps Learning Portal</p>
-       
+<div class="span12">
+          <div class="span4 mission" >
+            <p class="headinglike" style="font-size: 20px; font-weight:300;"><%= @domain_root_account.organization %></p>
+        <% @footerlinks.each do |footerlink| %>
         <ul class="social">
-          <li>
-            <a href="https://twitter.com/BeaconeLearning" target="_blank" title="Twitter">
-              <%= image_tag "/assets/twitter.png" %>
-            </a>
+     <li>
+           <a href="<%= footerlink.facebook_url %>" target="_blank" title="Facebook"> <%= image_tag "facebook.png" %> </a>
           </li>
 
           <li>
-            <a href="https://www.youtube.com/beaconelearning" target="_blank"  title="Youtube">
-              <%= image_tag "/assets/youtube.png" %>
-            </a>
+            <a href="<%= footerlink.twitter_url %>" target="_blank" title="Twitter"> <%= image_tag "twitter.png" %> </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/beaconlearningindia" target="_blank"  title="Facebook">
-              <%= image_tag "/assets/facebook.png" %>
-            </a>
+            <a href="<%= footerlink.youtube_url %>" target="_blank" title="Youtube"> <%= image_tag "youtube.png" %> </a>
           </li>
           <li>
-            <a href="https://plus.google.com/107673193130571288433/about?partnerid=gplp0"  target="_blank" title="Google Plus">
-              <%= image_tag "/assets/googleplus.png" %>
-            </a>
+            <a href="<%= footerlink.google_url%>" target="_blank" title="Google Plus"> <%= image_tag "googleplus.png" %> </a>
           </li>
           <li>
-            <a href="http://www.linkedin.com/groups/Beacon-Learning-4939238"  target="_blank" title="LinkedIn">
-              <%= image_tag "/assets/linkedin.png" %>
-            </a>
+            <a href="<%= footerlink.linkedin_url %>" target="_blank" title="LinkedIn"> <%= image_tag "linkedin.png" %> </a>
           </li>
-
         </ul>
 
         <p class="copyright">
-          © 2013 Arrivu Apps Learning Portal.
+         <%= footerlink.copy_write %>
         </p>
-      </div>
-      <div class="two columns">
-        <ul class="link-list site-nav right">
-          <li class="heading">Our Company →</li>
+        <% end %>
+
+
+          </div>
+          <div class="span2" style="width: 15%;">
+           <ul class="link-list site-nav right">
+          <li class="heading">Our Company </li>
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Contact Us", new_contact_path %></li>
           <li><%= link_to "Privacy Policy", privacy_path %></li>
-          <li><%= link_to "Terms & Conditions ", terms_and_conditions_path %></li>
+          <li><%= link_to "Terms & Conditions ", termscondition_path %></li>
         </ul> 
-      </div>
-      <div class="two columns">
-        <ul class="link-list library-nav right">
-          <li class="heading">Browse full library →</li>            
-               <% topic = Topic.find_by_name("Finance") rescue nil? %>
-                              <% if !!topic %>
-                                  <li ><%= link_to "Online program in Finance", topic %>
-                                  </li>
-                              <% else %>
-                                  <li ><%= link_to "Online program in Finance", courses_path %>
-                                  </li>
-                             <% end %>
-                                   <% topic = Topic.find_by_name("Marketing") rescue nil? %>
-                              <% if !!topic %>
-                                  <li ><%= link_to "Online program in Marketing", topic %>
-                                  </li>
-                              <% else %>
-                                  <li ><%= link_to "Online program in Marketing", courses_path %>
-                                  </li>
-                             <% end %>
-                                   <% topic = Topic.find_by_name("Analytics") rescue nil? %>
-                              <% if !!topic %>
-                                  <li ><%= link_to "Online program in Analytics", topic %>
-                                  </li>
-                              <% else %>
-                                  <li ><%= link_to "Online program in Analytics", courses_path %>
-                                  </li>
-                             <% end %>
-                                   <% topic = Topic.find_by_name("Online certification programs") rescue nil? %>
-                              <% if !!topic %>
-                                  <li ><%= link_to "Online certification programs", topic %>
-                                  </li>
-                              <% else %>
-                                  <li ><%= link_to "Online certification programs", courses_path %>
-                                  </li>
-                             <% end %>
-                                
+          </div>
+          <div class="span2" style="width: 15%;">
+          <ul class="link-list library-nav right">
+         <li class="heading">Browse full library</li>
+                  <% @domain_root_account.topics.limit(3).each do |topic| %>
+                 <li> <%= link_to topic.name, topic_path(topic) %></li>
+
+                  <% end %>
+                <%if @domain_root_account.topics.count > 3   %>
+                     <div>
+                        <%=  link_to "ViewAll ->",courses_path,:style => "margin-left: 23px;font-size: 13px;font-weight: bolder;font-style: italic;" %>
+                     </div>
+                <%end  %>
+           </ul>
+          </div>
+          <div class="span2" style="width: 15%;">
+             <ul class="link-list library-nav right">
+        <% @social_stream_comments.each do |social_stream_comment| %>
+        
+            
+             <li> <%= social_stream_comment.twitter_comment_script.html_safe %></li>
+
+             <li><%= social_stream_comment.facebook_comment_script.html_safe %></iframe> </li>
+              <% end %> 
+                                 
        </ul>
+          </div>  
+        </div>
       </div>
+      <hr>
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="span8">
+            <a href="#">Terms of Service</a>    
+            <a href="#">Privacy</a>    
+            <a href="#">Security</a>
+          </div>
+          <div class="span4">
+            <p class="muted pull-right">© 2013 Arrivu. All rights reserved</p>
+          </div>
+        </div>
+
+
       
    <!--    <div class="two columns end">
         <ul class="link-list contact-nav right">
@@ -106,12 +97,3 @@
     </div>
   </div>
 </div>
-<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-$.src='//cdn.zopim.com/?1JPULCVdUq4EPLVvAt0SZ9QtnrtEk7O3';z.t=+new Date;$.
-type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-<!--End of Zopim Live Chat Script-->

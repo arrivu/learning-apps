@@ -1,31 +1,39 @@
-
-<div style="float:left">
-	<%= render 'shared/side_menu' %>
+<div id="wrap">
+<%= render 'shared/side_menu' %>
+ <div id="content" class="span9">
+  <div class="container-fluid outer"  >
+   <div class="row-fluid">
+    <div class="span12 inner">
+     <div class="row-fluid">
+      <div class="span12">
+       <div class="box">
+        <div id="collapse4" class="body">
+       <div class="icons"><span class="badge badge-info">Edit Course Price</span></div>
+           <table id="dataTable">
+            <%= simple_form_for (@coursepricing) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+        <tr><th>Course Name</th><td>
+      <%= f.select(:course_id, @course.collect {|p| [ p.title,p.id ] })%></td></tr>
+      <tr><th>Start Date</th><td>
+      <div >
+          <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" ,style: "width: 84px;"%></td></tr></td></tr>
+            </div>
+      <tr><th>End Date</th><td>
+      <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
+        <tr><th>Price</th><td>
+      <%= f.text_field :price %></td></tr>
+      <tr><th></th><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
+      <% end %>
+        </table>
+        </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
 </div>
-<div class="row">
-	<div class="span8 offset3" style="min-height:500px;">
-		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-			<h3 align = "center">Edit Course Price</h3>
-			<%= simple_form_for (@coursepricing) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			<table class="tableform"><tr><th>Course Name</th><td>
-				<%= f.select(:course_id, @course.collect {|p| [ p.title,p.id ] })%></td></tr>
-				
-				<tr><th>Start Date</th><td>
-					<div >
+ <div id="push"></div>
 
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" %></td></tr>
-					</td></tr></div>
-					<tr><th>End Date</th><td>
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date" %></td></tr>
-						<tr><th>Price</th><td>
-							<%= f.text_field :price %></td></tr>
-							<tr><th></th><td><%= f.submit "Update" ,class: "btn btn-primary" %></td></tr></table>
-
-
-							<% end %>
-
-
-
-						</div>		</div>
-					</div>
+<div class="clearfix"></div>
+</div>

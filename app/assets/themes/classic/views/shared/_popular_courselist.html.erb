@@ -1,0 +1,94 @@
+ <div class="row evenflow">
+   <div class="resource-row">
+     <div class="" >
+       <% @courses.each do |course|%>
+           <% module_count =lms_get_modules(course).count %>
+           <div class="span3 content-box resource" style="float: left;">
+             <div class="type-tag-positioner" style="background-image: url(<%= course.course_background_image.url(:thumb) %>);background-size: 100% 96%;">
+               <%= image_tag course.course_image.url(:thumb) ,:class=>"course-badge img-circle", :style=>"padding:5px;" %>
+               <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:darkblue" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>>
+                 <span class="prefix">
+                   <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span>
+               </div>
+             </div>
+             <div class="details">
+               <h2>
+                 <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %>
+                 <%end%>
+               </h2>
+               <ul style="border-top:0px;">
+                 <li class="length time">
+                   <table>
+                     <tr>
+                       <td>
+                         <i class="icon-book" rel="tooltip" title="<%="Course has " +"#{pluralize(module_count,"Module")}"%> "></i></td>
+                       <td style="verticle-align:bottom;"><%=module_count%>
+                       </td>
+                     </tr>
+                   </table>
+                 </li>
+                 <li class="users">
+                   <table>
+                     <tr>
+                       <td>
+                         <i class="icon-user" rel="tooltip" title="<%="#{pluralize(course.students.count,"user")+
+                                 " Enrolled on this course " }"%>" ></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
+                     </td>
+                     </tr>
+                   </table>
+                 </li>
+                 <li class="tags">
+                   <table>
+                     <tr>
+                       <td>
+                         <i class="icon icon-tag" rel="tooltip" title="<%="Course has " "#{pluralize(course.tags.count,"Tag")}"%> ">
+                 </li>
+                 </td>
+                 <td style="verticle-align:bottom;">
+                   <%= course.tags.count%>
+                   </i>
+                 </tr>
+                   </table>
+                   </li>
+               </ul>
+               <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
+                <% course.tags.limit(3).each do |tag| %>
+                <li><a href=<%=tagged_courses_path(tag: tag)%> >
+                  <b> <%= tag.name%> </b>
+                  <span><%= tag.courses.count%></span></a></li>
+                  <%end  %>
+                </ul>
+              </div>
+              <p class="desc" style="min-height: 20px;padding: 10px">
+                <%= course.short_desc  %>
+              </p>
+              <ul class="author" style="text-align: center;border-bottom:0px;">
+                <% course.teaching_staffs.active.each do |author|%>
+                <li>
+                   <div class="user" style="margin: -8px 0px 10px 0px;text-align: left;">
+                    <%= author.user.name %>
+                  </div>
+                  <% if author.user.omni_image_url.nil? %>
+                      <%= image_tag author.user.avatar.url(:thumb) , :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top: -10px;float:left;"%>
+                  <% else  %>
+                      <%= image_tag(author.user.omni_image_url,size: "35x30", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
+                  <% end  %>
+                </li>
+              </ul>
+              <p style="font-size: 10px;float: left;margin: -40px 0px 0px 55px;">
+                <%= truncate(author.description, :length => 100)%></p> <% end %>
+              </div>
+            </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+
+ 
+
+   
+
+<script type="text/javascript">
+  $('i').tooltip()
+</script>
+

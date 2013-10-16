@@ -1,0 +1,18 @@
+  <%= link_to @account, "http://#{@account}."+"#{Settings.domain.url}" %>
+  ---------------------------------------------------------------------------------------------------------------------
+  Dear <%= @user.name %>,
+
+  Thanks for your interest at Arrivu apps learning Portal,Your Account has been created!
+  We're excited to help you get started.
+     <%= "#{@account}."+"#{Settings.domain.url}" %>
+  You Can fully customize your learning portal,
+        1.You can upload your own logo
+        2.You can change your static pages like terms and conditions,privacy policy
+        3.The home page sliders also you can change,etc.
+
+  If you have any questions about this process or any other matter, please feel free to
+    contact us at <%= mail_to "support@arrivuapps.com" %>
+
+  Sincerely,
+  Arrivu Apps Learning Portal
+

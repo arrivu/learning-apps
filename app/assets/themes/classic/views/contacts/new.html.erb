@@ -1,9 +1,17 @@
-<br>
 <div class='container'>
-	<div class="span7">
-		<div class="contactform"> 
-			<br/>
-			<%= form_for @contact do |f| %>
+<div class="row span12" align="justify">
+            <div class="span4 offset1">
+            <div class="movedown ">
+              <h4><i class="icon-briefcase"></i> Contact Us</h4>
+              <p><strong>Email: </strong> <a href='mailto:info@beaconlearning.in'><u>info@beaconlearning.in</u></a></p>
+              <p>www.beaconlearning.in</p>
+            </div>
+   </div>
+
+          <div class="span6">
+              <div class="contactform">          
+                <h4><i class="icon-pencil"></i> We love to hear from you</h4>
+             <%= form_for @contact do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 			<table>
 				<tr>
@@ -23,7 +31,7 @@
 				</tr>
 				</table>	
 				<% end %>
-
-			</div>
-		</div>
-	</div>
+              </div>
+          </div>  
+  </div>
+</div>

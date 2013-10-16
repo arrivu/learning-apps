@@ -1,45 +1,101 @@
-   <script type="text/javascript">
-
-   $(function(){
-    // this will get the full URL at the address bar
-    var url = window.location.href; 
-
-    // passes on every "a" tag 
-    $("#side_menu a").each(function() {
-            // checks if its the same on the address bar
-            if(url == (this.href)) { 
-            	$(this).closest("a").addClass("active");
-            }
-          });
-  });
-   </script>
-
-   <div>
-   	<ul id="side_menu">
-   		<li><%= link_to "Users", users_path %></li>   
-      <li><%= link_to "Themes", new_theme_path %></li>  
-            <li><%= link_to "Account Themes", account_themes_path %></li>           
+<% unless current_user.has_role? :teacher %>
+ <div id="left " class="span2">
+   <div id="nestedAccordion">
+     <h2><i class="icon icon-user" style="paddign:0px 10px;"></i>Users</h2>
+     <div>
+        <ol>
+         <li style="padding-left:29px"><%= link_to "Users", users_path, :rel=>"tooltip", :title=>" Staff" %></li>
+         <li style="padding-left:29px"><%= link_to "Interested Users", interested_users_path , :rel=>"tooltip", :title=>"View who are all interested in your courses" %></li>
+         <li style="padding-left:29px"><%= link_to "Manage Teaching Staff",teaching_staffs_path, :rel=>"tooltip", :title=>"Manage Teaching Staffs" %></li>
+       </ol>
+     </div>
+     <h2><i class="icon icon-briefcase " style="paddign:0px 10px;"></i>Accounts</h2>
+     <% if !current_user.has_role? :account_admin %>
+     <div>
+       <h3 style="padding-left: 20px;"><i class="icon icon-eye-open" style="paddign:0px 10px;"></i>Themes</h3>
+       <div>
+         <ol>
+           <li style="padding-left:20px"><%= link_to "Add new Theme",new_theme_path ,:rel=>"tooltip",:title=>" Create new theme"%></li>
+           <li style="padding-left:20px"><%= link_to "Assign Theme",new_account_theme_path ,:rel=>"tooltip",:title=>"Change theme for an organization" %></li>
+         </ol>
+       </div>
+       <%end %>
+       <h3 style="padding-left: 20px;"><i class="icon icon-file" style="paddign:0px 10px;"></i>Static Pages</h3>
+       <div>
+         <ol>
+           <li style="padding-left:20px"><%= link_to "About Us", aboutdetails_path,:rel=>"tooltip",:title=>"Create a about us page,which will populated in the about us page" %></li>
+           <li style="padding-left:20px"><%= link_to "Privacy & Policy",privacypolicies_path,:rel=>"tooltip",:title=>" Add the Privacy and Polices" %></li>
+           <li style="padding-left:20px"><%= link_to "Terms & Conditions",terms_and_conditions_path,:rel=>"tooltip",:title=>" Add the Terms and Conditions" %></li>
+         </ol>
+       </div>
+       <h3 style="padding-left: 20px;"><i class="icon icon-home" style="paddign:0px 10px;"></i>Home Page Details</h3>
+       <div>
+         <ol>
+           <li style="padding-left:20px"><%= link_to "Header", header_details_path,:rel=>"tooltip",:title=>"Change the default logo and the header color by uploading images" %></li>
+           <li style="padding-left:20px"><%= link_to "Knowledge Partner", partners_path,:rel=>"tooltip",:title=>" Add Knowledge Partners" %></li>
+           <li style="padding-left:20px"><%= link_to "Testimonial", testimonials_path,:rel=>"tooltip",:title=>" Manage Testimonial" %></li>
+           <li style="padding-left:20px"><%= link_to "Slider", sliders_path,:rel=>"tooltip",:title=>"Mange home page sliders" %></li>
+           <li style="padding-left:20px"><%= link_to "Social Stream", social_stream_comments_path,:rel=>"tooltip",:title=>" Add or view the Social Stream Comments" %></li>
+           <li style="padding-left:20px"><%= link_to "Footer Links", footerlinks_path,:rel=>"tooltip",:title=>" Add or view the Footer Links " %></li>
+         </ol>
+       </div>
+       <h3 style="padding-left: 20px;"><i class="icon icon-qrcode" style="paddign:0px 10px;"></i>Tax</h3>
+       <div>
+         <ol>
+           <li style="padding-left:20px"><%= link_to "Create Tax", new_tax_rate_path,:rel=>"tooltip",:title=>"Assign tax" %></li>
+           <li style="padding-left:20px"><%= link_to "Manage Taxes",tax_rates_path,:rel=>"tooltip",:title=>"Manage Taxes" %></li>
+         </ol>
+       </div>
+        <h4 style="padding-left: 20px;"><i class="icon icon-cog" style="paddign:0px 10px;"></i><%= link_to "Topics", topics_path,:rel=>"tooltip",:title=>"Assign Categoty" %></h4>
          
-		 		
-   		<li><%= link_to "New Course Library", new_course_path %></li>
-   		<li><%= link_to "Manage Course Library", manage_courses_path %></li>
-   		<li><%= link_to "New Category",new_topic_path %> </li>
-   		<li><%= link_to "Manage Category", topics_path %></li>  		
-   		<li><%= link_to "New Preview",new_course_preview_path %></li>
-   		<li><%= link_to "Manage Preview",course_previews_path %></li>
-      <li><%= link_to "New Coupon", new_coupon_path %></li>
-   		<li><%= link_to "Manage Coupon", coupons_path %></li>
-      <li><%= link_to "New Course Price",new_course_pricing_path %></li>   		
-   	  <li><%= link_to "Manage Course Price",course_pricings_path %></li>
-   		<li><%= link_to "Create Tax", new_tax_rate_path %></li>
-      <li><%= link_to "Manage Taxes",tax_rates_path %></li>
+       <h3 style="padding-left: 20px;"><i class="icon icon-move " style="paddign:0px 10px;"></i>Settings</h3>
+       <div>
+         <ol>
+           <li style="padding-left:20px"><%= link_to (update_settings_path) do %>Account Settings <%end%> </li>
+           <% if !current_user.has_role? :account_admin %>
+                <li style="padding-left:20px"><%= link_to(accounts_path)   do %>Manage Accounts<%end%> </li>
+               
+           <% end %>
+         </ol>
+       </div>
 
-      <li><%= link_to "New Teacher", new_teaching_staff_path %></li>
-      <li><%= link_to "Manage Teaching Staff",teaching_staffs_path %></li>   
-      <li><%= link_to "Course Status Search",course_status_search_path %></li>  
-      <li><%= link_to "Conclude Course", conclude_course_path %></li>
-      <li><%= link_to "Interested Users", interested_users_path %></li>
-   	</ul>   	
+     </div>
+
+     <h4><i class="icon icon-book" style="paddign:0px 10px;"></i> <%= link_to "Course Library", manage_courses_path ,:rel=>"tooltip",:title=>"Mange Course" %>  </h4>
+    
+    
+     <h2><i class="icon icon-barcode" style="paddign:0px 10px;"></i> Coupon  </h2>
+       <div>
+         <ol>
+           <li style="padding-left:29px"><%= link_to "New Coupon", new_coupon_path ,:rel=>"tooltip",:title=>"Create course discount coupons" %></li>
+           <li style="padding-left:29px"><%= link_to "Manage Coupon", coupons_path,:rel=>"tooltip",:title=>"Mange course coupons" %></li>
+         </ol>
+       </div>
    </div>
+ </div>
+<% else %>
+<div id="left" class="span2">
+<ul  id="menu" class="unstyled accordion collapse in" style="margin-left: 10px;">
+  
+  <li> <a href="<%=manage_courses_path%>" rel="tooltip" title="Manage your course library "><i class="icon icon-th"></i>Manage Course</a></li>
+
+  <li><a href="<%=course_pricings_path%>" rel="tooltip" title="Set price to the course"><i class="icon icon-shopping-cart"></i>Course Price</a></li>
+
+  <li><a href= "<%=course_previews_path%>" rel="tooltip" title="Add Previews to the courses"><i class="icon icon-eye-open"></i>Course Preview</a></li>
+
+  <li><a href="<%=conclude_course_path%>" rel="tooltip" title="Conclude Courses which are completed"><i class="icon icon-screenshot"></i>Conclude Course </a></li>
+
+  <li><a href="<%= course_status_search_path%>"rel="tooltip" title="Click here to see course status"><i class="icon icon-search"></i>Course Status Search</a></li>
 
 
+  <li><a href="<%= new_coupon_path %>" rel="tooltip" title="Add the New Coupons"><i class="icon icon-barcode"></i>New Coupon </a></li>
+
+  <li><a href="<%= coupons_path%>"rel="tooltip" title="Add the Manage Coupons"><i class="icon icon-tasks"></i>Manage Coupon</a></li>
+
+
+  <li><a href="<%=teaching_staff_profile_path %>"rel="tooltip" title="Add the Teaching Staff Profile"><i class="icon-briefcase"></i>Teaching Staff Profile</a></li>
+
+ </ul>
+</div>
+ <% end %>
+<script type="text/javascript"> $('[rel=popover]').popover({trigger:'hover'})</script>

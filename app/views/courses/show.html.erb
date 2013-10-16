@@ -345,14 +345,14 @@ float: right;" %>
 </div>
 
 <div class="span3 content-box resource" style="float: left;padding: 40px 40px 0px 0px; margin-top: 30px;">
-   <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
+
 <div class="underlinetext">
    
 <div class="coursereviews" >
   <div class="">
     <div class="">
       <div align="center" style="width:80%;background:#fff;box-shadow:2px 3px 2px #efefef;height:30px;padding-top:10px;margin:-55px 45px 10px;">
-        <h4 style="margin-top:0px;color: #B3B3B3;"><%=@course.comments.size%> Reviews</h4>
+        <h4 style="margin-top:0px;color: #B3B3B3;"><%=@course.comments.active.size%> Reviews</h4>
               </div>
     </div>
     <%= render "comments/comments" %>

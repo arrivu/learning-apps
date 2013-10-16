@@ -1,0 +1,15 @@
+<div id="container"  style="width: 508px;background-color: ghostwhite">
+  <p><%= link_to @student.account.name, "http://#{@student.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %> </p>
+  <hr>
+  <b><p>Dear <%= @student.name %>,</p>  </b>
+  <p>Thanks for your interest in instructing at  <%= "#{@student.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %>!
+  <p>Your approval processed for instructors and your account is activated now.</p>
+  <p>Email:<%= @student.user.email %></p>
+  <p>Click here to login - <%= link_to @student.account.name, "http://#{@student.account.name}."+"#{@domain_root_account.settings[:domain_url]}" %> </p>
+  <p>If you have any questions about this process or any other matter, please feel free to <br>
+    contact us at <%= mail_to "support@arrivuapps.com" %> </p>
+  <hr>
+  Sincerely, <br>
+  Arrivu Apps Learning Portal
+
+</div>

@@ -1,0 +1,50 @@
+
+ <div id="wrap">
+  <%= render 'shared/side_menu' %>
+              
+            <div id="content">
+               
+                <div class="container-fluid outer"  >
+                            <div class="row-fluid">
+                                                        <div class="span12 inner">
+                           
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+ 
+                                          <div class="icons"><span class="badge badge-info">Section</span></div>
+                                      
+                                     <div id="collapse4" class="body">
+                                           
+        <table id="dataTable">
+
+<%= form_for (@section) do |f| %>
+
+<tr>
+ <td>Course Name</td>
+ <% @courses = Course.all %>
+   <td><%= f.collection_select :course_id, @courses, :id, :title, {}, {multiple: false} %></td>
+ </tr>
+<tr>
+    <td><%= f.label :section %></td>
+    <td><%= f.text_field :section %></td></tr>
+       
+   			
+    
+  <tr><td><%= f.submit  "Add Section", :class=>"btn btn-primary btn-large"%></td></tr> 
+
+
+<% end %>	</table>
+</div>
+           </div>
+            </div>
+               </div> 
+                </div>
+                </div>
+
+            </div>
+                
+
+            <div id="push"></div>
+ </div>
+<div class="clearfix"></div>

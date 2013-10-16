@@ -1,0 +1,92 @@
+<div id="wrap">
+  <%= render 'shared/side_menu' %>
+  <div id="content" class="span9">
+    <div class="container-fluid outer" style="background:#fff;">
+      <div class="row-fluid">
+        <div class="span12 inner">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="box">
+                <div id="collapse4" class="body">
+                  <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+<div id="home" align="center">
+    <div class="icons"><span class="badge badge-info" style="width: 240px;height: 15px;font-size: 15px;">Teaching Staff Profile Updation</span></div>
+    <%= tinymce_assets %>
+    <%= simple_form_for(@teaching_staff,:url => url_for(:controller => 'teaching_staffs',:action => 'teaching_staff_profile')) do |f| %>
+        <table>
+
+       <%= render 'shared/error_messages', object: f.object %>
+          <div style="margin-left: 27px;">
+         <tr>
+            <td><%= f.label 'First Name' %> </td>
+            <td><%= current_user.name %> </td>
+
+          </tr>
+          </div>
+          <tr>
+            <td><%= f.label 'Last Name' %></td>
+            <td><%= f.text_field :lastname, placeholder:"Last Name" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label 'Head Line' %></td>
+            <td><%= f.text_area :headline,:cols => "10", :rows => "5",placeholder:"Headline" %></td>
+           </tr>
+        <tr>
+                <td><%= f.label 'Email' %></td>
+                <td rowspan="1"><%=  current_user.email %></td>
+        </tr>
+
+
+        <tr>
+          <td><%= f.label 'Biography' %></td>
+          <td rowspan="1"><div id="TinyMCE" ><%= f.text_area :biography,:class => "tinymce",:cols => "6", :rows => "10" %></div></td>
+
+        </tr>
+
+        <tr>
+
+          <td><%= f.label 'Address' %></td>
+          <td><%= f.text_area :address,:cols => "5", :rows => "5", placeholder:"Address" %></td>
+
+        </tr>
+        <tr>
+          <td><%= f.label 'city' %></td>
+          <td> <%= f.text_field :city, placeholder:"City" %></td>
+        </tr>
+        <tr>
+        <tr>
+          <td><%= f.label 'Zipcode' %></td>
+          <td><%= f.text_field :pincode, placeholder:"ZipCode" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label 'Phone Number'%></td>
+          <td><%= f.text_field :phone_number, :maxlength => 15, placeholder:"Phone Number"  %></td>
+        </tr>
+
+          <tr>
+            <td colspan="2" style="text-align:center; ">
+              <%= f.check_box :terms_of_service %> I accept
+              <%=link_to "Terms and Service", terms_path %>
+            </td>
+          </tr>
+               <tr>
+                 <td colspan="2" style="text-align:center;">
+                 <%= f.submit "Update Profile",class: "btn btn-primary", style:"margin-left: 27px;" %>
+                 </td>
+               </tr>
+
+        <%= tinymce %>
+        </table>
+
+    <%end%>
+
+ </div>
+</table>
+ </div>
+</div>
+ </div>
+ </div>
+</div>
+</div>
+ </div>
+</div>

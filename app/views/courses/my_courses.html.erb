@@ -4,11 +4,11 @@
   <div class="container">
     <div class="row">
       <div class="span2">          
-            <% if current_user.omni_image_url == nil %>
-        <%= gravatar_for_with_size current_user, "100x100" %>
-        <% else  %>
-        <%= image_tag(current_user.omni_image_url,size: "100x100", alt: "")%> 
-        <% end  %>
+              <% if current_user.omni_image_url.nil? %>
+        <%= image_tag current_user.avatar.url,alt: current_user.name %>
+    <% else  %>
+        <%= image_tag(current_user.omni_image_url,size: "100x100", alt: current_user.name)%>
+    <% end  %>
                <!--  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "100x100" %> -->
           </div>
       <div class="span10 userdetailsection">

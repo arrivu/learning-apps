@@ -6,11 +6,11 @@
 
   <div class="featured-review clickable" data-reviewid="gp:AOqpTOHk10gYOpEiGszfJDn-uKb--cDKKdND_zhPPKt7fNgXMnzRHfbPMkvyzn9ECSUXLDX6U3ORwXqNU1LwB7M" data-expand-to="my-review" >
   <div class="author"> <a class="no-nav g-hovercard" > 
-        <% if comment.user.omni_image_url == nil %>
-        <%= gravatar_for_with_size comment.user, "50x50" %>               
-        <% else  %>
- <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: "", :class=>"img-circle")%>
- <% end  %>
+    <% if comment.user.omni_image_url.nil? %>
+        <%= image_tag comment.user.avatar.url(:medium),alt: comment.user.name %>
+    <% else  %>
+        <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: comment.user.name)%>
+    <% end  %>
      </a>
          <br>
          <a class="no-nav g-hovercard">reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago  </a>  <br>   <div class="featured-review-star-rating">  

@@ -1,69 +1,32 @@
-<!-- 
-<div style="float:left">
-</div>
-<div class="row">
-	<div class="span8 offset3" style="min-height:500px;">
-		<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-			<h3 align = "center">Course Price</h3>
-			<%= simple_form_for (@coursepricing) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
 
-			<table class="tableform">
-				<tr><th>Course Name</th><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
-					<%= f.select(:course_id,options_for_select(courses_array))%></td></tr>
-					<tr><th>Start Date</th><td>
+<div id="wrap">
+ <%= render 'shared/side_menu' %>
+  <div id="content" class="span9">
+   <div class="container-fluid outer"  >
+    <div class="row-fluid">
+    <div class="span12 inner">
+     <!--Begin Datatables-->
+     <div class="row-fluid">
+     <div class="span12">
+     <div class="box">
+     <div id="collapse4" class="body">
+     <div class="icons"><span class="badge badge-info">Course Price</span></div>
+     <%= simple_form_for (@coursepricing) do |f| %>
+	 <%= render 'shared/error_messages', object: f.object %>
+     <table id="dataTable">
+     <tr><td>Course Name</td>
+       <td><%= f.collection_select :course_id, @courses, :id, :title, {}, {multiple: false} %></td>
+      <tr><td>Start Date</td><td>
 
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
-					<tr><th>End Date</th><td>
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
-						<tr><th>Price</th><td>
-							<%= f.text_field :price %></td></tr>
-							<tr><th></th><td><%= f.submit "Save" ,class: "btn btn-primary" %></td></tr></table>
-
-
-							<% end %>
-
-
-						</div>
-
-					</div></div> -->
-
-					<div id="wrap">
-
-  <%= render 'shared/side_menu' %>
-               
-            <div id="content" class="span9">
-                <!-- .outer -->
-                <div class="container-fluid outer"  >
-                            <div class="row-fluid">
-                                                        <div class="span12 inner">
-                            <!--Begin Datatables-->
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="box">
-                                          <header>
-                                            <div class="icons"><i class="icon-move"></i></div>
-                                            <h5>Course Price </h5>
-                                        </header>
-                                        <div id="collapse4" class="body">
-                                        	<%= simple_form_for (@coursepricing) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-                                            <table id="dataTable" class="table table-condensed table-hover">
-                                              <tr><th>Course Name</th><td><% courses_array = Course.where(:account_id=>@account_id).map { |course| [course.title, course.id] } %>
-					<%= f.select(:course_id,options_for_select(courses_array))%></td></tr>
-					<tr><th>Start Date</th><td>
-
-						<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true %>
-					</td></tr>
-					<tr><th>End Date</th><td>
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
-						<tr><th>Price</th><td>
-							<%= f.text_field :price %></td></tr>
-							<tr><th></th><td><%= f.submit "Save" ,class: "btn btn-primary" %></td></tr></table>
-
-
-							<% end %>
+	  <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true ,style: "width: 84px;"%>
+	  </td></tr>
+		<tr><td>End Date</td><td>
+		<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 85px;"%></td></tr>
+		<tr><td>Price</td><td>
+		<%= f.text_field :price %></td></tr>
+		<tr><td></td><td><%= f.submit "Save" ,class: "btn btn-primary " %></td></tr>
+  </table>
+	<% end %>
 
 <!-- <div class="row-fluid"><div class="span6"><div class="dataTables_filter" id="dataTable_filter"><label>Search: <input type="text" aria-controls="dataTable"></label></div></div><div class="span6"><div class="dataTables_paginate paging_bootstrap pagination"><ul><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>  -->                                       </div>
                                     </div>

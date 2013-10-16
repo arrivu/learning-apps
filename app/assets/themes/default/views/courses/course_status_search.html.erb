@@ -48,15 +48,23 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="box">
-   <h3 align = "center">Manage Course Status</h3>
 <div id="collapse4" class="body">
+   <div class="icons"><span class="badge badge-info">Manage Course Status</span></div>
 <%= form_tag "/course_status_search", :method => 'get' do %>
+
+           <% if current_user.has_role? :teacher %>
+
+         
+           <td>Course:<%= select_tag :search, options_from_collection_for_select((current_user.teaching_staff.courses.map { |teaching_staff_course| teaching_staff_course.course }), "id", "title",:selected => params[:search]), {:prompt => 'ALL'} %></td> 
+           <% else %>
+
                Course: <%= select_tag :search, options_from_collection_for_select(Course.where(:account_id=>@account_id), "id", "title",:selected => params[:search]) , {:prompt => 'ALL'} %>
+           <% end %>    
               
               Status:
               <%= select_tag(:searchstatus, options_for_select(['All','enroll','completed'],:selected => params[:searchstatus])) %>
 
-              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary"  %><% end %>
+              <%= submit_tag "Search", :name => nil,class:"btn btn-large btn-primary", :style=> "margin-top: -11px" %><% end %>
                                            
       <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
         <tr class="tab_head">

@@ -4,42 +4,29 @@
   <%= flash[:coupon_error]%>
 </div>
 <% end %>
-
-<div class="row">
-  <div class="span10 ">
-
-
 <%= simple_form_for(@coupon) do |f| %>
-
-
-
-
-<div class = "hero-unit" style="border:1px solid #0088cc;border-radius:5px;">
-  <h3 align="center">New Coupon </h3>
-
-
+<div class="icons"><span class="badge badge-info">New Coupon  </span></div>
 <%= render 'shared/error_messages', object: f.object %>
-<table class="tableform">
+ <div id="collapse4" class="body">
+     <table id="dataTable" >
   <tr><th>Course Name</th><td>
-
-<div id='all_course'>
-  <%= f.input :metadata, :as=>:select, :collection =>Course.all.collect{|p| [p.title,p.id]}.push(['All','All']),label:false,:prompt => "Select course" %>
+  <div id='all_course'>
+    <% if current_user.has_role? :admin or  current_user.has_role? :account_admin  %>
+        <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]}.push(['All','All']),label:false,:prompt => "Select course" %>
+    <% else  %>
+         <%= f.input :metadata, :as=>:select, :collection =>@courses.collect{|p| [p.title,p.id]},label:false,:prompt => "Select course" %>
+    <% end  %>
 </div>
+  
 
 </div></td></tr>
-  
   <tr><th>  
     </th><td>
-    
     <%= hidden_field_tag :how_many, 1  %>
-
   </td></tr>
-
-
   <tr><th>
    Coupon Name
   </th><td>
-  
   <%= f.input_field :name  %></td></tr>
   <tr><th>
     Number of times redeemable
@@ -65,8 +52,8 @@
                     
 
                          <tr><th>Expires</th><td>
-                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" %></td></tr>
-                          <tr><th></th><td> <%= f.button :submit ,class:"btn btn-primary" %></td></tr></table>
+                          <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 86px" %></td></tr>
+                          <tr><th></th><td> <%= f.button :submit ,class:"btn btn-primary yellobg" %></td></tr></table>
 
 
 
@@ -106,7 +93,6 @@
 
 
                           </script>
-                        </div>
-</div>
-</div>
 
+
+</div>

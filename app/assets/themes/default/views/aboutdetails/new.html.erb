@@ -1,24 +1,3 @@
-<!-- 
-<h3 align = "center">About Us</h3>
-<table align="center">
-<%= tinymce_assets %>
-<%= form_for @aboutdetail do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <tr>
-    <td><%= f.label 'Title' %></td>
-    <td><%= f.text_field :title %></td>
-  </tr>
-  <tr>
-	<td><%=f.label 'Description'%></td>
-	<td><%=f.text_area :desc,:class => "tinymce"%></td>
-</tr>
-<tr>
-   <td><%= f.submit "Save" %> </td>
-</tr>
-<%= tinymce %>
-<% end %>
-</table>
-</html> -->
 
 
   <div id="wrap">
@@ -36,8 +15,8 @@
                                     <div class="box">
   
                                                                             <div id="collapse4" class="body">
-                                           
-				<table id="dataTable" class="table table-condensed table-hover">
+                                           <div class="icons"><span class="badge badge-info">Add About Details</span></div> 
+				<table id="dataTable" >
 				<%= tinymce_assets %>
 <%= form_for @aboutdetail do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
