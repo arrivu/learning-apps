@@ -1,26 +1,43 @@
+
 <div id="wrap">
 <%= render 'shared/side_menu' %>
- <div id="content" class="span9">
-  <div class="container-fluid outer"  >
-   <div class="row-fluid">
-    <div class="span12 inner">
-     <div class="row-fluid">
+ <div id="content" style = "min-height: 300px;">
+ <!-- .outer -->
+<div class="container-fluid outer" style="background:#fff;">
+ <div class="row-fluid">
+  <div class="span12 inner">
+<!--Begin Datatables-->
+    <div class="row-fluid">
       <div class="span12">
        <div class="box">
-        <div id="collapse4" class="body">
-     	 <div class="icons"><span class="badge badge-info">  Add Course </span></div>
-          <%= simple_form_for @course do |f| %>
-			<table id="dataTable">
-		   	<tr><%= render 'shared/error_messages', object: f.object %></tr>
-		    <tr><td><%= f.label :title, "Title" %></td>
-				<td><%= f.text_field :title,:maxlength => 30, :autofocus => true%></td></tr>
-			    <tr><td><%= f.label :start_date, "Start Date" %></td><td>
-					<%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30,
+       <div id="collapse4" class="body">
+         <div class="icons"><span class="badge badge-info">Course Management</span></div>
+          <%= simple_form_for(@course) do |f| %>
+             <ul class="nav nav-tabs" id="myTab">
+               <li class="active"><a href="#new">Add Course</a></li>
+                <li><a href="#pric">Course Price</a></li>
+                <li><a href="#preview">Course Preview</a></li>
+                 <li><a href="#module"> Course Module</a></li>
+                <li><a href="#section"> Course Section</a></li>
+              </ul>
+
+              <div class="tab-content">
+
+
+ <div class="tab-pane active" id="new">
+ 
+   
+        <table id="dataTable">
+        <tr><%= render 'shared/error_messages', object: f.object %></tr>
+        <tr><td><%= f.label :title, "Title" %></td>
+        <td><%= f.text_field :title,:maxlength => 30, :autofocus => true%></td></tr>
+          <tr><td><%= f.label :start_date, "Start Date" %></td><td>
+          <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30,
                                       :order => [ :day, :month, :year], class:"date",style: "width: 84px;",
                                       :required => true %>
-					</td></tr>
-				<tr><td><%= f.label :end_date, "End Date" %></td><td>
-						<%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30,
+          </td></tr>
+        <tr><td><%= f.label :end_date, "End Date" %></td><td>
+            <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30,
                                           :order => [ :day, :month, :year], class:"date",style: "width: 84px;",
                                           :required => true %></td></tr>
                     <% if current_user.has_role? :teacher %>
@@ -49,22 +66,173 @@
 				<tr><td><%= f.label :topic_id, "Category" %></td>
 					<td><% topics_array = @domain_root_account.topics.map { |topic| [topic.name, topic.id] } %>
 					    <%= f.select(:topic_id,options_for_select(topics_array))%></td></tr>
+
                 <tr><td><%= f.label :tag_tokens, "Add Tags" %></td>
                     <td>
                        <div class="field">
                        <%= f.text_field :tag_tokens, data: {load: @course.taggings}, :autofocus => false%>
                        </div>
                     </td></tr>
-                <tr><td></td><td><%= f.submit "Add Course", class: "btn btn-large btn-primary" %>
-					</td></tr></table>
-				<% end %>
-               </div>
-              </div>
-             </div>
-           </div>
-         </div>
-        </div>
-       </div>
-     <div id="push"></div>
+                <tr><td></td>
+              <td><%= f.submit "Add Course", class: "btn btn-large btn-primary" %>
+              </td>
+        </tr></table>
+                 
  </div>
-<div class="clearfix"></div>
+
+ <% end %>
+<div class="tab-pane " id="pric">
+
+ <table id="dataTable">
+  <%= simple_form_for (@coursepricing) do |f| %>
+     <tr><td>Course Name</td>
+       <td><%= select_tag :id, options_from_collection_for_select(@courses, "id", "title") %></td></tr>
+            <tr><td>Start Date</td><td>
+
+    <%= f.input_field :start_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date", :required => true ,style: "width: 84px;"%>
+    </td></tr>
+    <tr><td>End Date</td><td>
+    <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 85px;"%></td></tr>
+    <tr>
+
+       <td>Price</td>
+       <td><%= f.text_field :price %></td>
+  </tr>
+  
+    <tr><td></td>
+      <td><%= f.submit "Add Price" ,class: "btn btn-primary " %></td>
+    </tr>
+    <% end %>
+  </table>
+
+</div>
+<div class="tab-pane " id="preview">
+
+      <table id="dataTable">
+       
+            <%= form_for @preview do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+   <tr><td><%= f.label :course_id, "Courses" %></td>
+    <td><%= select_tag :id, options_from_collection_for_select(@courses, "id", "title") %></td></tr>
+                  
+
+        
+                  <tr><td><%= f.label :name, "Title" %></td>
+                  <td><%= f.text_field :name,:maxlength => 50 %></td></tr>
+                  <tr><td><%= f.label :desc, "Description" %></td>
+                      <td><%= f.text_area :desc ,:cols => "30", :rows => "5",:maxlength => 100 %></td></tr>
+                  <tr><td><%= f.label :video_url, "Video URL" %></td>
+                  <td><%= f.text_area :video_url ,:cols => "30", :rows => "3" %></td></tr>                    
+                <tr><td><%= f.label :sequence, "Display Order" %></td>
+                  <td><%= f.text_field :sequence ,:size => '2' %></td></tr>
+                <tr><td><%= f.label :enable, "Show This Preview" %></td>
+                 <td><%= f.check_box :enable ,:checked => true%></td></tr>
+                <tr><td></td>
+                  <td><%= f.submit "Add Preview", class: "btn btn-large btn-primary" %></td>
+                </tr>
+                     
+                      <% end %>
+ 
+       </table>
+</div>
+<div class="tab-pane " id="module">
+
+   <table id="dataTable">
+
+               <%= form_for (@course_module) do |f| %>
+               <tr>
+                 <td>Course Name</td>
+                
+                   <td><%= f.collection_select :course_id, @courses, :id, :title, {}, {multiple: false} %></td>
+                 </tr>
+                                <tr>
+                 <td><%= f.label :course_module %></td>
+                 <td><%= f.text_field :course_module %></td></tr>
+                  <tr>
+                    <td><%= f.submit  "Add Module", :class=>"btn btn-primary btn-large"%></td>
+                  </tr> 
+
+                <% end %> 
+               </table>
+</div>
+<div class="tab-pane " id="section">
+
+
+        <table id="dataTable">
+
+<%= form_for (@section) do |f| %>
+
+<tr>
+ <td>Course Name</td>
+ <% @courses = Course.all %>
+   <td><%= f.collection_select :course_id, @courses, :id, :title, {}, {multiple: false} %></td>
+ </tr>
+<tr>
+    <td><%= f.label :section %></td>
+    <td><%= f.text_field :section %></td></tr>
+       
+        
+    
+  <tr>
+     <td><%= f.submit  "Add Section", :class=>"btn btn-primary btn-large"%></td> 
+  </tr> 
+
+
+<% end %> </table>
+</div>
+
+
+</div> <br>
+
+
+<script>
+  $('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
+
+
+     
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> 
+                                
+                            
+                        
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->
+            </div></div>
+            <!-- END CONTENT -->
+ <!-- <div id="nestedAccordion" style="float: left;"> -->
+  <div class="left" >  
+
+<a href= <%= new_course_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Course</a>
+
+<a href= <%= new_course_pricing_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Price</a>
+
+<a href= <%=new_course_preview_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Preview</a> 
+
+<a href= <%=conclude_course_path%> class="btn btn-default btn-large"><i class="icon icon-lock"></i>Conclude Course</a> 
+
+<a href= <%=course_status_search_path%> class="btn btn-default btn-large"><i class="icon icon-search"></i>Course Status</a> 
+
+<a href= <%= new_section_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Section</a> 
+
+<a href= <%= new_course_module_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Module</a> 
+
+</div>
+            <!-- #push do not remove -->
+            <div id="push"></div>
+            <!-- /#push -->
+        
+        <!-- END WRAP -->
+
+        <div class="clearfix"></div>
+       
+
+
+    </div>

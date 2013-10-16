@@ -3,6 +3,7 @@ class CoursePreviewsController < ApplicationController
   load_and_authorize_resource
  before_filter :subdomain_authentication , :only => [:new,:create, :edit, :destroy,:index]
   before_filter :valid_domain_check, :only=>[:show,:edit]
+
 	def new
 		@preview = CoursePreview.new
     populate_combo_courses
@@ -16,7 +17,7 @@ class CoursePreviewsController < ApplicationController
 		# @preview.account_id=
 		if @preview.save
 			flash[:success] = "Preview Added Successfully."
-			redirect_to course_library_page_path
+			redirect_to manage_courses_path
 		else
 		
 		render 'new'
@@ -32,12 +33,13 @@ class CoursePreviewsController < ApplicationController
   
 	def edit
 		@preview= CoursePreview.find(params[:id])
+		# params[:course_preview][:account_id]=@domain_root_account.id
     if user_can_do?(@preview)
       populate_combo_courses
       @preview
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_library_page_path
+      redirect_to manage_courses_path
     end
 
 	end
@@ -48,13 +50,13 @@ class CoursePreviewsController < ApplicationController
 	   		@preview.account_id=@account_id
 		if @preview.update_attributes(params[:course_preview])
 			flash[:success] = "Successfully Updated Preview."
-			redirect_to course_library_page_path
+			redirect_to manage_courses_path
 		else
 			render :edit
     end
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_library_page_path
+      redirect_to manage_courses_path
     end
 	end
 
@@ -64,10 +66,10 @@ class CoursePreviewsController < ApplicationController
 		@preview.destroy
 
 		flash[:success] = "Successfully Destroyed Preview."
-		redirect_to course_library_page_path
+		redirect_to manage_courses_path
     else
       flash[:error] = "Not Authorized"
-      redirect_to course_library_page_path
+      redirect_to manage_courses_path
     end
 	end
 

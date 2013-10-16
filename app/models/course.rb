@@ -50,7 +50,7 @@ class Course < ActiveRecord::Base
   belongs_to :account
   belongs_to :category
   letsrate_rateable "rate"
-  has_many :course_pricings
+  has_one :course_pricing
   has_many :taggings
   has_many :tags, through: :taggings
   has_many :sections

@@ -1,6 +1,6 @@
   <div id="wrap">
   <%= render 'shared/side_menu' %>
-            <div id="content" class="span9">
+            <div id="content" class="span9" style = "min-height :400px;">
                
                 <div class="container-fluid outer" style="background:#fff;">
                             <div class="row-fluid">
@@ -71,9 +71,21 @@
 
 
             <!-- #push do not remove -->
-             <div class="span2 left" style="padding: 0px; ">
-             
- <a href="courses/new" class="btn btn-default btn-large" style="margin:10px;"><i class="icon icon-plus-sign"></i>Add Course</a> 
+             <div class="left" >
+ <a href= <%= new_course_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Course</a>
+
+<a href= <%= new_course_pricing_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Price</a>
+
+<a href= <%=new_course_preview_path%> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Preview</a> 
+
+<a href= <%=conclude_course_path%> class="btn btn-default btn-large"><i class="icon icon-lock"></i>Conclude Course</a> 
+
+<a href= <%=course_status_search_path%> class="btn btn-default btn-large"><i class="icon icon-search"></i>Course Status</a> 
+
+<a href= <%= new_section_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Section</a> 
+
+<a href= <%= new_course_module_path %> class="btn btn-default btn-large"><i class="icon icon-plus-sign"></i>Add Module</a> 
+
   </div>
             <div id="push"></div>
             <!-- /#push -->
