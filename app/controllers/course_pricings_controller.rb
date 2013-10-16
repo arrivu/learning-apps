@@ -88,7 +88,7 @@ def update
         
         if @coursepricing.update_attributes(params[:course_pricing])
           flash[:notice] = "Updated Course Price Details Successfully..."
-          redirect_to manage_Courses_path
+          redirect_to course_pricings_path
         else
           render 'edit'
         end

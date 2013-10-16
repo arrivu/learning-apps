@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   before_filter :subdomain_authentication, :only => [:new,:create, :edit, :destroy,:manage_courses,:course_status_search,
    :completed_courses,:updatecompleted_details,:conclude_course,:concluded_course_update]
   @@course_id
-  caches_action :manage_courses
+  caches_action 
 
   def show_image
     @course = Course.find(params[:id])
@@ -43,27 +43,25 @@ class CoursesController < ApplicationController
 
   expire_action action: [:index,:show,:background_image,:show_image]
 
-  
-
-   @course = Course.new
+  @course = Course.new
    
-   populate_combo_courses
-   @coursepricing=@domain_root_account.course_pricings.new
+  populate_combo_courses
+  @coursepricing=@domain_root_account.course_pricings.new
 
-   # @coursepricing= CoursePricing.new
-   @preview = CoursePreview.new
+  @coursepricing= CoursePricing.new
+  @preview = CoursePreview.new
    
-   @course_module = CourseModule.new
-   @section=Section.new
-   @courses = Course.all 
+  @course_module = CourseModule.new
+  @section=Section.new
+  @courses = Course.all 
     
-   @topic = Topic.all
+  @topic = Topic.all
  end
 
 
  def create
-   tags_token = params[:course][:tag_tokens]
-   params[:course].delete :tag_tokens
+  tags_token = params[:course][:tag_tokens]
+  params[:course].delete :tag_tokens
   @preview=CoursePreview.new(params[:course_preview])
   @preview =@course.course_previews.build(params[:course_preview])
   populate_combo_courses
@@ -77,18 +75,17 @@ class CoursesController < ApplicationController
   @section=Section.new(params[:section])
   @section.account_id=@account_id
 
-   @course.is_concluded="f"
-
-   if @course.save
+  @course.is_concluded="f"
+  if @course.save
      tag_list(tags_token,@course)
      flash[:success] = "Course added successfully!!!!"
      expire_action action: [:index,:show]
      lms_create_course(@course)
      redirect_to manage_courses_path
-   else
+  else
      render 'new'
-   end
- end
+  end
+  end
  def edit
   add_breadcrumb "Add Course", edit_course_path
   @course= @domain_root_account.courses.find(params[:id])
