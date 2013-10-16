@@ -214,7 +214,7 @@ end
 
   def user_can_do?(context)
     if context.class == Course
-    current_user.has_role? :admin or current_user.has_role? :account_admin or !TeachingStaffCourse.where(:course_id =>
+    current_user.has_role? :admin or current_user.has_role? :account_admin or current_user.has_role? :student or !TeachingStaffCourse.where(:course_id =>
                                           context.id,:teaching_staff_id =>current_user.teaching_staff.id).blank?
     elsif context.class == Coupon
       current_user.has_role? :admin or current_user.has_role? :account_admin or

@@ -19,8 +19,7 @@ before_filter :front_page_registration_restrict, :only  => [:new,:create]
     	@accountthemes=AccountTheme.find(params[:id])
   end
   def show
-
-          @accountthemes=AccountTheme.find(params[:id])
+    @accountthemes=AccountTheme.find(params[:id])
   end
   def index
     	@accountthemes = AccountTheme.where(:account_id=>@domain_root_account.id)

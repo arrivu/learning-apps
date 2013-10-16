@@ -3,14 +3,17 @@ $(document).ready(function(){
     var frames = document.getElementsByTagName("iframe");
     for (var i = 0; i < frames.length; i++) {
  frames[i].src += "?wmode=opaque;"  
-        
       }
-
 });
 </script>
 <div class="row">
   <div class="container" style="width:100%;background: #F7F7F7;">
      <div class="span12" style="width:97%;margin-top:20px;">
+        <ol class="breadcrumb" style="margin-left:30px;">
+  <li><a href="/">Home</a>/</li>
+  <li><a href="/courses" >Courses</a>/</li>  
+    <li><a href="#" class="active"><%= @course.title %></a></li>  
+  </ol>
       <div class="span3 content-box resource" style="float: left;margin-left:40px;">
              <div class="type-tag-positioner" style="background-image:url(<%= @course.course_image.url(:medium)  %>);background-size: 100% 96%;"></div>
         <div class="details" style="margin-top:165px;">
@@ -18,7 +21,6 @@ $(document).ready(function(){
             <%= @course.title %>
           </h2><%= rating_for @course, "rate" %></div>
           <div class="review-stars"  >
- <%#= link_to image_tag("#{@course.image}", border: 0, width: "100", height: "100")%> 
        <div class="tag" style="padding:0px 10px;margin: 30px -13px 0px 0px;">
         <div style="font-size: 14px;">courses tags with:</div>
         <ul class="tags" style="border:0px;">
@@ -26,7 +28,7 @@ $(document).ready(function(){
          <li><a href="<%=tagged_courses_path(tag: tag)%>" >
           <b> <%= tag.name%> </b>
           <span><%= tag.courses.count%></span></a></li>
-          <%end  %>
+          <% end %>
         </ul>
       </div>
       <div id="rating" style="font-size: 14px;float:left;width: 100%;text-align: right;margin: -95px 0px;border-bottom: 1px solid hsl(0, 0%, 86%);">
@@ -293,10 +295,12 @@ return el;
     <% if @course.is_coming_soon %>
     <% if @status!="follow" %>
 
-      <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
+      <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
+float: right;" %>
       <% end %>
     <% elsif @status=="enroll" %>
-    <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class="enroll">Go To Class
+    <a href="<%= lms_course_url("#{@course.lms_id}modules")%>"><div class= "btn btn-primary" style="margin-bottom: 10px;margin-right: 95px;
+float: right;">Go To Class
     </div></a>
     <% elsif @status=="completed" %>
     
@@ -304,9 +308,10 @@ return el;
     
      <% if !AccountUser.where(:account_id=> @account_id,:user_id=>@current_user.id).empty? %>
 
-         <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+         <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
+float: right;" %>
       <% else %>
-           <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="enroll"  >Enroll</a>
+           <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary"  >Enroll</a>
       <% end %>
     <% end %> 
 
@@ -315,7 +320,8 @@ return el;
 
 <% else %>
   <% if @course.is_coming_soon %>
-    <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),  :class=>"enroll" %>
+    <%= link_to "Follow",payments_follow_course_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
+float: right;"%>
   <!--  <a href="#loginmodal" role="button" data-toggle="modal" class="enroll">Follow</a> -->
   
   <% else %>
@@ -323,12 +329,14 @@ return el;
   <% if @current_user !=nil %>
  <% if !AccountUser.where(  :account_id=> @account_id,:user_id=>@current_user. id).empty? %>
 
-      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
+float: right;" %>
   <% else %>
      <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary" ,payments_follow_course_path(:id=>@course.id) >Enroll</a>
       <% end %>
       <% else %>
-      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+      <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
+float: right;" %>
 
   <% end %> 
 <% end %> 
@@ -343,21 +351,17 @@ return el;
 <div class="coursereviews" >
   <div class="">
     <div class="">
-      <div align="center">
-        <h4 style="margin:-25px 0"><%=@course.comments.size%> Reviews</h4>
-        <br/>
-      </div>
+      <div align="center" style="width:80%;background:#fff;box-shadow:2px 3px 2px #efefef;height:30px;padding-top:10px;margin:-55px 45px 10px;">
+        <h4 style="margin-top:0px;color: #B3B3B3;"><%=@course.comments.size%> Reviews</h4>
+              </div>
     </div>
     <%= render "comments/comments" %>
     <div class=" clearfix"></div>
-  
-    
- <div class=" clearfix"></div>
  <div class="row">
   <div align="center">
  <div>
      
-      <%= link_to "Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "browseourcoursessmall",style:"margin-bottom: 10px;margin-right: -60px;"%>
+      <%= link_to "Reveiw",review_path(:commentable_id => @course.id,:commentable_type=> 'course'),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: -40px;"%>
   </div> 
 </div>
 </div>

@@ -98,8 +98,6 @@
        @teachingstaff.build_user(name: params[:teaching_staff][:user][:name],
                                 email: params[:teaching_staff][:user][:email],
                                 user_type: 3,
-                                content_type: params[:teaching_staff][:user][:content_type],
-                                attachment: params[:teaching_staff][:user][:attachment],
                                 password: params[:teaching_staff][:user][:password],
                                 password_confirmation: params[:teaching_staff][:user][:password_confirmation])
 

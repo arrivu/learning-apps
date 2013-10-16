@@ -11,9 +11,8 @@
  <p><%= render 'reviewform' %></p>
  
 </div>
-
 <table>
- <div class="multicol-column" style="width: auto;">
+ <div class="multicol-column" style="float:left;width:48%;">
   <%= simple_form_for(@comment,:url => url_for(:controller => 'comments',:action => 'review')) do |f| %>
     <% @comments.each do |comment| %>
 <tr><td>
@@ -24,17 +23,14 @@
         <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: comment.user.name)%>
     <% end  %>
 
-  </a>   </div> <div>
-    <span class="author-name"> <%= comment.user.name  %> 
-             <a class="no-nav g-hovercard" </a>reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago  </span>
-              <div class="featured-review-star-rating">  
+  </a> <br><a class="no-nav g-hovercard"> reviewed-<%= distance_of_time_in_words(comment.created_at,Time.now)%> ago  </a><br> <div class="featured-review-star-rating">  
                <div class="tiny-star star-rating-non-editable-container">
                 <%= rating_for_user @course,comment.user, "rate"  %></div>  
-                  </div></div> <div> 
-    <span class="author-name"> <%= comment.user.name  %> 
-          </span>
-              </div> </td><td>
-              <div class="featured-review" style="max-width:400px;">
+                  </div></div>      <span class="author-name"> <%= comment.user.name  %> 
+             </span>
+              <div> 
+  </td><td>
+              <div class="featured-review" style="max-width:400px;padding: 0 5px 0 65px;">
          <div class="quoted-review"> 
           <div class="review-text"> <span class="review-title"> <%= comment.title  %></span> <%= comment.comment  %></div> 
 

@@ -4,16 +4,13 @@
   <div class="container">
     <div class="row">
       <div class="span2">          
-        <% if current_user.image_blob == nil %>
-        <% if current_user.omni_image_url == nil %>
+            <% if current_user.omni_image_url == nil %>
         <%= gravatar_for_with_size current_user, "100x100" %>
         <% else  %>
         <%= image_tag(current_user.omni_image_url,size: "100x100", alt: "")%> 
         <% end  %>
-        <% else  %>
-        <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "100x100" %>
-        <% end  %>
-      </div>
+               <!--  <%= image_tag url_for(:controller => 'registrations',:action => 'user_image', :id => current_user.id), :size => "100x100" %> -->
+          </div>
       <div class="span10 userdetailsection">
         <h3><%= current_user.name %></h3> <%= link_to "Edit Profile", edit_user_registration_path %>
         <br/>
