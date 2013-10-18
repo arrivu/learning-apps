@@ -1,9 +1,10 @@
 .footer {
 background: #fff;
-padding-top: 25px;
+background-image: none;
+padding-top: 10px;
 position: relative;
 width: 100%;
-margin-top:20px;
+margin-top: 50px;
 margin-bottom:0px;
 border-top: 1px solid #ddd;
 }
@@ -45,14 +46,14 @@ margin-bottom: 15px;
 }
 
 .footer .mission p {
-color: #333;
+color: #888;
 margin-top: 15px;
 }
 
 .footer .mission p {
 display: block;
 clear: left;
-color: #333;
+color: #888;
 line-height: 1.5;
 margin: 0 0 15px;
 }
@@ -67,10 +68,9 @@ font-size: 13px;
 }
 
 .footer .mission ul.social {
-border-top: 0px solid #ddd;
-margin-bottom: 25px;
-margin-top: 0px;
-margin-left: 0px;
+border-top: 1px solid #ddd;
+margin: 15px 0;
+padding: 15px 0 0;
 }
 
 .footer .mission ul.social li {
@@ -92,11 +92,11 @@ width: 26px;
 
 .footer .mission ul a {
 font-weight: bold;
-color: #333;
+color: #999;
 }
 
 .footer .mission p.copyright {
-color: #333;
+color: #bbb;
 }
 
 .footer_icon
@@ -111,7 +111,7 @@ width: auto\9;
 .footer .mission p {
 display: block;
 clear: left;
-color: #333;
+color: #888;
 line-height: 1.5;
 margin: 0 0 15px;
 }
@@ -142,18 +142,18 @@ float: right;
 
 .footer ul.link-list li.heading {
 font-weight: bold;
-
+margin-bottom: 4px;
 }
 
 .footer ul.link-list li {
-color: #333;
+color: #999;
 display: block;
 float: none;
 font-size: 13px;
 }
 
 .footer .link-list li, .footer .link-list a {
-color: #333;
+color: #999;
 display: block;
 line-height: 1.8;
 }
@@ -170,21 +170,21 @@ display: block;
 
 
 .footer ul.link-list li.heading a {
-color: #333;
+color: #777;
 }
 
 .footer .link-list .heading a {
 font-weight: bold;
-color: #333;
+color: #777;
 margin-bottom: 5px;
 }
 
 .footer ul.link-list a {
-color: #333;
+color: #999;
 }
 
 .footer .link-list li, .footer .link-list a {
-color: #333;
+color: #999;
 display: block;
 line-height: 1.8;
 }
@@ -195,65 +195,4 @@ text-decoration: underline;
 
 ul.inline-list>li>*, ul.link-list>li>* {
 display: block;
-}
-.facebook, .linkedin, .or, .twitter, .youtube, .banner2_label, .banner1_label, .close, .googleplus, .plus1{
-	background: url(sprites.png) no-repeat;
-}
-
-.facebook{
-	background-position: 0 0;
-	width: 30px;
-	height: 30px;
-}
-
-.linkedin{
-	background-position: -51px 0;
-	width: 30px;
-	height: 30px;
-}
-
-.or{
-	background-position: -99px 0;
-	width: 50px;
-	height: 50px;
-}
-
-.twitter{
-	background-position: -149px 0;
-	width: 30px;
-	height: 30px;
-}
-
-.youtube{
-	background-position: -201px 0;
-	width: 30px;
-	height: 30px;
-}
-
-.banner2_label{
-	background-position: -249px 0;
-	width: 245px;
-	height: 24px;
-}
-
-.banner1_label{
-	background-position: 0 -51px ;
-	width: 245px;
-	height: 24px;
-}
-
-.close{
-	background-position: -200px -51px ;
-	width: 35px;
-	height: 35px;
-}
-
-.googleplus{
-background-position: -248px -52px;	width: 30px;
-	height: 30px;
-}
-.plus1{
-	background-position: -299px -48px ;
-	width: 62px;
-	height: 62px;
 }

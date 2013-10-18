@@ -1,10 +1,7 @@
-
-h1,h2,h3,h4,h5,h6 {  }
 .coursedetailtop{
 	min-height: 100px;
 	background-size:100% 310px;
 	background-repeat: no-repeat;
-	margin-top:-18px;
 }
 
 .modulesclub{
@@ -28,25 +25,25 @@ h1,h2,h3,h4,h5,h6 {  }
 	color:#ffffff;
 }
 .coursedesc{
-padding: 15px 70px 0px 145px;
+padding: 15px 70px 0px 170px;
 width: 100%;
 }
 
 .coursetitle h3{
-line-height: 34px;
-font-size: 36px;
-font-weight: bold;
-color: #fff;
-z-index: 0;
-margin-left: 30px;
-text-transform: uppercase;
+	line-height: 34px;
+	font-size: 30px;
+	font-weight: 200;
+	color: #f1f1f1;
+	z-index: 0;
+	margin-left: 30px;
+	text-transform: uppercase;
 }
 
 .subtitle{
 	font-size: 15px;
 	line-height: 20px;
 	font-weight: 100;
-	color: #fff;
+	color: #f1f1f1;
 	z-index: 0;
 	margin-left: 30px;
 }
@@ -67,8 +64,8 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	 
-	white-space: nowrap;
+/*	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/	white-space: nowrap;
 	border: none;
 	cursor: pointer;
 	display: -moz-inline-stack;
@@ -91,8 +88,8 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	 
-	white-space: nowrap;
+/*	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/	white-space: nowrap;
 	border: none;
 	cursor: pointer;
 	display: -moz-inline-stack;
@@ -126,8 +123,8 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	 
-	white-space: nowrap;
+/*	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/	white-space: nowrap;
 	border: none;
 	cursor: pointer;
 	display: -moz-inline-stack;
@@ -150,8 +147,8 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	 
-	white-space: nowrap;
+/*	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/	white-space: nowrap;
 	border-radius: 4px 4px 4px 4px;
 	cursor: pointer;
 	display: -moz-inline-stack;
@@ -185,8 +182,8 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	  
-	white-space: nowrap;
+/*	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+*/	white-space: nowrap;
 	border: none;
 	cursor: pointer;
 	display: -moz-inline-stack;
@@ -208,7 +205,7 @@ text-transform: uppercase;
 	color: #fff !important;
 	line-height: 1 !important;
 	font-size: 14px !important;
-	 
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	white-space: nowrap;
 	border: none;
 	cursor: pointer;
@@ -252,22 +249,21 @@ text-transform: uppercase;
 	line-height: 34px;
 	font-size: 30px;
 	font-weight: 200;
-	color: #000;
+	color: #4090ba;
 	z-index: 0;
-	margin-left: 0px;
-	border-bottom: 0px solid #eee;
+	margin-left: 30px;
+	border-bottom: 1px solid #eee;
 }
 
 .coursesyllabus .underlinetext{
-	 
+	font-family: verdana;
 	text-align: justify;
 	margin-top: 10px;
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: 100;
 	color: #333;
 	z-index: 0;
-	line-height: 22px;
-	margin-left: 0px;
+	margin-left: 30px;
 }
 
 .previewcourse{
@@ -284,11 +280,8 @@ text-transform: uppercase;
 }
 
 .previewcourse .prevbox{
-	background-image: url(../assets/preview_bg.png);
-background-size: 100% 100%;
-margin-top: 30px;
-margin-right: 0px;
-
+	background-color: #F8F8F6 ;
+	margin-bottom: 10px;
 }
 
 .previewcourse .previmage{
@@ -298,25 +291,25 @@ margin-right: 0px;
 
 .previewcourse .previnfo{
 	float: left;
-	
+	padding-left: 10px;
 	color: #333 ;
 }
 
 .prevtxt{
-	color: #000;
+	color: #16A085;
 }
 
 .aboutauthor{
 	min-height: 100px;
 
 	/*background-color: #2C3E50 ;*/
-	/*background-color: #f2e1ac;*/
+	background-color: #f2e1ac;
 	margin-top: 20px;
-	color: #000;
+	color: #2a488e;
 
 	padding:20px;
 }
-.aboutauthor .authorimage{height: 140px;}
+.aboutauthor .authorimage{height: 100px;}
 .aboutauthor .authorimage p{
    float: right; width: 80%;text-align: justify;
 }
@@ -330,7 +323,7 @@ margin-right: 0px;
 
 .coursereviews{
 	min-height: 100px;
-	/*background-color: #ECF0F1 ;*/
+	background-color: #ECF0F1 ;
 	margin-top: 0px;
 	color: #333;
 	margin-bottom: 20px;
@@ -405,7 +398,7 @@ margin-right: 0px;
 }*/
 
 .starrating{
-	margin-left: 0px;
+	margin-left: 30px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
@@ -414,13 +407,13 @@ margin-right: 0px;
 .bubble-content {
    position:relative;
    float:left;
-   padding: 15px;
+   padding: 10px;
    margin-left: 12px;
-   background-image: url('../assets/review_bg.png');
-background-size: 100% 100%;
+   border-radius:10px;
+   background-color:#fff;
    color: #333;
    width:350px;
-   
+   box-shadow:1px 1px 5px rgba(0,0,0,.2);
    text-align: justify;
    }
 .bubble {
@@ -440,19 +433,13 @@ background-size: 100% 100%;
 }
 
 .underlinetext ul li {
+	list-style: none;
 	padding: 10px;
-	text-align: left;
-list-style-type: disc;
-font-size: 17px;
 }
 
 .underlinetext ul li h4{
 	list-style: none;
 	color: #333;
 
-	 }
-
-.underlinetext td{vertical-align: top;}
-.underlinetext th{
-background: #efefef;
-border-right: 2px solid #ddd;}
+	font-family: verdena;
+}

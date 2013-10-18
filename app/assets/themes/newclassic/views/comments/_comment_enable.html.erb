@@ -1,6 +1,0 @@
-<%= simple_form_for :comment , :url=> {:controller => 'comments', :action => 'activate_comments' } do |update_comment| %>
-<table><tr>
-    <td><%= update_comment.check_box :is_active %></td>
-    <%= update_comment.hidden_field :comment_id,:value=> @comment.id%>
-    <td><%= update_comment.submit "show/disable comments", :style=> "link" %></td></tr></table>
-<% end  %>

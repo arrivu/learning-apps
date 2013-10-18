@@ -1,0 +1,22 @@
+<% if !@comments.blank?%>
+        <% @comments.each do |comment| %>
+      <div class="row" style="float:left;margin:0px auto;">
+        <div class="span6" style="margin-bottom:10px;float:left;width: 555px;">
+          <div class="reviewer">
+<% if comment.user.omni_image_url.nil? %>
+        <%= image_tag comment.user.avatar.url(:medium),alt: comment.user.name %>
+    <% else  %>
+        <%= image_tag(comment.user.omni_image_url,size: "50x50", alt: comment.user.name)%>
+    <% end  %>
+          </div>
+          <div class="bubble-content">
+            <div class="point"></div>
+              <h4><%= comment.user.name  %> </h4>             
+              <%= comment.comment  %>
+          </div>
+          <div class="container clearfix"></div>
+        </div>
+      </div>
+       <%end%> 
+
+  <%end%>

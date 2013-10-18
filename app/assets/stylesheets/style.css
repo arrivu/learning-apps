@@ -555,6 +555,7 @@ margin: 5px
   margin-bottom: 0px;
   position: relative;
   width: 100%;
+  text-align: left;
 }
 .box header {
   background-color: #fafafa;

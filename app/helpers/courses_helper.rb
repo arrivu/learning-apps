@@ -1,11 +1,11 @@
 module CoursesHelper
 	def price_of_course_according_to_date(course)
-		if course.course_pricings.empty?
+		if course.course_pricings.nil?
 			#raise CoursePriceNotFound
 			return 0
 		else
 			price = course.course_pricings.where("start_date  <=? AND end_date >= ?", Date.today,Date.today)
-			if price.empty?
+			if price.nil?
 				return 0
 				raise CoursePriceNotFound
 			else
@@ -20,6 +20,4 @@ module CoursesHelper
    render("topics_list") + content_tag(:label, nested_topics_for_course(sub_topic_lists),class: "tree-toggler nav-header")
     end.join.html_safe
   end
-
-
 end

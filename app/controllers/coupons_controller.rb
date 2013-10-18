@@ -92,7 +92,7 @@ class CouponsController < ApplicationController
       format.html do
         populate_combo_courses
         params[:coupon][:account_id]=@domain_root_account.id
-        params[:coupon][:teaching_staff_id]=current_user.teaching_staff.id
+        params[:coupon][:teaching_staff_id]=current_user.teaching_staff.id rescue nil
         @coupon = Coupon.new(params[:coupon])
         how_many = params[:how_many] || 1
         unless Coupon.enough_space?(@coupon.alpha_mask, @coupon.digit_mask, Integer(how_many))

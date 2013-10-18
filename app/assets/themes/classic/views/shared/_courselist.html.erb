@@ -1,92 +1,267 @@
- <div class="row evenflow">
-   <div class="resource-row">
-     <div class="" >
-       <% @courses.each do |course|%>
-           <% module_count =lms_get_modules(course).count %>
-           <div class="span3 content-box resource" style="float: left;">
-             <div class="type-tag-positioner" style="background-image: url(<%= course.course_background_image.url(:thumb) %>);background-size: 100% 96%;">
-               <%= image_tag course.course_image.url(:thumb) ,:class=>"course-badge img-circle", :style=>"padding:5px;"%>
-               <div class="type ribbon1" <%= course.topic.color.nil? ? "style=background-color:darkblue" : "style=background-color:#{course.topic.color}" unless course.topic.nil? %>>
-                 <span class="prefix">
-                   <%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></span>
-               </div>
-             </div>
-             <div class="details">
-               <h2>
-                 <%=link_to(course) do %><%= course.title.split(' ').map(&:capitalize).join(' ') %>
-                 <%end%>
-               </h2>
-               <ul style="border-top:0px;">
-                 <li class="length time">
-                   <table>
-                     <tr>
-                       <td>
-                         <i class="icon-book" rel="tooltip" title="<%="Course has " +"#{pluralize(module_count,"Module")}"%> "></i></td>
-                       <td style="verticle-align:bottom;"><%=module_count%>
-                       </td>
-                     </tr>
-                   </table>
-                 </li>
-                 <li class="users">
-                   <table>
-                     <tr>
-                       <td>
-                         <i class="icon-user" rel="tooltip" title="<%="#{pluralize(course.students.count,"user")+
-                                 " Enrolled on this course " }"%>" ></i></td><td style="verticle-align:bottom;"> <%= course.students.count%>
-                     </td>
-                     </tr>
-                   </table>
-                 </li>
-                 <li class="tags">
-                   <table>
-                     <tr>
-                       <td>
-                         <i class="icon icon-tag" rel="tooltip" title="<%="Course has " "#{pluralize(course.tags.count,"Tag")}"%> ">
-                 </li>
-                 </td>
-                 <td style="verticle-align:bottom;">
-                   <%= course.tags.count%>
-                   </i>
-                 </tr>
-                   </table>
-                   </li>
-               </ul>
-               <div class="tag" style="padding:0px 10px;"><ul class="tags" style="border:0px;">
-                <% course.tags.limit(3).each do |tag| %>
-                <li><a href=<%=tagged_courses_path(tag: tag)%> >
-                  <b> <%= tag.name%> </b>
-                  <span><%= tag.courses.count%></span></a></li>
-                  <%end  %>
-                </ul>
-              </div>
-              <p class="desc" style="min-height: 20px;padding: 10px">
-                <%= course.short_desc  %>
-              </p>
-              <ul class="author" style="text-align: center;border-bottom:0px;">
-                <% course.teaching_staffs.active.each do |author|%>
-                <li>
-                   <div class="user" style="margin: -8px 0px 10px 0px;text-align: left;">
-                    <%= author.user.name %>
-                  </div>
-                  <% if author.user.omni_image_url.nil? %>
-                      <%= image_tag author.user.avatar.url(:thumb), :size => "35x30",:class=>"img-rounded", :style=>"border:1px solid #ffda55;margin-top: -10px;float:left;" %>
-                  <% else  %>
-                          <%= image_tag(author.user.omni_image_url,size: "35x30", alt: "",:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
-                  <% end  %>
-                </li>
-              </ul>
-              <p style="font-size: 10px;float: left;margin: -40px 0px 0px 55px;">
-                <%= truncate(author.description, :length => 100)%></p> <% end %>
-              </div>
+ <div class="container courseclub" >
+  <div class="row">
+    
+    <% @courses.each do |course|%>
+    <div class="span7" style="width: 570px;">
+      <div class="courses">
+                 <article class="course path-100" data-connection="18 20" data-tag="ruby-basics" id="course-6">
+          <div class="card-a course-inner">
+            <div class="course-progress" data-width="0%" style="width: 0%;"></div>
+             <%= image_tag course.course_image.url,:size=>"130x130",:class=>"course-badge img-circle"%>
+            <% if course.is_coming_soon %>
+              <div class="coming_soon"><%= image_tag("coming_soon.png") %></div>
+            <% elsif price_of_course_according_to_date(course).to_i ==0 %>
+              <div class="free"><%= image_tag("free.png") %></div>
+            <% end %>
+      
+            <div class="course-content">
+              <em class="label-a label-offset" <%= course.topic.color==nil ? "style=background-color:#2b6341" : "style=background-color:#{course.topic.color}" %> rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b><%=course.topic.name.split(' ').map(&:capitalize).join(' ') if !course.topic.nil? %></b></em>
+            
+             
+
+              <%=link_to(course) do %><h3 class="course-name"><%= course.title.split(' ').map(&:capitalize).join(' ') %></h3>
+              <p class="course-desc"><%= course.short_desc  %></p>
+              <%end%></div>
+
             </div>
-            <%end%>
-          </div>
+          </article>
         </div>
+
       </div>
+      <%end%>
+      
+    </div>
+  </div>
 
- 
+<style type="text/css">
+.courses{
+  margin-top: 50px;
+}
+.courses .course {
+float: left;
+}
+.course-inner img {
+width: 130px;
+height: 130px;
+}
 
- <script type="text/javascript">
-  $('i').tooltip()
-  </script>
-  
+.course {
+-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+position: relative;
+z-index: 1;
+margin-left: 10px;
+}
+
+.course > a, .course .course-inner {
+min-height: 95px;
+width: 500px;
+}
+
+.card-a, .prereqs, .tabs-container, .team .member .team-controls ul, .team .manager .team-controls ul, .team .seats-edit .team-controls ul, .management .member .team-controls ul, .management .manager .team-controls ul, .management .seats-edit .team-controls ul, ul.prizes .prize {
+background:#f2e1ac;
+box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.card, .card-a, .prereqs, .tabs-container, .team .member .team-controls ul, .team .manager .team-controls ul, .team .seats-edit .team-controls ul, .management .member .team-controls ul, .management .manager .team-controls ul, .management .seats-edit .team-controls ul, ul.prizes .prize, .card-b, .callout {
+border-radius: 3px;
+display: block;
+padding: 10px;
+}
+
+.code-path .courses .course .course-progress {
+z-index: 0;
+}
+img .login_img 
+{
+  width:162px;
+  height:29px;
+
+}
+.path-ruby .course-progress {
+background: rgba(181,67,34,0.075);
+}
+s
+.course-progress {
+background: #dcdcdc;
+background: rgba(169,169,169,0.3);
+border-radius: 3px;
+bottom: 0;
+left: 0;
+position: absolute;
+top: 0;
+z-index: -1;
+}
+
+.course .course-badge, .course .badges-show .achievement .awarded, .badges-show .achievement .course .awarded {
+left: -15px;
+position: absolute;
+top: -7px;
+}
+
+.course-badge, .badges-show .achievement .awarded {
+background: #fff;
+border-radius: 50%;
+box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+/*padding: 2px;*/
+}
+
+/*img {
+height: auto;
+max-width: 100%;
+}*/
+
+.course .course-content {
+padding-left: 110px;
+position: relative;
+z-index: 1;
+margin-left:20px;
+font:14px/1.231 "OpenSansLight",Helvetica,Arial,sans-serif;
+}
+
+.label.label-offset, .label-offset.label-a, .path-tags ul a.label-offset, .label-offset.label-b, .label-offset.label-c, .label-offset.label-d {
+position: absolute;
+right: -25px;
+top: -20px;
+}
+
+.label-a, .path-tags ul a {
+background: #e4e3d5;
+color: #606e67;
+}
+
+.label, .label-a, .path-tags ul a, .label-b, .label-c, .label-d {
+border-radius: 0px;
+color: #fff;
+display: inline-block;
+/*font: 1.5em "OpenSansCondensedBold",Helvetica,Arial,sans-serif;*/
+/*text-transform: uppercase;*/
+padding: 2px;
+
+}
+
+em {
+font-style: italic;
+font-weight: normal;
+font:14px/1.231 "OpenSansLight",Helvetica,Arial,sans-serif;
+
+}
+
+.course .course-content .label-b {
+padding:5px;
+position: absolute;
+top: -24px;
+}
+
+.label-b {
+background: #f1f1f1;
+/*color: #606e67;*/
+color: #307D7E;
+top:-10px;
+}
+.code-path .courses .course .course-name {
+margin: 0;
+}
+
+.path-ruby .code-path .course a h3 {
+color: #b54322;
+}
+
+.course .course-name {
+color: #606e67;
+font-size: 2em;
+letter-spacing: -1px;
+margin: 0 10px 0 0;
+}
+
+.course .course-desc {
+color: #636365;
+}
+
+p {
+font-size: 16px;
+font:"OpenSansLight",Helvetica,Arial,sans-serif;
+ margin: 0 0 -1px;
+
+}
+.bannerinfo p{
+   font: 20px "OpenSansLight",Helvetica,Arial,sans-serif;
+ margin: 0 0 -1px;
+}
+.orange{
+  background-color: #F39C12 ;
+}
+
+.blue{
+  background-color: #2980B9;
+}
+
+.green{
+  background-color: #27AE60;
+}
+
+.gray{
+  background-color: #95A5A6 ;
+}
+
+.violate{
+  background-color: #8E44AD ;
+}
+
+.learners_count{
+    line-height: 50px;
+    vertical-align: top;
+    padding: 0px 10px;
+    color:#f89406;
+}
+</style>
+<!--  <div class="container courseclub" style="padding:0px 25px;">
+  <div class="row">
+    
+    <div class="span7">
+      <div class="courses">
+                 <article class="course path-100" data-connection="18 20" data-tag="ruby-basics" id="course-6">
+          <div class="card-a course-inner">
+            <div class="course-progress" data-width="0%" style="width: 0%;"></div>
+            <img alt="17" class="course-badge img-circle" height="130" src="/show_image/17" width="130">
+              <div class="coming_soon"><img alt="Coming_soon" height="80" src="/assets/coming_soon-f4b43e64aab915fc666849503134f3a7.png" width="80"></div>
+      
+            <div class="course-content">
+              <em class="label-a label-offset" style="background-color:#6b4b10" rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b>Negotiation</b></em>
+            
+            
+
+              <a href="/courses/17"><h3 class="course-name">Negotiation And Bargaining</h3>
+              <p class="course-desc">Become a Negotiation Genius</p>
+              </a></div>
+
+            </div>
+          </article>
+        </div>
+
+      </div>
+    <div class="span7">
+      <div class="courses">
+                 <article class="course path-100" data-connection="18 20" data-tag="ruby-basics" id="course-6">
+          <div class="card-a course-inner">
+            <div class="course-progress" data-width="0%" style="width: 0%;"></div>
+            <img alt="18" class="course-badge img-circle" height="130" src="/show_image/18" width="130">
+      
+            <div class="course-content">
+              <em class="label-a label-offset" style="background-color:#6c8f5b" rel="tooltip" data-original-title="Orientation courses are entry-level courses in each of our Paths."> <b>Analytics</b></em>
+           
+
+              <a href="/courses/18"><h3 class="course-name">Simplifying Statistics</h3>
+              <p class="course-desc">Master the fundamentals of Big Data Analytics</p>
+              </a></div>
+
+            </div>
+          </article>
+        </div>
+
+      </div>
+      
+    </div>
+  </div> -->

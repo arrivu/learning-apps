@@ -9,17 +9,16 @@ $(document).ready(function(){
 <div class="row">
   <div class="container" style="width:100%;background: #F7F7F7;">
      <div class="span12" style="width:97%;margin-top:20px;">
-        <ol class="breadcrumb" style="margin-left:30px;">
+  <ol class="breadcrumb" style="margin-left:30px;">
   <li><a href="/">Home</a>/</li>
-  <li><a href="/courses" >Courses</a>/</li>  
-    <li><a href="#" class="active"><%= @course.title %></a></li>  
+  <li><a href="/courses">Courses</a>/</li>  
+  <li><a href="#" class="active"><%= @course.title %></a></li>  
   </ol>
       <div class="span3 content-box resource" style="float: left;margin-left:40px;">
              <div class="type-tag-positioner" style="background-image:url(<%= @course.course_image.url(:medium)  %>);background-size: 100% 96%;"></div>
         <div class="details" style="margin-top:165px;">
-          <div class="we" style="margin:0px 5px;"><h2 >
-            <%= @course.title %>
-          </h2><%= rating_for @course, "rate" %></div>
+          <div class="we" style="margin:0px 5px;">
+            <h2><%= @course.title %></h2><%= rating_for @course, "rate" %></div>
           <div class="review-stars"  >
        <div class="tag" style="padding:0px 10px;margin: 30px -13px 0px 0px;">
         <div style="font-size: 14px;">courses tags with:</div>
@@ -345,14 +344,14 @@ float: right;" %>
 </div>
 
 <div class="span3 content-box resource" style="float: left;padding: 40px 40px 0px 0px; margin-top: 30px;">
-   <!-- <div class="tab-pane" id="messages" style="padding:20px;"> -->
+
 <div class="underlinetext">
    
 <div class="coursereviews" >
   <div class="">
     <div class="">
       <div align="center" style="width:80%;background:#fff;box-shadow:2px 3px 2px #efefef;height:30px;padding-top:10px;margin:-55px 45px 10px;">
-        <h4 style="margin-top:0px;color: #B3B3B3;"><%=@course.comments.size%> Reviews</h4>
+        <h4 style="margin-top:0px;color: #B3B3B3;"><%=@course.comments.active.size%> Reviews</h4>
               </div>
     </div>
     <%= render "comments/comments" %>

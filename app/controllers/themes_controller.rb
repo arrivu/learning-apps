@@ -1,6 +1,6 @@
 class ThemesController < ApplicationController
 	before_filter :theme_check_create_admin
-  caches_action :index,:show
+  # caches_action :index,:show
 
   def new
   	@themes = Theme.new

@@ -18,7 +18,7 @@
 <% end %>
 <% if HeaderDetail.find_by_account_id(@account_id) != nil %>
     <% @header_details.each do |header_details| %>
-<header class="navbar navbar-inverse" style="background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;">
+<header class="navbar" style="background-image: url('<%= url_for(:controller => 'header_details',:action => 'theme_image_detail', :id =>header_details) %>');background-repeat:no-repeat;background-size:100% 100%;margin-bottom: -20px;">
         <div class="navbar-inner">
           <div class="container-fluid">
              <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="/" class="brand"> <%= image_tag("../images/#{header_details.logo_name}", :size=> "150x55") %> </a>
@@ -100,7 +100,7 @@
 
           <% end %>
 <%else%>
-<header class="navbar navbar-inverse">
+<header class="navbar " style="margin-bottom: -20px;background:#fff;">
         <div class="navbar-inner">
           <div class="container-fluid">
              <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="/" class="brand"> <%= image_tag("canvas/arrivu_logo.png", :size=> "150x55") %></a>

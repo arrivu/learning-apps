@@ -89,8 +89,8 @@ class CoursesController < ApplicationController
  def edit
   add_breadcrumb "Add Course", edit_course_path
   @course= @domain_root_account.courses.find(params[:id])
-  @course_pricing=@course.course_pricing
-  # @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+  @course_pricings=@course.course_pricings
+  #@course_pricings=@domain_root_account.course_pricings.find(params[:id])
   @course_previews=@course.course_previews
   @course_modules =@course.course_modules
   @sections = @course.sections
@@ -98,7 +98,7 @@ class CoursesController < ApplicationController
     else
      flash[:error] = "Not Authorized"
      redirect_to manage_courses_path
-   end
+    end
  end
 def update
    @course = @domain_root_account.courses.find(params[:id])

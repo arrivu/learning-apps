@@ -10,7 +10,7 @@ class AboutdetailsController < ApplicationController
      @about = Aboutdetail.find_by_account_id(@account_id)
      if @about == nil
        @aboutdetail=Aboutdetail.new
-       expire_action_cache action: [:index,:show]
+       # expire_action_cache action: [:index,:show]
        else
          redirect_to aboutdetails_path
        end
