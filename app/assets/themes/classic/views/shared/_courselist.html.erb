@@ -10,7 +10,7 @@
              <%= image_tag course.course_image.url,:size=>"130x130",:class=>"course-badge img-circle"%>
             <% if course.is_coming_soon %>
               <div class="coming_soon"><%= image_tag("coming_soon.png") %></div>
-            <% elsif price_of_course_according_to_date(course).to_i ==0 %>
+            <% elsif price_of_course_according_to_date(course) ==0 %>
               <div class="free"><%= image_tag("free.png") %></div>
             <% end %>
       

@@ -1,7 +1,7 @@
  <div class="row evenflow">
    <div class="resource-row">
      <div class="" >
-       <% @courses.each do |course|%>
+       <% @courses.take(6).each do |course|%>
            <% module_count =lms_get_modules(course).count %>
            <div class="span3 content-box resource" style="float: left;">
              <div class="type-tag-positioner" style="background-image: url(<%= course.course_background_image.url(:thumb) %>);background-size: 100% 96%;">

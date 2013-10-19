@@ -89,7 +89,11 @@ class CoursesController < ApplicationController
  def edit
   add_breadcrumb "Add Course", edit_course_path
   @course= @domain_root_account.courses.find(params[:id])
-  @course_pricings=@course.course_pricings
+  if @course.course_pricings.empty?
+  @course_pricings=@course.course_pricings.new
+else
+   @course_pricings=@course.course_pricings
+ end
   #@course_pricings=@domain_root_account.course_pricings.find(params[:id])
   @course_previews=@course.course_previews
   @course_modules =@course.course_modules

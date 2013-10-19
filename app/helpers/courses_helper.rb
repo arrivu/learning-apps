@@ -9,7 +9,7 @@ module CoursesHelper
 				return 0
 				raise CoursePriceNotFound
 			else
-				price.first.price
+				price
 			end
 		end
 	end

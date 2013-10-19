@@ -13,7 +13,7 @@ $(document).ready(function(){
 <div class="coursesyllabus">
   <div class="container">
     <div class="row">
-      <div class="span8">
+      <div class="span6">
         <div class="head1">
           <h3>Course Modules</h3>
         </div>
@@ -38,7 +38,7 @@ $(document).ready(function(){
        </div>
        <div class="starrating">
          <div class='spread'>  <div class='twshare left'>   </div>
-         <table> <tr>
+         <!-- <table> <tr>
           <td>
            <td><script type="text/javascript" src="http://platform.linkedin.com/in.js"></script></td>
            <script type="in/share" data-url="<%=request.url%>" data-counter="right"></script>
@@ -51,21 +51,21 @@ $(document).ready(function(){
             <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="<%= truncate(@course.desc, :length => 70)  %>">Tweet</a>
           </td>
         </tr>
-      </table>
+      </table> -->
     </div>
   </div>
 </div>
 </div>
 </div>
 </div>
-<div class="aboutauthor">
+<div class="aboutauthor" style="background: #efefef;">
   <div class="container ">
     <h1>About the Faculty</h1>
     <% @authors.each do |author|%>
     <div class="row" style="width:61%; display:inline-block; clear:left; margin:15px">
       <div class="authorimage">
         <% if author.user.omni_image_url.nil? %>
-          <%= image_tag author.user.avatar.url(:thumb),size: "45x40", alt: author.user.name,:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;" %>
+          <%= image_tag author.user.avatar.url,size: "125x160", alt: author.user.name,:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;" %>
           <% else  %>
           <%= image_tag(author.user.omni_image_url,size: "45x40", alt: author.user.name,:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
           <% end  %>
