@@ -17,11 +17,9 @@
        <div>
          <ol>
            <li style="padding-left:20px"><%= link_to "Add new Theme",new_theme_path ,:rel=>"tooltip",:title=>" Create new theme"%></li>
-           <% if @accounttheme.nil? %>
-           <li style="padding-left:20px"><%= link_to "Assign Theme", new_account_theme_path ,:rel=>"tooltip",:title=>"Change theme for an organization" %></li>
-           <% else%>
+         
            <li style="padding-left:20px"><%= link_to "Assign Theme", account_themes_path ,:rel=>"tooltip",:title=>"Change theme for an organization" %></li>
-           <% end%>
+          
          </ol>
        </div>
        <%end %>

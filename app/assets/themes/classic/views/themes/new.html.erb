@@ -19,13 +19,13 @@
                            <td><%=f.text_field :name%></td>
                          </tr>
                          <tr >
-                           <td><%=  link_to "Cancel", :back,class:"btn"  %></td>
-                           <td><%= f.submit "Save",class:"btn btn-primary yellobg" %> </td>
+                           <td><%= f.submit "Save" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
                          </tr>
                      <% end %>
                    </table>
                    <div class="left" style="padding: 0px;width: 16%;float: right;">
-                     <a href="../account_themes/new" class="btn btn-default btn-large" style="margin:21px; margin-top:-126px;
+                     <a href="../account_themes" class="btn btn-default btn-large" style="margin:21px; margin-top:-126px;
                              margin-left:100px;width: 140px;"><i class="icon icon-plus-sign"></i>Assign Theme</a>
                    </div>
                  </div>

@@ -22,7 +22,8 @@
       <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
         <tr><th>Price</th><td>
       <%= f.text_field :price %></td></tr>
-      <tr><th></th><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
+      <tr>  <td><%= f.submit "Update" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
       <% end %>
         </table>
         </div>

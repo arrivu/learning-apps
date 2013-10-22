@@ -13,13 +13,14 @@
                  <div id="collapse4" class="body" style = "margin-right:500px">
                    <div class="icons"><span class="badge badge-info">Assign Themes </span></div>
                    <table id="dataTable">
-                     <%= form_for (@accountthemes) do |f| %>
+                     <%= form_for (@accounttheme) do |f| %>
                          <%= render 'shared/error_messages', object: f.object %>
                          <tr>
                            <td><%=f.label 'Name'%></td>
                            <td><% themes_array = Theme.all.map { |theme| [theme.name] } %>
                              <%= f.select(:name,options_for_select(themes_array))%> </td></tr>
-                         <tr ><td><%= f.submit "Save",class:"btn btn-primary yellobg"%> </td></tr>
+                         <tr >  <td><%= f.submit "Save" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
                      <% end %>
                    </table>
                    <div class="left" style="padding: 0px;width: 16%;float: right;">

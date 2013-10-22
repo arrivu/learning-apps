@@ -55,7 +55,8 @@
                       <%= f.input :percentage_one,label: false  %></td></tr>
                     <tr><th>Expires</th><td>
                       <%= f.input_field :expiration, :start_year => Date.today.year, :end_year => Date.today.year + 30, :order => [ :day, :month, :year], class:"date" ,style: "width: 86px"%></td></tr>
-                    <tr><th></th><td> <%= f.button :submit ,class:"btn btn-primary yellobg" %></td></tr></table>
+                    <tr>  <td><%= f.submit "Update" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr></table>
                 <% end %>
               </div>
               <script>

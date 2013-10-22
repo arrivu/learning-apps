@@ -31,7 +31,8 @@
 											<td><%= f.text_field :sequence ,:size => '2' %></td></tr>
 											<tr><td><%= f.label :enable, "Show This Preview" %></td>
 												<td><%= f.check_box :enable ,:checked => true%></td></tr>
-												<tr><td></td><td><%= f.submit "Add Preview", class: "btn btn-large btn-primary" %></td></tr>
+												<tr>  <td><%= f.submit "Add Preview" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
 											</table>
 											<% end %>
 

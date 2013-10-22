@@ -19,8 +19,8 @@
                            <td><%=f.text_field :name%></td>
                          </tr>
                          <tr >
-                           <td><%=  link_to "Cancel", :back,class:"btn"  %></td>
-                           <td><%= f.submit "Save",class:"btn btn-primary yellobg" %> </td>
+                           <td><%= f.submit "Save" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
                          </tr>
                      <% end %>
                    </table>

@@ -32,7 +32,8 @@
 	<td><%=f.text_area :comments%></td>
 </tr>
 <tr >
-   <td><%= f.submit "Update" %> </td>
+    <td><%= f.submit "Update" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
 </tr>
 
 <% end %>

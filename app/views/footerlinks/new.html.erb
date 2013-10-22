@@ -31,7 +31,8 @@
 <%= f.text_field :twitter_url %></td></tr>
 <tr><td><%= f.label :copy_write %></td><td>
 <%= f.text_field :copy_write %></td></tr>
-<tr><td><%= f.submit "save" %></td></tr>
+<tr>  <td><%= f.submit "Save" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>></tr>
 <% end %>	</table>
 </div>
                                     </div>

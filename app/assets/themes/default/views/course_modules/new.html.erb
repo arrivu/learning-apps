@@ -20,7 +20,8 @@
                                 <tr>
                  <td><%= f.label :course_module %></td>
                  <td><%= f.text_field :course_module %></td></tr>
-                  <tr><td><%= f.submit  "Add Module", :class=>"btn btn-primary btn-large"%></td></tr> 
+                  <tr>  <td><%= f.submit "Add Module" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr> 
 
                 <% end %>	
                </table>

@@ -19,7 +19,8 @@
 <%= f.text_area :facebook_comment_script %></td></tr>
 <tr><td><%= f.label :twitter_comment_script %></td><td>
 <%= f.text_area :twitter_comment_script%></td></tr>
-<tr><td></td><td><%= f.submit "update" %></td></tr>
+<tr>  <td><%= f.submit "Update" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
 <% end %>	</table>
 </div>
                                     </div>

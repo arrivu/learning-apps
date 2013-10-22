@@ -31,7 +31,8 @@ tinyMCE.init({
   <td><%=f.text_area :desc,:class => "tinymce"%></td>
 </tr>
 <tr>
-   <td><%= f.submit "Save" %> </td>
+   <td><%= f.submit "Save" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
 </tr>
 <%= tinymce %>
 <% end %> </table>

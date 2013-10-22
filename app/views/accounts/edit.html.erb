@@ -35,7 +35,8 @@
 <tr><td><%= f.label :activate %></td>
 <td>
 <%= f.check_box :active %></td></tr>
-<tr><td><%= f.submit "update" %></td></tr>
+<tr>  <td><%= f.submit "Update" ,:class=>"btn btn-primary"%> </td>
+   <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
 <% end %></table>
 
                                    </div>

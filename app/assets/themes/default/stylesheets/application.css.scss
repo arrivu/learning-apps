@@ -9,8 +9,20 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require jquery-minicolors
  *= require token-input-facebook
  *= require bootstrap/bootstrap-tooltip
+ *= require_tree .
 */
+.tab-content {
+overflow: visible;
+background: white;
+border: 1px solid #ddd;
+border-top: 0px;
+padding: 15px;
+}
+#myTab{ 
+margin-left: 0;
+margin-bottom: 0px;
+list-style: none;
+}

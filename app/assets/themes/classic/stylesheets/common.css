@@ -259,3 +259,20 @@ float: left;
 width: 100%;
 margin-top: 45px;
 }
+.courseclub
+{
+  margin-bottom:25px;
+}
+
+.tab-content {
+overflow: visible;
+background: white;
+border: 1px solid #ddd;
+border-top: 0px;
+padding: 15px;
+}
+#myTab{ 
+margin-left: 0;
+margin-bottom: 0px;
+list-style: none;
+}
