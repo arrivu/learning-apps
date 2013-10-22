@@ -103,8 +103,9 @@ list-style: none;
                 </div>
               </td>
             </tr>
-            <tr><td></td><td><%= f.submit "Update Course", class: "btn btn-large btn-primary" %>
-            </td></tr>
+            <tr><td><%= f.submit "Update Course", class: "btn btn-primary" %>
+            </td>
+          <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
           </table>
 
         </div>
@@ -124,7 +125,8 @@ list-style: none;
             <%= f.input_field :end_date, :start_year => Date.today.year, :end_year => Date.today.year + 30, class:"date",style: "width: 84px;" %></td></tr>
           <tr><td>Price</td><td>
             <%= f.text_field :price %></td></tr>
-          <tr><td></td><td><%= f.submit "Update" ,class: "btn btn-primary " %></td></tr>
+          <tr><td><%= f.submit "Update" ,class: "btn btn-primary " %></td>
+          <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td></tr>
       <% end %>
       </table>
       </div>

@@ -85,9 +85,10 @@ list-style: none;
                        <%= f.text_field :tag_tokens, data: {load: @course.taggings}, :autofocus => false%>
                        </div>
                     </td></tr>
-                <tr><td></td>
-              <td><%= f.submit "Add Course", class: "btn btn-large btn-primary" %>
-              </td>
+                <tr>
+              <td><%= f.submit "Add Course", class: "btn btn-primary" %>
+                              </td>
+                              <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
         </tr></table>
                  
  </div>
@@ -111,8 +112,9 @@ list-style: none;
        <td><%= f.text_field :price %></td>
   </tr>
   
-    <tr><td></td>
+    <tr>
       <td><%= f.submit "Add Price" ,class: "btn btn-primary " %></td>
+      <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
     </tr>
     <% end %>
   </table>
@@ -139,8 +141,9 @@ list-style: none;
                   <td><%= f.text_field :sequence ,:size => '2' %></td></tr>
                 <tr><td><%= f.label :enable, "Show This Preview" %></td>
                  <td><%= f.check_box :enable ,:checked => true%></td></tr>
-                <tr><td></td>
-                  <td><%= f.submit "Add Preview", class: "btn btn-large btn-primary" %></td>
+                <tr>
+                  <td><%= f.submit "Add Preview", class: "btn btn-primary" %></td>
+               <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
                 </tr>
                      
                       <% end %>
@@ -161,7 +164,8 @@ list-style: none;
                  <td><%= f.label :course_module %></td>
                  <td><%= f.text_field :course_module %></td></tr>
                   <tr>
-                    <td><%= f.submit  "Add Module", :class=>"btn btn-primary btn-large"%></td>
+                    <td><%= f.submit  "Add Module", :class=>"btn btn-primary"%></td>
+                 <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
                   </tr> 
 
                 <% end %> 
@@ -186,7 +190,8 @@ list-style: none;
         
     
   <tr>
-     <td><%= f.submit  "Add Section", :class=>"btn btn-primary btn-large"%></td> 
+     <td><%= f.submit  "Add Section", :class=>"btn btn-primary"%></td> 
+     <td><%= link_to "Cancel", :back ,:class=>"btn btn-default"%> </td>
   </tr> 
 
 
