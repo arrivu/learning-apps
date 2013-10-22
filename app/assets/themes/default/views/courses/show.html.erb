@@ -1,4 +1,4 @@
-<script type="text/javascript">
+  <script type="text/javascript">
 $(document).ready(function(){
     var frames = document.getElementsByTagName("iframe");
     for (var i = 0; i < frames.length; i++) {
@@ -310,7 +310,7 @@ float: right;">Go To Class
          <%= link_to "enroll",payments_course_payment_path(:id=>@course.id),class: "btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;
 float: right;" %>
       <% else %>
-           <a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary"  >Enroll</a>
+<a href="#alert_popup_Modal" role="button" data-toggle="modal" class="btn btn-primary",style:"margin-bottom: 10px;margin-right: 95px;float: right;"  >Enroll</a>
       <% end %>
     <% end %> 
 
@@ -380,3 +380,4 @@ $('#myTab a').click(function (e) {
   $(this).tab('show');
 })
 </script>
+ <%= render 'layouts/alert_popup' %>

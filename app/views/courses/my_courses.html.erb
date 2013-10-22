@@ -65,8 +65,8 @@
                         <div class="card-a course-inner">
                           <div class="course-progress" data-width="0%" style="width: 0%;"></div>
 
-                          <% if course.course_image!=nil %>
-                           <%= image_tag course.default.url,:size=>"130x130",:class=>"course-badge img-circle"%>
+                          <% if course.course_image=nil %>
+                           <%= image_tag course.default_url,:size=>"130x130",:class=>"course-badge img-circle"%>
                           <% else %>
                           <%= image_tag course.course_image.url,:size=>"130x130",:class=>"course-badge img-circle"%>
                           <% end %>

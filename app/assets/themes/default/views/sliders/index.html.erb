@@ -32,9 +32,9 @@
     </thead>
     <tbody>	<% @slider.each do |slider| %>
 	<td>
-     <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider), :size => "150x150" %> 
+     <%= image_tag slider.content_image,:size => "150x150" %> 
 </td><td>
-	   <%= image_tag url_for(:controller => 'sliders',:action => 'background_image_slider', :id => slider), :size => "150x150" %>
+	   <%= image_tag slider.background_image, :size => "150x150" %>
 	</td>
 
 	   <td>

@@ -11,7 +11,7 @@
             <% if course.is_coming_soon %>
               <div class="coming_soon"><%= image_tag("coming_soon.png") %></div>
             <% elsif price_of_course_according_to_date(course) ==0 %>
-              <div class="free"><%= image_tag("free.png") %></div>
+             <!--  <div class="free"><%= image_tag("free.png") %></div> -->
             <% end %>
       
             <div class="course-content">
@@ -21,6 +21,11 @@
 
               <%=link_to(course) do %><h3 class="course-name"><%= course.title.split(' ').map(&:capitalize).join(' ') %></h3>
               <p class="course-desc"><%= course.short_desc  %></p>
+            <P><% course.tags.limit(3).each do |tag| %>
+                <% if course.tags != nil %>Tags:<%end%> <a href=<%=tagged_courses_path(tag: tag)%> >
+                  <b> <%= tag.name%> </b>
+                 </a>
+                  <%end  %></p>
               <%end%></div>
 
             </div>

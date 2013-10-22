@@ -305,13 +305,15 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
 
   create_table "partners", :force => true do |t|
     t.string   "company_name"
-    t.binary   "image"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "image_type"
-    t.string   "file_name"
-    t.integer  "account_id",   :limit => 8
+    t.integer  "account_id",           :limit => 8
     t.string   "comments"
+    t.string   "partner_file_name"
+    t.string   "partner_content_type"
+    t.integer  "partner_file_size"
+    t.datetime "partner_updated_at"
   end
 
   create_table "privacypolicies", :force => true do |t|
@@ -396,18 +398,20 @@ ActiveRecord::Schema.define(:version => 20130314093035551) do
   end
 
   create_table "sliders", :force => true do |t|
-    t.binary   "image"
-    t.binary   "background_image"
     t.string   "header"
     t.string   "body_tag"
-    t.integer  "account_id",            :limit => 8
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "image_name"
-    t.string   "image_type"
+    t.integer  "account_id",                    :limit => 8
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.binary   "data"
-    t.string   "background_image_type"
-    t.string   "background_image_name"
+    t.string   "content_image_file_name"
+    t.string   "content_image_content_type"
+    t.integer  "content_image_file_size"
+    t.datetime "content_image_updated_at"
+    t.string   "background_image_file_name"
+    t.string   "background_image_content_type"
+    t.integer  "background_image_file_size"
+    t.datetime "background_image_updated_at"
   end
 
   create_table "social_stream_comments", :force => true do |t|

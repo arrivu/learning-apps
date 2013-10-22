@@ -4,7 +4,7 @@ module CoursesHelper
 			#raise CoursePriceNotFound
 			return 0
 		else
-			price = course.course_pricings.where("start_date  <=? AND end_date >= ?", Date.today,Date.today)
+			price = course.course_pricings.where("start_date  <=? AND end_date >= ?", Date.today,Date.today).first.price rescue nil
 			if price.nil?
 				return 0
 				raise CoursePriceNotFound

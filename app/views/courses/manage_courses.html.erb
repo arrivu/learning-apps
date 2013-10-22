@@ -30,7 +30,7 @@
     <tr>
 
       <td><%= image_tag course.course_image.url(:small) %></td>
-      <td><%= course.topic.name %></td>
+      <td><%= course.topic.name rescue nil %></td>
         <td><%= link_to course.title, course_path(course) %></td>
         <td><%= course.start_date %></td>
         <td><%= course.end_date %></td>

@@ -78,8 +78,6 @@ end
         @user=User.new(name: params[:user][:name],
                        email: params[:user][:email],
                        user_type: 2,
-                       content_type: params[:user][:content_type],
-                       attachment: params[:user][:attachment],
                        password: params[:user][:password],
                        password_confirmation: params[:user][:password_confirmation])
         if @account.save  and @user.save

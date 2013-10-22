@@ -4,9 +4,7 @@ $(document).ready(function(){
     var frames = document.getElementsByTagName("iframe");
     for (var i = 0; i < frames.length; i++) {
              frames[i].src += "?wmode=opaque;"  
-        
-      }
-
+    }
 });
 </script>
 
@@ -62,14 +60,14 @@ $(document).ready(function(){
   <div class="container ">
     <h1>About the Faculty</h1>
     <% @authors.each do |author|%>
-    <div class="row" style="width:61%; display:inline-block; clear:left; margin:15px">
+    <div class="row" style="width:80%; display:inline-block; clear:left; margin:15px">
       <div class="authorimage">
         <% if author.user.omni_image_url.nil? %>
           <%= image_tag author.user.avatar.url,size: "125x160", alt: author.user.name,:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;" %>
           <% else  %>
           <%= image_tag(author.user.omni_image_url,size: "45x40", alt: author.user.name,:class=>"img-rounded", :style=>"border:3px solid #E7E372;margin-top: -10px;")%>
           <% end  %>
-        <p ><%= truncate(author.description, :length => 300)%></p>
+        <p style="font-size:16px;"><%= truncate(author.description, :length => 300)%></p>
       </div>
       <div class="authorinfo">
         <h4><%= author.name %></h4>
@@ -91,7 +89,8 @@ $(document).ready(function(){
       <% a=0 %>
       <% @course.course_previews.where(enable: 1).order(:sequence).each do |p| %>
       <% a +=1  %>
-      <div class="span6 prevbox">
+      <div class="span5 prevbox" style="background: #efefef;
+padding: 0px 0px 0px 10px;">
        <table> <tr>
          <td>
            <div class="bannervideo">
@@ -147,19 +146,20 @@ $(document).ready(function(){
  </div>
  <div class="container clearfix"></div>
  <div class="row">
-  <div align="center">
+  <div align="center" style="margin:10px 0px;">
     <div >
-      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"browsemore1" %>
+      <%= link_to "Add Reveiw",new_comment_path(:commentable=>@course,:commentable_type=>"course"), :locals => {:commentable => @course},class:"btn btn-primary" %>
+        <%= link_to "Discover More courses", courses_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>
-
+<!-- 
 <div align="center">
   <a href="<%= courses_path %>"><span class="browsemore" align="center">
     
       </span></a>
       <h6 style="color:steelblue;margin:0px;"> Discover More courses</h6>
-</div>
+</div> -->
 </div>
 
 <script>

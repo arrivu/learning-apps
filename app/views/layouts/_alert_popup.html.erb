@@ -13,14 +13,11 @@
         <p>You are going to registered on a new orgnization.Are you sure to join with this organization  </p>
       </div>
 
-      <div class="modal-footer">
-       
-        <%= f.button :submit, "Ok", :class => 'btn-primary yellobg',:url=>url_for(payments_course_payment_path(:id=>@course.id)),:class=>"enroll" %> 
-
-       <!--  <button type="button" class="btn btn-primary" data-dismiss="modal" >Ok</button> -->
-        <button type="button" class="btn btn-primary yellobg" data-dismiss="modal">Cancel</button>
+    <div class="modal-footer">
+    <%= link_to "ok",payments_course_payment_path(:id=>@course.id),  :class=>"enroll" %>
+    <button type="button" class="btn btn-primary yellobg" data-dismiss="modal">Cancel</button>
         <% end %>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->  
+    </div>
+  </div>
+</div> 

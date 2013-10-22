@@ -4,11 +4,12 @@
     before_filter :load_account
     before_filter :topics
     before_filter :load_theme
-   # before_filter :set_mailer_settings
+   #before_filter :set_mailer_settings
     include ApplicationHelper
     include CoursesHelper
     include SessionsHelper
-    include PaymentsHelper 
+    include PaymentsHelper
+    include LmsHelper
     include UrlHelper   
     include SubdomainHelper
     include ActiveMerchant::Billing::Integrations::ActionViewHelper

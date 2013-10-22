@@ -24,8 +24,8 @@
 
 <tr>
 	<td><%=f.label 'Logo' %></td>
-	<td><%= image_tag url_for(:controller => 'partners',:action => 'show', :id => @partner.id), :width => "100",:height => "100"%>
-	<%= f.file_field :uploaded_file %></td> 
+	<td><%= image_tag @partner.partner.url(:thumb)%>
+	<%= f.file_field :partner %></td> 
 </tr>
 <tr>
 	<td><%=f.label 'Comments'%></td>

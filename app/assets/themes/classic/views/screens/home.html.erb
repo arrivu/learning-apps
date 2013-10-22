@@ -6,11 +6,12 @@
           <% if @domain_root_account.settings[:slide_show_enable] %>
               <% @slider.each do |slider| %>
 
-           <div style="background-image: url('<%= url_for(:controller=>"sliders", :action => 'background_image_slider', :id => slider) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 100%; width: 100%;" class="active-slide slide">
+        
+           <div style="background-image: url('<%= slider.background_image(:thumb) %>');background-repeat:no-repeat;background-size:100% 100%;color:white; height: 100%; width: 100%;" class="active-slide slide">
                    <div class="span12 offset1" style="background-image: url('assets/banner-content-bg.png');height:300px;margin-top:3%;padding:3% 0px;">
-                <% unless slider.image.nil?  %>
+                <% unless slider.content_image.nil?  %>
                  <div class="span4 offset1">
-                  <%= image_tag url_for(:controller => 'sliders',:action => 'show_image_slider', :id => slider.id), :style=>"width:55%;height:65%" %> 
+                  <%= image_tag slider.content_image, :style=>"width:55%;height:65%" %> 
 
                 </div>
                    <% end  %>           
@@ -117,7 +118,7 @@ padding: 10px 0px;float: left;">
 
   <% @partners.each do |partners| %>
           <div class="span3" style="height:175px;">
-             <%= image_tag url_for(:controller => 'partners',:action => 'show', :id => partners) %>   
+              <%= image_tag partners.partner.url, :size=>"200x160" %> 
           </div>
           <%end%>
         </div>

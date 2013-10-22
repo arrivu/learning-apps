@@ -82,7 +82,7 @@ class Coupon < ActiveRecord::Base
   # no savings.
   def self.no_coupon(price)
     r = {:grand_total => 0.0}
-      price = price.to_f 
+      price = price.to_f
       r[:grand_total] += price
 
     round_values(r)

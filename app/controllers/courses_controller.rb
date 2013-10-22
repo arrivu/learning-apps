@@ -118,7 +118,7 @@ def update
    else
      render :edit
    end
-     @coursepricing=@domain_root_account.course_pricings.find(params[:id])
+     @course_pricing=@domain_root_account.course_pricings.find(params[:id])
     if user_can_do?(@coursepricing)
     @coursepricing_params=@domain_root_account.course_pricings.new(params[:course_pricing])
     @coursepricing.account_id=@domain_root_account.id

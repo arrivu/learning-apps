@@ -3,17 +3,17 @@ class SlidersController < ApplicationController
      before_filter :valid_domain_check, :only=>[:show,:edit]
 
 
-  def show_image_slider    
-    @slider = Slider.find(params[:id])
-    send_data @slider.image, :type => @slider.image_type, :disposition => 'inline'
-    # http_cache(@slider)
-  end
+  # def show_image_slider    
+  #   @slider = Slider.find(params[:id])
+  #   send_data @slider.image, :type => @slider.image_type, :disposition => 'inline'
+  #   # http_cache(@slider)
+  # end
 
-  def background_image_slider   
-    @slider = Slider.find(params[:id])
-    send_data @slider.background_image, :type => @slider.background_image_type, :disposition => 'inline'
-    # http_cache(@slider)
-  end
+  # def background_image_slider   
+  #   @slider = Slider.find(params[:id])
+  #   send_data @slider.background_image, :type => @slider.background_image_type, :disposition => 'inline'
+  #   # http_cache(@slider)
+  # end
 
   def new
   	@slider = Slider.new

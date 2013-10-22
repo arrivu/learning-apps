@@ -18,14 +18,14 @@
 <%= form_for (@slider) do |f| %>
 
     <tr>
-        <td><%= f.label :image %></td>
+        <td><%= f.label "content_image" %></td>
        
-        <td><%= f.file_field 'attachment' %></td>
+        <td><%= f.file_field :content_image %></td>
     </tr>
 
     <tr>
-        <td><%= f.label :background_image %></td>
-        <td><%= f.file_field 'background' %></td>
+        <td><%= f.label "background_image" %></td>
+        <td><%= f.file_field :background_image %></td>
     </tr>
      <tr>
         <td><%= f.label :header %></td>

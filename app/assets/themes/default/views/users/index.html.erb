@@ -21,9 +21,10 @@
         <th >Registered</th>
         <th>Login Type</th>
         <th >Role</th>
-
+<% if current_user.has_role? :admin %>
         <th></th>
         <th></th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
@@ -38,18 +39,22 @@
         <td><%= user.provider %></td>
         <% end %>
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
+           <% if current_user.has_role? :admin %>
+            <% unless user==current_user %>
         <td >
-          <% if current_user.has_role? :admin %>
-          <% unless user==current_user %>
+       
+         
           <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
           <%= render user %>
-          <% end %>
         </td>
-        <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
-      </tr>
-      <% end %>
-      <% end %>
+                  <% end %>
 
+        <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini btn-danger') unless user == current_user %></td>
+         <% end %>
+ 
+
+      </tr>
+          <% end %>
     </tbody>
                                             </table>
 
